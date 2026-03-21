@@ -187,13 +187,117 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (To be populated during roadmap creation) | | |
+| INFRA-01 | Phase 1 | Pending |
+| INFRA-02 | Phase 1 | Pending |
+| INFRA-03 | Phase 1 | Pending |
+| INFRA-04 | Phase 1 | Pending |
+| INFRA-05 | Phase 1 | Pending |
+| INFRA-06 | Phase 1 | Pending |
+| INFRA-07 | Phase 1 | Pending |
+| INFRA-08 | Phase 1 | Pending |
+| AUTH-01 | Phase 1 | Pending |
+| AUTH-02 | Phase 1 | Pending |
+| AUTH-03 | Phase 1 | Pending |
+| AUTH-04 | Phase 1 | Pending |
+| AUTH-05 | Phase 1 | Pending |
+| AUTH-06 | Phase 1 | Pending |
+| AI-01 | Phase 2 | Pending |
+| AI-02 | Phase 2 | Pending |
+| AI-03 | Phase 2 | Pending |
+| AI-04 | Phase 2 | Pending |
+| AI-05 | Phase 2 | Pending |
+| AI-06 | Phase 2 | Pending |
+| AI-07 | Phase 2 | Pending |
+| AI-08 | Phase 2 | Pending |
+| FIN-01 | Phase 3 | Pending |
+| FIN-02 | Phase 3 | Pending |
+| FIN-03 | Phase 3 | Pending |
+| FIN-04 | Phase 3 | Pending |
+| FIN-05 | Phase 3 | Pending |
+| FIN-06 | Phase 3 | Pending |
+| FIN-07 | Phase 3 | Pending |
+| FIN-08 | Phase 3 | Pending |
+| FIN-09 | Phase 3 | Pending |
+| FIN-10 | Phase 3 | Pending |
+| FIN-11 | Phase 3 | Pending |
+| FIN-12 | Phase 3 | Pending |
+| HAB-01 | Phase 4 | Pending |
+| HAB-02 | Phase 4 | Pending |
+| HAB-03 | Phase 4 | Pending |
+| HAB-04 | Phase 4 | Pending |
+| HAB-05 | Phase 4 | Pending |
+| HAB-06 | Phase 4 | Pending |
+| HAB-07 | Phase 4 | Pending |
+| HAB-08 | Phase 4 | Pending |
+| HAB-09 | Phase 4 | Pending |
+| HAB-10 | Phase 4 | Pending |
+| TASK-01 | Phase 4 | Pending |
+| TASK-02 | Phase 4 | Pending |
+| TASK-03 | Phase 4 | Pending |
+| TASK-04 | Phase 4 | Pending |
+| TASK-05 | Phase 4 | Pending |
+| TASK-06 | Phase 4 | Pending |
+| TASK-07 | Phase 4 | Pending |
+| TASK-08 | Phase 4 | Pending |
+| HLTH-01 | Phase 5 | Pending |
+| HLTH-02 | Phase 5 | Pending |
+| HLTH-03 | Phase 5 | Pending |
+| HLTH-04 | Phase 5 | Pending |
+| HLTH-05 | Phase 5 | Pending |
+| HLTH-06 | Phase 5 | Pending |
+| HLTH-07 | Phase 5 | Pending |
+| HLTH-08 | Phase 5 | Pending |
+| NOTE-01 | Phase 6 | Pending |
+| NOTE-02 | Phase 6 | Pending |
+| NOTE-03 | Phase 6 | Pending |
+| NOTE-04 | Phase 6 | Pending |
+| NOTE-05 | Phase 6 | Pending |
+| NOTE-06 | Phase 6 | Pending |
+| NOTE-07 | Phase 6 | Pending |
+| NOTE-08 | Phase 6 | Pending |
+| HOBB-01 | Phase 7 | Pending |
+| HOBB-02 | Phase 7 | Pending |
+| HOBB-03 | Phase 7 | Pending |
+| HOBB-04 | Phase 7 | Pending |
+| HOBB-05 | Phase 7 | Pending |
+| HOBB-06 | Phase 7 | Pending |
+| SAAS-01 | Phase 8 | Pending |
+| SAAS-02 | Phase 8 | Pending |
+| SAAS-03 | Phase 8 | Pending |
+| SAAS-04 | Phase 8 | Pending |
+| SAAS-05 | Phase 8 | Pending |
+| SAAS-06 | Phase 8 | Pending |
+| SAAS-07 | Phase 8 | Pending |
+| SAAS-08 | Phase 8 | Pending |
+| WEB-01 | Phase 9 | Pending |
+| WEB-02 | Phase 9 | Pending |
+| WEB-03 | Phase 9 | Pending |
+| WEB-04 | Phase 9 | Pending |
+| WEB-05 | Phase 9 | Pending |
+| WEB-06 | Phase 9 | Pending |
+| WEB-07 | Phase 9 | Pending |
+| MOB-01 | Phase 10 | Pending |
+| MOB-02 | Phase 10 | Pending |
+| MOB-03 | Phase 10 | Pending |
+| MOB-04 | Phase 10 | Pending |
+| MOB-05 | Phase 10 | Pending |
+| MOB-06 | Phase 10 | Pending |
+| DSK-01 | Phase 11 | Pending |
+| DSK-02 | Phase 11 | Pending |
+| DSK-03 | Phase 11 | Pending |
+| DSK-04 | Phase 11 | Pending |
+| DSK-05 | Phase 11 | Pending |
+| OPS-01 | Phase 12 | Pending |
+| OPS-02 | Phase 12 | Pending |
+| OPS-03 | Phase 12 | Pending |
+| OPS-04 | Phase 12 | Pending |
+| OPS-05 | Phase 12 | Pending |
 
 **Coverage:**
 - v1 requirements: 79 total
-- Mapped to phases: 0
-- Unmapped: 79 ⚠️
+- Mapped to phases: 79
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-22*
-*Last updated: 2026-03-22 after initial definition*
+*Last updated: 2026-03-22 after roadmap creation*
