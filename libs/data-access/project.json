@@ -1,0 +1,16 @@
+{
+  "name": "data-access",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/data-access",
+        "main": "libs/data-access/src/index.ts",
+        "tsConfig": "libs/data-access/tsconfig.lib.json",
+        "assets": [],
+        "skipTypeCheck": true
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@pms/shared-kernel": ["dist/libs/shared-kernel/src/index.js"],
+      "@pms/shared-types": ["dist/libs/shared-types/src/index.js"],
+      "@pms/data-access": ["dist/libs/data-access/src/index.js"],
+      "@pms/feature-auth": ["dist/libs/feature-auth/src/index.js"]
+    }
+  }
+}

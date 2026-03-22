@@ -1,0 +1,16 @@
+{
+  "name": "shared-kernel",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared-kernel",
+        "main": "libs/shared-kernel/src/index.ts",
+        "tsConfig": "libs/shared-kernel/tsconfig.lib.json",
+        "assets": [],
+        "skipTypeCheck": true
+      }
+    }
+  }
+}
