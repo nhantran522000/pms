@@ -27,7 +27,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       console.error('Unhandled exception:', exception);
     }
 
-    response.status(status).send({
+    response.code(status).send({
       success: false,
       error: message,
       details,

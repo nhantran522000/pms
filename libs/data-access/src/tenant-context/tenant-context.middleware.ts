@@ -1,21 +1,19 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
-import { FastifyRequest, FastifyReply } from 'fastify';
+import { IncomingMessage, ServerResponse } from 'http';
 import { randomUUID } from 'crypto';
-import {
-  runWithTenantContext,
-  getTenantContext
-} from './async-local-storage';
+import { runWithTenantContext } from './async-local-storage';
 
 /**
  * Tenant context middleware
  * Extracts tenant information from authenticated requests
  * Stores in AsyncLocalStorage for request duration
+ *
+ * Uses raw Node.js types because NestJS middleware with Fastify
+ * receives IncomingMessage/ServerResponse, not Fastify request/reply.
  */
 @Injectable()
 export class TenantContextMiddleware implements NestMiddleware {
-  use(req: FastifyRequest, reply: FastifyReply, next: () => void) {
-    // Extract tenant from JWT payload (set by auth guard - future)
-    // For now, use default tenant for unauthenticated requests
+  use(req: IncomingMessage, res: ServerResponse, next: () => void) {
     const user = (req as any).user;
     const tenantId = user?.tenantId || 'default';
     const userId = user?.id;
@@ -27,11 +25,8 @@ export class TenantContextMiddleware implements NestMiddleware {
       correlationId,
     };
 
-    // Store in AsyncLocalStorage and continue
     runWithTenantContext(context, () => {
-      // Add correlation ID to response headers
-      reply.header('x-correlation-id', correlationId);
-
+      res.setHeader('x-correlation-id', correlationId);
       next();
     });
   }
