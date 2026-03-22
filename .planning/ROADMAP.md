@@ -104,7 +104,7 @@ Plans:
 - [x] 04-01: Habits domain module with CRUD, daily check-in, streak calculation
 - [ ] 04-02: Habit cron scheduling ("every Mon,Wed,Fri", "every 2 weeks") and scheduled day filtering
 - [ ] 04-03: RPG gamification (XP, levels, achievements) and dashboard display
-- [ ] 04-04: Tasks domain module with CRUD, subtasks, and overdue highlighting
+- [x] 04-04: Tasks domain module with CRUD, subtasks, and overdue highlighting
 - [ ] 04-05: Natural language task parsing (title, due date, tags extraction)
 - [ ] 04-06: Task filtering by status and sorting by due date/priority/creation date
 - [ ] 04-07: Habit calendar with completion history visualization

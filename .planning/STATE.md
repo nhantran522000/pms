@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 04-01 Habits Domain Module
-last_updated: "2026-03-22T18:49:45.476Z"
+stopped_at: Completed 04-04 Tasks Domain Module
+last_updated: "2026-03-22T18:53:17.258Z"
 progress:
   total_phases: 12
   completed_phases: 2
   total_plans: 19
-  completed_plans: 20
+  completed_plans: 21
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-21)
 ## Current Position
 
 Phase: 04 (Habits & Tasks) — EXECUTING
-Plan: 2 of 7
+Plan: 3 of 7
 
 ## Performance Metrics
 
@@ -68,6 +68,7 @@ Plan: 2 of 7
 | Phase 03 P06 | 5min | 4 tasks | 9 files |
 | Phase 03-financial-module P07 | 399 | 4 tasks | 11 files |
 | Phase 04 P01 | 9min | 7 tasks | 24 files |
+| Phase 04-habits-tasks P04 | 12min | 7 tasks | 18 files |
 
 ## Accumulated Context
 
@@ -125,6 +126,9 @@ Recent decisions affecting current work:
 - [Phase 03-financial-module]: Recurring transactions flagged with isRecurring=true and recurringRuleId
 - [Phase 04]: Streak calculation counts consecutive completed days from today backwards, resetting to 0 when a gap is found
 - [Phase 04]: Unique constraint on [tenantId, habitId, date] prevents duplicate check-ins for the same habit on the same day
+- [Phase 04-habits-tasks]: Self-referential Task model for subtasks instead of separate Subtask table
+- [Phase 04-habits-tasks]: Prevent nested subtasks beyond 2 levels (cannot create subtask of a subtask)
+- [Phase 04-habits-tasks]: Overdue detection uses start of today for comparison (not current time)
 
 ### Pending Todos
 
@@ -136,6 +140,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-22T18:49:45.473Z
-Stopped at: Completed 04-01 Habits Domain Module
+Last session: 2026-03-22T18:53:17.256Z
+Stopped at: Completed 04-04 Tasks Domain Module
 Resume file: None

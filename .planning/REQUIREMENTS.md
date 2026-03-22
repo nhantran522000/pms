@@ -66,10 +66,10 @@
 
 ### Tasks Module
 
-- [ ] **TASK-01**: User can create tasks with title, description, due date, priority
-- [ ] **TASK-02**: User can mark tasks as complete/incomplete
-- [ ] **TASK-03**: System highlights overdue tasks
-- [ ] **TASK-04**: User can create subtasks under parent tasks
+- [x] **TASK-01**: User can create tasks with title, description, due date, priority
+- [x] **TASK-02**: User can mark tasks as complete/incomplete
+- [x] **TASK-03**: System highlights overdue tasks
+- [x] **TASK-04**: User can create subtasks under parent tasks
 - [ ] **TASK-05**: User can create tasks via natural language ("Buy milk tomorrow 5pm #errands")
 - [ ] **TASK-06**: System parses title, due date, and tags from natural language input
 - [ ] **TASK-07**: User can filter tasks by status (pending, completed, overdue)
@@ -231,10 +231,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | HAB-08 | Phase 4 | Pending |
 | HAB-09 | Phase 4 | Pending |
 | HAB-10 | Phase 4 | Pending |
-| TASK-01 | Phase 4 | Pending |
-| TASK-02 | Phase 4 | Pending |
-| TASK-03 | Phase 4 | Pending |
-| TASK-04 | Phase 4 | Pending |
+| TASK-01 | Phase 4 | Complete |
+| TASK-02 | Phase 4 | Complete |
+| TASK-03 | Phase 4 | Complete |
+| TASK-04 | Phase 4 | Complete |
 | TASK-05 | Phase 4 | Pending |
 | TASK-06 | Phase 4 | Pending |
 | TASK-07 | Phase 4 | Pending |
