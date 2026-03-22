@@ -76,17 +76,16 @@ Plans:
   3. User can create envelope budgets allocating income to categories with rollover to next month
   4. System auto-categorizes transactions using AI from payee/description
   5. System auto-creates transactions from recurring rules (daily/weekly/monthly/yearly) via pg-boss, flagged for exclusion from anomaly detection
-**Plans**: 5 plans
+**Plans**: 7 plans
 
 Plans:
-- [ ] 03-01: Financial domain module with hexagonal architecture (domain/application/infrastructure/presentation)
-- [ ] 03-02: Transaction CRUD with category management and hierarchical categories
+- [ ] 03-01: Financial domain module with hexagonal architecture - Prisma schema, domain entities, Money value object
+- [ ] 03-02: Category CRUD with hierarchical parent-child relationships
 - [ ] 03-03: Account management with running balance totals
-- [ ] 03-04: Transaction filtering by date range, category, and account
-- [ ] 03-05: AI transaction categorization (payee/description → category)
+- [ ] 03-04: Transaction CRUD with automatic account balance updates and soft delete
+- [ ] 03-05: AI transaction categorization using CLASSIFY task type
 - [ ] 03-06: Envelope budgeting with income allocation and monthly rollover
 - [ ] 03-07: Recurring transaction rules with pg-boss scheduled jobs
-- [ ] 03-08: Financial charts and visualizations (spending by category, account balances over time)
 
 ### Phase 4: Habits & Tasks
 **Goal**: Habit tracking with streaks, RPG gamification, and task management with natural language parsing
@@ -273,13 +272,13 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 2 → 2.1 → 2.2 → 3 → 3.1 → 4
+Phases execute in numeric order: 2 -> 2.1 -> 2.2 -> 3 -> 3.1 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 1/6 | In progress | 2026-03-22 |
-| 2. AI Gateway | 0/5 | Not started | - |
-| 3. Financial Module | 0/8 | Not started | - |
+| 1. Foundation | 6/6 | Complete | 2026-03-22 |
+| 2. AI Gateway | 5/5 | Complete | 2026-03-22 |
+| 3. Financial Module | 0/7 | Not started | - |
 | 4. Habits & Tasks | 0/7 | Not started | - |
 | 5. Health Module | 0/6 | Not started | - |
 | 6. Notes & Journal | 0/7 | Not started | - |
