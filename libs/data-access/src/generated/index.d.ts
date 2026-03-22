@@ -23,6 +23,21 @@ export type Tenant = $Result.DefaultSelection<Prisma.$TenantPayload>
  * User - Authentication and profile
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model AiProviderConfig
+ * AiProviderConfig - AI provider configuration per tenant
+ */
+export type AiProviderConfig = $Result.DefaultSelection<Prisma.$AiProviderConfigPayload>
+/**
+ * Model AiPromptCache
+ * AiPromptCache - Cache AI responses for 24h
+ */
+export type AiPromptCache = $Result.DefaultSelection<Prisma.$AiPromptCachePayload>
+/**
+ * Model AiUsageLog
+ * AiUsageLog - Track AI usage for analytics and budgeting
+ */
+export type AiUsageLog = $Result.DefaultSelection<Prisma.$AiUsageLogPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -164,6 +179,36 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aiProviderConfig`: Exposes CRUD operations for the **AiProviderConfig** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AiProviderConfigs
+    * const aiProviderConfigs = await prisma.aiProviderConfig.findMany()
+    * ```
+    */
+  get aiProviderConfig(): Prisma.AiProviderConfigDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aiPromptCache`: Exposes CRUD operations for the **AiPromptCache** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AiPromptCaches
+    * const aiPromptCaches = await prisma.aiPromptCache.findMany()
+    * ```
+    */
+  get aiPromptCache(): Prisma.AiPromptCacheDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aiUsageLog`: Exposes CRUD operations for the **AiUsageLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AiUsageLogs
+    * const aiUsageLogs = await prisma.aiUsageLog.findMany()
+    * ```
+    */
+  get aiUsageLog(): Prisma.AiUsageLogDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -599,7 +644,10 @@ export namespace Prisma {
 
   export const ModelName: {
     Tenant: 'Tenant',
-    User: 'User'
+    User: 'User',
+    AiProviderConfig: 'AiProviderConfig',
+    AiPromptCache: 'AiPromptCache',
+    AiUsageLog: 'AiUsageLog'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -615,7 +663,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "tenant" | "user"
+      modelProps: "tenant" | "user" | "aiProviderConfig" | "aiPromptCache" | "aiUsageLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -767,6 +815,228 @@ export namespace Prisma {
           }
         }
       }
+      AiProviderConfig: {
+        payload: Prisma.$AiProviderConfigPayload<ExtArgs>
+        fields: Prisma.AiProviderConfigFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AiProviderConfigFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiProviderConfigPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AiProviderConfigFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiProviderConfigPayload>
+          }
+          findFirst: {
+            args: Prisma.AiProviderConfigFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiProviderConfigPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AiProviderConfigFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiProviderConfigPayload>
+          }
+          findMany: {
+            args: Prisma.AiProviderConfigFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiProviderConfigPayload>[]
+          }
+          create: {
+            args: Prisma.AiProviderConfigCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiProviderConfigPayload>
+          }
+          createMany: {
+            args: Prisma.AiProviderConfigCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AiProviderConfigCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiProviderConfigPayload>[]
+          }
+          delete: {
+            args: Prisma.AiProviderConfigDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiProviderConfigPayload>
+          }
+          update: {
+            args: Prisma.AiProviderConfigUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiProviderConfigPayload>
+          }
+          deleteMany: {
+            args: Prisma.AiProviderConfigDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AiProviderConfigUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AiProviderConfigUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiProviderConfigPayload>[]
+          }
+          upsert: {
+            args: Prisma.AiProviderConfigUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiProviderConfigPayload>
+          }
+          aggregate: {
+            args: Prisma.AiProviderConfigAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAiProviderConfig>
+          }
+          groupBy: {
+            args: Prisma.AiProviderConfigGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AiProviderConfigGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AiProviderConfigCountArgs<ExtArgs>
+            result: $Utils.Optional<AiProviderConfigCountAggregateOutputType> | number
+          }
+        }
+      }
+      AiPromptCache: {
+        payload: Prisma.$AiPromptCachePayload<ExtArgs>
+        fields: Prisma.AiPromptCacheFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AiPromptCacheFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiPromptCachePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AiPromptCacheFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiPromptCachePayload>
+          }
+          findFirst: {
+            args: Prisma.AiPromptCacheFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiPromptCachePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AiPromptCacheFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiPromptCachePayload>
+          }
+          findMany: {
+            args: Prisma.AiPromptCacheFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiPromptCachePayload>[]
+          }
+          create: {
+            args: Prisma.AiPromptCacheCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiPromptCachePayload>
+          }
+          createMany: {
+            args: Prisma.AiPromptCacheCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AiPromptCacheCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiPromptCachePayload>[]
+          }
+          delete: {
+            args: Prisma.AiPromptCacheDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiPromptCachePayload>
+          }
+          update: {
+            args: Prisma.AiPromptCacheUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiPromptCachePayload>
+          }
+          deleteMany: {
+            args: Prisma.AiPromptCacheDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AiPromptCacheUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AiPromptCacheUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiPromptCachePayload>[]
+          }
+          upsert: {
+            args: Prisma.AiPromptCacheUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiPromptCachePayload>
+          }
+          aggregate: {
+            args: Prisma.AiPromptCacheAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAiPromptCache>
+          }
+          groupBy: {
+            args: Prisma.AiPromptCacheGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AiPromptCacheGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AiPromptCacheCountArgs<ExtArgs>
+            result: $Utils.Optional<AiPromptCacheCountAggregateOutputType> | number
+          }
+        }
+      }
+      AiUsageLog: {
+        payload: Prisma.$AiUsageLogPayload<ExtArgs>
+        fields: Prisma.AiUsageLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AiUsageLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiUsageLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AiUsageLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiUsageLogPayload>
+          }
+          findFirst: {
+            args: Prisma.AiUsageLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiUsageLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AiUsageLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiUsageLogPayload>
+          }
+          findMany: {
+            args: Prisma.AiUsageLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiUsageLogPayload>[]
+          }
+          create: {
+            args: Prisma.AiUsageLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiUsageLogPayload>
+          }
+          createMany: {
+            args: Prisma.AiUsageLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AiUsageLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiUsageLogPayload>[]
+          }
+          delete: {
+            args: Prisma.AiUsageLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiUsageLogPayload>
+          }
+          update: {
+            args: Prisma.AiUsageLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiUsageLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.AiUsageLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AiUsageLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AiUsageLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiUsageLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.AiUsageLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AiUsageLogPayload>
+          }
+          aggregate: {
+            args: Prisma.AiUsageLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAiUsageLog>
+          }
+          groupBy: {
+            args: Prisma.AiUsageLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AiUsageLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AiUsageLogCountArgs<ExtArgs>
+            result: $Utils.Optional<AiUsageLogCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -877,6 +1147,9 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     tenant?: TenantOmit
     user?: UserOmit
+    aiProviderConfig?: AiProviderConfigOmit
+    aiPromptCache?: AiPromptCacheOmit
+    aiUsageLog?: AiUsageLogOmit
   }
 
   /* Types for Logging */
@@ -958,10 +1231,16 @@ export namespace Prisma {
 
   export type TenantCountOutputType = {
     users: number
+    aiProviderConfigs: number
+    aiPromptCache: number
+    aiUsageLogs: number
   }
 
   export type TenantCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | TenantCountOutputTypeCountUsersArgs
+    aiProviderConfigs?: boolean | TenantCountOutputTypeCountAiProviderConfigsArgs
+    aiPromptCache?: boolean | TenantCountOutputTypeCountAiPromptCacheArgs
+    aiUsageLogs?: boolean | TenantCountOutputTypeCountAiUsageLogsArgs
   }
 
   // Custom InputTypes
@@ -980,6 +1259,27 @@ export namespace Prisma {
    */
   export type TenantCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountAiProviderConfigsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AiProviderConfigWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountAiPromptCacheArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AiPromptCacheWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountAiUsageLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AiUsageLogWhereInput
   }
 
 
@@ -1144,6 +1444,9 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     users?: boolean | Tenant$usersArgs<ExtArgs>
+    aiProviderConfigs?: boolean | Tenant$aiProviderConfigsArgs<ExtArgs>
+    aiPromptCache?: boolean | Tenant$aiPromptCacheArgs<ExtArgs>
+    aiUsageLogs?: boolean | Tenant$aiUsageLogsArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tenant"]>
 
@@ -1171,6 +1474,9 @@ export namespace Prisma {
   export type TenantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["tenant"]>
   export type TenantInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | Tenant$usersArgs<ExtArgs>
+    aiProviderConfigs?: boolean | Tenant$aiProviderConfigsArgs<ExtArgs>
+    aiPromptCache?: boolean | Tenant$aiPromptCacheArgs<ExtArgs>
+    aiUsageLogs?: boolean | Tenant$aiUsageLogsArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TenantIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1180,6 +1486,9 @@ export namespace Prisma {
     name: "Tenant"
     objects: {
       users: Prisma.$UserPayload<ExtArgs>[]
+      aiProviderConfigs: Prisma.$AiProviderConfigPayload<ExtArgs>[]
+      aiPromptCache: Prisma.$AiPromptCachePayload<ExtArgs>[]
+      aiUsageLogs: Prisma.$AiUsageLogPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1581,6 +1890,9 @@ export namespace Prisma {
   export interface Prisma__TenantClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     users<T extends Tenant$usersArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    aiProviderConfigs<T extends Tenant$aiProviderConfigsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$aiProviderConfigsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AiProviderConfigPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    aiPromptCache<T extends Tenant$aiPromptCacheArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$aiPromptCacheArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AiPromptCachePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    aiUsageLogs<T extends Tenant$aiUsageLogsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$aiUsageLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AiUsageLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2028,6 +2340,78 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.aiProviderConfigs
+   */
+  export type Tenant$aiProviderConfigsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiProviderConfig
+     */
+    select?: AiProviderConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiProviderConfig
+     */
+    omit?: AiProviderConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiProviderConfigInclude<ExtArgs> | null
+    where?: AiProviderConfigWhereInput
+    orderBy?: AiProviderConfigOrderByWithRelationInput | AiProviderConfigOrderByWithRelationInput[]
+    cursor?: AiProviderConfigWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AiProviderConfigScalarFieldEnum | AiProviderConfigScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.aiPromptCache
+   */
+  export type Tenant$aiPromptCacheArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiPromptCache
+     */
+    select?: AiPromptCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiPromptCache
+     */
+    omit?: AiPromptCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiPromptCacheInclude<ExtArgs> | null
+    where?: AiPromptCacheWhereInput
+    orderBy?: AiPromptCacheOrderByWithRelationInput | AiPromptCacheOrderByWithRelationInput[]
+    cursor?: AiPromptCacheWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AiPromptCacheScalarFieldEnum | AiPromptCacheScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.aiUsageLogs
+   */
+  export type Tenant$aiUsageLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiUsageLog
+     */
+    select?: AiUsageLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiUsageLog
+     */
+    omit?: AiUsageLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiUsageLogInclude<ExtArgs> | null
+    where?: AiUsageLogWhereInput
+    orderBy?: AiUsageLogOrderByWithRelationInput | AiUsageLogOrderByWithRelationInput[]
+    cursor?: AiUsageLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AiUsageLogScalarFieldEnum | AiUsageLogScalarFieldEnum[]
   }
 
   /**
@@ -3204,6 +3588,3466 @@ export namespace Prisma {
 
 
   /**
+   * Model AiProviderConfig
+   */
+
+  export type AggregateAiProviderConfig = {
+    _count: AiProviderConfigCountAggregateOutputType | null
+    _avg: AiProviderConfigAvgAggregateOutputType | null
+    _sum: AiProviderConfigSumAggregateOutputType | null
+    _min: AiProviderConfigMinAggregateOutputType | null
+    _max: AiProviderConfigMaxAggregateOutputType | null
+  }
+
+  export type AiProviderConfigAvgAggregateOutputType = {
+    priority: number | null
+  }
+
+  export type AiProviderConfigSumAggregateOutputType = {
+    priority: number | null
+  }
+
+  export type AiProviderConfigMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    provider: string | null
+    modelName: string | null
+    isEnabled: boolean | null
+    priority: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AiProviderConfigMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    provider: string | null
+    modelName: string | null
+    isEnabled: boolean | null
+    priority: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AiProviderConfigCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    provider: number
+    modelName: number
+    isEnabled: number
+    priority: number
+    config: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AiProviderConfigAvgAggregateInputType = {
+    priority?: true
+  }
+
+  export type AiProviderConfigSumAggregateInputType = {
+    priority?: true
+  }
+
+  export type AiProviderConfigMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    provider?: true
+    modelName?: true
+    isEnabled?: true
+    priority?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AiProviderConfigMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    provider?: true
+    modelName?: true
+    isEnabled?: true
+    priority?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AiProviderConfigCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    provider?: true
+    modelName?: true
+    isEnabled?: true
+    priority?: true
+    config?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AiProviderConfigAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AiProviderConfig to aggregate.
+     */
+    where?: AiProviderConfigWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AiProviderConfigs to fetch.
+     */
+    orderBy?: AiProviderConfigOrderByWithRelationInput | AiProviderConfigOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AiProviderConfigWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AiProviderConfigs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AiProviderConfigs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AiProviderConfigs
+    **/
+    _count?: true | AiProviderConfigCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AiProviderConfigAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AiProviderConfigSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AiProviderConfigMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AiProviderConfigMaxAggregateInputType
+  }
+
+  export type GetAiProviderConfigAggregateType<T extends AiProviderConfigAggregateArgs> = {
+        [P in keyof T & keyof AggregateAiProviderConfig]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAiProviderConfig[P]>
+      : GetScalarType<T[P], AggregateAiProviderConfig[P]>
+  }
+
+
+
+
+  export type AiProviderConfigGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AiProviderConfigWhereInput
+    orderBy?: AiProviderConfigOrderByWithAggregationInput | AiProviderConfigOrderByWithAggregationInput[]
+    by: AiProviderConfigScalarFieldEnum[] | AiProviderConfigScalarFieldEnum
+    having?: AiProviderConfigScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AiProviderConfigCountAggregateInputType | true
+    _avg?: AiProviderConfigAvgAggregateInputType
+    _sum?: AiProviderConfigSumAggregateInputType
+    _min?: AiProviderConfigMinAggregateInputType
+    _max?: AiProviderConfigMaxAggregateInputType
+  }
+
+  export type AiProviderConfigGroupByOutputType = {
+    id: string
+    tenantId: string
+    provider: string
+    modelName: string
+    isEnabled: boolean
+    priority: number
+    config: JsonValue | null
+    createdAt: Date
+    updatedAt: Date
+    _count: AiProviderConfigCountAggregateOutputType | null
+    _avg: AiProviderConfigAvgAggregateOutputType | null
+    _sum: AiProviderConfigSumAggregateOutputType | null
+    _min: AiProviderConfigMinAggregateOutputType | null
+    _max: AiProviderConfigMaxAggregateOutputType | null
+  }
+
+  type GetAiProviderConfigGroupByPayload<T extends AiProviderConfigGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AiProviderConfigGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AiProviderConfigGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AiProviderConfigGroupByOutputType[P]>
+            : GetScalarType<T[P], AiProviderConfigGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AiProviderConfigSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    provider?: boolean
+    modelName?: boolean
+    isEnabled?: boolean
+    priority?: boolean
+    config?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aiProviderConfig"]>
+
+  export type AiProviderConfigSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    provider?: boolean
+    modelName?: boolean
+    isEnabled?: boolean
+    priority?: boolean
+    config?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aiProviderConfig"]>
+
+  export type AiProviderConfigSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    provider?: boolean
+    modelName?: boolean
+    isEnabled?: boolean
+    priority?: boolean
+    config?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aiProviderConfig"]>
+
+  export type AiProviderConfigSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    provider?: boolean
+    modelName?: boolean
+    isEnabled?: boolean
+    priority?: boolean
+    config?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AiProviderConfigOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "provider" | "modelName" | "isEnabled" | "priority" | "config" | "createdAt" | "updatedAt", ExtArgs["result"]["aiProviderConfig"]>
+  export type AiProviderConfigInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type AiProviderConfigIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type AiProviderConfigIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $AiProviderConfigPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AiProviderConfig"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      provider: string
+      modelName: string
+      isEnabled: boolean
+      priority: number
+      config: Prisma.JsonValue | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["aiProviderConfig"]>
+    composites: {}
+  }
+
+  type AiProviderConfigGetPayload<S extends boolean | null | undefined | AiProviderConfigDefaultArgs> = $Result.GetResult<Prisma.$AiProviderConfigPayload, S>
+
+  type AiProviderConfigCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AiProviderConfigFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AiProviderConfigCountAggregateInputType | true
+    }
+
+  export interface AiProviderConfigDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AiProviderConfig'], meta: { name: 'AiProviderConfig' } }
+    /**
+     * Find zero or one AiProviderConfig that matches the filter.
+     * @param {AiProviderConfigFindUniqueArgs} args - Arguments to find a AiProviderConfig
+     * @example
+     * // Get one AiProviderConfig
+     * const aiProviderConfig = await prisma.aiProviderConfig.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AiProviderConfigFindUniqueArgs>(args: SelectSubset<T, AiProviderConfigFindUniqueArgs<ExtArgs>>): Prisma__AiProviderConfigClient<$Result.GetResult<Prisma.$AiProviderConfigPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AiProviderConfig that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AiProviderConfigFindUniqueOrThrowArgs} args - Arguments to find a AiProviderConfig
+     * @example
+     * // Get one AiProviderConfig
+     * const aiProviderConfig = await prisma.aiProviderConfig.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AiProviderConfigFindUniqueOrThrowArgs>(args: SelectSubset<T, AiProviderConfigFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AiProviderConfigClient<$Result.GetResult<Prisma.$AiProviderConfigPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AiProviderConfig that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiProviderConfigFindFirstArgs} args - Arguments to find a AiProviderConfig
+     * @example
+     * // Get one AiProviderConfig
+     * const aiProviderConfig = await prisma.aiProviderConfig.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AiProviderConfigFindFirstArgs>(args?: SelectSubset<T, AiProviderConfigFindFirstArgs<ExtArgs>>): Prisma__AiProviderConfigClient<$Result.GetResult<Prisma.$AiProviderConfigPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AiProviderConfig that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiProviderConfigFindFirstOrThrowArgs} args - Arguments to find a AiProviderConfig
+     * @example
+     * // Get one AiProviderConfig
+     * const aiProviderConfig = await prisma.aiProviderConfig.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AiProviderConfigFindFirstOrThrowArgs>(args?: SelectSubset<T, AiProviderConfigFindFirstOrThrowArgs<ExtArgs>>): Prisma__AiProviderConfigClient<$Result.GetResult<Prisma.$AiProviderConfigPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AiProviderConfigs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiProviderConfigFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AiProviderConfigs
+     * const aiProviderConfigs = await prisma.aiProviderConfig.findMany()
+     * 
+     * // Get first 10 AiProviderConfigs
+     * const aiProviderConfigs = await prisma.aiProviderConfig.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aiProviderConfigWithIdOnly = await prisma.aiProviderConfig.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AiProviderConfigFindManyArgs>(args?: SelectSubset<T, AiProviderConfigFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AiProviderConfigPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AiProviderConfig.
+     * @param {AiProviderConfigCreateArgs} args - Arguments to create a AiProviderConfig.
+     * @example
+     * // Create one AiProviderConfig
+     * const AiProviderConfig = await prisma.aiProviderConfig.create({
+     *   data: {
+     *     // ... data to create a AiProviderConfig
+     *   }
+     * })
+     * 
+     */
+    create<T extends AiProviderConfigCreateArgs>(args: SelectSubset<T, AiProviderConfigCreateArgs<ExtArgs>>): Prisma__AiProviderConfigClient<$Result.GetResult<Prisma.$AiProviderConfigPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AiProviderConfigs.
+     * @param {AiProviderConfigCreateManyArgs} args - Arguments to create many AiProviderConfigs.
+     * @example
+     * // Create many AiProviderConfigs
+     * const aiProviderConfig = await prisma.aiProviderConfig.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AiProviderConfigCreateManyArgs>(args?: SelectSubset<T, AiProviderConfigCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AiProviderConfigs and returns the data saved in the database.
+     * @param {AiProviderConfigCreateManyAndReturnArgs} args - Arguments to create many AiProviderConfigs.
+     * @example
+     * // Create many AiProviderConfigs
+     * const aiProviderConfig = await prisma.aiProviderConfig.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AiProviderConfigs and only return the `id`
+     * const aiProviderConfigWithIdOnly = await prisma.aiProviderConfig.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AiProviderConfigCreateManyAndReturnArgs>(args?: SelectSubset<T, AiProviderConfigCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AiProviderConfigPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AiProviderConfig.
+     * @param {AiProviderConfigDeleteArgs} args - Arguments to delete one AiProviderConfig.
+     * @example
+     * // Delete one AiProviderConfig
+     * const AiProviderConfig = await prisma.aiProviderConfig.delete({
+     *   where: {
+     *     // ... filter to delete one AiProviderConfig
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AiProviderConfigDeleteArgs>(args: SelectSubset<T, AiProviderConfigDeleteArgs<ExtArgs>>): Prisma__AiProviderConfigClient<$Result.GetResult<Prisma.$AiProviderConfigPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AiProviderConfig.
+     * @param {AiProviderConfigUpdateArgs} args - Arguments to update one AiProviderConfig.
+     * @example
+     * // Update one AiProviderConfig
+     * const aiProviderConfig = await prisma.aiProviderConfig.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AiProviderConfigUpdateArgs>(args: SelectSubset<T, AiProviderConfigUpdateArgs<ExtArgs>>): Prisma__AiProviderConfigClient<$Result.GetResult<Prisma.$AiProviderConfigPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AiProviderConfigs.
+     * @param {AiProviderConfigDeleteManyArgs} args - Arguments to filter AiProviderConfigs to delete.
+     * @example
+     * // Delete a few AiProviderConfigs
+     * const { count } = await prisma.aiProviderConfig.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AiProviderConfigDeleteManyArgs>(args?: SelectSubset<T, AiProviderConfigDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AiProviderConfigs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiProviderConfigUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AiProviderConfigs
+     * const aiProviderConfig = await prisma.aiProviderConfig.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AiProviderConfigUpdateManyArgs>(args: SelectSubset<T, AiProviderConfigUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AiProviderConfigs and returns the data updated in the database.
+     * @param {AiProviderConfigUpdateManyAndReturnArgs} args - Arguments to update many AiProviderConfigs.
+     * @example
+     * // Update many AiProviderConfigs
+     * const aiProviderConfig = await prisma.aiProviderConfig.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AiProviderConfigs and only return the `id`
+     * const aiProviderConfigWithIdOnly = await prisma.aiProviderConfig.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AiProviderConfigUpdateManyAndReturnArgs>(args: SelectSubset<T, AiProviderConfigUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AiProviderConfigPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AiProviderConfig.
+     * @param {AiProviderConfigUpsertArgs} args - Arguments to update or create a AiProviderConfig.
+     * @example
+     * // Update or create a AiProviderConfig
+     * const aiProviderConfig = await prisma.aiProviderConfig.upsert({
+     *   create: {
+     *     // ... data to create a AiProviderConfig
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AiProviderConfig we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AiProviderConfigUpsertArgs>(args: SelectSubset<T, AiProviderConfigUpsertArgs<ExtArgs>>): Prisma__AiProviderConfigClient<$Result.GetResult<Prisma.$AiProviderConfigPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AiProviderConfigs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiProviderConfigCountArgs} args - Arguments to filter AiProviderConfigs to count.
+     * @example
+     * // Count the number of AiProviderConfigs
+     * const count = await prisma.aiProviderConfig.count({
+     *   where: {
+     *     // ... the filter for the AiProviderConfigs we want to count
+     *   }
+     * })
+    **/
+    count<T extends AiProviderConfigCountArgs>(
+      args?: Subset<T, AiProviderConfigCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AiProviderConfigCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AiProviderConfig.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiProviderConfigAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AiProviderConfigAggregateArgs>(args: Subset<T, AiProviderConfigAggregateArgs>): Prisma.PrismaPromise<GetAiProviderConfigAggregateType<T>>
+
+    /**
+     * Group by AiProviderConfig.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiProviderConfigGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AiProviderConfigGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AiProviderConfigGroupByArgs['orderBy'] }
+        : { orderBy?: AiProviderConfigGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AiProviderConfigGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAiProviderConfigGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AiProviderConfig model
+   */
+  readonly fields: AiProviderConfigFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AiProviderConfig.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AiProviderConfigClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AiProviderConfig model
+   */
+  interface AiProviderConfigFieldRefs {
+    readonly id: FieldRef<"AiProviderConfig", 'String'>
+    readonly tenantId: FieldRef<"AiProviderConfig", 'String'>
+    readonly provider: FieldRef<"AiProviderConfig", 'String'>
+    readonly modelName: FieldRef<"AiProviderConfig", 'String'>
+    readonly isEnabled: FieldRef<"AiProviderConfig", 'Boolean'>
+    readonly priority: FieldRef<"AiProviderConfig", 'Int'>
+    readonly config: FieldRef<"AiProviderConfig", 'Json'>
+    readonly createdAt: FieldRef<"AiProviderConfig", 'DateTime'>
+    readonly updatedAt: FieldRef<"AiProviderConfig", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AiProviderConfig findUnique
+   */
+  export type AiProviderConfigFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiProviderConfig
+     */
+    select?: AiProviderConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiProviderConfig
+     */
+    omit?: AiProviderConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiProviderConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which AiProviderConfig to fetch.
+     */
+    where: AiProviderConfigWhereUniqueInput
+  }
+
+  /**
+   * AiProviderConfig findUniqueOrThrow
+   */
+  export type AiProviderConfigFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiProviderConfig
+     */
+    select?: AiProviderConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiProviderConfig
+     */
+    omit?: AiProviderConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiProviderConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which AiProviderConfig to fetch.
+     */
+    where: AiProviderConfigWhereUniqueInput
+  }
+
+  /**
+   * AiProviderConfig findFirst
+   */
+  export type AiProviderConfigFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiProviderConfig
+     */
+    select?: AiProviderConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiProviderConfig
+     */
+    omit?: AiProviderConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiProviderConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which AiProviderConfig to fetch.
+     */
+    where?: AiProviderConfigWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AiProviderConfigs to fetch.
+     */
+    orderBy?: AiProviderConfigOrderByWithRelationInput | AiProviderConfigOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AiProviderConfigs.
+     */
+    cursor?: AiProviderConfigWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AiProviderConfigs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AiProviderConfigs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AiProviderConfigs.
+     */
+    distinct?: AiProviderConfigScalarFieldEnum | AiProviderConfigScalarFieldEnum[]
+  }
+
+  /**
+   * AiProviderConfig findFirstOrThrow
+   */
+  export type AiProviderConfigFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiProviderConfig
+     */
+    select?: AiProviderConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiProviderConfig
+     */
+    omit?: AiProviderConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiProviderConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which AiProviderConfig to fetch.
+     */
+    where?: AiProviderConfigWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AiProviderConfigs to fetch.
+     */
+    orderBy?: AiProviderConfigOrderByWithRelationInput | AiProviderConfigOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AiProviderConfigs.
+     */
+    cursor?: AiProviderConfigWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AiProviderConfigs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AiProviderConfigs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AiProviderConfigs.
+     */
+    distinct?: AiProviderConfigScalarFieldEnum | AiProviderConfigScalarFieldEnum[]
+  }
+
+  /**
+   * AiProviderConfig findMany
+   */
+  export type AiProviderConfigFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiProviderConfig
+     */
+    select?: AiProviderConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiProviderConfig
+     */
+    omit?: AiProviderConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiProviderConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which AiProviderConfigs to fetch.
+     */
+    where?: AiProviderConfigWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AiProviderConfigs to fetch.
+     */
+    orderBy?: AiProviderConfigOrderByWithRelationInput | AiProviderConfigOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AiProviderConfigs.
+     */
+    cursor?: AiProviderConfigWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AiProviderConfigs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AiProviderConfigs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AiProviderConfigs.
+     */
+    distinct?: AiProviderConfigScalarFieldEnum | AiProviderConfigScalarFieldEnum[]
+  }
+
+  /**
+   * AiProviderConfig create
+   */
+  export type AiProviderConfigCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiProviderConfig
+     */
+    select?: AiProviderConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiProviderConfig
+     */
+    omit?: AiProviderConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiProviderConfigInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AiProviderConfig.
+     */
+    data: XOR<AiProviderConfigCreateInput, AiProviderConfigUncheckedCreateInput>
+  }
+
+  /**
+   * AiProviderConfig createMany
+   */
+  export type AiProviderConfigCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AiProviderConfigs.
+     */
+    data: AiProviderConfigCreateManyInput | AiProviderConfigCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AiProviderConfig createManyAndReturn
+   */
+  export type AiProviderConfigCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiProviderConfig
+     */
+    select?: AiProviderConfigSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiProviderConfig
+     */
+    omit?: AiProviderConfigOmit<ExtArgs> | null
+    /**
+     * The data used to create many AiProviderConfigs.
+     */
+    data: AiProviderConfigCreateManyInput | AiProviderConfigCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiProviderConfigIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AiProviderConfig update
+   */
+  export type AiProviderConfigUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiProviderConfig
+     */
+    select?: AiProviderConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiProviderConfig
+     */
+    omit?: AiProviderConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiProviderConfigInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AiProviderConfig.
+     */
+    data: XOR<AiProviderConfigUpdateInput, AiProviderConfigUncheckedUpdateInput>
+    /**
+     * Choose, which AiProviderConfig to update.
+     */
+    where: AiProviderConfigWhereUniqueInput
+  }
+
+  /**
+   * AiProviderConfig updateMany
+   */
+  export type AiProviderConfigUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AiProviderConfigs.
+     */
+    data: XOR<AiProviderConfigUpdateManyMutationInput, AiProviderConfigUncheckedUpdateManyInput>
+    /**
+     * Filter which AiProviderConfigs to update
+     */
+    where?: AiProviderConfigWhereInput
+    /**
+     * Limit how many AiProviderConfigs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AiProviderConfig updateManyAndReturn
+   */
+  export type AiProviderConfigUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiProviderConfig
+     */
+    select?: AiProviderConfigSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiProviderConfig
+     */
+    omit?: AiProviderConfigOmit<ExtArgs> | null
+    /**
+     * The data used to update AiProviderConfigs.
+     */
+    data: XOR<AiProviderConfigUpdateManyMutationInput, AiProviderConfigUncheckedUpdateManyInput>
+    /**
+     * Filter which AiProviderConfigs to update
+     */
+    where?: AiProviderConfigWhereInput
+    /**
+     * Limit how many AiProviderConfigs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiProviderConfigIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AiProviderConfig upsert
+   */
+  export type AiProviderConfigUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiProviderConfig
+     */
+    select?: AiProviderConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiProviderConfig
+     */
+    omit?: AiProviderConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiProviderConfigInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AiProviderConfig to update in case it exists.
+     */
+    where: AiProviderConfigWhereUniqueInput
+    /**
+     * In case the AiProviderConfig found by the `where` argument doesn't exist, create a new AiProviderConfig with this data.
+     */
+    create: XOR<AiProviderConfigCreateInput, AiProviderConfigUncheckedCreateInput>
+    /**
+     * In case the AiProviderConfig was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AiProviderConfigUpdateInput, AiProviderConfigUncheckedUpdateInput>
+  }
+
+  /**
+   * AiProviderConfig delete
+   */
+  export type AiProviderConfigDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiProviderConfig
+     */
+    select?: AiProviderConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiProviderConfig
+     */
+    omit?: AiProviderConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiProviderConfigInclude<ExtArgs> | null
+    /**
+     * Filter which AiProviderConfig to delete.
+     */
+    where: AiProviderConfigWhereUniqueInput
+  }
+
+  /**
+   * AiProviderConfig deleteMany
+   */
+  export type AiProviderConfigDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AiProviderConfigs to delete
+     */
+    where?: AiProviderConfigWhereInput
+    /**
+     * Limit how many AiProviderConfigs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AiProviderConfig without action
+   */
+  export type AiProviderConfigDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiProviderConfig
+     */
+    select?: AiProviderConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiProviderConfig
+     */
+    omit?: AiProviderConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiProviderConfigInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AiPromptCache
+   */
+
+  export type AggregateAiPromptCache = {
+    _count: AiPromptCacheCountAggregateOutputType | null
+    _avg: AiPromptCacheAvgAggregateOutputType | null
+    _sum: AiPromptCacheSumAggregateOutputType | null
+    _min: AiPromptCacheMinAggregateOutputType | null
+    _max: AiPromptCacheMaxAggregateOutputType | null
+  }
+
+  export type AiPromptCacheAvgAggregateOutputType = {
+    tokensUsed: number | null
+  }
+
+  export type AiPromptCacheSumAggregateOutputType = {
+    tokensUsed: number | null
+  }
+
+  export type AiPromptCacheMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    promptHash: string | null
+    taskType: string | null
+    tokensUsed: number | null
+    createdAt: Date | null
+    expiresAt: Date | null
+  }
+
+  export type AiPromptCacheMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    promptHash: string | null
+    taskType: string | null
+    tokensUsed: number | null
+    createdAt: Date | null
+    expiresAt: Date | null
+  }
+
+  export type AiPromptCacheCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    promptHash: number
+    taskType: number
+    response: number
+    tokensUsed: number
+    createdAt: number
+    expiresAt: number
+    _all: number
+  }
+
+
+  export type AiPromptCacheAvgAggregateInputType = {
+    tokensUsed?: true
+  }
+
+  export type AiPromptCacheSumAggregateInputType = {
+    tokensUsed?: true
+  }
+
+  export type AiPromptCacheMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    promptHash?: true
+    taskType?: true
+    tokensUsed?: true
+    createdAt?: true
+    expiresAt?: true
+  }
+
+  export type AiPromptCacheMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    promptHash?: true
+    taskType?: true
+    tokensUsed?: true
+    createdAt?: true
+    expiresAt?: true
+  }
+
+  export type AiPromptCacheCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    promptHash?: true
+    taskType?: true
+    response?: true
+    tokensUsed?: true
+    createdAt?: true
+    expiresAt?: true
+    _all?: true
+  }
+
+  export type AiPromptCacheAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AiPromptCache to aggregate.
+     */
+    where?: AiPromptCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AiPromptCaches to fetch.
+     */
+    orderBy?: AiPromptCacheOrderByWithRelationInput | AiPromptCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AiPromptCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AiPromptCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AiPromptCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AiPromptCaches
+    **/
+    _count?: true | AiPromptCacheCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AiPromptCacheAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AiPromptCacheSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AiPromptCacheMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AiPromptCacheMaxAggregateInputType
+  }
+
+  export type GetAiPromptCacheAggregateType<T extends AiPromptCacheAggregateArgs> = {
+        [P in keyof T & keyof AggregateAiPromptCache]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAiPromptCache[P]>
+      : GetScalarType<T[P], AggregateAiPromptCache[P]>
+  }
+
+
+
+
+  export type AiPromptCacheGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AiPromptCacheWhereInput
+    orderBy?: AiPromptCacheOrderByWithAggregationInput | AiPromptCacheOrderByWithAggregationInput[]
+    by: AiPromptCacheScalarFieldEnum[] | AiPromptCacheScalarFieldEnum
+    having?: AiPromptCacheScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AiPromptCacheCountAggregateInputType | true
+    _avg?: AiPromptCacheAvgAggregateInputType
+    _sum?: AiPromptCacheSumAggregateInputType
+    _min?: AiPromptCacheMinAggregateInputType
+    _max?: AiPromptCacheMaxAggregateInputType
+  }
+
+  export type AiPromptCacheGroupByOutputType = {
+    id: string
+    tenantId: string
+    promptHash: string
+    taskType: string
+    response: JsonValue
+    tokensUsed: number
+    createdAt: Date
+    expiresAt: Date
+    _count: AiPromptCacheCountAggregateOutputType | null
+    _avg: AiPromptCacheAvgAggregateOutputType | null
+    _sum: AiPromptCacheSumAggregateOutputType | null
+    _min: AiPromptCacheMinAggregateOutputType | null
+    _max: AiPromptCacheMaxAggregateOutputType | null
+  }
+
+  type GetAiPromptCacheGroupByPayload<T extends AiPromptCacheGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AiPromptCacheGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AiPromptCacheGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AiPromptCacheGroupByOutputType[P]>
+            : GetScalarType<T[P], AiPromptCacheGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AiPromptCacheSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    promptHash?: boolean
+    taskType?: boolean
+    response?: boolean
+    tokensUsed?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aiPromptCache"]>
+
+  export type AiPromptCacheSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    promptHash?: boolean
+    taskType?: boolean
+    response?: boolean
+    tokensUsed?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aiPromptCache"]>
+
+  export type AiPromptCacheSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    promptHash?: boolean
+    taskType?: boolean
+    response?: boolean
+    tokensUsed?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aiPromptCache"]>
+
+  export type AiPromptCacheSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    promptHash?: boolean
+    taskType?: boolean
+    response?: boolean
+    tokensUsed?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+  }
+
+  export type AiPromptCacheOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "promptHash" | "taskType" | "response" | "tokensUsed" | "createdAt" | "expiresAt", ExtArgs["result"]["aiPromptCache"]>
+  export type AiPromptCacheInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type AiPromptCacheIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type AiPromptCacheIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $AiPromptCachePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AiPromptCache"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      promptHash: string
+      taskType: string
+      response: Prisma.JsonValue
+      tokensUsed: number
+      createdAt: Date
+      expiresAt: Date
+    }, ExtArgs["result"]["aiPromptCache"]>
+    composites: {}
+  }
+
+  type AiPromptCacheGetPayload<S extends boolean | null | undefined | AiPromptCacheDefaultArgs> = $Result.GetResult<Prisma.$AiPromptCachePayload, S>
+
+  type AiPromptCacheCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AiPromptCacheFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AiPromptCacheCountAggregateInputType | true
+    }
+
+  export interface AiPromptCacheDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AiPromptCache'], meta: { name: 'AiPromptCache' } }
+    /**
+     * Find zero or one AiPromptCache that matches the filter.
+     * @param {AiPromptCacheFindUniqueArgs} args - Arguments to find a AiPromptCache
+     * @example
+     * // Get one AiPromptCache
+     * const aiPromptCache = await prisma.aiPromptCache.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AiPromptCacheFindUniqueArgs>(args: SelectSubset<T, AiPromptCacheFindUniqueArgs<ExtArgs>>): Prisma__AiPromptCacheClient<$Result.GetResult<Prisma.$AiPromptCachePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AiPromptCache that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AiPromptCacheFindUniqueOrThrowArgs} args - Arguments to find a AiPromptCache
+     * @example
+     * // Get one AiPromptCache
+     * const aiPromptCache = await prisma.aiPromptCache.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AiPromptCacheFindUniqueOrThrowArgs>(args: SelectSubset<T, AiPromptCacheFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AiPromptCacheClient<$Result.GetResult<Prisma.$AiPromptCachePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AiPromptCache that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiPromptCacheFindFirstArgs} args - Arguments to find a AiPromptCache
+     * @example
+     * // Get one AiPromptCache
+     * const aiPromptCache = await prisma.aiPromptCache.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AiPromptCacheFindFirstArgs>(args?: SelectSubset<T, AiPromptCacheFindFirstArgs<ExtArgs>>): Prisma__AiPromptCacheClient<$Result.GetResult<Prisma.$AiPromptCachePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AiPromptCache that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiPromptCacheFindFirstOrThrowArgs} args - Arguments to find a AiPromptCache
+     * @example
+     * // Get one AiPromptCache
+     * const aiPromptCache = await prisma.aiPromptCache.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AiPromptCacheFindFirstOrThrowArgs>(args?: SelectSubset<T, AiPromptCacheFindFirstOrThrowArgs<ExtArgs>>): Prisma__AiPromptCacheClient<$Result.GetResult<Prisma.$AiPromptCachePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AiPromptCaches that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiPromptCacheFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AiPromptCaches
+     * const aiPromptCaches = await prisma.aiPromptCache.findMany()
+     * 
+     * // Get first 10 AiPromptCaches
+     * const aiPromptCaches = await prisma.aiPromptCache.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aiPromptCacheWithIdOnly = await prisma.aiPromptCache.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AiPromptCacheFindManyArgs>(args?: SelectSubset<T, AiPromptCacheFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AiPromptCachePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AiPromptCache.
+     * @param {AiPromptCacheCreateArgs} args - Arguments to create a AiPromptCache.
+     * @example
+     * // Create one AiPromptCache
+     * const AiPromptCache = await prisma.aiPromptCache.create({
+     *   data: {
+     *     // ... data to create a AiPromptCache
+     *   }
+     * })
+     * 
+     */
+    create<T extends AiPromptCacheCreateArgs>(args: SelectSubset<T, AiPromptCacheCreateArgs<ExtArgs>>): Prisma__AiPromptCacheClient<$Result.GetResult<Prisma.$AiPromptCachePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AiPromptCaches.
+     * @param {AiPromptCacheCreateManyArgs} args - Arguments to create many AiPromptCaches.
+     * @example
+     * // Create many AiPromptCaches
+     * const aiPromptCache = await prisma.aiPromptCache.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AiPromptCacheCreateManyArgs>(args?: SelectSubset<T, AiPromptCacheCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AiPromptCaches and returns the data saved in the database.
+     * @param {AiPromptCacheCreateManyAndReturnArgs} args - Arguments to create many AiPromptCaches.
+     * @example
+     * // Create many AiPromptCaches
+     * const aiPromptCache = await prisma.aiPromptCache.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AiPromptCaches and only return the `id`
+     * const aiPromptCacheWithIdOnly = await prisma.aiPromptCache.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AiPromptCacheCreateManyAndReturnArgs>(args?: SelectSubset<T, AiPromptCacheCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AiPromptCachePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AiPromptCache.
+     * @param {AiPromptCacheDeleteArgs} args - Arguments to delete one AiPromptCache.
+     * @example
+     * // Delete one AiPromptCache
+     * const AiPromptCache = await prisma.aiPromptCache.delete({
+     *   where: {
+     *     // ... filter to delete one AiPromptCache
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AiPromptCacheDeleteArgs>(args: SelectSubset<T, AiPromptCacheDeleteArgs<ExtArgs>>): Prisma__AiPromptCacheClient<$Result.GetResult<Prisma.$AiPromptCachePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AiPromptCache.
+     * @param {AiPromptCacheUpdateArgs} args - Arguments to update one AiPromptCache.
+     * @example
+     * // Update one AiPromptCache
+     * const aiPromptCache = await prisma.aiPromptCache.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AiPromptCacheUpdateArgs>(args: SelectSubset<T, AiPromptCacheUpdateArgs<ExtArgs>>): Prisma__AiPromptCacheClient<$Result.GetResult<Prisma.$AiPromptCachePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AiPromptCaches.
+     * @param {AiPromptCacheDeleteManyArgs} args - Arguments to filter AiPromptCaches to delete.
+     * @example
+     * // Delete a few AiPromptCaches
+     * const { count } = await prisma.aiPromptCache.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AiPromptCacheDeleteManyArgs>(args?: SelectSubset<T, AiPromptCacheDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AiPromptCaches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiPromptCacheUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AiPromptCaches
+     * const aiPromptCache = await prisma.aiPromptCache.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AiPromptCacheUpdateManyArgs>(args: SelectSubset<T, AiPromptCacheUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AiPromptCaches and returns the data updated in the database.
+     * @param {AiPromptCacheUpdateManyAndReturnArgs} args - Arguments to update many AiPromptCaches.
+     * @example
+     * // Update many AiPromptCaches
+     * const aiPromptCache = await prisma.aiPromptCache.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AiPromptCaches and only return the `id`
+     * const aiPromptCacheWithIdOnly = await prisma.aiPromptCache.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AiPromptCacheUpdateManyAndReturnArgs>(args: SelectSubset<T, AiPromptCacheUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AiPromptCachePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AiPromptCache.
+     * @param {AiPromptCacheUpsertArgs} args - Arguments to update or create a AiPromptCache.
+     * @example
+     * // Update or create a AiPromptCache
+     * const aiPromptCache = await prisma.aiPromptCache.upsert({
+     *   create: {
+     *     // ... data to create a AiPromptCache
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AiPromptCache we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AiPromptCacheUpsertArgs>(args: SelectSubset<T, AiPromptCacheUpsertArgs<ExtArgs>>): Prisma__AiPromptCacheClient<$Result.GetResult<Prisma.$AiPromptCachePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AiPromptCaches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiPromptCacheCountArgs} args - Arguments to filter AiPromptCaches to count.
+     * @example
+     * // Count the number of AiPromptCaches
+     * const count = await prisma.aiPromptCache.count({
+     *   where: {
+     *     // ... the filter for the AiPromptCaches we want to count
+     *   }
+     * })
+    **/
+    count<T extends AiPromptCacheCountArgs>(
+      args?: Subset<T, AiPromptCacheCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AiPromptCacheCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AiPromptCache.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiPromptCacheAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AiPromptCacheAggregateArgs>(args: Subset<T, AiPromptCacheAggregateArgs>): Prisma.PrismaPromise<GetAiPromptCacheAggregateType<T>>
+
+    /**
+     * Group by AiPromptCache.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiPromptCacheGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AiPromptCacheGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AiPromptCacheGroupByArgs['orderBy'] }
+        : { orderBy?: AiPromptCacheGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AiPromptCacheGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAiPromptCacheGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AiPromptCache model
+   */
+  readonly fields: AiPromptCacheFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AiPromptCache.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AiPromptCacheClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AiPromptCache model
+   */
+  interface AiPromptCacheFieldRefs {
+    readonly id: FieldRef<"AiPromptCache", 'String'>
+    readonly tenantId: FieldRef<"AiPromptCache", 'String'>
+    readonly promptHash: FieldRef<"AiPromptCache", 'String'>
+    readonly taskType: FieldRef<"AiPromptCache", 'String'>
+    readonly response: FieldRef<"AiPromptCache", 'Json'>
+    readonly tokensUsed: FieldRef<"AiPromptCache", 'Int'>
+    readonly createdAt: FieldRef<"AiPromptCache", 'DateTime'>
+    readonly expiresAt: FieldRef<"AiPromptCache", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AiPromptCache findUnique
+   */
+  export type AiPromptCacheFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiPromptCache
+     */
+    select?: AiPromptCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiPromptCache
+     */
+    omit?: AiPromptCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiPromptCacheInclude<ExtArgs> | null
+    /**
+     * Filter, which AiPromptCache to fetch.
+     */
+    where: AiPromptCacheWhereUniqueInput
+  }
+
+  /**
+   * AiPromptCache findUniqueOrThrow
+   */
+  export type AiPromptCacheFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiPromptCache
+     */
+    select?: AiPromptCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiPromptCache
+     */
+    omit?: AiPromptCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiPromptCacheInclude<ExtArgs> | null
+    /**
+     * Filter, which AiPromptCache to fetch.
+     */
+    where: AiPromptCacheWhereUniqueInput
+  }
+
+  /**
+   * AiPromptCache findFirst
+   */
+  export type AiPromptCacheFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiPromptCache
+     */
+    select?: AiPromptCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiPromptCache
+     */
+    omit?: AiPromptCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiPromptCacheInclude<ExtArgs> | null
+    /**
+     * Filter, which AiPromptCache to fetch.
+     */
+    where?: AiPromptCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AiPromptCaches to fetch.
+     */
+    orderBy?: AiPromptCacheOrderByWithRelationInput | AiPromptCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AiPromptCaches.
+     */
+    cursor?: AiPromptCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AiPromptCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AiPromptCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AiPromptCaches.
+     */
+    distinct?: AiPromptCacheScalarFieldEnum | AiPromptCacheScalarFieldEnum[]
+  }
+
+  /**
+   * AiPromptCache findFirstOrThrow
+   */
+  export type AiPromptCacheFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiPromptCache
+     */
+    select?: AiPromptCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiPromptCache
+     */
+    omit?: AiPromptCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiPromptCacheInclude<ExtArgs> | null
+    /**
+     * Filter, which AiPromptCache to fetch.
+     */
+    where?: AiPromptCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AiPromptCaches to fetch.
+     */
+    orderBy?: AiPromptCacheOrderByWithRelationInput | AiPromptCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AiPromptCaches.
+     */
+    cursor?: AiPromptCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AiPromptCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AiPromptCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AiPromptCaches.
+     */
+    distinct?: AiPromptCacheScalarFieldEnum | AiPromptCacheScalarFieldEnum[]
+  }
+
+  /**
+   * AiPromptCache findMany
+   */
+  export type AiPromptCacheFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiPromptCache
+     */
+    select?: AiPromptCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiPromptCache
+     */
+    omit?: AiPromptCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiPromptCacheInclude<ExtArgs> | null
+    /**
+     * Filter, which AiPromptCaches to fetch.
+     */
+    where?: AiPromptCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AiPromptCaches to fetch.
+     */
+    orderBy?: AiPromptCacheOrderByWithRelationInput | AiPromptCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AiPromptCaches.
+     */
+    cursor?: AiPromptCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AiPromptCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AiPromptCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AiPromptCaches.
+     */
+    distinct?: AiPromptCacheScalarFieldEnum | AiPromptCacheScalarFieldEnum[]
+  }
+
+  /**
+   * AiPromptCache create
+   */
+  export type AiPromptCacheCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiPromptCache
+     */
+    select?: AiPromptCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiPromptCache
+     */
+    omit?: AiPromptCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiPromptCacheInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AiPromptCache.
+     */
+    data: XOR<AiPromptCacheCreateInput, AiPromptCacheUncheckedCreateInput>
+  }
+
+  /**
+   * AiPromptCache createMany
+   */
+  export type AiPromptCacheCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AiPromptCaches.
+     */
+    data: AiPromptCacheCreateManyInput | AiPromptCacheCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AiPromptCache createManyAndReturn
+   */
+  export type AiPromptCacheCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiPromptCache
+     */
+    select?: AiPromptCacheSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiPromptCache
+     */
+    omit?: AiPromptCacheOmit<ExtArgs> | null
+    /**
+     * The data used to create many AiPromptCaches.
+     */
+    data: AiPromptCacheCreateManyInput | AiPromptCacheCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiPromptCacheIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AiPromptCache update
+   */
+  export type AiPromptCacheUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiPromptCache
+     */
+    select?: AiPromptCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiPromptCache
+     */
+    omit?: AiPromptCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiPromptCacheInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AiPromptCache.
+     */
+    data: XOR<AiPromptCacheUpdateInput, AiPromptCacheUncheckedUpdateInput>
+    /**
+     * Choose, which AiPromptCache to update.
+     */
+    where: AiPromptCacheWhereUniqueInput
+  }
+
+  /**
+   * AiPromptCache updateMany
+   */
+  export type AiPromptCacheUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AiPromptCaches.
+     */
+    data: XOR<AiPromptCacheUpdateManyMutationInput, AiPromptCacheUncheckedUpdateManyInput>
+    /**
+     * Filter which AiPromptCaches to update
+     */
+    where?: AiPromptCacheWhereInput
+    /**
+     * Limit how many AiPromptCaches to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AiPromptCache updateManyAndReturn
+   */
+  export type AiPromptCacheUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiPromptCache
+     */
+    select?: AiPromptCacheSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiPromptCache
+     */
+    omit?: AiPromptCacheOmit<ExtArgs> | null
+    /**
+     * The data used to update AiPromptCaches.
+     */
+    data: XOR<AiPromptCacheUpdateManyMutationInput, AiPromptCacheUncheckedUpdateManyInput>
+    /**
+     * Filter which AiPromptCaches to update
+     */
+    where?: AiPromptCacheWhereInput
+    /**
+     * Limit how many AiPromptCaches to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiPromptCacheIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AiPromptCache upsert
+   */
+  export type AiPromptCacheUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiPromptCache
+     */
+    select?: AiPromptCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiPromptCache
+     */
+    omit?: AiPromptCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiPromptCacheInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AiPromptCache to update in case it exists.
+     */
+    where: AiPromptCacheWhereUniqueInput
+    /**
+     * In case the AiPromptCache found by the `where` argument doesn't exist, create a new AiPromptCache with this data.
+     */
+    create: XOR<AiPromptCacheCreateInput, AiPromptCacheUncheckedCreateInput>
+    /**
+     * In case the AiPromptCache was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AiPromptCacheUpdateInput, AiPromptCacheUncheckedUpdateInput>
+  }
+
+  /**
+   * AiPromptCache delete
+   */
+  export type AiPromptCacheDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiPromptCache
+     */
+    select?: AiPromptCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiPromptCache
+     */
+    omit?: AiPromptCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiPromptCacheInclude<ExtArgs> | null
+    /**
+     * Filter which AiPromptCache to delete.
+     */
+    where: AiPromptCacheWhereUniqueInput
+  }
+
+  /**
+   * AiPromptCache deleteMany
+   */
+  export type AiPromptCacheDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AiPromptCaches to delete
+     */
+    where?: AiPromptCacheWhereInput
+    /**
+     * Limit how many AiPromptCaches to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AiPromptCache without action
+   */
+  export type AiPromptCacheDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiPromptCache
+     */
+    select?: AiPromptCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiPromptCache
+     */
+    omit?: AiPromptCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiPromptCacheInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AiUsageLog
+   */
+
+  export type AggregateAiUsageLog = {
+    _count: AiUsageLogCountAggregateOutputType | null
+    _avg: AiUsageLogAvgAggregateOutputType | null
+    _sum: AiUsageLogSumAggregateOutputType | null
+    _min: AiUsageLogMinAggregateOutputType | null
+    _max: AiUsageLogMaxAggregateOutputType | null
+  }
+
+  export type AiUsageLogAvgAggregateOutputType = {
+    inputTokens: number | null
+    outputTokens: number | null
+    latencyMs: number | null
+  }
+
+  export type AiUsageLogSumAggregateOutputType = {
+    inputTokens: number | null
+    outputTokens: number | null
+    latencyMs: number | null
+  }
+
+  export type AiUsageLogMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    provider: string | null
+    model: string | null
+    taskType: string | null
+    inputTokens: number | null
+    outputTokens: number | null
+    latencyMs: number | null
+    success: boolean | null
+    errorMessage: string | null
+    createdAt: Date | null
+  }
+
+  export type AiUsageLogMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    provider: string | null
+    model: string | null
+    taskType: string | null
+    inputTokens: number | null
+    outputTokens: number | null
+    latencyMs: number | null
+    success: boolean | null
+    errorMessage: string | null
+    createdAt: Date | null
+  }
+
+  export type AiUsageLogCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    provider: number
+    model: number
+    taskType: number
+    inputTokens: number
+    outputTokens: number
+    latencyMs: number
+    success: number
+    errorMessage: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type AiUsageLogAvgAggregateInputType = {
+    inputTokens?: true
+    outputTokens?: true
+    latencyMs?: true
+  }
+
+  export type AiUsageLogSumAggregateInputType = {
+    inputTokens?: true
+    outputTokens?: true
+    latencyMs?: true
+  }
+
+  export type AiUsageLogMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    provider?: true
+    model?: true
+    taskType?: true
+    inputTokens?: true
+    outputTokens?: true
+    latencyMs?: true
+    success?: true
+    errorMessage?: true
+    createdAt?: true
+  }
+
+  export type AiUsageLogMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    provider?: true
+    model?: true
+    taskType?: true
+    inputTokens?: true
+    outputTokens?: true
+    latencyMs?: true
+    success?: true
+    errorMessage?: true
+    createdAt?: true
+  }
+
+  export type AiUsageLogCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    provider?: true
+    model?: true
+    taskType?: true
+    inputTokens?: true
+    outputTokens?: true
+    latencyMs?: true
+    success?: true
+    errorMessage?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type AiUsageLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AiUsageLog to aggregate.
+     */
+    where?: AiUsageLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AiUsageLogs to fetch.
+     */
+    orderBy?: AiUsageLogOrderByWithRelationInput | AiUsageLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AiUsageLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AiUsageLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AiUsageLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AiUsageLogs
+    **/
+    _count?: true | AiUsageLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AiUsageLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AiUsageLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AiUsageLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AiUsageLogMaxAggregateInputType
+  }
+
+  export type GetAiUsageLogAggregateType<T extends AiUsageLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateAiUsageLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAiUsageLog[P]>
+      : GetScalarType<T[P], AggregateAiUsageLog[P]>
+  }
+
+
+
+
+  export type AiUsageLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AiUsageLogWhereInput
+    orderBy?: AiUsageLogOrderByWithAggregationInput | AiUsageLogOrderByWithAggregationInput[]
+    by: AiUsageLogScalarFieldEnum[] | AiUsageLogScalarFieldEnum
+    having?: AiUsageLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AiUsageLogCountAggregateInputType | true
+    _avg?: AiUsageLogAvgAggregateInputType
+    _sum?: AiUsageLogSumAggregateInputType
+    _min?: AiUsageLogMinAggregateInputType
+    _max?: AiUsageLogMaxAggregateInputType
+  }
+
+  export type AiUsageLogGroupByOutputType = {
+    id: string
+    tenantId: string
+    provider: string
+    model: string
+    taskType: string
+    inputTokens: number
+    outputTokens: number
+    latencyMs: number
+    success: boolean
+    errorMessage: string | null
+    createdAt: Date
+    _count: AiUsageLogCountAggregateOutputType | null
+    _avg: AiUsageLogAvgAggregateOutputType | null
+    _sum: AiUsageLogSumAggregateOutputType | null
+    _min: AiUsageLogMinAggregateOutputType | null
+    _max: AiUsageLogMaxAggregateOutputType | null
+  }
+
+  type GetAiUsageLogGroupByPayload<T extends AiUsageLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AiUsageLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AiUsageLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AiUsageLogGroupByOutputType[P]>
+            : GetScalarType<T[P], AiUsageLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AiUsageLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    provider?: boolean
+    model?: boolean
+    taskType?: boolean
+    inputTokens?: boolean
+    outputTokens?: boolean
+    latencyMs?: boolean
+    success?: boolean
+    errorMessage?: boolean
+    createdAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aiUsageLog"]>
+
+  export type AiUsageLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    provider?: boolean
+    model?: boolean
+    taskType?: boolean
+    inputTokens?: boolean
+    outputTokens?: boolean
+    latencyMs?: boolean
+    success?: boolean
+    errorMessage?: boolean
+    createdAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aiUsageLog"]>
+
+  export type AiUsageLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    provider?: boolean
+    model?: boolean
+    taskType?: boolean
+    inputTokens?: boolean
+    outputTokens?: boolean
+    latencyMs?: boolean
+    success?: boolean
+    errorMessage?: boolean
+    createdAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aiUsageLog"]>
+
+  export type AiUsageLogSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    provider?: boolean
+    model?: boolean
+    taskType?: boolean
+    inputTokens?: boolean
+    outputTokens?: boolean
+    latencyMs?: boolean
+    success?: boolean
+    errorMessage?: boolean
+    createdAt?: boolean
+  }
+
+  export type AiUsageLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "provider" | "model" | "taskType" | "inputTokens" | "outputTokens" | "latencyMs" | "success" | "errorMessage" | "createdAt", ExtArgs["result"]["aiUsageLog"]>
+  export type AiUsageLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type AiUsageLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type AiUsageLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $AiUsageLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AiUsageLog"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      provider: string
+      model: string
+      taskType: string
+      inputTokens: number
+      outputTokens: number
+      latencyMs: number
+      success: boolean
+      errorMessage: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["aiUsageLog"]>
+    composites: {}
+  }
+
+  type AiUsageLogGetPayload<S extends boolean | null | undefined | AiUsageLogDefaultArgs> = $Result.GetResult<Prisma.$AiUsageLogPayload, S>
+
+  type AiUsageLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AiUsageLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AiUsageLogCountAggregateInputType | true
+    }
+
+  export interface AiUsageLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AiUsageLog'], meta: { name: 'AiUsageLog' } }
+    /**
+     * Find zero or one AiUsageLog that matches the filter.
+     * @param {AiUsageLogFindUniqueArgs} args - Arguments to find a AiUsageLog
+     * @example
+     * // Get one AiUsageLog
+     * const aiUsageLog = await prisma.aiUsageLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AiUsageLogFindUniqueArgs>(args: SelectSubset<T, AiUsageLogFindUniqueArgs<ExtArgs>>): Prisma__AiUsageLogClient<$Result.GetResult<Prisma.$AiUsageLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AiUsageLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AiUsageLogFindUniqueOrThrowArgs} args - Arguments to find a AiUsageLog
+     * @example
+     * // Get one AiUsageLog
+     * const aiUsageLog = await prisma.aiUsageLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AiUsageLogFindUniqueOrThrowArgs>(args: SelectSubset<T, AiUsageLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AiUsageLogClient<$Result.GetResult<Prisma.$AiUsageLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AiUsageLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiUsageLogFindFirstArgs} args - Arguments to find a AiUsageLog
+     * @example
+     * // Get one AiUsageLog
+     * const aiUsageLog = await prisma.aiUsageLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AiUsageLogFindFirstArgs>(args?: SelectSubset<T, AiUsageLogFindFirstArgs<ExtArgs>>): Prisma__AiUsageLogClient<$Result.GetResult<Prisma.$AiUsageLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AiUsageLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiUsageLogFindFirstOrThrowArgs} args - Arguments to find a AiUsageLog
+     * @example
+     * // Get one AiUsageLog
+     * const aiUsageLog = await prisma.aiUsageLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AiUsageLogFindFirstOrThrowArgs>(args?: SelectSubset<T, AiUsageLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__AiUsageLogClient<$Result.GetResult<Prisma.$AiUsageLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AiUsageLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiUsageLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AiUsageLogs
+     * const aiUsageLogs = await prisma.aiUsageLog.findMany()
+     * 
+     * // Get first 10 AiUsageLogs
+     * const aiUsageLogs = await prisma.aiUsageLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aiUsageLogWithIdOnly = await prisma.aiUsageLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AiUsageLogFindManyArgs>(args?: SelectSubset<T, AiUsageLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AiUsageLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AiUsageLog.
+     * @param {AiUsageLogCreateArgs} args - Arguments to create a AiUsageLog.
+     * @example
+     * // Create one AiUsageLog
+     * const AiUsageLog = await prisma.aiUsageLog.create({
+     *   data: {
+     *     // ... data to create a AiUsageLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends AiUsageLogCreateArgs>(args: SelectSubset<T, AiUsageLogCreateArgs<ExtArgs>>): Prisma__AiUsageLogClient<$Result.GetResult<Prisma.$AiUsageLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AiUsageLogs.
+     * @param {AiUsageLogCreateManyArgs} args - Arguments to create many AiUsageLogs.
+     * @example
+     * // Create many AiUsageLogs
+     * const aiUsageLog = await prisma.aiUsageLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AiUsageLogCreateManyArgs>(args?: SelectSubset<T, AiUsageLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AiUsageLogs and returns the data saved in the database.
+     * @param {AiUsageLogCreateManyAndReturnArgs} args - Arguments to create many AiUsageLogs.
+     * @example
+     * // Create many AiUsageLogs
+     * const aiUsageLog = await prisma.aiUsageLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AiUsageLogs and only return the `id`
+     * const aiUsageLogWithIdOnly = await prisma.aiUsageLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AiUsageLogCreateManyAndReturnArgs>(args?: SelectSubset<T, AiUsageLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AiUsageLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AiUsageLog.
+     * @param {AiUsageLogDeleteArgs} args - Arguments to delete one AiUsageLog.
+     * @example
+     * // Delete one AiUsageLog
+     * const AiUsageLog = await prisma.aiUsageLog.delete({
+     *   where: {
+     *     // ... filter to delete one AiUsageLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AiUsageLogDeleteArgs>(args: SelectSubset<T, AiUsageLogDeleteArgs<ExtArgs>>): Prisma__AiUsageLogClient<$Result.GetResult<Prisma.$AiUsageLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AiUsageLog.
+     * @param {AiUsageLogUpdateArgs} args - Arguments to update one AiUsageLog.
+     * @example
+     * // Update one AiUsageLog
+     * const aiUsageLog = await prisma.aiUsageLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AiUsageLogUpdateArgs>(args: SelectSubset<T, AiUsageLogUpdateArgs<ExtArgs>>): Prisma__AiUsageLogClient<$Result.GetResult<Prisma.$AiUsageLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AiUsageLogs.
+     * @param {AiUsageLogDeleteManyArgs} args - Arguments to filter AiUsageLogs to delete.
+     * @example
+     * // Delete a few AiUsageLogs
+     * const { count } = await prisma.aiUsageLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AiUsageLogDeleteManyArgs>(args?: SelectSubset<T, AiUsageLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AiUsageLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiUsageLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AiUsageLogs
+     * const aiUsageLog = await prisma.aiUsageLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AiUsageLogUpdateManyArgs>(args: SelectSubset<T, AiUsageLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AiUsageLogs and returns the data updated in the database.
+     * @param {AiUsageLogUpdateManyAndReturnArgs} args - Arguments to update many AiUsageLogs.
+     * @example
+     * // Update many AiUsageLogs
+     * const aiUsageLog = await prisma.aiUsageLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AiUsageLogs and only return the `id`
+     * const aiUsageLogWithIdOnly = await prisma.aiUsageLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AiUsageLogUpdateManyAndReturnArgs>(args: SelectSubset<T, AiUsageLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AiUsageLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AiUsageLog.
+     * @param {AiUsageLogUpsertArgs} args - Arguments to update or create a AiUsageLog.
+     * @example
+     * // Update or create a AiUsageLog
+     * const aiUsageLog = await prisma.aiUsageLog.upsert({
+     *   create: {
+     *     // ... data to create a AiUsageLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AiUsageLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AiUsageLogUpsertArgs>(args: SelectSubset<T, AiUsageLogUpsertArgs<ExtArgs>>): Prisma__AiUsageLogClient<$Result.GetResult<Prisma.$AiUsageLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AiUsageLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiUsageLogCountArgs} args - Arguments to filter AiUsageLogs to count.
+     * @example
+     * // Count the number of AiUsageLogs
+     * const count = await prisma.aiUsageLog.count({
+     *   where: {
+     *     // ... the filter for the AiUsageLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends AiUsageLogCountArgs>(
+      args?: Subset<T, AiUsageLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AiUsageLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AiUsageLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiUsageLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AiUsageLogAggregateArgs>(args: Subset<T, AiUsageLogAggregateArgs>): Prisma.PrismaPromise<GetAiUsageLogAggregateType<T>>
+
+    /**
+     * Group by AiUsageLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AiUsageLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AiUsageLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AiUsageLogGroupByArgs['orderBy'] }
+        : { orderBy?: AiUsageLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AiUsageLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAiUsageLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AiUsageLog model
+   */
+  readonly fields: AiUsageLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AiUsageLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AiUsageLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AiUsageLog model
+   */
+  interface AiUsageLogFieldRefs {
+    readonly id: FieldRef<"AiUsageLog", 'String'>
+    readonly tenantId: FieldRef<"AiUsageLog", 'String'>
+    readonly provider: FieldRef<"AiUsageLog", 'String'>
+    readonly model: FieldRef<"AiUsageLog", 'String'>
+    readonly taskType: FieldRef<"AiUsageLog", 'String'>
+    readonly inputTokens: FieldRef<"AiUsageLog", 'Int'>
+    readonly outputTokens: FieldRef<"AiUsageLog", 'Int'>
+    readonly latencyMs: FieldRef<"AiUsageLog", 'Int'>
+    readonly success: FieldRef<"AiUsageLog", 'Boolean'>
+    readonly errorMessage: FieldRef<"AiUsageLog", 'String'>
+    readonly createdAt: FieldRef<"AiUsageLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AiUsageLog findUnique
+   */
+  export type AiUsageLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiUsageLog
+     */
+    select?: AiUsageLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiUsageLog
+     */
+    omit?: AiUsageLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiUsageLogInclude<ExtArgs> | null
+    /**
+     * Filter, which AiUsageLog to fetch.
+     */
+    where: AiUsageLogWhereUniqueInput
+  }
+
+  /**
+   * AiUsageLog findUniqueOrThrow
+   */
+  export type AiUsageLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiUsageLog
+     */
+    select?: AiUsageLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiUsageLog
+     */
+    omit?: AiUsageLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiUsageLogInclude<ExtArgs> | null
+    /**
+     * Filter, which AiUsageLog to fetch.
+     */
+    where: AiUsageLogWhereUniqueInput
+  }
+
+  /**
+   * AiUsageLog findFirst
+   */
+  export type AiUsageLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiUsageLog
+     */
+    select?: AiUsageLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiUsageLog
+     */
+    omit?: AiUsageLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiUsageLogInclude<ExtArgs> | null
+    /**
+     * Filter, which AiUsageLog to fetch.
+     */
+    where?: AiUsageLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AiUsageLogs to fetch.
+     */
+    orderBy?: AiUsageLogOrderByWithRelationInput | AiUsageLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AiUsageLogs.
+     */
+    cursor?: AiUsageLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AiUsageLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AiUsageLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AiUsageLogs.
+     */
+    distinct?: AiUsageLogScalarFieldEnum | AiUsageLogScalarFieldEnum[]
+  }
+
+  /**
+   * AiUsageLog findFirstOrThrow
+   */
+  export type AiUsageLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiUsageLog
+     */
+    select?: AiUsageLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiUsageLog
+     */
+    omit?: AiUsageLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiUsageLogInclude<ExtArgs> | null
+    /**
+     * Filter, which AiUsageLog to fetch.
+     */
+    where?: AiUsageLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AiUsageLogs to fetch.
+     */
+    orderBy?: AiUsageLogOrderByWithRelationInput | AiUsageLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AiUsageLogs.
+     */
+    cursor?: AiUsageLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AiUsageLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AiUsageLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AiUsageLogs.
+     */
+    distinct?: AiUsageLogScalarFieldEnum | AiUsageLogScalarFieldEnum[]
+  }
+
+  /**
+   * AiUsageLog findMany
+   */
+  export type AiUsageLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiUsageLog
+     */
+    select?: AiUsageLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiUsageLog
+     */
+    omit?: AiUsageLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiUsageLogInclude<ExtArgs> | null
+    /**
+     * Filter, which AiUsageLogs to fetch.
+     */
+    where?: AiUsageLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AiUsageLogs to fetch.
+     */
+    orderBy?: AiUsageLogOrderByWithRelationInput | AiUsageLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AiUsageLogs.
+     */
+    cursor?: AiUsageLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AiUsageLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AiUsageLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AiUsageLogs.
+     */
+    distinct?: AiUsageLogScalarFieldEnum | AiUsageLogScalarFieldEnum[]
+  }
+
+  /**
+   * AiUsageLog create
+   */
+  export type AiUsageLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiUsageLog
+     */
+    select?: AiUsageLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiUsageLog
+     */
+    omit?: AiUsageLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiUsageLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AiUsageLog.
+     */
+    data: XOR<AiUsageLogCreateInput, AiUsageLogUncheckedCreateInput>
+  }
+
+  /**
+   * AiUsageLog createMany
+   */
+  export type AiUsageLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AiUsageLogs.
+     */
+    data: AiUsageLogCreateManyInput | AiUsageLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AiUsageLog createManyAndReturn
+   */
+  export type AiUsageLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiUsageLog
+     */
+    select?: AiUsageLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiUsageLog
+     */
+    omit?: AiUsageLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many AiUsageLogs.
+     */
+    data: AiUsageLogCreateManyInput | AiUsageLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiUsageLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AiUsageLog update
+   */
+  export type AiUsageLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiUsageLog
+     */
+    select?: AiUsageLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiUsageLog
+     */
+    omit?: AiUsageLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiUsageLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AiUsageLog.
+     */
+    data: XOR<AiUsageLogUpdateInput, AiUsageLogUncheckedUpdateInput>
+    /**
+     * Choose, which AiUsageLog to update.
+     */
+    where: AiUsageLogWhereUniqueInput
+  }
+
+  /**
+   * AiUsageLog updateMany
+   */
+  export type AiUsageLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AiUsageLogs.
+     */
+    data: XOR<AiUsageLogUpdateManyMutationInput, AiUsageLogUncheckedUpdateManyInput>
+    /**
+     * Filter which AiUsageLogs to update
+     */
+    where?: AiUsageLogWhereInput
+    /**
+     * Limit how many AiUsageLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AiUsageLog updateManyAndReturn
+   */
+  export type AiUsageLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiUsageLog
+     */
+    select?: AiUsageLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiUsageLog
+     */
+    omit?: AiUsageLogOmit<ExtArgs> | null
+    /**
+     * The data used to update AiUsageLogs.
+     */
+    data: XOR<AiUsageLogUpdateManyMutationInput, AiUsageLogUncheckedUpdateManyInput>
+    /**
+     * Filter which AiUsageLogs to update
+     */
+    where?: AiUsageLogWhereInput
+    /**
+     * Limit how many AiUsageLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiUsageLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AiUsageLog upsert
+   */
+  export type AiUsageLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiUsageLog
+     */
+    select?: AiUsageLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiUsageLog
+     */
+    omit?: AiUsageLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiUsageLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AiUsageLog to update in case it exists.
+     */
+    where: AiUsageLogWhereUniqueInput
+    /**
+     * In case the AiUsageLog found by the `where` argument doesn't exist, create a new AiUsageLog with this data.
+     */
+    create: XOR<AiUsageLogCreateInput, AiUsageLogUncheckedCreateInput>
+    /**
+     * In case the AiUsageLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AiUsageLogUpdateInput, AiUsageLogUncheckedUpdateInput>
+  }
+
+  /**
+   * AiUsageLog delete
+   */
+  export type AiUsageLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiUsageLog
+     */
+    select?: AiUsageLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiUsageLog
+     */
+    omit?: AiUsageLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiUsageLogInclude<ExtArgs> | null
+    /**
+     * Filter which AiUsageLog to delete.
+     */
+    where: AiUsageLogWhereUniqueInput
+  }
+
+  /**
+   * AiUsageLog deleteMany
+   */
+  export type AiUsageLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AiUsageLogs to delete
+     */
+    where?: AiUsageLogWhereInput
+    /**
+     * Limit how many AiUsageLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AiUsageLog without action
+   */
+  export type AiUsageLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AiUsageLog
+     */
+    select?: AiUsageLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AiUsageLog
+     */
+    omit?: AiUsageLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AiUsageLogInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3245,12 +7089,73 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+  export const AiProviderConfigScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    provider: 'provider',
+    modelName: 'modelName',
+    isEnabled: 'isEnabled',
+    priority: 'priority',
+    config: 'config',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AiProviderConfigScalarFieldEnum = (typeof AiProviderConfigScalarFieldEnum)[keyof typeof AiProviderConfigScalarFieldEnum]
+
+
+  export const AiPromptCacheScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    promptHash: 'promptHash',
+    taskType: 'taskType',
+    response: 'response',
+    tokensUsed: 'tokensUsed',
+    createdAt: 'createdAt',
+    expiresAt: 'expiresAt'
+  };
+
+  export type AiPromptCacheScalarFieldEnum = (typeof AiPromptCacheScalarFieldEnum)[keyof typeof AiPromptCacheScalarFieldEnum]
+
+
+  export const AiUsageLogScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    provider: 'provider',
+    model: 'model',
+    taskType: 'taskType',
+    inputTokens: 'inputTokens',
+    outputTokens: 'outputTokens',
+    latencyMs: 'latencyMs',
+    success: 'success',
+    errorMessage: 'errorMessage',
+    createdAt: 'createdAt'
+  };
+
+  export type AiUsageLogScalarFieldEnum = (typeof AiUsageLogScalarFieldEnum)[keyof typeof AiUsageLogScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
   export const QueryMode: {
@@ -3288,6 +7193,47 @@ export namespace Prisma {
   };
 
   export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+  export const AiProviderConfigOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    provider: 'provider',
+    modelName: 'modelName'
+  };
+
+  export type AiProviderConfigOrderByRelevanceFieldEnum = (typeof AiProviderConfigOrderByRelevanceFieldEnum)[keyof typeof AiProviderConfigOrderByRelevanceFieldEnum]
+
+
+  export const AiPromptCacheOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    promptHash: 'promptHash',
+    taskType: 'taskType'
+  };
+
+  export type AiPromptCacheOrderByRelevanceFieldEnum = (typeof AiPromptCacheOrderByRelevanceFieldEnum)[keyof typeof AiPromptCacheOrderByRelevanceFieldEnum]
+
+
+  export const AiUsageLogOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    provider: 'provider',
+    model: 'model',
+    taskType: 'taskType',
+    errorMessage: 'errorMessage'
+  };
+
+  export type AiUsageLogOrderByRelevanceFieldEnum = (typeof AiUsageLogOrderByRelevanceFieldEnum)[keyof typeof AiUsageLogOrderByRelevanceFieldEnum]
 
 
   /**
@@ -3342,6 +7288,34 @@ export namespace Prisma {
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
   /**
    * Deep Input Types
    */
@@ -3356,6 +7330,9 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Tenant"> | Date | string
     updatedAt?: DateTimeFilter<"Tenant"> | Date | string
     users?: UserListRelationFilter
+    aiProviderConfigs?: AiProviderConfigListRelationFilter
+    aiPromptCache?: AiPromptCacheListRelationFilter
+    aiUsageLogs?: AiUsageLogListRelationFilter
   }
 
   export type TenantOrderByWithRelationInput = {
@@ -3364,6 +7341,9 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     users?: UserOrderByRelationAggregateInput
+    aiProviderConfigs?: AiProviderConfigOrderByRelationAggregateInput
+    aiPromptCache?: AiPromptCacheOrderByRelationAggregateInput
+    aiUsageLogs?: AiUsageLogOrderByRelationAggregateInput
     _relevance?: TenantOrderByRelevanceInput
   }
 
@@ -3376,6 +7356,9 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Tenant"> | Date | string
     updatedAt?: DateTimeFilter<"Tenant"> | Date | string
     users?: UserListRelationFilter
+    aiProviderConfigs?: AiProviderConfigListRelationFilter
+    aiPromptCache?: AiPromptCacheListRelationFilter
+    aiUsageLogs?: AiUsageLogListRelationFilter
   }, "id">
 
   export type TenantOrderByWithAggregationInput = {
@@ -3489,12 +7472,255 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
+  export type AiProviderConfigWhereInput = {
+    AND?: AiProviderConfigWhereInput | AiProviderConfigWhereInput[]
+    OR?: AiProviderConfigWhereInput[]
+    NOT?: AiProviderConfigWhereInput | AiProviderConfigWhereInput[]
+    id?: StringFilter<"AiProviderConfig"> | string
+    tenantId?: StringFilter<"AiProviderConfig"> | string
+    provider?: StringFilter<"AiProviderConfig"> | string
+    modelName?: StringFilter<"AiProviderConfig"> | string
+    isEnabled?: BoolFilter<"AiProviderConfig"> | boolean
+    priority?: IntFilter<"AiProviderConfig"> | number
+    config?: JsonNullableFilter<"AiProviderConfig">
+    createdAt?: DateTimeFilter<"AiProviderConfig"> | Date | string
+    updatedAt?: DateTimeFilter<"AiProviderConfig"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }
+
+  export type AiProviderConfigOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    provider?: SortOrder
+    modelName?: SortOrder
+    isEnabled?: SortOrder
+    priority?: SortOrder
+    config?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    _relevance?: AiProviderConfigOrderByRelevanceInput
+  }
+
+  export type AiProviderConfigWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AiProviderConfigWhereInput | AiProviderConfigWhereInput[]
+    OR?: AiProviderConfigWhereInput[]
+    NOT?: AiProviderConfigWhereInput | AiProviderConfigWhereInput[]
+    tenantId?: StringFilter<"AiProviderConfig"> | string
+    provider?: StringFilter<"AiProviderConfig"> | string
+    modelName?: StringFilter<"AiProviderConfig"> | string
+    isEnabled?: BoolFilter<"AiProviderConfig"> | boolean
+    priority?: IntFilter<"AiProviderConfig"> | number
+    config?: JsonNullableFilter<"AiProviderConfig">
+    createdAt?: DateTimeFilter<"AiProviderConfig"> | Date | string
+    updatedAt?: DateTimeFilter<"AiProviderConfig"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }, "id">
+
+  export type AiProviderConfigOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    provider?: SortOrder
+    modelName?: SortOrder
+    isEnabled?: SortOrder
+    priority?: SortOrder
+    config?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AiProviderConfigCountOrderByAggregateInput
+    _avg?: AiProviderConfigAvgOrderByAggregateInput
+    _max?: AiProviderConfigMaxOrderByAggregateInput
+    _min?: AiProviderConfigMinOrderByAggregateInput
+    _sum?: AiProviderConfigSumOrderByAggregateInput
+  }
+
+  export type AiProviderConfigScalarWhereWithAggregatesInput = {
+    AND?: AiProviderConfigScalarWhereWithAggregatesInput | AiProviderConfigScalarWhereWithAggregatesInput[]
+    OR?: AiProviderConfigScalarWhereWithAggregatesInput[]
+    NOT?: AiProviderConfigScalarWhereWithAggregatesInput | AiProviderConfigScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AiProviderConfig"> | string
+    tenantId?: StringWithAggregatesFilter<"AiProviderConfig"> | string
+    provider?: StringWithAggregatesFilter<"AiProviderConfig"> | string
+    modelName?: StringWithAggregatesFilter<"AiProviderConfig"> | string
+    isEnabled?: BoolWithAggregatesFilter<"AiProviderConfig"> | boolean
+    priority?: IntWithAggregatesFilter<"AiProviderConfig"> | number
+    config?: JsonNullableWithAggregatesFilter<"AiProviderConfig">
+    createdAt?: DateTimeWithAggregatesFilter<"AiProviderConfig"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AiProviderConfig"> | Date | string
+  }
+
+  export type AiPromptCacheWhereInput = {
+    AND?: AiPromptCacheWhereInput | AiPromptCacheWhereInput[]
+    OR?: AiPromptCacheWhereInput[]
+    NOT?: AiPromptCacheWhereInput | AiPromptCacheWhereInput[]
+    id?: StringFilter<"AiPromptCache"> | string
+    tenantId?: StringFilter<"AiPromptCache"> | string
+    promptHash?: StringFilter<"AiPromptCache"> | string
+    taskType?: StringFilter<"AiPromptCache"> | string
+    response?: JsonFilter<"AiPromptCache">
+    tokensUsed?: IntFilter<"AiPromptCache"> | number
+    createdAt?: DateTimeFilter<"AiPromptCache"> | Date | string
+    expiresAt?: DateTimeFilter<"AiPromptCache"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }
+
+  export type AiPromptCacheOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    promptHash?: SortOrder
+    taskType?: SortOrder
+    response?: SortOrder
+    tokensUsed?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    _relevance?: AiPromptCacheOrderByRelevanceInput
+  }
+
+  export type AiPromptCacheWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tenantId_promptHash?: AiPromptCacheTenantIdPromptHashCompoundUniqueInput
+    AND?: AiPromptCacheWhereInput | AiPromptCacheWhereInput[]
+    OR?: AiPromptCacheWhereInput[]
+    NOT?: AiPromptCacheWhereInput | AiPromptCacheWhereInput[]
+    tenantId?: StringFilter<"AiPromptCache"> | string
+    promptHash?: StringFilter<"AiPromptCache"> | string
+    taskType?: StringFilter<"AiPromptCache"> | string
+    response?: JsonFilter<"AiPromptCache">
+    tokensUsed?: IntFilter<"AiPromptCache"> | number
+    createdAt?: DateTimeFilter<"AiPromptCache"> | Date | string
+    expiresAt?: DateTimeFilter<"AiPromptCache"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }, "id" | "tenantId_promptHash">
+
+  export type AiPromptCacheOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    promptHash?: SortOrder
+    taskType?: SortOrder
+    response?: SortOrder
+    tokensUsed?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+    _count?: AiPromptCacheCountOrderByAggregateInput
+    _avg?: AiPromptCacheAvgOrderByAggregateInput
+    _max?: AiPromptCacheMaxOrderByAggregateInput
+    _min?: AiPromptCacheMinOrderByAggregateInput
+    _sum?: AiPromptCacheSumOrderByAggregateInput
+  }
+
+  export type AiPromptCacheScalarWhereWithAggregatesInput = {
+    AND?: AiPromptCacheScalarWhereWithAggregatesInput | AiPromptCacheScalarWhereWithAggregatesInput[]
+    OR?: AiPromptCacheScalarWhereWithAggregatesInput[]
+    NOT?: AiPromptCacheScalarWhereWithAggregatesInput | AiPromptCacheScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AiPromptCache"> | string
+    tenantId?: StringWithAggregatesFilter<"AiPromptCache"> | string
+    promptHash?: StringWithAggregatesFilter<"AiPromptCache"> | string
+    taskType?: StringWithAggregatesFilter<"AiPromptCache"> | string
+    response?: JsonWithAggregatesFilter<"AiPromptCache">
+    tokensUsed?: IntWithAggregatesFilter<"AiPromptCache"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"AiPromptCache"> | Date | string
+    expiresAt?: DateTimeWithAggregatesFilter<"AiPromptCache"> | Date | string
+  }
+
+  export type AiUsageLogWhereInput = {
+    AND?: AiUsageLogWhereInput | AiUsageLogWhereInput[]
+    OR?: AiUsageLogWhereInput[]
+    NOT?: AiUsageLogWhereInput | AiUsageLogWhereInput[]
+    id?: StringFilter<"AiUsageLog"> | string
+    tenantId?: StringFilter<"AiUsageLog"> | string
+    provider?: StringFilter<"AiUsageLog"> | string
+    model?: StringFilter<"AiUsageLog"> | string
+    taskType?: StringFilter<"AiUsageLog"> | string
+    inputTokens?: IntFilter<"AiUsageLog"> | number
+    outputTokens?: IntFilter<"AiUsageLog"> | number
+    latencyMs?: IntFilter<"AiUsageLog"> | number
+    success?: BoolFilter<"AiUsageLog"> | boolean
+    errorMessage?: StringNullableFilter<"AiUsageLog"> | string | null
+    createdAt?: DateTimeFilter<"AiUsageLog"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }
+
+  export type AiUsageLogOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    provider?: SortOrder
+    model?: SortOrder
+    taskType?: SortOrder
+    inputTokens?: SortOrder
+    outputTokens?: SortOrder
+    latencyMs?: SortOrder
+    success?: SortOrder
+    errorMessage?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    _relevance?: AiUsageLogOrderByRelevanceInput
+  }
+
+  export type AiUsageLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AiUsageLogWhereInput | AiUsageLogWhereInput[]
+    OR?: AiUsageLogWhereInput[]
+    NOT?: AiUsageLogWhereInput | AiUsageLogWhereInput[]
+    tenantId?: StringFilter<"AiUsageLog"> | string
+    provider?: StringFilter<"AiUsageLog"> | string
+    model?: StringFilter<"AiUsageLog"> | string
+    taskType?: StringFilter<"AiUsageLog"> | string
+    inputTokens?: IntFilter<"AiUsageLog"> | number
+    outputTokens?: IntFilter<"AiUsageLog"> | number
+    latencyMs?: IntFilter<"AiUsageLog"> | number
+    success?: BoolFilter<"AiUsageLog"> | boolean
+    errorMessage?: StringNullableFilter<"AiUsageLog"> | string | null
+    createdAt?: DateTimeFilter<"AiUsageLog"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }, "id">
+
+  export type AiUsageLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    provider?: SortOrder
+    model?: SortOrder
+    taskType?: SortOrder
+    inputTokens?: SortOrder
+    outputTokens?: SortOrder
+    latencyMs?: SortOrder
+    success?: SortOrder
+    errorMessage?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: AiUsageLogCountOrderByAggregateInput
+    _avg?: AiUsageLogAvgOrderByAggregateInput
+    _max?: AiUsageLogMaxOrderByAggregateInput
+    _min?: AiUsageLogMinOrderByAggregateInput
+    _sum?: AiUsageLogSumOrderByAggregateInput
+  }
+
+  export type AiUsageLogScalarWhereWithAggregatesInput = {
+    AND?: AiUsageLogScalarWhereWithAggregatesInput | AiUsageLogScalarWhereWithAggregatesInput[]
+    OR?: AiUsageLogScalarWhereWithAggregatesInput[]
+    NOT?: AiUsageLogScalarWhereWithAggregatesInput | AiUsageLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AiUsageLog"> | string
+    tenantId?: StringWithAggregatesFilter<"AiUsageLog"> | string
+    provider?: StringWithAggregatesFilter<"AiUsageLog"> | string
+    model?: StringWithAggregatesFilter<"AiUsageLog"> | string
+    taskType?: StringWithAggregatesFilter<"AiUsageLog"> | string
+    inputTokens?: IntWithAggregatesFilter<"AiUsageLog"> | number
+    outputTokens?: IntWithAggregatesFilter<"AiUsageLog"> | number
+    latencyMs?: IntWithAggregatesFilter<"AiUsageLog"> | number
+    success?: BoolWithAggregatesFilter<"AiUsageLog"> | boolean
+    errorMessage?: StringNullableWithAggregatesFilter<"AiUsageLog"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"AiUsageLog"> | Date | string
+  }
+
   export type TenantCreateInput = {
     id?: string
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateInput = {
@@ -3503,6 +7729,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUpdateInput = {
@@ -3511,6 +7740,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateInput = {
@@ -3519,6 +7751,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateManyInput = {
@@ -3646,6 +7881,262 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AiProviderConfigCreateInput = {
+    id?: string
+    provider: string
+    modelName: string
+    isEnabled?: boolean
+    priority?: number
+    config?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutAiProviderConfigsInput
+  }
+
+  export type AiProviderConfigUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    provider: string
+    modelName: string
+    isEnabled?: boolean
+    priority?: number
+    config?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AiProviderConfigUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    modelName?: StringFieldUpdateOperationsInput | string
+    isEnabled?: BoolFieldUpdateOperationsInput | boolean
+    priority?: IntFieldUpdateOperationsInput | number
+    config?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutAiProviderConfigsNestedInput
+  }
+
+  export type AiProviderConfigUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    modelName?: StringFieldUpdateOperationsInput | string
+    isEnabled?: BoolFieldUpdateOperationsInput | boolean
+    priority?: IntFieldUpdateOperationsInput | number
+    config?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AiProviderConfigCreateManyInput = {
+    id?: string
+    tenantId: string
+    provider: string
+    modelName: string
+    isEnabled?: boolean
+    priority?: number
+    config?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AiProviderConfigUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    modelName?: StringFieldUpdateOperationsInput | string
+    isEnabled?: BoolFieldUpdateOperationsInput | boolean
+    priority?: IntFieldUpdateOperationsInput | number
+    config?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AiProviderConfigUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    modelName?: StringFieldUpdateOperationsInput | string
+    isEnabled?: BoolFieldUpdateOperationsInput | boolean
+    priority?: IntFieldUpdateOperationsInput | number
+    config?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AiPromptCacheCreateInput = {
+    id?: string
+    promptHash: string
+    taskType: string
+    response: JsonNullValueInput | InputJsonValue
+    tokensUsed: number
+    createdAt?: Date | string
+    expiresAt: Date | string
+    tenant: TenantCreateNestedOneWithoutAiPromptCacheInput
+  }
+
+  export type AiPromptCacheUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    promptHash: string
+    taskType: string
+    response: JsonNullValueInput | InputJsonValue
+    tokensUsed: number
+    createdAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type AiPromptCacheUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    promptHash?: StringFieldUpdateOperationsInput | string
+    taskType?: StringFieldUpdateOperationsInput | string
+    response?: JsonNullValueInput | InputJsonValue
+    tokensUsed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutAiPromptCacheNestedInput
+  }
+
+  export type AiPromptCacheUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    promptHash?: StringFieldUpdateOperationsInput | string
+    taskType?: StringFieldUpdateOperationsInput | string
+    response?: JsonNullValueInput | InputJsonValue
+    tokensUsed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AiPromptCacheCreateManyInput = {
+    id?: string
+    tenantId: string
+    promptHash: string
+    taskType: string
+    response: JsonNullValueInput | InputJsonValue
+    tokensUsed: number
+    createdAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type AiPromptCacheUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    promptHash?: StringFieldUpdateOperationsInput | string
+    taskType?: StringFieldUpdateOperationsInput | string
+    response?: JsonNullValueInput | InputJsonValue
+    tokensUsed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AiPromptCacheUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    promptHash?: StringFieldUpdateOperationsInput | string
+    taskType?: StringFieldUpdateOperationsInput | string
+    response?: JsonNullValueInput | InputJsonValue
+    tokensUsed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AiUsageLogCreateInput = {
+    id?: string
+    provider: string
+    model: string
+    taskType: string
+    inputTokens: number
+    outputTokens: number
+    latencyMs: number
+    success: boolean
+    errorMessage?: string | null
+    createdAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutAiUsageLogsInput
+  }
+
+  export type AiUsageLogUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    provider: string
+    model: string
+    taskType: string
+    inputTokens: number
+    outputTokens: number
+    latencyMs: number
+    success: boolean
+    errorMessage?: string | null
+    createdAt?: Date | string
+  }
+
+  export type AiUsageLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    taskType?: StringFieldUpdateOperationsInput | string
+    inputTokens?: IntFieldUpdateOperationsInput | number
+    outputTokens?: IntFieldUpdateOperationsInput | number
+    latencyMs?: IntFieldUpdateOperationsInput | number
+    success?: BoolFieldUpdateOperationsInput | boolean
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutAiUsageLogsNestedInput
+  }
+
+  export type AiUsageLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    taskType?: StringFieldUpdateOperationsInput | string
+    inputTokens?: IntFieldUpdateOperationsInput | number
+    outputTokens?: IntFieldUpdateOperationsInput | number
+    latencyMs?: IntFieldUpdateOperationsInput | number
+    success?: BoolFieldUpdateOperationsInput | boolean
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AiUsageLogCreateManyInput = {
+    id?: string
+    tenantId: string
+    provider: string
+    model: string
+    taskType: string
+    inputTokens: number
+    outputTokens: number
+    latencyMs: number
+    success: boolean
+    errorMessage?: string | null
+    createdAt?: Date | string
+  }
+
+  export type AiUsageLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    taskType?: StringFieldUpdateOperationsInput | string
+    inputTokens?: IntFieldUpdateOperationsInput | number
+    outputTokens?: IntFieldUpdateOperationsInput | number
+    latencyMs?: IntFieldUpdateOperationsInput | number
+    success?: BoolFieldUpdateOperationsInput | boolean
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AiUsageLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    taskType?: StringFieldUpdateOperationsInput | string
+    inputTokens?: IntFieldUpdateOperationsInput | number
+    outputTokens?: IntFieldUpdateOperationsInput | number
+    latencyMs?: IntFieldUpdateOperationsInput | number
+    success?: BoolFieldUpdateOperationsInput | boolean
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -3679,7 +8170,37 @@ export namespace Prisma {
     none?: UserWhereInput
   }
 
+  export type AiProviderConfigListRelationFilter = {
+    every?: AiProviderConfigWhereInput
+    some?: AiProviderConfigWhereInput
+    none?: AiProviderConfigWhereInput
+  }
+
+  export type AiPromptCacheListRelationFilter = {
+    every?: AiPromptCacheWhereInput
+    some?: AiPromptCacheWhereInput
+    none?: AiPromptCacheWhereInput
+  }
+
+  export type AiUsageLogListRelationFilter = {
+    every?: AiUsageLogWhereInput
+    some?: AiUsageLogWhereInput
+    none?: AiUsageLogWhereInput
+  }
+
   export type UserOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AiProviderConfigOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AiPromptCacheOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AiUsageLogOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -3877,6 +8398,289 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type AiProviderConfigOrderByRelevanceInput = {
+    fields: AiProviderConfigOrderByRelevanceFieldEnum | AiProviderConfigOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type AiProviderConfigCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    provider?: SortOrder
+    modelName?: SortOrder
+    isEnabled?: SortOrder
+    priority?: SortOrder
+    config?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AiProviderConfigAvgOrderByAggregateInput = {
+    priority?: SortOrder
+  }
+
+  export type AiProviderConfigMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    provider?: SortOrder
+    modelName?: SortOrder
+    isEnabled?: SortOrder
+    priority?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AiProviderConfigMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    provider?: SortOrder
+    modelName?: SortOrder
+    isEnabled?: SortOrder
+    priority?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AiProviderConfigSumOrderByAggregateInput = {
+    priority?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type AiPromptCacheOrderByRelevanceInput = {
+    fields: AiPromptCacheOrderByRelevanceFieldEnum | AiPromptCacheOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type AiPromptCacheTenantIdPromptHashCompoundUniqueInput = {
+    tenantId: string
+    promptHash: string
+  }
+
+  export type AiPromptCacheCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    promptHash?: SortOrder
+    taskType?: SortOrder
+    response?: SortOrder
+    tokensUsed?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+  }
+
+  export type AiPromptCacheAvgOrderByAggregateInput = {
+    tokensUsed?: SortOrder
+  }
+
+  export type AiPromptCacheMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    promptHash?: SortOrder
+    taskType?: SortOrder
+    tokensUsed?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+  }
+
+  export type AiPromptCacheMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    promptHash?: SortOrder
+    taskType?: SortOrder
+    tokensUsed?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+  }
+
+  export type AiPromptCacheSumOrderByAggregateInput = {
+    tokensUsed?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type AiUsageLogOrderByRelevanceInput = {
+    fields: AiUsageLogOrderByRelevanceFieldEnum | AiUsageLogOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type AiUsageLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    provider?: SortOrder
+    model?: SortOrder
+    taskType?: SortOrder
+    inputTokens?: SortOrder
+    outputTokens?: SortOrder
+    latencyMs?: SortOrder
+    success?: SortOrder
+    errorMessage?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AiUsageLogAvgOrderByAggregateInput = {
+    inputTokens?: SortOrder
+    outputTokens?: SortOrder
+    latencyMs?: SortOrder
+  }
+
+  export type AiUsageLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    provider?: SortOrder
+    model?: SortOrder
+    taskType?: SortOrder
+    inputTokens?: SortOrder
+    outputTokens?: SortOrder
+    latencyMs?: SortOrder
+    success?: SortOrder
+    errorMessage?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AiUsageLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    provider?: SortOrder
+    model?: SortOrder
+    taskType?: SortOrder
+    inputTokens?: SortOrder
+    outputTokens?: SortOrder
+    latencyMs?: SortOrder
+    success?: SortOrder
+    errorMessage?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AiUsageLogSumOrderByAggregateInput = {
+    inputTokens?: SortOrder
+    outputTokens?: SortOrder
+    latencyMs?: SortOrder
+  }
+
   export type UserCreateNestedManyWithoutTenantInput = {
     create?: XOR<UserCreateWithoutTenantInput, UserUncheckedCreateWithoutTenantInput> | UserCreateWithoutTenantInput[] | UserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: UserCreateOrConnectWithoutTenantInput | UserCreateOrConnectWithoutTenantInput[]
@@ -3884,11 +8688,53 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
+  export type AiProviderConfigCreateNestedManyWithoutTenantInput = {
+    create?: XOR<AiProviderConfigCreateWithoutTenantInput, AiProviderConfigUncheckedCreateWithoutTenantInput> | AiProviderConfigCreateWithoutTenantInput[] | AiProviderConfigUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AiProviderConfigCreateOrConnectWithoutTenantInput | AiProviderConfigCreateOrConnectWithoutTenantInput[]
+    createMany?: AiProviderConfigCreateManyTenantInputEnvelope
+    connect?: AiProviderConfigWhereUniqueInput | AiProviderConfigWhereUniqueInput[]
+  }
+
+  export type AiPromptCacheCreateNestedManyWithoutTenantInput = {
+    create?: XOR<AiPromptCacheCreateWithoutTenantInput, AiPromptCacheUncheckedCreateWithoutTenantInput> | AiPromptCacheCreateWithoutTenantInput[] | AiPromptCacheUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AiPromptCacheCreateOrConnectWithoutTenantInput | AiPromptCacheCreateOrConnectWithoutTenantInput[]
+    createMany?: AiPromptCacheCreateManyTenantInputEnvelope
+    connect?: AiPromptCacheWhereUniqueInput | AiPromptCacheWhereUniqueInput[]
+  }
+
+  export type AiUsageLogCreateNestedManyWithoutTenantInput = {
+    create?: XOR<AiUsageLogCreateWithoutTenantInput, AiUsageLogUncheckedCreateWithoutTenantInput> | AiUsageLogCreateWithoutTenantInput[] | AiUsageLogUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AiUsageLogCreateOrConnectWithoutTenantInput | AiUsageLogCreateOrConnectWithoutTenantInput[]
+    createMany?: AiUsageLogCreateManyTenantInputEnvelope
+    connect?: AiUsageLogWhereUniqueInput | AiUsageLogWhereUniqueInput[]
+  }
+
   export type UserUncheckedCreateNestedManyWithoutTenantInput = {
     create?: XOR<UserCreateWithoutTenantInput, UserUncheckedCreateWithoutTenantInput> | UserCreateWithoutTenantInput[] | UserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: UserCreateOrConnectWithoutTenantInput | UserCreateOrConnectWithoutTenantInput[]
     createMany?: UserCreateManyTenantInputEnvelope
     connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
+  export type AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<AiProviderConfigCreateWithoutTenantInput, AiProviderConfigUncheckedCreateWithoutTenantInput> | AiProviderConfigCreateWithoutTenantInput[] | AiProviderConfigUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AiProviderConfigCreateOrConnectWithoutTenantInput | AiProviderConfigCreateOrConnectWithoutTenantInput[]
+    createMany?: AiProviderConfigCreateManyTenantInputEnvelope
+    connect?: AiProviderConfigWhereUniqueInput | AiProviderConfigWhereUniqueInput[]
+  }
+
+  export type AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<AiPromptCacheCreateWithoutTenantInput, AiPromptCacheUncheckedCreateWithoutTenantInput> | AiPromptCacheCreateWithoutTenantInput[] | AiPromptCacheUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AiPromptCacheCreateOrConnectWithoutTenantInput | AiPromptCacheCreateOrConnectWithoutTenantInput[]
+    createMany?: AiPromptCacheCreateManyTenantInputEnvelope
+    connect?: AiPromptCacheWhereUniqueInput | AiPromptCacheWhereUniqueInput[]
+  }
+
+  export type AiUsageLogUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<AiUsageLogCreateWithoutTenantInput, AiUsageLogUncheckedCreateWithoutTenantInput> | AiUsageLogCreateWithoutTenantInput[] | AiUsageLogUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AiUsageLogCreateOrConnectWithoutTenantInput | AiUsageLogCreateOrConnectWithoutTenantInput[]
+    createMany?: AiUsageLogCreateManyTenantInputEnvelope
+    connect?: AiUsageLogWhereUniqueInput | AiUsageLogWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -3913,6 +8759,48 @@ export namespace Prisma {
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
+  export type AiProviderConfigUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<AiProviderConfigCreateWithoutTenantInput, AiProviderConfigUncheckedCreateWithoutTenantInput> | AiProviderConfigCreateWithoutTenantInput[] | AiProviderConfigUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AiProviderConfigCreateOrConnectWithoutTenantInput | AiProviderConfigCreateOrConnectWithoutTenantInput[]
+    upsert?: AiProviderConfigUpsertWithWhereUniqueWithoutTenantInput | AiProviderConfigUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: AiProviderConfigCreateManyTenantInputEnvelope
+    set?: AiProviderConfigWhereUniqueInput | AiProviderConfigWhereUniqueInput[]
+    disconnect?: AiProviderConfigWhereUniqueInput | AiProviderConfigWhereUniqueInput[]
+    delete?: AiProviderConfigWhereUniqueInput | AiProviderConfigWhereUniqueInput[]
+    connect?: AiProviderConfigWhereUniqueInput | AiProviderConfigWhereUniqueInput[]
+    update?: AiProviderConfigUpdateWithWhereUniqueWithoutTenantInput | AiProviderConfigUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: AiProviderConfigUpdateManyWithWhereWithoutTenantInput | AiProviderConfigUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: AiProviderConfigScalarWhereInput | AiProviderConfigScalarWhereInput[]
+  }
+
+  export type AiPromptCacheUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<AiPromptCacheCreateWithoutTenantInput, AiPromptCacheUncheckedCreateWithoutTenantInput> | AiPromptCacheCreateWithoutTenantInput[] | AiPromptCacheUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AiPromptCacheCreateOrConnectWithoutTenantInput | AiPromptCacheCreateOrConnectWithoutTenantInput[]
+    upsert?: AiPromptCacheUpsertWithWhereUniqueWithoutTenantInput | AiPromptCacheUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: AiPromptCacheCreateManyTenantInputEnvelope
+    set?: AiPromptCacheWhereUniqueInput | AiPromptCacheWhereUniqueInput[]
+    disconnect?: AiPromptCacheWhereUniqueInput | AiPromptCacheWhereUniqueInput[]
+    delete?: AiPromptCacheWhereUniqueInput | AiPromptCacheWhereUniqueInput[]
+    connect?: AiPromptCacheWhereUniqueInput | AiPromptCacheWhereUniqueInput[]
+    update?: AiPromptCacheUpdateWithWhereUniqueWithoutTenantInput | AiPromptCacheUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: AiPromptCacheUpdateManyWithWhereWithoutTenantInput | AiPromptCacheUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: AiPromptCacheScalarWhereInput | AiPromptCacheScalarWhereInput[]
+  }
+
+  export type AiUsageLogUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<AiUsageLogCreateWithoutTenantInput, AiUsageLogUncheckedCreateWithoutTenantInput> | AiUsageLogCreateWithoutTenantInput[] | AiUsageLogUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AiUsageLogCreateOrConnectWithoutTenantInput | AiUsageLogCreateOrConnectWithoutTenantInput[]
+    upsert?: AiUsageLogUpsertWithWhereUniqueWithoutTenantInput | AiUsageLogUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: AiUsageLogCreateManyTenantInputEnvelope
+    set?: AiUsageLogWhereUniqueInput | AiUsageLogWhereUniqueInput[]
+    disconnect?: AiUsageLogWhereUniqueInput | AiUsageLogWhereUniqueInput[]
+    delete?: AiUsageLogWhereUniqueInput | AiUsageLogWhereUniqueInput[]
+    connect?: AiUsageLogWhereUniqueInput | AiUsageLogWhereUniqueInput[]
+    update?: AiUsageLogUpdateWithWhereUniqueWithoutTenantInput | AiUsageLogUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: AiUsageLogUpdateManyWithWhereWithoutTenantInput | AiUsageLogUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: AiUsageLogScalarWhereInput | AiUsageLogScalarWhereInput[]
+  }
+
   export type UserUncheckedUpdateManyWithoutTenantNestedInput = {
     create?: XOR<UserCreateWithoutTenantInput, UserUncheckedCreateWithoutTenantInput> | UserCreateWithoutTenantInput[] | UserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: UserCreateOrConnectWithoutTenantInput | UserCreateOrConnectWithoutTenantInput[]
@@ -3925,6 +8813,48 @@ export namespace Prisma {
     update?: UserUpdateWithWhereUniqueWithoutTenantInput | UserUpdateWithWhereUniqueWithoutTenantInput[]
     updateMany?: UserUpdateManyWithWhereWithoutTenantInput | UserUpdateManyWithWhereWithoutTenantInput[]
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
+  export type AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<AiProviderConfigCreateWithoutTenantInput, AiProviderConfigUncheckedCreateWithoutTenantInput> | AiProviderConfigCreateWithoutTenantInput[] | AiProviderConfigUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AiProviderConfigCreateOrConnectWithoutTenantInput | AiProviderConfigCreateOrConnectWithoutTenantInput[]
+    upsert?: AiProviderConfigUpsertWithWhereUniqueWithoutTenantInput | AiProviderConfigUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: AiProviderConfigCreateManyTenantInputEnvelope
+    set?: AiProviderConfigWhereUniqueInput | AiProviderConfigWhereUniqueInput[]
+    disconnect?: AiProviderConfigWhereUniqueInput | AiProviderConfigWhereUniqueInput[]
+    delete?: AiProviderConfigWhereUniqueInput | AiProviderConfigWhereUniqueInput[]
+    connect?: AiProviderConfigWhereUniqueInput | AiProviderConfigWhereUniqueInput[]
+    update?: AiProviderConfigUpdateWithWhereUniqueWithoutTenantInput | AiProviderConfigUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: AiProviderConfigUpdateManyWithWhereWithoutTenantInput | AiProviderConfigUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: AiProviderConfigScalarWhereInput | AiProviderConfigScalarWhereInput[]
+  }
+
+  export type AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<AiPromptCacheCreateWithoutTenantInput, AiPromptCacheUncheckedCreateWithoutTenantInput> | AiPromptCacheCreateWithoutTenantInput[] | AiPromptCacheUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AiPromptCacheCreateOrConnectWithoutTenantInput | AiPromptCacheCreateOrConnectWithoutTenantInput[]
+    upsert?: AiPromptCacheUpsertWithWhereUniqueWithoutTenantInput | AiPromptCacheUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: AiPromptCacheCreateManyTenantInputEnvelope
+    set?: AiPromptCacheWhereUniqueInput | AiPromptCacheWhereUniqueInput[]
+    disconnect?: AiPromptCacheWhereUniqueInput | AiPromptCacheWhereUniqueInput[]
+    delete?: AiPromptCacheWhereUniqueInput | AiPromptCacheWhereUniqueInput[]
+    connect?: AiPromptCacheWhereUniqueInput | AiPromptCacheWhereUniqueInput[]
+    update?: AiPromptCacheUpdateWithWhereUniqueWithoutTenantInput | AiPromptCacheUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: AiPromptCacheUpdateManyWithWhereWithoutTenantInput | AiPromptCacheUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: AiPromptCacheScalarWhereInput | AiPromptCacheScalarWhereInput[]
+  }
+
+  export type AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<AiUsageLogCreateWithoutTenantInput, AiUsageLogUncheckedCreateWithoutTenantInput> | AiUsageLogCreateWithoutTenantInput[] | AiUsageLogUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AiUsageLogCreateOrConnectWithoutTenantInput | AiUsageLogCreateOrConnectWithoutTenantInput[]
+    upsert?: AiUsageLogUpsertWithWhereUniqueWithoutTenantInput | AiUsageLogUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: AiUsageLogCreateManyTenantInputEnvelope
+    set?: AiUsageLogWhereUniqueInput | AiUsageLogWhereUniqueInput[]
+    disconnect?: AiUsageLogWhereUniqueInput | AiUsageLogWhereUniqueInput[]
+    delete?: AiUsageLogWhereUniqueInput | AiUsageLogWhereUniqueInput[]
+    connect?: AiUsageLogWhereUniqueInput | AiUsageLogWhereUniqueInput[]
+    update?: AiUsageLogUpdateWithWhereUniqueWithoutTenantInput | AiUsageLogUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: AiUsageLogUpdateManyWithWhereWithoutTenantInput | AiUsageLogUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: AiUsageLogScalarWhereInput | AiUsageLogScalarWhereInput[]
   }
 
   export type TenantCreateNestedOneWithoutUsersInput = {
@@ -3951,6 +8881,56 @@ export namespace Prisma {
     upsert?: TenantUpsertWithoutUsersInput
     connect?: TenantWhereUniqueInput
     update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutUsersInput, TenantUpdateWithoutUsersInput>, TenantUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type TenantCreateNestedOneWithoutAiProviderConfigsInput = {
+    create?: XOR<TenantCreateWithoutAiProviderConfigsInput, TenantUncheckedCreateWithoutAiProviderConfigsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutAiProviderConfigsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type TenantUpdateOneRequiredWithoutAiProviderConfigsNestedInput = {
+    create?: XOR<TenantCreateWithoutAiProviderConfigsInput, TenantUncheckedCreateWithoutAiProviderConfigsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutAiProviderConfigsInput
+    upsert?: TenantUpsertWithoutAiProviderConfigsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutAiProviderConfigsInput, TenantUpdateWithoutAiProviderConfigsInput>, TenantUncheckedUpdateWithoutAiProviderConfigsInput>
+  }
+
+  export type TenantCreateNestedOneWithoutAiPromptCacheInput = {
+    create?: XOR<TenantCreateWithoutAiPromptCacheInput, TenantUncheckedCreateWithoutAiPromptCacheInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutAiPromptCacheInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type TenantUpdateOneRequiredWithoutAiPromptCacheNestedInput = {
+    create?: XOR<TenantCreateWithoutAiPromptCacheInput, TenantUncheckedCreateWithoutAiPromptCacheInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutAiPromptCacheInput
+    upsert?: TenantUpsertWithoutAiPromptCacheInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutAiPromptCacheInput, TenantUpdateWithoutAiPromptCacheInput>, TenantUncheckedUpdateWithoutAiPromptCacheInput>
+  }
+
+  export type TenantCreateNestedOneWithoutAiUsageLogsInput = {
+    create?: XOR<TenantCreateWithoutAiUsageLogsInput, TenantUncheckedCreateWithoutAiUsageLogsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutAiUsageLogsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type TenantUpdateOneRequiredWithoutAiUsageLogsNestedInput = {
+    create?: XOR<TenantCreateWithoutAiUsageLogsInput, TenantUncheckedCreateWithoutAiUsageLogsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutAiUsageLogsInput
+    upsert?: TenantUpsertWithoutAiUsageLogsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutAiUsageLogsInput, TenantUpdateWithoutAiUsageLogsInput>, TenantUncheckedUpdateWithoutAiUsageLogsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -4104,6 +9084,79 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
   export type UserCreateWithoutTenantInput = {
     id?: string
     email: string
@@ -4142,6 +9195,104 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type AiProviderConfigCreateWithoutTenantInput = {
+    id?: string
+    provider: string
+    modelName: string
+    isEnabled?: boolean
+    priority?: number
+    config?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AiProviderConfigUncheckedCreateWithoutTenantInput = {
+    id?: string
+    provider: string
+    modelName: string
+    isEnabled?: boolean
+    priority?: number
+    config?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AiProviderConfigCreateOrConnectWithoutTenantInput = {
+    where: AiProviderConfigWhereUniqueInput
+    create: XOR<AiProviderConfigCreateWithoutTenantInput, AiProviderConfigUncheckedCreateWithoutTenantInput>
+  }
+
+  export type AiProviderConfigCreateManyTenantInputEnvelope = {
+    data: AiProviderConfigCreateManyTenantInput | AiProviderConfigCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AiPromptCacheCreateWithoutTenantInput = {
+    id?: string
+    promptHash: string
+    taskType: string
+    response: JsonNullValueInput | InputJsonValue
+    tokensUsed: number
+    createdAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type AiPromptCacheUncheckedCreateWithoutTenantInput = {
+    id?: string
+    promptHash: string
+    taskType: string
+    response: JsonNullValueInput | InputJsonValue
+    tokensUsed: number
+    createdAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type AiPromptCacheCreateOrConnectWithoutTenantInput = {
+    where: AiPromptCacheWhereUniqueInput
+    create: XOR<AiPromptCacheCreateWithoutTenantInput, AiPromptCacheUncheckedCreateWithoutTenantInput>
+  }
+
+  export type AiPromptCacheCreateManyTenantInputEnvelope = {
+    data: AiPromptCacheCreateManyTenantInput | AiPromptCacheCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AiUsageLogCreateWithoutTenantInput = {
+    id?: string
+    provider: string
+    model: string
+    taskType: string
+    inputTokens: number
+    outputTokens: number
+    latencyMs: number
+    success: boolean
+    errorMessage?: string | null
+    createdAt?: Date | string
+  }
+
+  export type AiUsageLogUncheckedCreateWithoutTenantInput = {
+    id?: string
+    provider: string
+    model: string
+    taskType: string
+    inputTokens: number
+    outputTokens: number
+    latencyMs: number
+    success: boolean
+    errorMessage?: string | null
+    createdAt?: Date | string
+  }
+
+  export type AiUsageLogCreateOrConnectWithoutTenantInput = {
+    where: AiUsageLogWhereUniqueInput
+    create: XOR<AiUsageLogCreateWithoutTenantInput, AiUsageLogUncheckedCreateWithoutTenantInput>
+  }
+
+  export type AiUsageLogCreateManyTenantInputEnvelope = {
+    data: AiUsageLogCreateManyTenantInput | AiUsageLogCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithWhereUniqueWithoutTenantInput = {
     where: UserWhereUniqueInput
     update: XOR<UserUpdateWithoutTenantInput, UserUncheckedUpdateWithoutTenantInput>
@@ -4176,11 +9327,108 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
   }
 
+  export type AiProviderConfigUpsertWithWhereUniqueWithoutTenantInput = {
+    where: AiProviderConfigWhereUniqueInput
+    update: XOR<AiProviderConfigUpdateWithoutTenantInput, AiProviderConfigUncheckedUpdateWithoutTenantInput>
+    create: XOR<AiProviderConfigCreateWithoutTenantInput, AiProviderConfigUncheckedCreateWithoutTenantInput>
+  }
+
+  export type AiProviderConfigUpdateWithWhereUniqueWithoutTenantInput = {
+    where: AiProviderConfigWhereUniqueInput
+    data: XOR<AiProviderConfigUpdateWithoutTenantInput, AiProviderConfigUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type AiProviderConfigUpdateManyWithWhereWithoutTenantInput = {
+    where: AiProviderConfigScalarWhereInput
+    data: XOR<AiProviderConfigUpdateManyMutationInput, AiProviderConfigUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type AiProviderConfigScalarWhereInput = {
+    AND?: AiProviderConfigScalarWhereInput | AiProviderConfigScalarWhereInput[]
+    OR?: AiProviderConfigScalarWhereInput[]
+    NOT?: AiProviderConfigScalarWhereInput | AiProviderConfigScalarWhereInput[]
+    id?: StringFilter<"AiProviderConfig"> | string
+    tenantId?: StringFilter<"AiProviderConfig"> | string
+    provider?: StringFilter<"AiProviderConfig"> | string
+    modelName?: StringFilter<"AiProviderConfig"> | string
+    isEnabled?: BoolFilter<"AiProviderConfig"> | boolean
+    priority?: IntFilter<"AiProviderConfig"> | number
+    config?: JsonNullableFilter<"AiProviderConfig">
+    createdAt?: DateTimeFilter<"AiProviderConfig"> | Date | string
+    updatedAt?: DateTimeFilter<"AiProviderConfig"> | Date | string
+  }
+
+  export type AiPromptCacheUpsertWithWhereUniqueWithoutTenantInput = {
+    where: AiPromptCacheWhereUniqueInput
+    update: XOR<AiPromptCacheUpdateWithoutTenantInput, AiPromptCacheUncheckedUpdateWithoutTenantInput>
+    create: XOR<AiPromptCacheCreateWithoutTenantInput, AiPromptCacheUncheckedCreateWithoutTenantInput>
+  }
+
+  export type AiPromptCacheUpdateWithWhereUniqueWithoutTenantInput = {
+    where: AiPromptCacheWhereUniqueInput
+    data: XOR<AiPromptCacheUpdateWithoutTenantInput, AiPromptCacheUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type AiPromptCacheUpdateManyWithWhereWithoutTenantInput = {
+    where: AiPromptCacheScalarWhereInput
+    data: XOR<AiPromptCacheUpdateManyMutationInput, AiPromptCacheUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type AiPromptCacheScalarWhereInput = {
+    AND?: AiPromptCacheScalarWhereInput | AiPromptCacheScalarWhereInput[]
+    OR?: AiPromptCacheScalarWhereInput[]
+    NOT?: AiPromptCacheScalarWhereInput | AiPromptCacheScalarWhereInput[]
+    id?: StringFilter<"AiPromptCache"> | string
+    tenantId?: StringFilter<"AiPromptCache"> | string
+    promptHash?: StringFilter<"AiPromptCache"> | string
+    taskType?: StringFilter<"AiPromptCache"> | string
+    response?: JsonFilter<"AiPromptCache">
+    tokensUsed?: IntFilter<"AiPromptCache"> | number
+    createdAt?: DateTimeFilter<"AiPromptCache"> | Date | string
+    expiresAt?: DateTimeFilter<"AiPromptCache"> | Date | string
+  }
+
+  export type AiUsageLogUpsertWithWhereUniqueWithoutTenantInput = {
+    where: AiUsageLogWhereUniqueInput
+    update: XOR<AiUsageLogUpdateWithoutTenantInput, AiUsageLogUncheckedUpdateWithoutTenantInput>
+    create: XOR<AiUsageLogCreateWithoutTenantInput, AiUsageLogUncheckedCreateWithoutTenantInput>
+  }
+
+  export type AiUsageLogUpdateWithWhereUniqueWithoutTenantInput = {
+    where: AiUsageLogWhereUniqueInput
+    data: XOR<AiUsageLogUpdateWithoutTenantInput, AiUsageLogUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type AiUsageLogUpdateManyWithWhereWithoutTenantInput = {
+    where: AiUsageLogScalarWhereInput
+    data: XOR<AiUsageLogUpdateManyMutationInput, AiUsageLogUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type AiUsageLogScalarWhereInput = {
+    AND?: AiUsageLogScalarWhereInput | AiUsageLogScalarWhereInput[]
+    OR?: AiUsageLogScalarWhereInput[]
+    NOT?: AiUsageLogScalarWhereInput | AiUsageLogScalarWhereInput[]
+    id?: StringFilter<"AiUsageLog"> | string
+    tenantId?: StringFilter<"AiUsageLog"> | string
+    provider?: StringFilter<"AiUsageLog"> | string
+    model?: StringFilter<"AiUsageLog"> | string
+    taskType?: StringFilter<"AiUsageLog"> | string
+    inputTokens?: IntFilter<"AiUsageLog"> | number
+    outputTokens?: IntFilter<"AiUsageLog"> | number
+    latencyMs?: IntFilter<"AiUsageLog"> | number
+    success?: BoolFilter<"AiUsageLog"> | boolean
+    errorMessage?: StringNullableFilter<"AiUsageLog"> | string | null
+    createdAt?: DateTimeFilter<"AiUsageLog"> | Date | string
+  }
+
   export type TenantCreateWithoutUsersInput = {
     id?: string
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutUsersInput = {
@@ -4188,6 +9436,9 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutUsersInput = {
@@ -4211,6 +9462,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutUsersInput = {
@@ -4218,6 +9472,177 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantCreateWithoutAiProviderConfigsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutAiProviderConfigsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutAiProviderConfigsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutAiProviderConfigsInput, TenantUncheckedCreateWithoutAiProviderConfigsInput>
+  }
+
+  export type TenantUpsertWithoutAiProviderConfigsInput = {
+    update: XOR<TenantUpdateWithoutAiProviderConfigsInput, TenantUncheckedUpdateWithoutAiProviderConfigsInput>
+    create: XOR<TenantCreateWithoutAiProviderConfigsInput, TenantUncheckedCreateWithoutAiProviderConfigsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutAiProviderConfigsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutAiProviderConfigsInput, TenantUncheckedUpdateWithoutAiProviderConfigsInput>
+  }
+
+  export type TenantUpdateWithoutAiProviderConfigsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutAiProviderConfigsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantCreateWithoutAiPromptCacheInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutAiPromptCacheInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutAiPromptCacheInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutAiPromptCacheInput, TenantUncheckedCreateWithoutAiPromptCacheInput>
+  }
+
+  export type TenantUpsertWithoutAiPromptCacheInput = {
+    update: XOR<TenantUpdateWithoutAiPromptCacheInput, TenantUncheckedUpdateWithoutAiPromptCacheInput>
+    create: XOR<TenantCreateWithoutAiPromptCacheInput, TenantUncheckedCreateWithoutAiPromptCacheInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutAiPromptCacheInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutAiPromptCacheInput, TenantUncheckedUpdateWithoutAiPromptCacheInput>
+  }
+
+  export type TenantUpdateWithoutAiPromptCacheInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutAiPromptCacheInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantCreateWithoutAiUsageLogsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutAiUsageLogsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutAiUsageLogsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutAiUsageLogsInput, TenantUncheckedCreateWithoutAiUsageLogsInput>
+  }
+
+  export type TenantUpsertWithoutAiUsageLogsInput = {
+    update: XOR<TenantUpdateWithoutAiUsageLogsInput, TenantUncheckedUpdateWithoutAiUsageLogsInput>
+    create: XOR<TenantCreateWithoutAiUsageLogsInput, TenantUncheckedCreateWithoutAiUsageLogsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutAiUsageLogsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutAiUsageLogsInput, TenantUncheckedUpdateWithoutAiUsageLogsInput>
+  }
+
+  export type TenantUpdateWithoutAiUsageLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutAiUsageLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UserCreateManyTenantInput = {
@@ -4232,6 +9657,40 @@ export namespace Prisma {
     passwordResetTokenExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type AiProviderConfigCreateManyTenantInput = {
+    id?: string
+    provider: string
+    modelName: string
+    isEnabled?: boolean
+    priority?: number
+    config?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AiPromptCacheCreateManyTenantInput = {
+    id?: string
+    promptHash: string
+    taskType: string
+    response: JsonNullValueInput | InputJsonValue
+    tokensUsed: number
+    createdAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type AiUsageLogCreateManyTenantInput = {
+    id?: string
+    provider: string
+    model: string
+    taskType: string
+    inputTokens: number
+    outputTokens: number
+    latencyMs: number
+    success: boolean
+    errorMessage?: string | null
+    createdAt?: Date | string
   }
 
   export type UserUpdateWithoutTenantInput = {
@@ -4274,6 +9733,108 @@ export namespace Prisma {
     passwordResetTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AiProviderConfigUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    modelName?: StringFieldUpdateOperationsInput | string
+    isEnabled?: BoolFieldUpdateOperationsInput | boolean
+    priority?: IntFieldUpdateOperationsInput | number
+    config?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AiProviderConfigUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    modelName?: StringFieldUpdateOperationsInput | string
+    isEnabled?: BoolFieldUpdateOperationsInput | boolean
+    priority?: IntFieldUpdateOperationsInput | number
+    config?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AiProviderConfigUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    modelName?: StringFieldUpdateOperationsInput | string
+    isEnabled?: BoolFieldUpdateOperationsInput | boolean
+    priority?: IntFieldUpdateOperationsInput | number
+    config?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AiPromptCacheUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    promptHash?: StringFieldUpdateOperationsInput | string
+    taskType?: StringFieldUpdateOperationsInput | string
+    response?: JsonNullValueInput | InputJsonValue
+    tokensUsed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AiPromptCacheUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    promptHash?: StringFieldUpdateOperationsInput | string
+    taskType?: StringFieldUpdateOperationsInput | string
+    response?: JsonNullValueInput | InputJsonValue
+    tokensUsed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AiPromptCacheUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    promptHash?: StringFieldUpdateOperationsInput | string
+    taskType?: StringFieldUpdateOperationsInput | string
+    response?: JsonNullValueInput | InputJsonValue
+    tokensUsed?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AiUsageLogUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    taskType?: StringFieldUpdateOperationsInput | string
+    inputTokens?: IntFieldUpdateOperationsInput | number
+    outputTokens?: IntFieldUpdateOperationsInput | number
+    latencyMs?: IntFieldUpdateOperationsInput | number
+    success?: BoolFieldUpdateOperationsInput | boolean
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AiUsageLogUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    taskType?: StringFieldUpdateOperationsInput | string
+    inputTokens?: IntFieldUpdateOperationsInput | number
+    outputTokens?: IntFieldUpdateOperationsInput | number
+    latencyMs?: IntFieldUpdateOperationsInput | number
+    success?: BoolFieldUpdateOperationsInput | boolean
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AiUsageLogUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    taskType?: StringFieldUpdateOperationsInput | string
+    inputTokens?: IntFieldUpdateOperationsInput | number
+    outputTokens?: IntFieldUpdateOperationsInput | number
+    latencyMs?: IntFieldUpdateOperationsInput | number
+    success?: BoolFieldUpdateOperationsInput | boolean
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

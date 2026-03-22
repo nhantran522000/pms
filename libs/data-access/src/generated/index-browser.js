@@ -142,9 +142,55 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.AiProviderConfigScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  provider: 'provider',
+  modelName: 'modelName',
+  isEnabled: 'isEnabled',
+  priority: 'priority',
+  config: 'config',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AiPromptCacheScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  promptHash: 'promptHash',
+  taskType: 'taskType',
+  response: 'response',
+  tokensUsed: 'tokensUsed',
+  createdAt: 'createdAt',
+  expiresAt: 'expiresAt'
+};
+
+exports.Prisma.AiUsageLogScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  provider: 'provider',
+  model: 'model',
+  taskType: 'taskType',
+  inputTokens: 'inputTokens',
+  outputTokens: 'outputTokens',
+  latencyMs: 'latencyMs',
+  success: 'success',
+  errorMessage: 'errorMessage',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -172,10 +218,42 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   tenantId: 'tenantId'
 };
 
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
+exports.Prisma.AiProviderConfigOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  provider: 'provider',
+  modelName: 'modelName'
+};
+
+exports.Prisma.AiPromptCacheOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  promptHash: 'promptHash',
+  taskType: 'taskType'
+};
+
+exports.Prisma.AiUsageLogOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  provider: 'provider',
+  model: 'model',
+  taskType: 'taskType',
+  errorMessage: 'errorMessage'
+};
+
 
 exports.Prisma.ModelName = {
   Tenant: 'Tenant',
-  User: 'User'
+  User: 'User',
+  AiProviderConfig: 'AiProviderConfig',
+  AiPromptCache: 'AiPromptCache',
+  AiUsageLog: 'AiUsageLog'
 };
 
 /**

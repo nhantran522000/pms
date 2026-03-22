@@ -11,11 +11,14 @@ datasource db {
 
 /// Tenant - Root entity for multi-tenancy
 model Tenant {
-  id        String   @id @default(cuid())
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  users     User[]
+  id                String             @id @default(cuid())
+  name              String
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  users             User[]
+  aiProviderConfigs AiProviderConfig[]
+  aiPromptCache     AiPromptCache[]
+  aiUsageLogs       AiUsageLog[]
 
   @@index([name])
   @@map("tenants")
@@ -42,4 +45,59 @@ model User {
   @@index([verificationToken])
   @@index([passwordResetToken])
   @@map("users")
+}
+
+/// AiProviderConfig - AI provider configuration per tenant
+model AiProviderConfig {
+  id        String   @id @default(cuid())
+  tenantId  String   @map("tenantId")
+  provider  String // "groq" or "gemini"
+  modelName String   @map("modelName")
+  isEnabled Boolean  @default(true) @map("isEnabled")
+  priority  Int      @default(0) // 0 = highest priority
+  config    Json? // provider-specific config (API key references, etc.)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@index([provider])
+  @@map("ai_provider_configs")
+}
+
+/// AiPromptCache - Cache AI responses for 24h
+model AiPromptCache {
+  id         String   @id @default(cuid())
+  tenantId   String   @map("tenantId")
+  promptHash String   @map("promptHash") // SHA-256 of normalized prompt
+  taskType   String   @map("taskType") // CLASSIFY, LABEL, etc.
+  response   Json // cached response
+  tokensUsed Int      @map("tokensUsed")
+  createdAt  DateTime @default(now())
+  expiresAt  DateTime @map("expiresAt") // createdAt + 24h
+  tenant     Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, promptHash])
+  @@index([expiresAt])
+  @@map("ai_prompt_cache")
+}
+
+/// AiUsageLog - Track AI usage for analytics and budgeting
+model AiUsageLog {
+  id           String   @id @default(cuid())
+  tenantId     String   @map("tenantId")
+  provider     String
+  model        String
+  taskType     String   @map("taskType")
+  inputTokens  Int      @map("inputTokens")
+  outputTokens Int      @map("outputTokens")
+  latencyMs    Int      @map("latencyMs")
+  success      Boolean
+  errorMessage String?  @map("errorMessage")
+  createdAt    DateTime @default(now())
+  tenant       Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId, createdAt])
+  @@index([provider, createdAt])
+  @@map("ai_usage_logs")
 }
