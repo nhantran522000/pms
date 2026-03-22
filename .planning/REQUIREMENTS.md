@@ -9,11 +9,11 @@
 
 - [x] **INFRA-01**: System runs in Docker Compose with Caddy reverse proxy
 - [x] **INFRA-02**: PostgreSQL 17 with Row Level Security (RLS) for tenant isolation
-- [ ] **INFRA-03**: All data tables include tenantId with RLS policies applied
-- [ ] **INFRA-04**: Prisma 7.3 configured with moduleFormat: cjs for NestJS
+- [x] **INFRA-03**: All data tables include tenantId with RLS policies applied
+- [x] **INFRA-04**: Prisma 7.3 configured with moduleFormat: cjs for NestJS
 - [x] **INFRA-05**: Nx 22.6 monorepo with enforced module boundaries (ESLint tags)
 - [x] **INFRA-06**: Shared libraries structure (shared-kernel, shared-types, data-access, ui-web, ui-mobile)
-- [ ] **INFRA-07**: Pino logging with correlation ID middleware
+- [x] **INFRA-07**: Pino logging with correlation ID middleware
 - [x] **INFRA-08**: VPS memory tuning (swap, PostgreSQL config, Node heap limits)
 
 ### Authentication
@@ -189,11 +189,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | INFRA-01 | Phase 1 | Complete |
 | INFRA-02 | Phase 1 | Complete |
-| INFRA-03 | Phase 1 | Pending |
-| INFRA-04 | Phase 1 | Pending |
+| INFRA-03 | Phase 1 | Complete |
+| INFRA-04 | Phase 1 | Complete |
 | INFRA-05 | Phase 1 | Complete |
 | INFRA-06 | Phase 1 | Complete |
-| INFRA-07 | Phase 1 | Pending |
+| INFRA-07 | Phase 1 | Complete |
 | INFRA-08 | Phase 1 | Complete |
 | AUTH-01 | Phase 1 | Pending |
 | AUTH-02 | Phase 1 | Pending |
