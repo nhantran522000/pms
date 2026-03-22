@@ -259,6 +259,49 @@ exports.Prisma.RecurringRuleScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.TaskScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  parentId: 'parentId',
+  title: 'title',
+  description: 'description',
+  dueDate: 'dueDate',
+  priority: 'priority',
+  tags: 'tags',
+  isCompleted: 'isCompleted',
+  completedAt: 'completedAt',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.HabitScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  description: 'description',
+  frequency: 'frequency',
+  cronExpression: 'cronExpression',
+  color: 'color',
+  icon: 'icon',
+  isActive: 'isActive',
+  currentStreak: 'currentStreak',
+  longestStreak: 'longestStreak',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.HabitCompletionScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  habitId: 'habitId',
+  date: 'date',
+  completed: 'completed',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -375,6 +418,33 @@ exports.Prisma.RecurringRuleOrderByRelevanceFieldEnum = {
   frequency: 'frequency'
 };
 
+exports.Prisma.TaskOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  parentId: 'parentId',
+  title: 'title',
+  description: 'description',
+  tags: 'tags'
+};
+
+exports.Prisma.HabitOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  description: 'description',
+  frequency: 'frequency',
+  cronExpression: 'cronExpression',
+  color: 'color',
+  icon: 'icon'
+};
+
+exports.Prisma.HabitCompletionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  habitId: 'habitId',
+  notes: 'notes'
+};
+
 
 exports.Prisma.ModelName = {
   Tenant: 'Tenant',
@@ -386,7 +456,10 @@ exports.Prisma.ModelName = {
   Account: 'Account',
   Transaction: 'Transaction',
   BudgetEnvelope: 'BudgetEnvelope',
-  RecurringRule: 'RecurringRule'
+  RecurringRule: 'RecurringRule',
+  Task: 'Task',
+  Habit: 'Habit',
+  HabitCompletion: 'HabitCompletion'
 };
 
 /**

@@ -63,6 +63,21 @@ export type BudgetEnvelope = $Result.DefaultSelection<Prisma.$BudgetEnvelopePayl
  * RecurringRule - Recurring transaction templates
  */
 export type RecurringRule = $Result.DefaultSelection<Prisma.$RecurringRulePayload>
+/**
+ * Model Task
+ * Task - Tasks with subtask support
+ */
+export type Task = $Result.DefaultSelection<Prisma.$TaskPayload>
+/**
+ * Model Habit
+ * Habit - User habits for tracking
+ */
+export type Habit = $Result.DefaultSelection<Prisma.$HabitPayload>
+/**
+ * Model HabitCompletion
+ * HabitCompletion - Daily check-ins for habits
+ */
+export type HabitCompletion = $Result.DefaultSelection<Prisma.$HabitCompletionPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -284,6 +299,36 @@ export class PrismaClient<
     * ```
     */
   get recurringRule(): Prisma.RecurringRuleDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.task`: Exposes CRUD operations for the **Task** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Tasks
+    * const tasks = await prisma.task.findMany()
+    * ```
+    */
+  get task(): Prisma.TaskDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.habit`: Exposes CRUD operations for the **Habit** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Habits
+    * const habits = await prisma.habit.findMany()
+    * ```
+    */
+  get habit(): Prisma.HabitDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.habitCompletion`: Exposes CRUD operations for the **HabitCompletion** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more HabitCompletions
+    * const habitCompletions = await prisma.habitCompletion.findMany()
+    * ```
+    */
+  get habitCompletion(): Prisma.HabitCompletionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -727,7 +772,10 @@ export namespace Prisma {
     Account: 'Account',
     Transaction: 'Transaction',
     BudgetEnvelope: 'BudgetEnvelope',
-    RecurringRule: 'RecurringRule'
+    RecurringRule: 'RecurringRule',
+    Task: 'Task',
+    Habit: 'Habit',
+    HabitCompletion: 'HabitCompletion'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -743,7 +791,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "tenant" | "user" | "aiProviderConfig" | "aiPromptCache" | "aiUsageLog" | "category" | "account" | "transaction" | "budgetEnvelope" | "recurringRule"
+      modelProps: "tenant" | "user" | "aiProviderConfig" | "aiPromptCache" | "aiUsageLog" | "category" | "account" | "transaction" | "budgetEnvelope" | "recurringRule" | "task" | "habit" | "habitCompletion"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1487,6 +1535,228 @@ export namespace Prisma {
           }
         }
       }
+      Task: {
+        payload: Prisma.$TaskPayload<ExtArgs>
+        fields: Prisma.TaskFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TaskFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TaskFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
+          }
+          findFirst: {
+            args: Prisma.TaskFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TaskFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
+          }
+          findMany: {
+            args: Prisma.TaskFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>[]
+          }
+          create: {
+            args: Prisma.TaskCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
+          }
+          createMany: {
+            args: Prisma.TaskCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TaskCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>[]
+          }
+          delete: {
+            args: Prisma.TaskDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
+          }
+          update: {
+            args: Prisma.TaskUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
+          }
+          deleteMany: {
+            args: Prisma.TaskDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TaskUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TaskUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>[]
+          }
+          upsert: {
+            args: Prisma.TaskUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
+          }
+          aggregate: {
+            args: Prisma.TaskAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTask>
+          }
+          groupBy: {
+            args: Prisma.TaskGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TaskGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TaskCountArgs<ExtArgs>
+            result: $Utils.Optional<TaskCountAggregateOutputType> | number
+          }
+        }
+      }
+      Habit: {
+        payload: Prisma.$HabitPayload<ExtArgs>
+        fields: Prisma.HabitFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HabitFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HabitFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitPayload>
+          }
+          findFirst: {
+            args: Prisma.HabitFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HabitFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitPayload>
+          }
+          findMany: {
+            args: Prisma.HabitFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitPayload>[]
+          }
+          create: {
+            args: Prisma.HabitCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitPayload>
+          }
+          createMany: {
+            args: Prisma.HabitCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.HabitCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitPayload>[]
+          }
+          delete: {
+            args: Prisma.HabitDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitPayload>
+          }
+          update: {
+            args: Prisma.HabitUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitPayload>
+          }
+          deleteMany: {
+            args: Prisma.HabitDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HabitUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.HabitUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitPayload>[]
+          }
+          upsert: {
+            args: Prisma.HabitUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitPayload>
+          }
+          aggregate: {
+            args: Prisma.HabitAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHabit>
+          }
+          groupBy: {
+            args: Prisma.HabitGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HabitGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HabitCountArgs<ExtArgs>
+            result: $Utils.Optional<HabitCountAggregateOutputType> | number
+          }
+        }
+      }
+      HabitCompletion: {
+        payload: Prisma.$HabitCompletionPayload<ExtArgs>
+        fields: Prisma.HabitCompletionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HabitCompletionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitCompletionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HabitCompletionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitCompletionPayload>
+          }
+          findFirst: {
+            args: Prisma.HabitCompletionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitCompletionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HabitCompletionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitCompletionPayload>
+          }
+          findMany: {
+            args: Prisma.HabitCompletionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitCompletionPayload>[]
+          }
+          create: {
+            args: Prisma.HabitCompletionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitCompletionPayload>
+          }
+          createMany: {
+            args: Prisma.HabitCompletionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.HabitCompletionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitCompletionPayload>[]
+          }
+          delete: {
+            args: Prisma.HabitCompletionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitCompletionPayload>
+          }
+          update: {
+            args: Prisma.HabitCompletionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitCompletionPayload>
+          }
+          deleteMany: {
+            args: Prisma.HabitCompletionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HabitCompletionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.HabitCompletionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitCompletionPayload>[]
+          }
+          upsert: {
+            args: Prisma.HabitCompletionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HabitCompletionPayload>
+          }
+          aggregate: {
+            args: Prisma.HabitCompletionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHabitCompletion>
+          }
+          groupBy: {
+            args: Prisma.HabitCompletionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HabitCompletionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HabitCompletionCountArgs<ExtArgs>
+            result: $Utils.Optional<HabitCompletionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1605,6 +1875,9 @@ export namespace Prisma {
     transaction?: TransactionOmit
     budgetEnvelope?: BudgetEnvelopeOmit
     recurringRule?: RecurringRuleOmit
+    task?: TaskOmit
+    habit?: HabitOmit
+    habitCompletion?: HabitCompletionOmit
   }
 
   /* Types for Logging */
@@ -1694,6 +1967,9 @@ export namespace Prisma {
     transactions: number
     budgetEnvelopes: number
     recurringRules: number
+    tasks: number
+    habits: number
+    habitCompletions: number
   }
 
   export type TenantCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1706,6 +1982,9 @@ export namespace Prisma {
     transactions?: boolean | TenantCountOutputTypeCountTransactionsArgs
     budgetEnvelopes?: boolean | TenantCountOutputTypeCountBudgetEnvelopesArgs
     recurringRules?: boolean | TenantCountOutputTypeCountRecurringRulesArgs
+    tasks?: boolean | TenantCountOutputTypeCountTasksArgs
+    habits?: boolean | TenantCountOutputTypeCountHabitsArgs
+    habitCompletions?: boolean | TenantCountOutputTypeCountHabitCompletionsArgs
   }
 
   // Custom InputTypes
@@ -1780,6 +2059,27 @@ export namespace Prisma {
    */
   export type TenantCountOutputTypeCountRecurringRulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RecurringRuleWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountTasksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountHabitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HabitWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountHabitCompletionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HabitCompletionWhereInput
   }
 
 
@@ -1918,6 +2218,68 @@ export namespace Prisma {
    */
   export type RecurringRuleCountOutputTypeCountTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TransactionWhereInput
+  }
+
+
+  /**
+   * Count Type TaskCountOutputType
+   */
+
+  export type TaskCountOutputType = {
+    children: number
+  }
+
+  export type TaskCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    children?: boolean | TaskCountOutputTypeCountChildrenArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TaskCountOutputType without action
+   */
+  export type TaskCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskCountOutputType
+     */
+    select?: TaskCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TaskCountOutputType without action
+   */
+  export type TaskCountOutputTypeCountChildrenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskWhereInput
+  }
+
+
+  /**
+   * Count Type HabitCountOutputType
+   */
+
+  export type HabitCountOutputType = {
+    completions: number
+  }
+
+  export type HabitCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    completions?: boolean | HabitCountOutputTypeCountCompletionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * HabitCountOutputType without action
+   */
+  export type HabitCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HabitCountOutputType
+     */
+    select?: HabitCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * HabitCountOutputType without action
+   */
+  export type HabitCountOutputTypeCountCompletionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HabitCompletionWhereInput
   }
 
 
@@ -2090,6 +2452,9 @@ export namespace Prisma {
     transactions?: boolean | Tenant$transactionsArgs<ExtArgs>
     budgetEnvelopes?: boolean | Tenant$budgetEnvelopesArgs<ExtArgs>
     recurringRules?: boolean | Tenant$recurringRulesArgs<ExtArgs>
+    tasks?: boolean | Tenant$tasksArgs<ExtArgs>
+    habits?: boolean | Tenant$habitsArgs<ExtArgs>
+    habitCompletions?: boolean | Tenant$habitCompletionsArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tenant"]>
 
@@ -2125,6 +2490,9 @@ export namespace Prisma {
     transactions?: boolean | Tenant$transactionsArgs<ExtArgs>
     budgetEnvelopes?: boolean | Tenant$budgetEnvelopesArgs<ExtArgs>
     recurringRules?: boolean | Tenant$recurringRulesArgs<ExtArgs>
+    tasks?: boolean | Tenant$tasksArgs<ExtArgs>
+    habits?: boolean | Tenant$habitsArgs<ExtArgs>
+    habitCompletions?: boolean | Tenant$habitCompletionsArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TenantIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2142,6 +2510,9 @@ export namespace Prisma {
       transactions: Prisma.$TransactionPayload<ExtArgs>[]
       budgetEnvelopes: Prisma.$BudgetEnvelopePayload<ExtArgs>[]
       recurringRules: Prisma.$RecurringRulePayload<ExtArgs>[]
+      tasks: Prisma.$TaskPayload<ExtArgs>[]
+      habits: Prisma.$HabitPayload<ExtArgs>[]
+      habitCompletions: Prisma.$HabitCompletionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2551,6 +2922,9 @@ export namespace Prisma {
     transactions<T extends Tenant$transactionsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     budgetEnvelopes<T extends Tenant$budgetEnvelopesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$budgetEnvelopesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BudgetEnvelopePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     recurringRules<T extends Tenant$recurringRulesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$recurringRulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecurringRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    tasks<T extends Tenant$tasksArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    habits<T extends Tenant$habitsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$habitsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    habitCompletions<T extends Tenant$habitCompletionsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$habitCompletionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HabitCompletionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3190,6 +3564,78 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: RecurringRuleScalarFieldEnum | RecurringRuleScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.tasks
+   */
+  export type Tenant$tasksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    where?: TaskWhereInput
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
+    cursor?: TaskWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.habits
+   */
+  export type Tenant$habitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Habit
+     */
+    select?: HabitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Habit
+     */
+    omit?: HabitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitInclude<ExtArgs> | null
+    where?: HabitWhereInput
+    orderBy?: HabitOrderByWithRelationInput | HabitOrderByWithRelationInput[]
+    cursor?: HabitWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HabitScalarFieldEnum | HabitScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.habitCompletions
+   */
+  export type Tenant$habitCompletionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HabitCompletion
+     */
+    select?: HabitCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HabitCompletion
+     */
+    omit?: HabitCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitCompletionInclude<ExtArgs> | null
+    where?: HabitCompletionWhereInput
+    orderBy?: HabitCompletionOrderByWithRelationInput | HabitCompletionOrderByWithRelationInput[]
+    cursor?: HabitCompletionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HabitCompletionScalarFieldEnum | HabitCompletionScalarFieldEnum[]
   }
 
   /**
@@ -14195,6 +14641,3605 @@ export namespace Prisma {
 
 
   /**
+   * Model Task
+   */
+
+  export type AggregateTask = {
+    _count: TaskCountAggregateOutputType | null
+    _avg: TaskAvgAggregateOutputType | null
+    _sum: TaskSumAggregateOutputType | null
+    _min: TaskMinAggregateOutputType | null
+    _max: TaskMaxAggregateOutputType | null
+  }
+
+  export type TaskAvgAggregateOutputType = {
+    priority: number | null
+  }
+
+  export type TaskSumAggregateOutputType = {
+    priority: number | null
+  }
+
+  export type TaskMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    parentId: string | null
+    title: string | null
+    description: string | null
+    dueDate: Date | null
+    priority: number | null
+    isCompleted: boolean | null
+    completedAt: Date | null
+    isDeleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TaskMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    parentId: string | null
+    title: string | null
+    description: string | null
+    dueDate: Date | null
+    priority: number | null
+    isCompleted: boolean | null
+    completedAt: Date | null
+    isDeleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TaskCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    parentId: number
+    title: number
+    description: number
+    dueDate: number
+    priority: number
+    tags: number
+    isCompleted: number
+    completedAt: number
+    isDeleted: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TaskAvgAggregateInputType = {
+    priority?: true
+  }
+
+  export type TaskSumAggregateInputType = {
+    priority?: true
+  }
+
+  export type TaskMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    parentId?: true
+    title?: true
+    description?: true
+    dueDate?: true
+    priority?: true
+    isCompleted?: true
+    completedAt?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TaskMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    parentId?: true
+    title?: true
+    description?: true
+    dueDate?: true
+    priority?: true
+    isCompleted?: true
+    completedAt?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TaskCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    parentId?: true
+    title?: true
+    description?: true
+    dueDate?: true
+    priority?: true
+    tags?: true
+    isCompleted?: true
+    completedAt?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TaskAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Task to aggregate.
+     */
+    where?: TaskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tasks to fetch.
+     */
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TaskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tasks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tasks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Tasks
+    **/
+    _count?: true | TaskCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TaskAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TaskSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TaskMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TaskMaxAggregateInputType
+  }
+
+  export type GetTaskAggregateType<T extends TaskAggregateArgs> = {
+        [P in keyof T & keyof AggregateTask]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTask[P]>
+      : GetScalarType<T[P], AggregateTask[P]>
+  }
+
+
+
+
+  export type TaskGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskWhereInput
+    orderBy?: TaskOrderByWithAggregationInput | TaskOrderByWithAggregationInput[]
+    by: TaskScalarFieldEnum[] | TaskScalarFieldEnum
+    having?: TaskScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TaskCountAggregateInputType | true
+    _avg?: TaskAvgAggregateInputType
+    _sum?: TaskSumAggregateInputType
+    _min?: TaskMinAggregateInputType
+    _max?: TaskMaxAggregateInputType
+  }
+
+  export type TaskGroupByOutputType = {
+    id: string
+    tenantId: string
+    parentId: string | null
+    title: string
+    description: string | null
+    dueDate: Date | null
+    priority: number
+    tags: string[]
+    isCompleted: boolean
+    completedAt: Date | null
+    isDeleted: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: TaskCountAggregateOutputType | null
+    _avg: TaskAvgAggregateOutputType | null
+    _sum: TaskSumAggregateOutputType | null
+    _min: TaskMinAggregateOutputType | null
+    _max: TaskMaxAggregateOutputType | null
+  }
+
+  type GetTaskGroupByPayload<T extends TaskGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TaskGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TaskGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TaskGroupByOutputType[P]>
+            : GetScalarType<T[P], TaskGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TaskSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    parentId?: boolean
+    title?: boolean
+    description?: boolean
+    dueDate?: boolean
+    priority?: boolean
+    tags?: boolean
+    isCompleted?: boolean
+    completedAt?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    parent?: boolean | Task$parentArgs<ExtArgs>
+    children?: boolean | Task$childrenArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    _count?: boolean | TaskCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["task"]>
+
+  export type TaskSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    parentId?: boolean
+    title?: boolean
+    description?: boolean
+    dueDate?: boolean
+    priority?: boolean
+    tags?: boolean
+    isCompleted?: boolean
+    completedAt?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    parent?: boolean | Task$parentArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["task"]>
+
+  export type TaskSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    parentId?: boolean
+    title?: boolean
+    description?: boolean
+    dueDate?: boolean
+    priority?: boolean
+    tags?: boolean
+    isCompleted?: boolean
+    completedAt?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    parent?: boolean | Task$parentArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["task"]>
+
+  export type TaskSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    parentId?: boolean
+    title?: boolean
+    description?: boolean
+    dueDate?: boolean
+    priority?: boolean
+    tags?: boolean
+    isCompleted?: boolean
+    completedAt?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "parentId" | "title" | "description" | "dueDate" | "priority" | "tags" | "isCompleted" | "completedAt" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["task"]>
+  export type TaskInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parent?: boolean | Task$parentArgs<ExtArgs>
+    children?: boolean | Task$childrenArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    _count?: boolean | TaskCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type TaskIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parent?: boolean | Task$parentArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type TaskIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parent?: boolean | Task$parentArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $TaskPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Task"
+    objects: {
+      parent: Prisma.$TaskPayload<ExtArgs> | null
+      children: Prisma.$TaskPayload<ExtArgs>[]
+      tenant: Prisma.$TenantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      parentId: string | null
+      title: string
+      description: string | null
+      dueDate: Date | null
+      priority: number
+      tags: string[]
+      isCompleted: boolean
+      completedAt: Date | null
+      isDeleted: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["task"]>
+    composites: {}
+  }
+
+  type TaskGetPayload<S extends boolean | null | undefined | TaskDefaultArgs> = $Result.GetResult<Prisma.$TaskPayload, S>
+
+  type TaskCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TaskFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TaskCountAggregateInputType | true
+    }
+
+  export interface TaskDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Task'], meta: { name: 'Task' } }
+    /**
+     * Find zero or one Task that matches the filter.
+     * @param {TaskFindUniqueArgs} args - Arguments to find a Task
+     * @example
+     * // Get one Task
+     * const task = await prisma.task.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TaskFindUniqueArgs>(args: SelectSubset<T, TaskFindUniqueArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Task that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TaskFindUniqueOrThrowArgs} args - Arguments to find a Task
+     * @example
+     * // Get one Task
+     * const task = await prisma.task.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TaskFindUniqueOrThrowArgs>(args: SelectSubset<T, TaskFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Task that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskFindFirstArgs} args - Arguments to find a Task
+     * @example
+     * // Get one Task
+     * const task = await prisma.task.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TaskFindFirstArgs>(args?: SelectSubset<T, TaskFindFirstArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Task that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskFindFirstOrThrowArgs} args - Arguments to find a Task
+     * @example
+     * // Get one Task
+     * const task = await prisma.task.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TaskFindFirstOrThrowArgs>(args?: SelectSubset<T, TaskFindFirstOrThrowArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Tasks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Tasks
+     * const tasks = await prisma.task.findMany()
+     * 
+     * // Get first 10 Tasks
+     * const tasks = await prisma.task.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const taskWithIdOnly = await prisma.task.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TaskFindManyArgs>(args?: SelectSubset<T, TaskFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Task.
+     * @param {TaskCreateArgs} args - Arguments to create a Task.
+     * @example
+     * // Create one Task
+     * const Task = await prisma.task.create({
+     *   data: {
+     *     // ... data to create a Task
+     *   }
+     * })
+     * 
+     */
+    create<T extends TaskCreateArgs>(args: SelectSubset<T, TaskCreateArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Tasks.
+     * @param {TaskCreateManyArgs} args - Arguments to create many Tasks.
+     * @example
+     * // Create many Tasks
+     * const task = await prisma.task.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TaskCreateManyArgs>(args?: SelectSubset<T, TaskCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Tasks and returns the data saved in the database.
+     * @param {TaskCreateManyAndReturnArgs} args - Arguments to create many Tasks.
+     * @example
+     * // Create many Tasks
+     * const task = await prisma.task.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Tasks and only return the `id`
+     * const taskWithIdOnly = await prisma.task.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TaskCreateManyAndReturnArgs>(args?: SelectSubset<T, TaskCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Task.
+     * @param {TaskDeleteArgs} args - Arguments to delete one Task.
+     * @example
+     * // Delete one Task
+     * const Task = await prisma.task.delete({
+     *   where: {
+     *     // ... filter to delete one Task
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TaskDeleteArgs>(args: SelectSubset<T, TaskDeleteArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Task.
+     * @param {TaskUpdateArgs} args - Arguments to update one Task.
+     * @example
+     * // Update one Task
+     * const task = await prisma.task.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TaskUpdateArgs>(args: SelectSubset<T, TaskUpdateArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Tasks.
+     * @param {TaskDeleteManyArgs} args - Arguments to filter Tasks to delete.
+     * @example
+     * // Delete a few Tasks
+     * const { count } = await prisma.task.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TaskDeleteManyArgs>(args?: SelectSubset<T, TaskDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Tasks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Tasks
+     * const task = await prisma.task.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TaskUpdateManyArgs>(args: SelectSubset<T, TaskUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Tasks and returns the data updated in the database.
+     * @param {TaskUpdateManyAndReturnArgs} args - Arguments to update many Tasks.
+     * @example
+     * // Update many Tasks
+     * const task = await prisma.task.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Tasks and only return the `id`
+     * const taskWithIdOnly = await prisma.task.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TaskUpdateManyAndReturnArgs>(args: SelectSubset<T, TaskUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Task.
+     * @param {TaskUpsertArgs} args - Arguments to update or create a Task.
+     * @example
+     * // Update or create a Task
+     * const task = await prisma.task.upsert({
+     *   create: {
+     *     // ... data to create a Task
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Task we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TaskUpsertArgs>(args: SelectSubset<T, TaskUpsertArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Tasks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskCountArgs} args - Arguments to filter Tasks to count.
+     * @example
+     * // Count the number of Tasks
+     * const count = await prisma.task.count({
+     *   where: {
+     *     // ... the filter for the Tasks we want to count
+     *   }
+     * })
+    **/
+    count<T extends TaskCountArgs>(
+      args?: Subset<T, TaskCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TaskCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Task.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TaskAggregateArgs>(args: Subset<T, TaskAggregateArgs>): Prisma.PrismaPromise<GetTaskAggregateType<T>>
+
+    /**
+     * Group by Task.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TaskGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TaskGroupByArgs['orderBy'] }
+        : { orderBy?: TaskGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TaskGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTaskGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Task model
+   */
+  readonly fields: TaskFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Task.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TaskClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    parent<T extends Task$parentArgs<ExtArgs> = {}>(args?: Subset<T, Task$parentArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    children<T extends Task$childrenArgs<ExtArgs> = {}>(args?: Subset<T, Task$childrenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Task model
+   */
+  interface TaskFieldRefs {
+    readonly id: FieldRef<"Task", 'String'>
+    readonly tenantId: FieldRef<"Task", 'String'>
+    readonly parentId: FieldRef<"Task", 'String'>
+    readonly title: FieldRef<"Task", 'String'>
+    readonly description: FieldRef<"Task", 'String'>
+    readonly dueDate: FieldRef<"Task", 'DateTime'>
+    readonly priority: FieldRef<"Task", 'Int'>
+    readonly tags: FieldRef<"Task", 'String[]'>
+    readonly isCompleted: FieldRef<"Task", 'Boolean'>
+    readonly completedAt: FieldRef<"Task", 'DateTime'>
+    readonly isDeleted: FieldRef<"Task", 'Boolean'>
+    readonly createdAt: FieldRef<"Task", 'DateTime'>
+    readonly updatedAt: FieldRef<"Task", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Task findUnique
+   */
+  export type TaskFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * Filter, which Task to fetch.
+     */
+    where: TaskWhereUniqueInput
+  }
+
+  /**
+   * Task findUniqueOrThrow
+   */
+  export type TaskFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * Filter, which Task to fetch.
+     */
+    where: TaskWhereUniqueInput
+  }
+
+  /**
+   * Task findFirst
+   */
+  export type TaskFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * Filter, which Task to fetch.
+     */
+    where?: TaskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tasks to fetch.
+     */
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Tasks.
+     */
+    cursor?: TaskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tasks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tasks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Tasks.
+     */
+    distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
+  }
+
+  /**
+   * Task findFirstOrThrow
+   */
+  export type TaskFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * Filter, which Task to fetch.
+     */
+    where?: TaskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tasks to fetch.
+     */
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Tasks.
+     */
+    cursor?: TaskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tasks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tasks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Tasks.
+     */
+    distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
+  }
+
+  /**
+   * Task findMany
+   */
+  export type TaskFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * Filter, which Tasks to fetch.
+     */
+    where?: TaskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tasks to fetch.
+     */
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Tasks.
+     */
+    cursor?: TaskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tasks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tasks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Tasks.
+     */
+    distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
+  }
+
+  /**
+   * Task create
+   */
+  export type TaskCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Task.
+     */
+    data: XOR<TaskCreateInput, TaskUncheckedCreateInput>
+  }
+
+  /**
+   * Task createMany
+   */
+  export type TaskCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Tasks.
+     */
+    data: TaskCreateManyInput | TaskCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Task createManyAndReturn
+   */
+  export type TaskCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * The data used to create many Tasks.
+     */
+    data: TaskCreateManyInput | TaskCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Task update
+   */
+  export type TaskUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Task.
+     */
+    data: XOR<TaskUpdateInput, TaskUncheckedUpdateInput>
+    /**
+     * Choose, which Task to update.
+     */
+    where: TaskWhereUniqueInput
+  }
+
+  /**
+   * Task updateMany
+   */
+  export type TaskUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Tasks.
+     */
+    data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyInput>
+    /**
+     * Filter which Tasks to update
+     */
+    where?: TaskWhereInput
+    /**
+     * Limit how many Tasks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Task updateManyAndReturn
+   */
+  export type TaskUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * The data used to update Tasks.
+     */
+    data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyInput>
+    /**
+     * Filter which Tasks to update
+     */
+    where?: TaskWhereInput
+    /**
+     * Limit how many Tasks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Task upsert
+   */
+  export type TaskUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Task to update in case it exists.
+     */
+    where: TaskWhereUniqueInput
+    /**
+     * In case the Task found by the `where` argument doesn't exist, create a new Task with this data.
+     */
+    create: XOR<TaskCreateInput, TaskUncheckedCreateInput>
+    /**
+     * In case the Task was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TaskUpdateInput, TaskUncheckedUpdateInput>
+  }
+
+  /**
+   * Task delete
+   */
+  export type TaskDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * Filter which Task to delete.
+     */
+    where: TaskWhereUniqueInput
+  }
+
+  /**
+   * Task deleteMany
+   */
+  export type TaskDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Tasks to delete
+     */
+    where?: TaskWhereInput
+    /**
+     * Limit how many Tasks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Task.parent
+   */
+  export type Task$parentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    where?: TaskWhereInput
+  }
+
+  /**
+   * Task.children
+   */
+  export type Task$childrenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    where?: TaskWhereInput
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
+    cursor?: TaskWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
+  }
+
+  /**
+   * Task without action
+   */
+  export type TaskDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Habit
+   */
+
+  export type AggregateHabit = {
+    _count: HabitCountAggregateOutputType | null
+    _avg: HabitAvgAggregateOutputType | null
+    _sum: HabitSumAggregateOutputType | null
+    _min: HabitMinAggregateOutputType | null
+    _max: HabitMaxAggregateOutputType | null
+  }
+
+  export type HabitAvgAggregateOutputType = {
+    currentStreak: number | null
+    longestStreak: number | null
+  }
+
+  export type HabitSumAggregateOutputType = {
+    currentStreak: number | null
+    longestStreak: number | null
+  }
+
+  export type HabitMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    name: string | null
+    description: string | null
+    frequency: string | null
+    cronExpression: string | null
+    color: string | null
+    icon: string | null
+    isActive: boolean | null
+    currentStreak: number | null
+    longestStreak: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HabitMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    name: string | null
+    description: string | null
+    frequency: string | null
+    cronExpression: string | null
+    color: string | null
+    icon: string | null
+    isActive: boolean | null
+    currentStreak: number | null
+    longestStreak: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HabitCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    name: number
+    description: number
+    frequency: number
+    cronExpression: number
+    color: number
+    icon: number
+    isActive: number
+    currentStreak: number
+    longestStreak: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type HabitAvgAggregateInputType = {
+    currentStreak?: true
+    longestStreak?: true
+  }
+
+  export type HabitSumAggregateInputType = {
+    currentStreak?: true
+    longestStreak?: true
+  }
+
+  export type HabitMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    name?: true
+    description?: true
+    frequency?: true
+    cronExpression?: true
+    color?: true
+    icon?: true
+    isActive?: true
+    currentStreak?: true
+    longestStreak?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HabitMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    name?: true
+    description?: true
+    frequency?: true
+    cronExpression?: true
+    color?: true
+    icon?: true
+    isActive?: true
+    currentStreak?: true
+    longestStreak?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HabitCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    name?: true
+    description?: true
+    frequency?: true
+    cronExpression?: true
+    color?: true
+    icon?: true
+    isActive?: true
+    currentStreak?: true
+    longestStreak?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type HabitAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Habit to aggregate.
+     */
+    where?: HabitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Habits to fetch.
+     */
+    orderBy?: HabitOrderByWithRelationInput | HabitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HabitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Habits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Habits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Habits
+    **/
+    _count?: true | HabitCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HabitAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HabitSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HabitMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HabitMaxAggregateInputType
+  }
+
+  export type GetHabitAggregateType<T extends HabitAggregateArgs> = {
+        [P in keyof T & keyof AggregateHabit]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHabit[P]>
+      : GetScalarType<T[P], AggregateHabit[P]>
+  }
+
+
+
+
+  export type HabitGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HabitWhereInput
+    orderBy?: HabitOrderByWithAggregationInput | HabitOrderByWithAggregationInput[]
+    by: HabitScalarFieldEnum[] | HabitScalarFieldEnum
+    having?: HabitScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HabitCountAggregateInputType | true
+    _avg?: HabitAvgAggregateInputType
+    _sum?: HabitSumAggregateInputType
+    _min?: HabitMinAggregateInputType
+    _max?: HabitMaxAggregateInputType
+  }
+
+  export type HabitGroupByOutputType = {
+    id: string
+    tenantId: string
+    name: string
+    description: string | null
+    frequency: string
+    cronExpression: string | null
+    color: string | null
+    icon: string | null
+    isActive: boolean
+    currentStreak: number
+    longestStreak: number
+    createdAt: Date
+    updatedAt: Date
+    _count: HabitCountAggregateOutputType | null
+    _avg: HabitAvgAggregateOutputType | null
+    _sum: HabitSumAggregateOutputType | null
+    _min: HabitMinAggregateOutputType | null
+    _max: HabitMaxAggregateOutputType | null
+  }
+
+  type GetHabitGroupByPayload<T extends HabitGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HabitGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HabitGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HabitGroupByOutputType[P]>
+            : GetScalarType<T[P], HabitGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HabitSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    description?: boolean
+    frequency?: boolean
+    cronExpression?: boolean
+    color?: boolean
+    icon?: boolean
+    isActive?: boolean
+    currentStreak?: boolean
+    longestStreak?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    completions?: boolean | Habit$completionsArgs<ExtArgs>
+    _count?: boolean | HabitCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["habit"]>
+
+  export type HabitSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    description?: boolean
+    frequency?: boolean
+    cronExpression?: boolean
+    color?: boolean
+    icon?: boolean
+    isActive?: boolean
+    currentStreak?: boolean
+    longestStreak?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["habit"]>
+
+  export type HabitSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    description?: boolean
+    frequency?: boolean
+    cronExpression?: boolean
+    color?: boolean
+    icon?: boolean
+    isActive?: boolean
+    currentStreak?: boolean
+    longestStreak?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["habit"]>
+
+  export type HabitSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    description?: boolean
+    frequency?: boolean
+    cronExpression?: boolean
+    color?: boolean
+    icon?: boolean
+    isActive?: boolean
+    currentStreak?: boolean
+    longestStreak?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type HabitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "name" | "description" | "frequency" | "cronExpression" | "color" | "icon" | "isActive" | "currentStreak" | "longestStreak" | "createdAt" | "updatedAt", ExtArgs["result"]["habit"]>
+  export type HabitInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    completions?: boolean | Habit$completionsArgs<ExtArgs>
+    _count?: boolean | HabitCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type HabitIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type HabitIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $HabitPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Habit"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+      completions: Prisma.$HabitCompletionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      name: string
+      description: string | null
+      frequency: string
+      cronExpression: string | null
+      color: string | null
+      icon: string | null
+      isActive: boolean
+      currentStreak: number
+      longestStreak: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["habit"]>
+    composites: {}
+  }
+
+  type HabitGetPayload<S extends boolean | null | undefined | HabitDefaultArgs> = $Result.GetResult<Prisma.$HabitPayload, S>
+
+  type HabitCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HabitFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HabitCountAggregateInputType | true
+    }
+
+  export interface HabitDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Habit'], meta: { name: 'Habit' } }
+    /**
+     * Find zero or one Habit that matches the filter.
+     * @param {HabitFindUniqueArgs} args - Arguments to find a Habit
+     * @example
+     * // Get one Habit
+     * const habit = await prisma.habit.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HabitFindUniqueArgs>(args: SelectSubset<T, HabitFindUniqueArgs<ExtArgs>>): Prisma__HabitClient<$Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Habit that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {HabitFindUniqueOrThrowArgs} args - Arguments to find a Habit
+     * @example
+     * // Get one Habit
+     * const habit = await prisma.habit.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HabitFindUniqueOrThrowArgs>(args: SelectSubset<T, HabitFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HabitClient<$Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Habit that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HabitFindFirstArgs} args - Arguments to find a Habit
+     * @example
+     * // Get one Habit
+     * const habit = await prisma.habit.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HabitFindFirstArgs>(args?: SelectSubset<T, HabitFindFirstArgs<ExtArgs>>): Prisma__HabitClient<$Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Habit that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HabitFindFirstOrThrowArgs} args - Arguments to find a Habit
+     * @example
+     * // Get one Habit
+     * const habit = await prisma.habit.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HabitFindFirstOrThrowArgs>(args?: SelectSubset<T, HabitFindFirstOrThrowArgs<ExtArgs>>): Prisma__HabitClient<$Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Habits that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HabitFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Habits
+     * const habits = await prisma.habit.findMany()
+     * 
+     * // Get first 10 Habits
+     * const habits = await prisma.habit.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const habitWithIdOnly = await prisma.habit.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HabitFindManyArgs>(args?: SelectSubset<T, HabitFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Habit.
+     * @param {HabitCreateArgs} args - Arguments to create a Habit.
+     * @example
+     * // Create one Habit
+     * const Habit = await prisma.habit.create({
+     *   data: {
+     *     // ... data to create a Habit
+     *   }
+     * })
+     * 
+     */
+    create<T extends HabitCreateArgs>(args: SelectSubset<T, HabitCreateArgs<ExtArgs>>): Prisma__HabitClient<$Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Habits.
+     * @param {HabitCreateManyArgs} args - Arguments to create many Habits.
+     * @example
+     * // Create many Habits
+     * const habit = await prisma.habit.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HabitCreateManyArgs>(args?: SelectSubset<T, HabitCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Habits and returns the data saved in the database.
+     * @param {HabitCreateManyAndReturnArgs} args - Arguments to create many Habits.
+     * @example
+     * // Create many Habits
+     * const habit = await prisma.habit.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Habits and only return the `id`
+     * const habitWithIdOnly = await prisma.habit.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends HabitCreateManyAndReturnArgs>(args?: SelectSubset<T, HabitCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Habit.
+     * @param {HabitDeleteArgs} args - Arguments to delete one Habit.
+     * @example
+     * // Delete one Habit
+     * const Habit = await prisma.habit.delete({
+     *   where: {
+     *     // ... filter to delete one Habit
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HabitDeleteArgs>(args: SelectSubset<T, HabitDeleteArgs<ExtArgs>>): Prisma__HabitClient<$Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Habit.
+     * @param {HabitUpdateArgs} args - Arguments to update one Habit.
+     * @example
+     * // Update one Habit
+     * const habit = await prisma.habit.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HabitUpdateArgs>(args: SelectSubset<T, HabitUpdateArgs<ExtArgs>>): Prisma__HabitClient<$Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Habits.
+     * @param {HabitDeleteManyArgs} args - Arguments to filter Habits to delete.
+     * @example
+     * // Delete a few Habits
+     * const { count } = await prisma.habit.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HabitDeleteManyArgs>(args?: SelectSubset<T, HabitDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Habits.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HabitUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Habits
+     * const habit = await prisma.habit.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HabitUpdateManyArgs>(args: SelectSubset<T, HabitUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Habits and returns the data updated in the database.
+     * @param {HabitUpdateManyAndReturnArgs} args - Arguments to update many Habits.
+     * @example
+     * // Update many Habits
+     * const habit = await prisma.habit.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Habits and only return the `id`
+     * const habitWithIdOnly = await prisma.habit.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends HabitUpdateManyAndReturnArgs>(args: SelectSubset<T, HabitUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Habit.
+     * @param {HabitUpsertArgs} args - Arguments to update or create a Habit.
+     * @example
+     * // Update or create a Habit
+     * const habit = await prisma.habit.upsert({
+     *   create: {
+     *     // ... data to create a Habit
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Habit we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HabitUpsertArgs>(args: SelectSubset<T, HabitUpsertArgs<ExtArgs>>): Prisma__HabitClient<$Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Habits.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HabitCountArgs} args - Arguments to filter Habits to count.
+     * @example
+     * // Count the number of Habits
+     * const count = await prisma.habit.count({
+     *   where: {
+     *     // ... the filter for the Habits we want to count
+     *   }
+     * })
+    **/
+    count<T extends HabitCountArgs>(
+      args?: Subset<T, HabitCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HabitCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Habit.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HabitAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HabitAggregateArgs>(args: Subset<T, HabitAggregateArgs>): Prisma.PrismaPromise<GetHabitAggregateType<T>>
+
+    /**
+     * Group by Habit.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HabitGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HabitGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HabitGroupByArgs['orderBy'] }
+        : { orderBy?: HabitGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HabitGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHabitGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Habit model
+   */
+  readonly fields: HabitFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Habit.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HabitClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    completions<T extends Habit$completionsArgs<ExtArgs> = {}>(args?: Subset<T, Habit$completionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HabitCompletionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Habit model
+   */
+  interface HabitFieldRefs {
+    readonly id: FieldRef<"Habit", 'String'>
+    readonly tenantId: FieldRef<"Habit", 'String'>
+    readonly name: FieldRef<"Habit", 'String'>
+    readonly description: FieldRef<"Habit", 'String'>
+    readonly frequency: FieldRef<"Habit", 'String'>
+    readonly cronExpression: FieldRef<"Habit", 'String'>
+    readonly color: FieldRef<"Habit", 'String'>
+    readonly icon: FieldRef<"Habit", 'String'>
+    readonly isActive: FieldRef<"Habit", 'Boolean'>
+    readonly currentStreak: FieldRef<"Habit", 'Int'>
+    readonly longestStreak: FieldRef<"Habit", 'Int'>
+    readonly createdAt: FieldRef<"Habit", 'DateTime'>
+    readonly updatedAt: FieldRef<"Habit", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Habit findUnique
+   */
+  export type HabitFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Habit
+     */
+    select?: HabitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Habit
+     */
+    omit?: HabitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitInclude<ExtArgs> | null
+    /**
+     * Filter, which Habit to fetch.
+     */
+    where: HabitWhereUniqueInput
+  }
+
+  /**
+   * Habit findUniqueOrThrow
+   */
+  export type HabitFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Habit
+     */
+    select?: HabitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Habit
+     */
+    omit?: HabitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitInclude<ExtArgs> | null
+    /**
+     * Filter, which Habit to fetch.
+     */
+    where: HabitWhereUniqueInput
+  }
+
+  /**
+   * Habit findFirst
+   */
+  export type HabitFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Habit
+     */
+    select?: HabitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Habit
+     */
+    omit?: HabitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitInclude<ExtArgs> | null
+    /**
+     * Filter, which Habit to fetch.
+     */
+    where?: HabitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Habits to fetch.
+     */
+    orderBy?: HabitOrderByWithRelationInput | HabitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Habits.
+     */
+    cursor?: HabitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Habits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Habits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Habits.
+     */
+    distinct?: HabitScalarFieldEnum | HabitScalarFieldEnum[]
+  }
+
+  /**
+   * Habit findFirstOrThrow
+   */
+  export type HabitFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Habit
+     */
+    select?: HabitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Habit
+     */
+    omit?: HabitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitInclude<ExtArgs> | null
+    /**
+     * Filter, which Habit to fetch.
+     */
+    where?: HabitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Habits to fetch.
+     */
+    orderBy?: HabitOrderByWithRelationInput | HabitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Habits.
+     */
+    cursor?: HabitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Habits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Habits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Habits.
+     */
+    distinct?: HabitScalarFieldEnum | HabitScalarFieldEnum[]
+  }
+
+  /**
+   * Habit findMany
+   */
+  export type HabitFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Habit
+     */
+    select?: HabitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Habit
+     */
+    omit?: HabitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitInclude<ExtArgs> | null
+    /**
+     * Filter, which Habits to fetch.
+     */
+    where?: HabitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Habits to fetch.
+     */
+    orderBy?: HabitOrderByWithRelationInput | HabitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Habits.
+     */
+    cursor?: HabitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Habits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Habits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Habits.
+     */
+    distinct?: HabitScalarFieldEnum | HabitScalarFieldEnum[]
+  }
+
+  /**
+   * Habit create
+   */
+  export type HabitCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Habit
+     */
+    select?: HabitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Habit
+     */
+    omit?: HabitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Habit.
+     */
+    data: XOR<HabitCreateInput, HabitUncheckedCreateInput>
+  }
+
+  /**
+   * Habit createMany
+   */
+  export type HabitCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Habits.
+     */
+    data: HabitCreateManyInput | HabitCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Habit createManyAndReturn
+   */
+  export type HabitCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Habit
+     */
+    select?: HabitSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Habit
+     */
+    omit?: HabitOmit<ExtArgs> | null
+    /**
+     * The data used to create many Habits.
+     */
+    data: HabitCreateManyInput | HabitCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Habit update
+   */
+  export type HabitUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Habit
+     */
+    select?: HabitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Habit
+     */
+    omit?: HabitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Habit.
+     */
+    data: XOR<HabitUpdateInput, HabitUncheckedUpdateInput>
+    /**
+     * Choose, which Habit to update.
+     */
+    where: HabitWhereUniqueInput
+  }
+
+  /**
+   * Habit updateMany
+   */
+  export type HabitUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Habits.
+     */
+    data: XOR<HabitUpdateManyMutationInput, HabitUncheckedUpdateManyInput>
+    /**
+     * Filter which Habits to update
+     */
+    where?: HabitWhereInput
+    /**
+     * Limit how many Habits to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Habit updateManyAndReturn
+   */
+  export type HabitUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Habit
+     */
+    select?: HabitSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Habit
+     */
+    omit?: HabitOmit<ExtArgs> | null
+    /**
+     * The data used to update Habits.
+     */
+    data: XOR<HabitUpdateManyMutationInput, HabitUncheckedUpdateManyInput>
+    /**
+     * Filter which Habits to update
+     */
+    where?: HabitWhereInput
+    /**
+     * Limit how many Habits to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Habit upsert
+   */
+  export type HabitUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Habit
+     */
+    select?: HabitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Habit
+     */
+    omit?: HabitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Habit to update in case it exists.
+     */
+    where: HabitWhereUniqueInput
+    /**
+     * In case the Habit found by the `where` argument doesn't exist, create a new Habit with this data.
+     */
+    create: XOR<HabitCreateInput, HabitUncheckedCreateInput>
+    /**
+     * In case the Habit was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HabitUpdateInput, HabitUncheckedUpdateInput>
+  }
+
+  /**
+   * Habit delete
+   */
+  export type HabitDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Habit
+     */
+    select?: HabitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Habit
+     */
+    omit?: HabitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitInclude<ExtArgs> | null
+    /**
+     * Filter which Habit to delete.
+     */
+    where: HabitWhereUniqueInput
+  }
+
+  /**
+   * Habit deleteMany
+   */
+  export type HabitDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Habits to delete
+     */
+    where?: HabitWhereInput
+    /**
+     * Limit how many Habits to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Habit.completions
+   */
+  export type Habit$completionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HabitCompletion
+     */
+    select?: HabitCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HabitCompletion
+     */
+    omit?: HabitCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitCompletionInclude<ExtArgs> | null
+    where?: HabitCompletionWhereInput
+    orderBy?: HabitCompletionOrderByWithRelationInput | HabitCompletionOrderByWithRelationInput[]
+    cursor?: HabitCompletionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HabitCompletionScalarFieldEnum | HabitCompletionScalarFieldEnum[]
+  }
+
+  /**
+   * Habit without action
+   */
+  export type HabitDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Habit
+     */
+    select?: HabitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Habit
+     */
+    omit?: HabitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model HabitCompletion
+   */
+
+  export type AggregateHabitCompletion = {
+    _count: HabitCompletionCountAggregateOutputType | null
+    _min: HabitCompletionMinAggregateOutputType | null
+    _max: HabitCompletionMaxAggregateOutputType | null
+  }
+
+  export type HabitCompletionMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    habitId: string | null
+    date: Date | null
+    completed: boolean | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HabitCompletionMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    habitId: string | null
+    date: Date | null
+    completed: boolean | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HabitCompletionCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    habitId: number
+    date: number
+    completed: number
+    notes: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type HabitCompletionMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    habitId?: true
+    date?: true
+    completed?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HabitCompletionMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    habitId?: true
+    date?: true
+    completed?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HabitCompletionCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    habitId?: true
+    date?: true
+    completed?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type HabitCompletionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HabitCompletion to aggregate.
+     */
+    where?: HabitCompletionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HabitCompletions to fetch.
+     */
+    orderBy?: HabitCompletionOrderByWithRelationInput | HabitCompletionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HabitCompletionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HabitCompletions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HabitCompletions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned HabitCompletions
+    **/
+    _count?: true | HabitCompletionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HabitCompletionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HabitCompletionMaxAggregateInputType
+  }
+
+  export type GetHabitCompletionAggregateType<T extends HabitCompletionAggregateArgs> = {
+        [P in keyof T & keyof AggregateHabitCompletion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHabitCompletion[P]>
+      : GetScalarType<T[P], AggregateHabitCompletion[P]>
+  }
+
+
+
+
+  export type HabitCompletionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HabitCompletionWhereInput
+    orderBy?: HabitCompletionOrderByWithAggregationInput | HabitCompletionOrderByWithAggregationInput[]
+    by: HabitCompletionScalarFieldEnum[] | HabitCompletionScalarFieldEnum
+    having?: HabitCompletionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HabitCompletionCountAggregateInputType | true
+    _min?: HabitCompletionMinAggregateInputType
+    _max?: HabitCompletionMaxAggregateInputType
+  }
+
+  export type HabitCompletionGroupByOutputType = {
+    id: string
+    tenantId: string
+    habitId: string
+    date: Date
+    completed: boolean
+    notes: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: HabitCompletionCountAggregateOutputType | null
+    _min: HabitCompletionMinAggregateOutputType | null
+    _max: HabitCompletionMaxAggregateOutputType | null
+  }
+
+  type GetHabitCompletionGroupByPayload<T extends HabitCompletionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HabitCompletionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HabitCompletionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HabitCompletionGroupByOutputType[P]>
+            : GetScalarType<T[P], HabitCompletionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HabitCompletionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    habitId?: boolean
+    date?: boolean
+    completed?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    habit?: boolean | HabitDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["habitCompletion"]>
+
+  export type HabitCompletionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    habitId?: boolean
+    date?: boolean
+    completed?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    habit?: boolean | HabitDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["habitCompletion"]>
+
+  export type HabitCompletionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    habitId?: boolean
+    date?: boolean
+    completed?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    habit?: boolean | HabitDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["habitCompletion"]>
+
+  export type HabitCompletionSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    habitId?: boolean
+    date?: boolean
+    completed?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type HabitCompletionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "habitId" | "date" | "completed" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["habitCompletion"]>
+  export type HabitCompletionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    habit?: boolean | HabitDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type HabitCompletionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    habit?: boolean | HabitDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type HabitCompletionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    habit?: boolean | HabitDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $HabitCompletionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "HabitCompletion"
+    objects: {
+      habit: Prisma.$HabitPayload<ExtArgs>
+      tenant: Prisma.$TenantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      habitId: string
+      date: Date
+      completed: boolean
+      notes: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["habitCompletion"]>
+    composites: {}
+  }
+
+  type HabitCompletionGetPayload<S extends boolean | null | undefined | HabitCompletionDefaultArgs> = $Result.GetResult<Prisma.$HabitCompletionPayload, S>
+
+  type HabitCompletionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HabitCompletionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HabitCompletionCountAggregateInputType | true
+    }
+
+  export interface HabitCompletionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['HabitCompletion'], meta: { name: 'HabitCompletion' } }
+    /**
+     * Find zero or one HabitCompletion that matches the filter.
+     * @param {HabitCompletionFindUniqueArgs} args - Arguments to find a HabitCompletion
+     * @example
+     * // Get one HabitCompletion
+     * const habitCompletion = await prisma.habitCompletion.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HabitCompletionFindUniqueArgs>(args: SelectSubset<T, HabitCompletionFindUniqueArgs<ExtArgs>>): Prisma__HabitCompletionClient<$Result.GetResult<Prisma.$HabitCompletionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one HabitCompletion that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {HabitCompletionFindUniqueOrThrowArgs} args - Arguments to find a HabitCompletion
+     * @example
+     * // Get one HabitCompletion
+     * const habitCompletion = await prisma.habitCompletion.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HabitCompletionFindUniqueOrThrowArgs>(args: SelectSubset<T, HabitCompletionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HabitCompletionClient<$Result.GetResult<Prisma.$HabitCompletionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HabitCompletion that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HabitCompletionFindFirstArgs} args - Arguments to find a HabitCompletion
+     * @example
+     * // Get one HabitCompletion
+     * const habitCompletion = await prisma.habitCompletion.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HabitCompletionFindFirstArgs>(args?: SelectSubset<T, HabitCompletionFindFirstArgs<ExtArgs>>): Prisma__HabitCompletionClient<$Result.GetResult<Prisma.$HabitCompletionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HabitCompletion that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HabitCompletionFindFirstOrThrowArgs} args - Arguments to find a HabitCompletion
+     * @example
+     * // Get one HabitCompletion
+     * const habitCompletion = await prisma.habitCompletion.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HabitCompletionFindFirstOrThrowArgs>(args?: SelectSubset<T, HabitCompletionFindFirstOrThrowArgs<ExtArgs>>): Prisma__HabitCompletionClient<$Result.GetResult<Prisma.$HabitCompletionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more HabitCompletions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HabitCompletionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all HabitCompletions
+     * const habitCompletions = await prisma.habitCompletion.findMany()
+     * 
+     * // Get first 10 HabitCompletions
+     * const habitCompletions = await prisma.habitCompletion.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const habitCompletionWithIdOnly = await prisma.habitCompletion.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HabitCompletionFindManyArgs>(args?: SelectSubset<T, HabitCompletionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HabitCompletionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a HabitCompletion.
+     * @param {HabitCompletionCreateArgs} args - Arguments to create a HabitCompletion.
+     * @example
+     * // Create one HabitCompletion
+     * const HabitCompletion = await prisma.habitCompletion.create({
+     *   data: {
+     *     // ... data to create a HabitCompletion
+     *   }
+     * })
+     * 
+     */
+    create<T extends HabitCompletionCreateArgs>(args: SelectSubset<T, HabitCompletionCreateArgs<ExtArgs>>): Prisma__HabitCompletionClient<$Result.GetResult<Prisma.$HabitCompletionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many HabitCompletions.
+     * @param {HabitCompletionCreateManyArgs} args - Arguments to create many HabitCompletions.
+     * @example
+     * // Create many HabitCompletions
+     * const habitCompletion = await prisma.habitCompletion.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HabitCompletionCreateManyArgs>(args?: SelectSubset<T, HabitCompletionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many HabitCompletions and returns the data saved in the database.
+     * @param {HabitCompletionCreateManyAndReturnArgs} args - Arguments to create many HabitCompletions.
+     * @example
+     * // Create many HabitCompletions
+     * const habitCompletion = await prisma.habitCompletion.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many HabitCompletions and only return the `id`
+     * const habitCompletionWithIdOnly = await prisma.habitCompletion.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends HabitCompletionCreateManyAndReturnArgs>(args?: SelectSubset<T, HabitCompletionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HabitCompletionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a HabitCompletion.
+     * @param {HabitCompletionDeleteArgs} args - Arguments to delete one HabitCompletion.
+     * @example
+     * // Delete one HabitCompletion
+     * const HabitCompletion = await prisma.habitCompletion.delete({
+     *   where: {
+     *     // ... filter to delete one HabitCompletion
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HabitCompletionDeleteArgs>(args: SelectSubset<T, HabitCompletionDeleteArgs<ExtArgs>>): Prisma__HabitCompletionClient<$Result.GetResult<Prisma.$HabitCompletionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one HabitCompletion.
+     * @param {HabitCompletionUpdateArgs} args - Arguments to update one HabitCompletion.
+     * @example
+     * // Update one HabitCompletion
+     * const habitCompletion = await prisma.habitCompletion.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HabitCompletionUpdateArgs>(args: SelectSubset<T, HabitCompletionUpdateArgs<ExtArgs>>): Prisma__HabitCompletionClient<$Result.GetResult<Prisma.$HabitCompletionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more HabitCompletions.
+     * @param {HabitCompletionDeleteManyArgs} args - Arguments to filter HabitCompletions to delete.
+     * @example
+     * // Delete a few HabitCompletions
+     * const { count } = await prisma.habitCompletion.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HabitCompletionDeleteManyArgs>(args?: SelectSubset<T, HabitCompletionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HabitCompletions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HabitCompletionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many HabitCompletions
+     * const habitCompletion = await prisma.habitCompletion.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HabitCompletionUpdateManyArgs>(args: SelectSubset<T, HabitCompletionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HabitCompletions and returns the data updated in the database.
+     * @param {HabitCompletionUpdateManyAndReturnArgs} args - Arguments to update many HabitCompletions.
+     * @example
+     * // Update many HabitCompletions
+     * const habitCompletion = await prisma.habitCompletion.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more HabitCompletions and only return the `id`
+     * const habitCompletionWithIdOnly = await prisma.habitCompletion.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends HabitCompletionUpdateManyAndReturnArgs>(args: SelectSubset<T, HabitCompletionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HabitCompletionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one HabitCompletion.
+     * @param {HabitCompletionUpsertArgs} args - Arguments to update or create a HabitCompletion.
+     * @example
+     * // Update or create a HabitCompletion
+     * const habitCompletion = await prisma.habitCompletion.upsert({
+     *   create: {
+     *     // ... data to create a HabitCompletion
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the HabitCompletion we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HabitCompletionUpsertArgs>(args: SelectSubset<T, HabitCompletionUpsertArgs<ExtArgs>>): Prisma__HabitCompletionClient<$Result.GetResult<Prisma.$HabitCompletionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of HabitCompletions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HabitCompletionCountArgs} args - Arguments to filter HabitCompletions to count.
+     * @example
+     * // Count the number of HabitCompletions
+     * const count = await prisma.habitCompletion.count({
+     *   where: {
+     *     // ... the filter for the HabitCompletions we want to count
+     *   }
+     * })
+    **/
+    count<T extends HabitCompletionCountArgs>(
+      args?: Subset<T, HabitCompletionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HabitCompletionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a HabitCompletion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HabitCompletionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HabitCompletionAggregateArgs>(args: Subset<T, HabitCompletionAggregateArgs>): Prisma.PrismaPromise<GetHabitCompletionAggregateType<T>>
+
+    /**
+     * Group by HabitCompletion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HabitCompletionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HabitCompletionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HabitCompletionGroupByArgs['orderBy'] }
+        : { orderBy?: HabitCompletionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HabitCompletionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHabitCompletionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the HabitCompletion model
+   */
+  readonly fields: HabitCompletionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for HabitCompletion.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HabitCompletionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    habit<T extends HabitDefaultArgs<ExtArgs> = {}>(args?: Subset<T, HabitDefaultArgs<ExtArgs>>): Prisma__HabitClient<$Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the HabitCompletion model
+   */
+  interface HabitCompletionFieldRefs {
+    readonly id: FieldRef<"HabitCompletion", 'String'>
+    readonly tenantId: FieldRef<"HabitCompletion", 'String'>
+    readonly habitId: FieldRef<"HabitCompletion", 'String'>
+    readonly date: FieldRef<"HabitCompletion", 'DateTime'>
+    readonly completed: FieldRef<"HabitCompletion", 'Boolean'>
+    readonly notes: FieldRef<"HabitCompletion", 'String'>
+    readonly createdAt: FieldRef<"HabitCompletion", 'DateTime'>
+    readonly updatedAt: FieldRef<"HabitCompletion", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * HabitCompletion findUnique
+   */
+  export type HabitCompletionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HabitCompletion
+     */
+    select?: HabitCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HabitCompletion
+     */
+    omit?: HabitCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitCompletionInclude<ExtArgs> | null
+    /**
+     * Filter, which HabitCompletion to fetch.
+     */
+    where: HabitCompletionWhereUniqueInput
+  }
+
+  /**
+   * HabitCompletion findUniqueOrThrow
+   */
+  export type HabitCompletionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HabitCompletion
+     */
+    select?: HabitCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HabitCompletion
+     */
+    omit?: HabitCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitCompletionInclude<ExtArgs> | null
+    /**
+     * Filter, which HabitCompletion to fetch.
+     */
+    where: HabitCompletionWhereUniqueInput
+  }
+
+  /**
+   * HabitCompletion findFirst
+   */
+  export type HabitCompletionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HabitCompletion
+     */
+    select?: HabitCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HabitCompletion
+     */
+    omit?: HabitCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitCompletionInclude<ExtArgs> | null
+    /**
+     * Filter, which HabitCompletion to fetch.
+     */
+    where?: HabitCompletionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HabitCompletions to fetch.
+     */
+    orderBy?: HabitCompletionOrderByWithRelationInput | HabitCompletionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HabitCompletions.
+     */
+    cursor?: HabitCompletionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HabitCompletions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HabitCompletions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HabitCompletions.
+     */
+    distinct?: HabitCompletionScalarFieldEnum | HabitCompletionScalarFieldEnum[]
+  }
+
+  /**
+   * HabitCompletion findFirstOrThrow
+   */
+  export type HabitCompletionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HabitCompletion
+     */
+    select?: HabitCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HabitCompletion
+     */
+    omit?: HabitCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitCompletionInclude<ExtArgs> | null
+    /**
+     * Filter, which HabitCompletion to fetch.
+     */
+    where?: HabitCompletionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HabitCompletions to fetch.
+     */
+    orderBy?: HabitCompletionOrderByWithRelationInput | HabitCompletionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HabitCompletions.
+     */
+    cursor?: HabitCompletionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HabitCompletions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HabitCompletions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HabitCompletions.
+     */
+    distinct?: HabitCompletionScalarFieldEnum | HabitCompletionScalarFieldEnum[]
+  }
+
+  /**
+   * HabitCompletion findMany
+   */
+  export type HabitCompletionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HabitCompletion
+     */
+    select?: HabitCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HabitCompletion
+     */
+    omit?: HabitCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitCompletionInclude<ExtArgs> | null
+    /**
+     * Filter, which HabitCompletions to fetch.
+     */
+    where?: HabitCompletionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HabitCompletions to fetch.
+     */
+    orderBy?: HabitCompletionOrderByWithRelationInput | HabitCompletionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing HabitCompletions.
+     */
+    cursor?: HabitCompletionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HabitCompletions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HabitCompletions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HabitCompletions.
+     */
+    distinct?: HabitCompletionScalarFieldEnum | HabitCompletionScalarFieldEnum[]
+  }
+
+  /**
+   * HabitCompletion create
+   */
+  export type HabitCompletionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HabitCompletion
+     */
+    select?: HabitCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HabitCompletion
+     */
+    omit?: HabitCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitCompletionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a HabitCompletion.
+     */
+    data: XOR<HabitCompletionCreateInput, HabitCompletionUncheckedCreateInput>
+  }
+
+  /**
+   * HabitCompletion createMany
+   */
+  export type HabitCompletionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many HabitCompletions.
+     */
+    data: HabitCompletionCreateManyInput | HabitCompletionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * HabitCompletion createManyAndReturn
+   */
+  export type HabitCompletionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HabitCompletion
+     */
+    select?: HabitCompletionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HabitCompletion
+     */
+    omit?: HabitCompletionOmit<ExtArgs> | null
+    /**
+     * The data used to create many HabitCompletions.
+     */
+    data: HabitCompletionCreateManyInput | HabitCompletionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitCompletionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * HabitCompletion update
+   */
+  export type HabitCompletionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HabitCompletion
+     */
+    select?: HabitCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HabitCompletion
+     */
+    omit?: HabitCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitCompletionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a HabitCompletion.
+     */
+    data: XOR<HabitCompletionUpdateInput, HabitCompletionUncheckedUpdateInput>
+    /**
+     * Choose, which HabitCompletion to update.
+     */
+    where: HabitCompletionWhereUniqueInput
+  }
+
+  /**
+   * HabitCompletion updateMany
+   */
+  export type HabitCompletionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update HabitCompletions.
+     */
+    data: XOR<HabitCompletionUpdateManyMutationInput, HabitCompletionUncheckedUpdateManyInput>
+    /**
+     * Filter which HabitCompletions to update
+     */
+    where?: HabitCompletionWhereInput
+    /**
+     * Limit how many HabitCompletions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * HabitCompletion updateManyAndReturn
+   */
+  export type HabitCompletionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HabitCompletion
+     */
+    select?: HabitCompletionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HabitCompletion
+     */
+    omit?: HabitCompletionOmit<ExtArgs> | null
+    /**
+     * The data used to update HabitCompletions.
+     */
+    data: XOR<HabitCompletionUpdateManyMutationInput, HabitCompletionUncheckedUpdateManyInput>
+    /**
+     * Filter which HabitCompletions to update
+     */
+    where?: HabitCompletionWhereInput
+    /**
+     * Limit how many HabitCompletions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitCompletionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * HabitCompletion upsert
+   */
+  export type HabitCompletionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HabitCompletion
+     */
+    select?: HabitCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HabitCompletion
+     */
+    omit?: HabitCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitCompletionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the HabitCompletion to update in case it exists.
+     */
+    where: HabitCompletionWhereUniqueInput
+    /**
+     * In case the HabitCompletion found by the `where` argument doesn't exist, create a new HabitCompletion with this data.
+     */
+    create: XOR<HabitCompletionCreateInput, HabitCompletionUncheckedCreateInput>
+    /**
+     * In case the HabitCompletion was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HabitCompletionUpdateInput, HabitCompletionUncheckedUpdateInput>
+  }
+
+  /**
+   * HabitCompletion delete
+   */
+  export type HabitCompletionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HabitCompletion
+     */
+    select?: HabitCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HabitCompletion
+     */
+    omit?: HabitCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitCompletionInclude<ExtArgs> | null
+    /**
+     * Filter which HabitCompletion to delete.
+     */
+    where: HabitCompletionWhereUniqueInput
+  }
+
+  /**
+   * HabitCompletion deleteMany
+   */
+  export type HabitCompletionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HabitCompletions to delete
+     */
+    where?: HabitCompletionWhereInput
+    /**
+     * Limit how many HabitCompletions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * HabitCompletion without action
+   */
+  export type HabitCompletionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HabitCompletion
+     */
+    select?: HabitCompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HabitCompletion
+     */
+    omit?: HabitCompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HabitCompletionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -14377,6 +18422,58 @@ export namespace Prisma {
   export type RecurringRuleScalarFieldEnum = (typeof RecurringRuleScalarFieldEnum)[keyof typeof RecurringRuleScalarFieldEnum]
 
 
+  export const TaskScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    parentId: 'parentId',
+    title: 'title',
+    description: 'description',
+    dueDate: 'dueDate',
+    priority: 'priority',
+    tags: 'tags',
+    isCompleted: 'isCompleted',
+    completedAt: 'completedAt',
+    isDeleted: 'isDeleted',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
+
+
+  export const HabitScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    name: 'name',
+    description: 'description',
+    frequency: 'frequency',
+    cronExpression: 'cronExpression',
+    color: 'color',
+    icon: 'icon',
+    isActive: 'isActive',
+    currentStreak: 'currentStreak',
+    longestStreak: 'longestStreak',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type HabitScalarFieldEnum = (typeof HabitScalarFieldEnum)[keyof typeof HabitScalarFieldEnum]
+
+
+  export const HabitCompletionScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    habitId: 'habitId',
+    date: 'date',
+    completed: 'completed',
+    notes: 'notes',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type HabitCompletionScalarFieldEnum = (typeof HabitCompletionScalarFieldEnum)[keyof typeof HabitCompletionScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -14541,6 +18638,42 @@ export namespace Prisma {
   export type RecurringRuleOrderByRelevanceFieldEnum = (typeof RecurringRuleOrderByRelevanceFieldEnum)[keyof typeof RecurringRuleOrderByRelevanceFieldEnum]
 
 
+  export const TaskOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    parentId: 'parentId',
+    title: 'title',
+    description: 'description',
+    tags: 'tags'
+  };
+
+  export type TaskOrderByRelevanceFieldEnum = (typeof TaskOrderByRelevanceFieldEnum)[keyof typeof TaskOrderByRelevanceFieldEnum]
+
+
+  export const HabitOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    name: 'name',
+    description: 'description',
+    frequency: 'frequency',
+    cronExpression: 'cronExpression',
+    color: 'color',
+    icon: 'icon'
+  };
+
+  export type HabitOrderByRelevanceFieldEnum = (typeof HabitOrderByRelevanceFieldEnum)[keyof typeof HabitOrderByRelevanceFieldEnum]
+
+
+  export const HabitCompletionOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    habitId: 'habitId',
+    notes: 'notes'
+  };
+
+  export type HabitCompletionOrderByRelevanceFieldEnum = (typeof HabitCompletionOrderByRelevanceFieldEnum)[keyof typeof HabitCompletionOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references
    */
@@ -14657,6 +18790,9 @@ export namespace Prisma {
     transactions?: TransactionListRelationFilter
     budgetEnvelopes?: BudgetEnvelopeListRelationFilter
     recurringRules?: RecurringRuleListRelationFilter
+    tasks?: TaskListRelationFilter
+    habits?: HabitListRelationFilter
+    habitCompletions?: HabitCompletionListRelationFilter
   }
 
   export type TenantOrderByWithRelationInput = {
@@ -14673,6 +18809,9 @@ export namespace Prisma {
     transactions?: TransactionOrderByRelationAggregateInput
     budgetEnvelopes?: BudgetEnvelopeOrderByRelationAggregateInput
     recurringRules?: RecurringRuleOrderByRelationAggregateInput
+    tasks?: TaskOrderByRelationAggregateInput
+    habits?: HabitOrderByRelationAggregateInput
+    habitCompletions?: HabitCompletionOrderByRelationAggregateInput
     _relevance?: TenantOrderByRelevanceInput
   }
 
@@ -14693,6 +18832,9 @@ export namespace Prisma {
     transactions?: TransactionListRelationFilter
     budgetEnvelopes?: BudgetEnvelopeListRelationFilter
     recurringRules?: RecurringRuleListRelationFilter
+    tasks?: TaskListRelationFilter
+    habits?: HabitListRelationFilter
+    habitCompletions?: HabitCompletionListRelationFilter
   }, "id">
 
   export type TenantOrderByWithAggregationInput = {
@@ -15585,6 +19727,286 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"RecurringRule"> | Date | string
   }
 
+  export type TaskWhereInput = {
+    AND?: TaskWhereInput | TaskWhereInput[]
+    OR?: TaskWhereInput[]
+    NOT?: TaskWhereInput | TaskWhereInput[]
+    id?: StringFilter<"Task"> | string
+    tenantId?: StringFilter<"Task"> | string
+    parentId?: StringNullableFilter<"Task"> | string | null
+    title?: StringFilter<"Task"> | string
+    description?: StringNullableFilter<"Task"> | string | null
+    dueDate?: DateTimeNullableFilter<"Task"> | Date | string | null
+    priority?: IntFilter<"Task"> | number
+    tags?: StringNullableListFilter<"Task">
+    isCompleted?: BoolFilter<"Task"> | boolean
+    completedAt?: DateTimeNullableFilter<"Task"> | Date | string | null
+    isDeleted?: BoolFilter<"Task"> | boolean
+    createdAt?: DateTimeFilter<"Task"> | Date | string
+    updatedAt?: DateTimeFilter<"Task"> | Date | string
+    parent?: XOR<TaskNullableScalarRelationFilter, TaskWhereInput> | null
+    children?: TaskListRelationFilter
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }
+
+  export type TaskOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    parentId?: SortOrderInput | SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    dueDate?: SortOrderInput | SortOrder
+    priority?: SortOrder
+    tags?: SortOrder
+    isCompleted?: SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    parent?: TaskOrderByWithRelationInput
+    children?: TaskOrderByRelationAggregateInput
+    tenant?: TenantOrderByWithRelationInput
+    _relevance?: TaskOrderByRelevanceInput
+  }
+
+  export type TaskWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TaskWhereInput | TaskWhereInput[]
+    OR?: TaskWhereInput[]
+    NOT?: TaskWhereInput | TaskWhereInput[]
+    tenantId?: StringFilter<"Task"> | string
+    parentId?: StringNullableFilter<"Task"> | string | null
+    title?: StringFilter<"Task"> | string
+    description?: StringNullableFilter<"Task"> | string | null
+    dueDate?: DateTimeNullableFilter<"Task"> | Date | string | null
+    priority?: IntFilter<"Task"> | number
+    tags?: StringNullableListFilter<"Task">
+    isCompleted?: BoolFilter<"Task"> | boolean
+    completedAt?: DateTimeNullableFilter<"Task"> | Date | string | null
+    isDeleted?: BoolFilter<"Task"> | boolean
+    createdAt?: DateTimeFilter<"Task"> | Date | string
+    updatedAt?: DateTimeFilter<"Task"> | Date | string
+    parent?: XOR<TaskNullableScalarRelationFilter, TaskWhereInput> | null
+    children?: TaskListRelationFilter
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }, "id">
+
+  export type TaskOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    parentId?: SortOrderInput | SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    dueDate?: SortOrderInput | SortOrder
+    priority?: SortOrder
+    tags?: SortOrder
+    isCompleted?: SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TaskCountOrderByAggregateInput
+    _avg?: TaskAvgOrderByAggregateInput
+    _max?: TaskMaxOrderByAggregateInput
+    _min?: TaskMinOrderByAggregateInput
+    _sum?: TaskSumOrderByAggregateInput
+  }
+
+  export type TaskScalarWhereWithAggregatesInput = {
+    AND?: TaskScalarWhereWithAggregatesInput | TaskScalarWhereWithAggregatesInput[]
+    OR?: TaskScalarWhereWithAggregatesInput[]
+    NOT?: TaskScalarWhereWithAggregatesInput | TaskScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Task"> | string
+    tenantId?: StringWithAggregatesFilter<"Task"> | string
+    parentId?: StringNullableWithAggregatesFilter<"Task"> | string | null
+    title?: StringWithAggregatesFilter<"Task"> | string
+    description?: StringNullableWithAggregatesFilter<"Task"> | string | null
+    dueDate?: DateTimeNullableWithAggregatesFilter<"Task"> | Date | string | null
+    priority?: IntWithAggregatesFilter<"Task"> | number
+    tags?: StringNullableListFilter<"Task">
+    isCompleted?: BoolWithAggregatesFilter<"Task"> | boolean
+    completedAt?: DateTimeNullableWithAggregatesFilter<"Task"> | Date | string | null
+    isDeleted?: BoolWithAggregatesFilter<"Task"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Task"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Task"> | Date | string
+  }
+
+  export type HabitWhereInput = {
+    AND?: HabitWhereInput | HabitWhereInput[]
+    OR?: HabitWhereInput[]
+    NOT?: HabitWhereInput | HabitWhereInput[]
+    id?: StringFilter<"Habit"> | string
+    tenantId?: StringFilter<"Habit"> | string
+    name?: StringFilter<"Habit"> | string
+    description?: StringNullableFilter<"Habit"> | string | null
+    frequency?: StringFilter<"Habit"> | string
+    cronExpression?: StringNullableFilter<"Habit"> | string | null
+    color?: StringNullableFilter<"Habit"> | string | null
+    icon?: StringNullableFilter<"Habit"> | string | null
+    isActive?: BoolFilter<"Habit"> | boolean
+    currentStreak?: IntFilter<"Habit"> | number
+    longestStreak?: IntFilter<"Habit"> | number
+    createdAt?: DateTimeFilter<"Habit"> | Date | string
+    updatedAt?: DateTimeFilter<"Habit"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    completions?: HabitCompletionListRelationFilter
+  }
+
+  export type HabitOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    frequency?: SortOrder
+    cronExpression?: SortOrderInput | SortOrder
+    color?: SortOrderInput | SortOrder
+    icon?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    currentStreak?: SortOrder
+    longestStreak?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    completions?: HabitCompletionOrderByRelationAggregateInput
+    _relevance?: HabitOrderByRelevanceInput
+  }
+
+  export type HabitWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: HabitWhereInput | HabitWhereInput[]
+    OR?: HabitWhereInput[]
+    NOT?: HabitWhereInput | HabitWhereInput[]
+    tenantId?: StringFilter<"Habit"> | string
+    name?: StringFilter<"Habit"> | string
+    description?: StringNullableFilter<"Habit"> | string | null
+    frequency?: StringFilter<"Habit"> | string
+    cronExpression?: StringNullableFilter<"Habit"> | string | null
+    color?: StringNullableFilter<"Habit"> | string | null
+    icon?: StringNullableFilter<"Habit"> | string | null
+    isActive?: BoolFilter<"Habit"> | boolean
+    currentStreak?: IntFilter<"Habit"> | number
+    longestStreak?: IntFilter<"Habit"> | number
+    createdAt?: DateTimeFilter<"Habit"> | Date | string
+    updatedAt?: DateTimeFilter<"Habit"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    completions?: HabitCompletionListRelationFilter
+  }, "id">
+
+  export type HabitOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    frequency?: SortOrder
+    cronExpression?: SortOrderInput | SortOrder
+    color?: SortOrderInput | SortOrder
+    icon?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    currentStreak?: SortOrder
+    longestStreak?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: HabitCountOrderByAggregateInput
+    _avg?: HabitAvgOrderByAggregateInput
+    _max?: HabitMaxOrderByAggregateInput
+    _min?: HabitMinOrderByAggregateInput
+    _sum?: HabitSumOrderByAggregateInput
+  }
+
+  export type HabitScalarWhereWithAggregatesInput = {
+    AND?: HabitScalarWhereWithAggregatesInput | HabitScalarWhereWithAggregatesInput[]
+    OR?: HabitScalarWhereWithAggregatesInput[]
+    NOT?: HabitScalarWhereWithAggregatesInput | HabitScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Habit"> | string
+    tenantId?: StringWithAggregatesFilter<"Habit"> | string
+    name?: StringWithAggregatesFilter<"Habit"> | string
+    description?: StringNullableWithAggregatesFilter<"Habit"> | string | null
+    frequency?: StringWithAggregatesFilter<"Habit"> | string
+    cronExpression?: StringNullableWithAggregatesFilter<"Habit"> | string | null
+    color?: StringNullableWithAggregatesFilter<"Habit"> | string | null
+    icon?: StringNullableWithAggregatesFilter<"Habit"> | string | null
+    isActive?: BoolWithAggregatesFilter<"Habit"> | boolean
+    currentStreak?: IntWithAggregatesFilter<"Habit"> | number
+    longestStreak?: IntWithAggregatesFilter<"Habit"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Habit"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Habit"> | Date | string
+  }
+
+  export type HabitCompletionWhereInput = {
+    AND?: HabitCompletionWhereInput | HabitCompletionWhereInput[]
+    OR?: HabitCompletionWhereInput[]
+    NOT?: HabitCompletionWhereInput | HabitCompletionWhereInput[]
+    id?: StringFilter<"HabitCompletion"> | string
+    tenantId?: StringFilter<"HabitCompletion"> | string
+    habitId?: StringFilter<"HabitCompletion"> | string
+    date?: DateTimeFilter<"HabitCompletion"> | Date | string
+    completed?: BoolFilter<"HabitCompletion"> | boolean
+    notes?: StringNullableFilter<"HabitCompletion"> | string | null
+    createdAt?: DateTimeFilter<"HabitCompletion"> | Date | string
+    updatedAt?: DateTimeFilter<"HabitCompletion"> | Date | string
+    habit?: XOR<HabitScalarRelationFilter, HabitWhereInput>
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }
+
+  export type HabitCompletionOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    habitId?: SortOrder
+    date?: SortOrder
+    completed?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    habit?: HabitOrderByWithRelationInput
+    tenant?: TenantOrderByWithRelationInput
+    _relevance?: HabitCompletionOrderByRelevanceInput
+  }
+
+  export type HabitCompletionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tenantId_habitId_date?: HabitCompletionTenantIdHabitIdDateCompoundUniqueInput
+    AND?: HabitCompletionWhereInput | HabitCompletionWhereInput[]
+    OR?: HabitCompletionWhereInput[]
+    NOT?: HabitCompletionWhereInput | HabitCompletionWhereInput[]
+    tenantId?: StringFilter<"HabitCompletion"> | string
+    habitId?: StringFilter<"HabitCompletion"> | string
+    date?: DateTimeFilter<"HabitCompletion"> | Date | string
+    completed?: BoolFilter<"HabitCompletion"> | boolean
+    notes?: StringNullableFilter<"HabitCompletion"> | string | null
+    createdAt?: DateTimeFilter<"HabitCompletion"> | Date | string
+    updatedAt?: DateTimeFilter<"HabitCompletion"> | Date | string
+    habit?: XOR<HabitScalarRelationFilter, HabitWhereInput>
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }, "id" | "tenantId_habitId_date">
+
+  export type HabitCompletionOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    habitId?: SortOrder
+    date?: SortOrder
+    completed?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: HabitCompletionCountOrderByAggregateInput
+    _max?: HabitCompletionMaxOrderByAggregateInput
+    _min?: HabitCompletionMinOrderByAggregateInput
+  }
+
+  export type HabitCompletionScalarWhereWithAggregatesInput = {
+    AND?: HabitCompletionScalarWhereWithAggregatesInput | HabitCompletionScalarWhereWithAggregatesInput[]
+    OR?: HabitCompletionScalarWhereWithAggregatesInput[]
+    NOT?: HabitCompletionScalarWhereWithAggregatesInput | HabitCompletionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"HabitCompletion"> | string
+    tenantId?: StringWithAggregatesFilter<"HabitCompletion"> | string
+    habitId?: StringWithAggregatesFilter<"HabitCompletion"> | string
+    date?: DateTimeWithAggregatesFilter<"HabitCompletion"> | Date | string
+    completed?: BoolWithAggregatesFilter<"HabitCompletion"> | boolean
+    notes?: StringNullableWithAggregatesFilter<"HabitCompletion"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"HabitCompletion"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"HabitCompletion"> | Date | string
+  }
+
   export type TenantCreateInput = {
     id?: string
     name: string
@@ -15599,6 +20021,9 @@ export namespace Prisma {
     transactions?: TransactionCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateInput = {
@@ -15615,6 +20040,9 @@ export namespace Prisma {
     transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUpdateInput = {
@@ -15631,6 +20059,9 @@ export namespace Prisma {
     transactions?: TransactionUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateInput = {
@@ -15647,6 +20078,9 @@ export namespace Prisma {
     transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateManyInput = {
@@ -16609,6 +21043,310 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type TaskCreateInput = {
+    id?: string
+    title: string
+    description?: string | null
+    dueDate?: Date | string | null
+    priority?: number
+    tags?: TaskCreatetagsInput | string[]
+    isCompleted?: boolean
+    completedAt?: Date | string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parent?: TaskCreateNestedOneWithoutChildrenInput
+    children?: TaskCreateNestedManyWithoutParentInput
+    tenant: TenantCreateNestedOneWithoutTasksInput
+  }
+
+  export type TaskUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    parentId?: string | null
+    title: string
+    description?: string | null
+    dueDate?: Date | string | null
+    priority?: number
+    tags?: TaskCreatetagsInput | string[]
+    isCompleted?: boolean
+    completedAt?: Date | string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    children?: TaskUncheckedCreateNestedManyWithoutParentInput
+  }
+
+  export type TaskUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    priority?: IntFieldUpdateOperationsInput | number
+    tags?: TaskUpdatetagsInput | string[]
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parent?: TaskUpdateOneWithoutChildrenNestedInput
+    children?: TaskUpdateManyWithoutParentNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutTasksNestedInput
+  }
+
+  export type TaskUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    priority?: IntFieldUpdateOperationsInput | number
+    tags?: TaskUpdatetagsInput | string[]
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    children?: TaskUncheckedUpdateManyWithoutParentNestedInput
+  }
+
+  export type TaskCreateManyInput = {
+    id?: string
+    tenantId: string
+    parentId?: string | null
+    title: string
+    description?: string | null
+    dueDate?: Date | string | null
+    priority?: number
+    tags?: TaskCreatetagsInput | string[]
+    isCompleted?: boolean
+    completedAt?: Date | string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TaskUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    priority?: IntFieldUpdateOperationsInput | number
+    tags?: TaskUpdatetagsInput | string[]
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    priority?: IntFieldUpdateOperationsInput | number
+    tags?: TaskUpdatetagsInput | string[]
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HabitCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    frequency: string
+    cronExpression?: string | null
+    color?: string | null
+    icon?: string | null
+    isActive?: boolean
+    currentStreak?: number
+    longestStreak?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutHabitsInput
+    completions?: HabitCompletionCreateNestedManyWithoutHabitInput
+  }
+
+  export type HabitUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    name: string
+    description?: string | null
+    frequency: string
+    cronExpression?: string | null
+    color?: string | null
+    icon?: string | null
+    isActive?: boolean
+    currentStreak?: number
+    longestStreak?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    completions?: HabitCompletionUncheckedCreateNestedManyWithoutHabitInput
+  }
+
+  export type HabitUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    cronExpression?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutHabitsNestedInput
+    completions?: HabitCompletionUpdateManyWithoutHabitNestedInput
+  }
+
+  export type HabitUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    cronExpression?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completions?: HabitCompletionUncheckedUpdateManyWithoutHabitNestedInput
+  }
+
+  export type HabitCreateManyInput = {
+    id?: string
+    tenantId: string
+    name: string
+    description?: string | null
+    frequency: string
+    cronExpression?: string | null
+    color?: string | null
+    icon?: string | null
+    isActive?: boolean
+    currentStreak?: number
+    longestStreak?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HabitUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    cronExpression?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HabitUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    cronExpression?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HabitCompletionCreateInput = {
+    id?: string
+    date: Date | string
+    completed?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    habit: HabitCreateNestedOneWithoutCompletionsInput
+    tenant: TenantCreateNestedOneWithoutHabitCompletionsInput
+  }
+
+  export type HabitCompletionUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    habitId: string
+    date: Date | string
+    completed?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HabitCompletionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    habit?: HabitUpdateOneRequiredWithoutCompletionsNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutHabitCompletionsNestedInput
+  }
+
+  export type HabitCompletionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    habitId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HabitCompletionCreateManyInput = {
+    id?: string
+    tenantId: string
+    habitId: string
+    date: Date | string
+    completed?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HabitCompletionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HabitCompletionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    habitId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -16690,6 +21428,24 @@ export namespace Prisma {
     none?: RecurringRuleWhereInput
   }
 
+  export type TaskListRelationFilter = {
+    every?: TaskWhereInput
+    some?: TaskWhereInput
+    none?: TaskWhereInput
+  }
+
+  export type HabitListRelationFilter = {
+    every?: HabitWhereInput
+    some?: HabitWhereInput
+    none?: HabitWhereInput
+  }
+
+  export type HabitCompletionListRelationFilter = {
+    every?: HabitCompletionWhereInput
+    some?: HabitCompletionWhereInput
+    none?: HabitCompletionWhereInput
+  }
+
   export type UserOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -16723,6 +21479,18 @@ export namespace Prisma {
   }
 
   export type RecurringRuleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TaskOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type HabitOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type HabitCompletionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -17610,6 +22378,193 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type TaskNullableScalarRelationFilter = {
+    is?: TaskWhereInput | null
+    isNot?: TaskWhereInput | null
+  }
+
+  export type TaskOrderByRelevanceInput = {
+    fields: TaskOrderByRelevanceFieldEnum | TaskOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type TaskCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    parentId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    dueDate?: SortOrder
+    priority?: SortOrder
+    tags?: SortOrder
+    isCompleted?: SortOrder
+    completedAt?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TaskAvgOrderByAggregateInput = {
+    priority?: SortOrder
+  }
+
+  export type TaskMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    parentId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    dueDate?: SortOrder
+    priority?: SortOrder
+    isCompleted?: SortOrder
+    completedAt?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TaskMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    parentId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    dueDate?: SortOrder
+    priority?: SortOrder
+    isCompleted?: SortOrder
+    completedAt?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TaskSumOrderByAggregateInput = {
+    priority?: SortOrder
+  }
+
+  export type HabitOrderByRelevanceInput = {
+    fields: HabitOrderByRelevanceFieldEnum | HabitOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type HabitCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    frequency?: SortOrder
+    cronExpression?: SortOrder
+    color?: SortOrder
+    icon?: SortOrder
+    isActive?: SortOrder
+    currentStreak?: SortOrder
+    longestStreak?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HabitAvgOrderByAggregateInput = {
+    currentStreak?: SortOrder
+    longestStreak?: SortOrder
+  }
+
+  export type HabitMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    frequency?: SortOrder
+    cronExpression?: SortOrder
+    color?: SortOrder
+    icon?: SortOrder
+    isActive?: SortOrder
+    currentStreak?: SortOrder
+    longestStreak?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HabitMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    frequency?: SortOrder
+    cronExpression?: SortOrder
+    color?: SortOrder
+    icon?: SortOrder
+    isActive?: SortOrder
+    currentStreak?: SortOrder
+    longestStreak?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HabitSumOrderByAggregateInput = {
+    currentStreak?: SortOrder
+    longestStreak?: SortOrder
+  }
+
+  export type HabitScalarRelationFilter = {
+    is?: HabitWhereInput
+    isNot?: HabitWhereInput
+  }
+
+  export type HabitCompletionOrderByRelevanceInput = {
+    fields: HabitCompletionOrderByRelevanceFieldEnum | HabitCompletionOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type HabitCompletionTenantIdHabitIdDateCompoundUniqueInput = {
+    tenantId: string
+    habitId: string
+    date: Date | string
+  }
+
+  export type HabitCompletionCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    habitId?: SortOrder
+    date?: SortOrder
+    completed?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HabitCompletionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    habitId?: SortOrder
+    date?: SortOrder
+    completed?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HabitCompletionMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    habitId?: SortOrder
+    date?: SortOrder
+    completed?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type UserCreateNestedManyWithoutTenantInput = {
     create?: XOR<UserCreateWithoutTenantInput, UserUncheckedCreateWithoutTenantInput> | UserCreateWithoutTenantInput[] | UserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: UserCreateOrConnectWithoutTenantInput | UserCreateOrConnectWithoutTenantInput[]
@@ -17673,6 +22628,27 @@ export namespace Prisma {
     connect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
   }
 
+  export type TaskCreateNestedManyWithoutTenantInput = {
+    create?: XOR<TaskCreateWithoutTenantInput, TaskUncheckedCreateWithoutTenantInput> | TaskCreateWithoutTenantInput[] | TaskUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutTenantInput | TaskCreateOrConnectWithoutTenantInput[]
+    createMany?: TaskCreateManyTenantInputEnvelope
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+  }
+
+  export type HabitCreateNestedManyWithoutTenantInput = {
+    create?: XOR<HabitCreateWithoutTenantInput, HabitUncheckedCreateWithoutTenantInput> | HabitCreateWithoutTenantInput[] | HabitUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HabitCreateOrConnectWithoutTenantInput | HabitCreateOrConnectWithoutTenantInput[]
+    createMany?: HabitCreateManyTenantInputEnvelope
+    connect?: HabitWhereUniqueInput | HabitWhereUniqueInput[]
+  }
+
+  export type HabitCompletionCreateNestedManyWithoutTenantInput = {
+    create?: XOR<HabitCompletionCreateWithoutTenantInput, HabitCompletionUncheckedCreateWithoutTenantInput> | HabitCompletionCreateWithoutTenantInput[] | HabitCompletionUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HabitCompletionCreateOrConnectWithoutTenantInput | HabitCompletionCreateOrConnectWithoutTenantInput[]
+    createMany?: HabitCompletionCreateManyTenantInputEnvelope
+    connect?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+  }
+
   export type UserUncheckedCreateNestedManyWithoutTenantInput = {
     create?: XOR<UserCreateWithoutTenantInput, UserUncheckedCreateWithoutTenantInput> | UserCreateWithoutTenantInput[] | UserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: UserCreateOrConnectWithoutTenantInput | UserCreateOrConnectWithoutTenantInput[]
@@ -17734,6 +22710,27 @@ export namespace Prisma {
     connectOrCreate?: RecurringRuleCreateOrConnectWithoutTenantInput | RecurringRuleCreateOrConnectWithoutTenantInput[]
     createMany?: RecurringRuleCreateManyTenantInputEnvelope
     connect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+  }
+
+  export type TaskUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<TaskCreateWithoutTenantInput, TaskUncheckedCreateWithoutTenantInput> | TaskCreateWithoutTenantInput[] | TaskUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutTenantInput | TaskCreateOrConnectWithoutTenantInput[]
+    createMany?: TaskCreateManyTenantInputEnvelope
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+  }
+
+  export type HabitUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<HabitCreateWithoutTenantInput, HabitUncheckedCreateWithoutTenantInput> | HabitCreateWithoutTenantInput[] | HabitUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HabitCreateOrConnectWithoutTenantInput | HabitCreateOrConnectWithoutTenantInput[]
+    createMany?: HabitCreateManyTenantInputEnvelope
+    connect?: HabitWhereUniqueInput | HabitWhereUniqueInput[]
+  }
+
+  export type HabitCompletionUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<HabitCompletionCreateWithoutTenantInput, HabitCompletionUncheckedCreateWithoutTenantInput> | HabitCompletionCreateWithoutTenantInput[] | HabitCompletionUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HabitCompletionCreateOrConnectWithoutTenantInput | HabitCompletionCreateOrConnectWithoutTenantInput[]
+    createMany?: HabitCompletionCreateManyTenantInputEnvelope
+    connect?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -17870,6 +22867,48 @@ export namespace Prisma {
     deleteMany?: RecurringRuleScalarWhereInput | RecurringRuleScalarWhereInput[]
   }
 
+  export type TaskUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<TaskCreateWithoutTenantInput, TaskUncheckedCreateWithoutTenantInput> | TaskCreateWithoutTenantInput[] | TaskUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutTenantInput | TaskCreateOrConnectWithoutTenantInput[]
+    upsert?: TaskUpsertWithWhereUniqueWithoutTenantInput | TaskUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: TaskCreateManyTenantInputEnvelope
+    set?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    disconnect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    delete?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    update?: TaskUpdateWithWhereUniqueWithoutTenantInput | TaskUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: TaskUpdateManyWithWhereWithoutTenantInput | TaskUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
+  }
+
+  export type HabitUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<HabitCreateWithoutTenantInput, HabitUncheckedCreateWithoutTenantInput> | HabitCreateWithoutTenantInput[] | HabitUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HabitCreateOrConnectWithoutTenantInput | HabitCreateOrConnectWithoutTenantInput[]
+    upsert?: HabitUpsertWithWhereUniqueWithoutTenantInput | HabitUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: HabitCreateManyTenantInputEnvelope
+    set?: HabitWhereUniqueInput | HabitWhereUniqueInput[]
+    disconnect?: HabitWhereUniqueInput | HabitWhereUniqueInput[]
+    delete?: HabitWhereUniqueInput | HabitWhereUniqueInput[]
+    connect?: HabitWhereUniqueInput | HabitWhereUniqueInput[]
+    update?: HabitUpdateWithWhereUniqueWithoutTenantInput | HabitUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: HabitUpdateManyWithWhereWithoutTenantInput | HabitUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: HabitScalarWhereInput | HabitScalarWhereInput[]
+  }
+
+  export type HabitCompletionUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<HabitCompletionCreateWithoutTenantInput, HabitCompletionUncheckedCreateWithoutTenantInput> | HabitCompletionCreateWithoutTenantInput[] | HabitCompletionUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HabitCompletionCreateOrConnectWithoutTenantInput | HabitCompletionCreateOrConnectWithoutTenantInput[]
+    upsert?: HabitCompletionUpsertWithWhereUniqueWithoutTenantInput | HabitCompletionUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: HabitCompletionCreateManyTenantInputEnvelope
+    set?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+    disconnect?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+    delete?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+    connect?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+    update?: HabitCompletionUpdateWithWhereUniqueWithoutTenantInput | HabitCompletionUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: HabitCompletionUpdateManyWithWhereWithoutTenantInput | HabitCompletionUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: HabitCompletionScalarWhereInput | HabitCompletionScalarWhereInput[]
+  }
+
   export type UserUncheckedUpdateManyWithoutTenantNestedInput = {
     create?: XOR<UserCreateWithoutTenantInput, UserUncheckedCreateWithoutTenantInput> | UserCreateWithoutTenantInput[] | UserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: UserCreateOrConnectWithoutTenantInput | UserCreateOrConnectWithoutTenantInput[]
@@ -17994,6 +23033,48 @@ export namespace Prisma {
     update?: RecurringRuleUpdateWithWhereUniqueWithoutTenantInput | RecurringRuleUpdateWithWhereUniqueWithoutTenantInput[]
     updateMany?: RecurringRuleUpdateManyWithWhereWithoutTenantInput | RecurringRuleUpdateManyWithWhereWithoutTenantInput[]
     deleteMany?: RecurringRuleScalarWhereInput | RecurringRuleScalarWhereInput[]
+  }
+
+  export type TaskUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<TaskCreateWithoutTenantInput, TaskUncheckedCreateWithoutTenantInput> | TaskCreateWithoutTenantInput[] | TaskUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutTenantInput | TaskCreateOrConnectWithoutTenantInput[]
+    upsert?: TaskUpsertWithWhereUniqueWithoutTenantInput | TaskUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: TaskCreateManyTenantInputEnvelope
+    set?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    disconnect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    delete?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    update?: TaskUpdateWithWhereUniqueWithoutTenantInput | TaskUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: TaskUpdateManyWithWhereWithoutTenantInput | TaskUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
+  }
+
+  export type HabitUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<HabitCreateWithoutTenantInput, HabitUncheckedCreateWithoutTenantInput> | HabitCreateWithoutTenantInput[] | HabitUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HabitCreateOrConnectWithoutTenantInput | HabitCreateOrConnectWithoutTenantInput[]
+    upsert?: HabitUpsertWithWhereUniqueWithoutTenantInput | HabitUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: HabitCreateManyTenantInputEnvelope
+    set?: HabitWhereUniqueInput | HabitWhereUniqueInput[]
+    disconnect?: HabitWhereUniqueInput | HabitWhereUniqueInput[]
+    delete?: HabitWhereUniqueInput | HabitWhereUniqueInput[]
+    connect?: HabitWhereUniqueInput | HabitWhereUniqueInput[]
+    update?: HabitUpdateWithWhereUniqueWithoutTenantInput | HabitUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: HabitUpdateManyWithWhereWithoutTenantInput | HabitUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: HabitScalarWhereInput | HabitScalarWhereInput[]
+  }
+
+  export type HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<HabitCompletionCreateWithoutTenantInput, HabitCompletionUncheckedCreateWithoutTenantInput> | HabitCompletionCreateWithoutTenantInput[] | HabitCompletionUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HabitCompletionCreateOrConnectWithoutTenantInput | HabitCompletionCreateOrConnectWithoutTenantInput[]
+    upsert?: HabitCompletionUpsertWithWhereUniqueWithoutTenantInput | HabitCompletionUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: HabitCompletionCreateManyTenantInputEnvelope
+    set?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+    disconnect?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+    delete?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+    connect?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+    update?: HabitCompletionUpdateWithWhereUniqueWithoutTenantInput | HabitCompletionUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: HabitCompletionUpdateManyWithWhereWithoutTenantInput | HabitCompletionUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: HabitCompletionScalarWhereInput | HabitCompletionScalarWhereInput[]
   }
 
   export type TenantCreateNestedOneWithoutUsersInput = {
@@ -18612,6 +23693,171 @@ export namespace Prisma {
     update?: TransactionUpdateWithWhereUniqueWithoutRecurringRuleInput | TransactionUpdateWithWhereUniqueWithoutRecurringRuleInput[]
     updateMany?: TransactionUpdateManyWithWhereWithoutRecurringRuleInput | TransactionUpdateManyWithWhereWithoutRecurringRuleInput[]
     deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+  }
+
+  export type TaskCreatetagsInput = {
+    set: string[]
+  }
+
+  export type TaskCreateNestedOneWithoutChildrenInput = {
+    create?: XOR<TaskCreateWithoutChildrenInput, TaskUncheckedCreateWithoutChildrenInput>
+    connectOrCreate?: TaskCreateOrConnectWithoutChildrenInput
+    connect?: TaskWhereUniqueInput
+  }
+
+  export type TaskCreateNestedManyWithoutParentInput = {
+    create?: XOR<TaskCreateWithoutParentInput, TaskUncheckedCreateWithoutParentInput> | TaskCreateWithoutParentInput[] | TaskUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutParentInput | TaskCreateOrConnectWithoutParentInput[]
+    createMany?: TaskCreateManyParentInputEnvelope
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+  }
+
+  export type TenantCreateNestedOneWithoutTasksInput = {
+    create?: XOR<TenantCreateWithoutTasksInput, TenantUncheckedCreateWithoutTasksInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutTasksInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type TaskUncheckedCreateNestedManyWithoutParentInput = {
+    create?: XOR<TaskCreateWithoutParentInput, TaskUncheckedCreateWithoutParentInput> | TaskCreateWithoutParentInput[] | TaskUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutParentInput | TaskCreateOrConnectWithoutParentInput[]
+    createMany?: TaskCreateManyParentInputEnvelope
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+  }
+
+  export type TaskUpdatetagsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type TaskUpdateOneWithoutChildrenNestedInput = {
+    create?: XOR<TaskCreateWithoutChildrenInput, TaskUncheckedCreateWithoutChildrenInput>
+    connectOrCreate?: TaskCreateOrConnectWithoutChildrenInput
+    upsert?: TaskUpsertWithoutChildrenInput
+    disconnect?: TaskWhereInput | boolean
+    delete?: TaskWhereInput | boolean
+    connect?: TaskWhereUniqueInput
+    update?: XOR<XOR<TaskUpdateToOneWithWhereWithoutChildrenInput, TaskUpdateWithoutChildrenInput>, TaskUncheckedUpdateWithoutChildrenInput>
+  }
+
+  export type TaskUpdateManyWithoutParentNestedInput = {
+    create?: XOR<TaskCreateWithoutParentInput, TaskUncheckedCreateWithoutParentInput> | TaskCreateWithoutParentInput[] | TaskUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutParentInput | TaskCreateOrConnectWithoutParentInput[]
+    upsert?: TaskUpsertWithWhereUniqueWithoutParentInput | TaskUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: TaskCreateManyParentInputEnvelope
+    set?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    disconnect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    delete?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    update?: TaskUpdateWithWhereUniqueWithoutParentInput | TaskUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: TaskUpdateManyWithWhereWithoutParentInput | TaskUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
+  }
+
+  export type TenantUpdateOneRequiredWithoutTasksNestedInput = {
+    create?: XOR<TenantCreateWithoutTasksInput, TenantUncheckedCreateWithoutTasksInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutTasksInput
+    upsert?: TenantUpsertWithoutTasksInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutTasksInput, TenantUpdateWithoutTasksInput>, TenantUncheckedUpdateWithoutTasksInput>
+  }
+
+  export type TaskUncheckedUpdateManyWithoutParentNestedInput = {
+    create?: XOR<TaskCreateWithoutParentInput, TaskUncheckedCreateWithoutParentInput> | TaskCreateWithoutParentInput[] | TaskUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutParentInput | TaskCreateOrConnectWithoutParentInput[]
+    upsert?: TaskUpsertWithWhereUniqueWithoutParentInput | TaskUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: TaskCreateManyParentInputEnvelope
+    set?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    disconnect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    delete?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    update?: TaskUpdateWithWhereUniqueWithoutParentInput | TaskUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: TaskUpdateManyWithWhereWithoutParentInput | TaskUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
+  }
+
+  export type TenantCreateNestedOneWithoutHabitsInput = {
+    create?: XOR<TenantCreateWithoutHabitsInput, TenantUncheckedCreateWithoutHabitsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutHabitsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type HabitCompletionCreateNestedManyWithoutHabitInput = {
+    create?: XOR<HabitCompletionCreateWithoutHabitInput, HabitCompletionUncheckedCreateWithoutHabitInput> | HabitCompletionCreateWithoutHabitInput[] | HabitCompletionUncheckedCreateWithoutHabitInput[]
+    connectOrCreate?: HabitCompletionCreateOrConnectWithoutHabitInput | HabitCompletionCreateOrConnectWithoutHabitInput[]
+    createMany?: HabitCompletionCreateManyHabitInputEnvelope
+    connect?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+  }
+
+  export type HabitCompletionUncheckedCreateNestedManyWithoutHabitInput = {
+    create?: XOR<HabitCompletionCreateWithoutHabitInput, HabitCompletionUncheckedCreateWithoutHabitInput> | HabitCompletionCreateWithoutHabitInput[] | HabitCompletionUncheckedCreateWithoutHabitInput[]
+    connectOrCreate?: HabitCompletionCreateOrConnectWithoutHabitInput | HabitCompletionCreateOrConnectWithoutHabitInput[]
+    createMany?: HabitCompletionCreateManyHabitInputEnvelope
+    connect?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+  }
+
+  export type TenantUpdateOneRequiredWithoutHabitsNestedInput = {
+    create?: XOR<TenantCreateWithoutHabitsInput, TenantUncheckedCreateWithoutHabitsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutHabitsInput
+    upsert?: TenantUpsertWithoutHabitsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutHabitsInput, TenantUpdateWithoutHabitsInput>, TenantUncheckedUpdateWithoutHabitsInput>
+  }
+
+  export type HabitCompletionUpdateManyWithoutHabitNestedInput = {
+    create?: XOR<HabitCompletionCreateWithoutHabitInput, HabitCompletionUncheckedCreateWithoutHabitInput> | HabitCompletionCreateWithoutHabitInput[] | HabitCompletionUncheckedCreateWithoutHabitInput[]
+    connectOrCreate?: HabitCompletionCreateOrConnectWithoutHabitInput | HabitCompletionCreateOrConnectWithoutHabitInput[]
+    upsert?: HabitCompletionUpsertWithWhereUniqueWithoutHabitInput | HabitCompletionUpsertWithWhereUniqueWithoutHabitInput[]
+    createMany?: HabitCompletionCreateManyHabitInputEnvelope
+    set?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+    disconnect?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+    delete?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+    connect?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+    update?: HabitCompletionUpdateWithWhereUniqueWithoutHabitInput | HabitCompletionUpdateWithWhereUniqueWithoutHabitInput[]
+    updateMany?: HabitCompletionUpdateManyWithWhereWithoutHabitInput | HabitCompletionUpdateManyWithWhereWithoutHabitInput[]
+    deleteMany?: HabitCompletionScalarWhereInput | HabitCompletionScalarWhereInput[]
+  }
+
+  export type HabitCompletionUncheckedUpdateManyWithoutHabitNestedInput = {
+    create?: XOR<HabitCompletionCreateWithoutHabitInput, HabitCompletionUncheckedCreateWithoutHabitInput> | HabitCompletionCreateWithoutHabitInput[] | HabitCompletionUncheckedCreateWithoutHabitInput[]
+    connectOrCreate?: HabitCompletionCreateOrConnectWithoutHabitInput | HabitCompletionCreateOrConnectWithoutHabitInput[]
+    upsert?: HabitCompletionUpsertWithWhereUniqueWithoutHabitInput | HabitCompletionUpsertWithWhereUniqueWithoutHabitInput[]
+    createMany?: HabitCompletionCreateManyHabitInputEnvelope
+    set?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+    disconnect?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+    delete?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+    connect?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+    update?: HabitCompletionUpdateWithWhereUniqueWithoutHabitInput | HabitCompletionUpdateWithWhereUniqueWithoutHabitInput[]
+    updateMany?: HabitCompletionUpdateManyWithWhereWithoutHabitInput | HabitCompletionUpdateManyWithWhereWithoutHabitInput[]
+    deleteMany?: HabitCompletionScalarWhereInput | HabitCompletionScalarWhereInput[]
+  }
+
+  export type HabitCreateNestedOneWithoutCompletionsInput = {
+    create?: XOR<HabitCreateWithoutCompletionsInput, HabitUncheckedCreateWithoutCompletionsInput>
+    connectOrCreate?: HabitCreateOrConnectWithoutCompletionsInput
+    connect?: HabitWhereUniqueInput
+  }
+
+  export type TenantCreateNestedOneWithoutHabitCompletionsInput = {
+    create?: XOR<TenantCreateWithoutHabitCompletionsInput, TenantUncheckedCreateWithoutHabitCompletionsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutHabitCompletionsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type HabitUpdateOneRequiredWithoutCompletionsNestedInput = {
+    create?: XOR<HabitCreateWithoutCompletionsInput, HabitUncheckedCreateWithoutCompletionsInput>
+    connectOrCreate?: HabitCreateOrConnectWithoutCompletionsInput
+    upsert?: HabitUpsertWithoutCompletionsInput
+    connect?: HabitWhereUniqueInput
+    update?: XOR<XOR<HabitUpdateToOneWithWhereWithoutCompletionsInput, HabitUpdateWithoutCompletionsInput>, HabitUncheckedUpdateWithoutCompletionsInput>
+  }
+
+  export type TenantUpdateOneRequiredWithoutHabitCompletionsNestedInput = {
+    create?: XOR<TenantCreateWithoutHabitCompletionsInput, TenantUncheckedCreateWithoutHabitCompletionsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutHabitCompletionsInput
+    upsert?: TenantUpsertWithoutHabitCompletionsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutHabitCompletionsInput, TenantUpdateWithoutHabitCompletionsInput>, TenantUncheckedUpdateWithoutHabitCompletionsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -19244,6 +24490,120 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type TaskCreateWithoutTenantInput = {
+    id?: string
+    title: string
+    description?: string | null
+    dueDate?: Date | string | null
+    priority?: number
+    tags?: TaskCreatetagsInput | string[]
+    isCompleted?: boolean
+    completedAt?: Date | string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parent?: TaskCreateNestedOneWithoutChildrenInput
+    children?: TaskCreateNestedManyWithoutParentInput
+  }
+
+  export type TaskUncheckedCreateWithoutTenantInput = {
+    id?: string
+    parentId?: string | null
+    title: string
+    description?: string | null
+    dueDate?: Date | string | null
+    priority?: number
+    tags?: TaskCreatetagsInput | string[]
+    isCompleted?: boolean
+    completedAt?: Date | string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    children?: TaskUncheckedCreateNestedManyWithoutParentInput
+  }
+
+  export type TaskCreateOrConnectWithoutTenantInput = {
+    where: TaskWhereUniqueInput
+    create: XOR<TaskCreateWithoutTenantInput, TaskUncheckedCreateWithoutTenantInput>
+  }
+
+  export type TaskCreateManyTenantInputEnvelope = {
+    data: TaskCreateManyTenantInput | TaskCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type HabitCreateWithoutTenantInput = {
+    id?: string
+    name: string
+    description?: string | null
+    frequency: string
+    cronExpression?: string | null
+    color?: string | null
+    icon?: string | null
+    isActive?: boolean
+    currentStreak?: number
+    longestStreak?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    completions?: HabitCompletionCreateNestedManyWithoutHabitInput
+  }
+
+  export type HabitUncheckedCreateWithoutTenantInput = {
+    id?: string
+    name: string
+    description?: string | null
+    frequency: string
+    cronExpression?: string | null
+    color?: string | null
+    icon?: string | null
+    isActive?: boolean
+    currentStreak?: number
+    longestStreak?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    completions?: HabitCompletionUncheckedCreateNestedManyWithoutHabitInput
+  }
+
+  export type HabitCreateOrConnectWithoutTenantInput = {
+    where: HabitWhereUniqueInput
+    create: XOR<HabitCreateWithoutTenantInput, HabitUncheckedCreateWithoutTenantInput>
+  }
+
+  export type HabitCreateManyTenantInputEnvelope = {
+    data: HabitCreateManyTenantInput | HabitCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type HabitCompletionCreateWithoutTenantInput = {
+    id?: string
+    date: Date | string
+    completed?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    habit: HabitCreateNestedOneWithoutCompletionsInput
+  }
+
+  export type HabitCompletionUncheckedCreateWithoutTenantInput = {
+    id?: string
+    habitId: string
+    date: Date | string
+    completed?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HabitCompletionCreateOrConnectWithoutTenantInput = {
+    where: HabitCompletionWhereUniqueInput
+    create: XOR<HabitCompletionCreateWithoutTenantInput, HabitCompletionUncheckedCreateWithoutTenantInput>
+  }
+
+  export type HabitCompletionCreateManyTenantInputEnvelope = {
+    data: HabitCompletionCreateManyTenantInput | HabitCompletionCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithWhereUniqueWithoutTenantInput = {
     where: UserWhereUniqueInput
     update: XOR<UserUpdateWithoutTenantInput, UserUncheckedUpdateWithoutTenantInput>
@@ -19547,6 +24907,106 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"RecurringRule"> | Date | string
   }
 
+  export type TaskUpsertWithWhereUniqueWithoutTenantInput = {
+    where: TaskWhereUniqueInput
+    update: XOR<TaskUpdateWithoutTenantInput, TaskUncheckedUpdateWithoutTenantInput>
+    create: XOR<TaskCreateWithoutTenantInput, TaskUncheckedCreateWithoutTenantInput>
+  }
+
+  export type TaskUpdateWithWhereUniqueWithoutTenantInput = {
+    where: TaskWhereUniqueInput
+    data: XOR<TaskUpdateWithoutTenantInput, TaskUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type TaskUpdateManyWithWhereWithoutTenantInput = {
+    where: TaskScalarWhereInput
+    data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type TaskScalarWhereInput = {
+    AND?: TaskScalarWhereInput | TaskScalarWhereInput[]
+    OR?: TaskScalarWhereInput[]
+    NOT?: TaskScalarWhereInput | TaskScalarWhereInput[]
+    id?: StringFilter<"Task"> | string
+    tenantId?: StringFilter<"Task"> | string
+    parentId?: StringNullableFilter<"Task"> | string | null
+    title?: StringFilter<"Task"> | string
+    description?: StringNullableFilter<"Task"> | string | null
+    dueDate?: DateTimeNullableFilter<"Task"> | Date | string | null
+    priority?: IntFilter<"Task"> | number
+    tags?: StringNullableListFilter<"Task">
+    isCompleted?: BoolFilter<"Task"> | boolean
+    completedAt?: DateTimeNullableFilter<"Task"> | Date | string | null
+    isDeleted?: BoolFilter<"Task"> | boolean
+    createdAt?: DateTimeFilter<"Task"> | Date | string
+    updatedAt?: DateTimeFilter<"Task"> | Date | string
+  }
+
+  export type HabitUpsertWithWhereUniqueWithoutTenantInput = {
+    where: HabitWhereUniqueInput
+    update: XOR<HabitUpdateWithoutTenantInput, HabitUncheckedUpdateWithoutTenantInput>
+    create: XOR<HabitCreateWithoutTenantInput, HabitUncheckedCreateWithoutTenantInput>
+  }
+
+  export type HabitUpdateWithWhereUniqueWithoutTenantInput = {
+    where: HabitWhereUniqueInput
+    data: XOR<HabitUpdateWithoutTenantInput, HabitUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type HabitUpdateManyWithWhereWithoutTenantInput = {
+    where: HabitScalarWhereInput
+    data: XOR<HabitUpdateManyMutationInput, HabitUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type HabitScalarWhereInput = {
+    AND?: HabitScalarWhereInput | HabitScalarWhereInput[]
+    OR?: HabitScalarWhereInput[]
+    NOT?: HabitScalarWhereInput | HabitScalarWhereInput[]
+    id?: StringFilter<"Habit"> | string
+    tenantId?: StringFilter<"Habit"> | string
+    name?: StringFilter<"Habit"> | string
+    description?: StringNullableFilter<"Habit"> | string | null
+    frequency?: StringFilter<"Habit"> | string
+    cronExpression?: StringNullableFilter<"Habit"> | string | null
+    color?: StringNullableFilter<"Habit"> | string | null
+    icon?: StringNullableFilter<"Habit"> | string | null
+    isActive?: BoolFilter<"Habit"> | boolean
+    currentStreak?: IntFilter<"Habit"> | number
+    longestStreak?: IntFilter<"Habit"> | number
+    createdAt?: DateTimeFilter<"Habit"> | Date | string
+    updatedAt?: DateTimeFilter<"Habit"> | Date | string
+  }
+
+  export type HabitCompletionUpsertWithWhereUniqueWithoutTenantInput = {
+    where: HabitCompletionWhereUniqueInput
+    update: XOR<HabitCompletionUpdateWithoutTenantInput, HabitCompletionUncheckedUpdateWithoutTenantInput>
+    create: XOR<HabitCompletionCreateWithoutTenantInput, HabitCompletionUncheckedCreateWithoutTenantInput>
+  }
+
+  export type HabitCompletionUpdateWithWhereUniqueWithoutTenantInput = {
+    where: HabitCompletionWhereUniqueInput
+    data: XOR<HabitCompletionUpdateWithoutTenantInput, HabitCompletionUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type HabitCompletionUpdateManyWithWhereWithoutTenantInput = {
+    where: HabitCompletionScalarWhereInput
+    data: XOR<HabitCompletionUpdateManyMutationInput, HabitCompletionUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type HabitCompletionScalarWhereInput = {
+    AND?: HabitCompletionScalarWhereInput | HabitCompletionScalarWhereInput[]
+    OR?: HabitCompletionScalarWhereInput[]
+    NOT?: HabitCompletionScalarWhereInput | HabitCompletionScalarWhereInput[]
+    id?: StringFilter<"HabitCompletion"> | string
+    tenantId?: StringFilter<"HabitCompletion"> | string
+    habitId?: StringFilter<"HabitCompletion"> | string
+    date?: DateTimeFilter<"HabitCompletion"> | Date | string
+    completed?: BoolFilter<"HabitCompletion"> | boolean
+    notes?: StringNullableFilter<"HabitCompletion"> | string | null
+    createdAt?: DateTimeFilter<"HabitCompletion"> | Date | string
+    updatedAt?: DateTimeFilter<"HabitCompletion"> | Date | string
+  }
+
   export type TenantCreateWithoutUsersInput = {
     id?: string
     name: string
@@ -19560,6 +25020,9 @@ export namespace Prisma {
     transactions?: TransactionCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutUsersInput = {
@@ -19575,6 +25038,9 @@ export namespace Prisma {
     transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutUsersInput = {
@@ -19606,6 +25072,9 @@ export namespace Prisma {
     transactions?: TransactionUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutUsersInput = {
@@ -19621,6 +25090,9 @@ export namespace Prisma {
     transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAiProviderConfigsInput = {
@@ -19636,6 +25108,9 @@ export namespace Prisma {
     transactions?: TransactionCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAiProviderConfigsInput = {
@@ -19651,6 +25126,9 @@ export namespace Prisma {
     transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAiProviderConfigsInput = {
@@ -19682,6 +25160,9 @@ export namespace Prisma {
     transactions?: TransactionUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAiProviderConfigsInput = {
@@ -19697,6 +25178,9 @@ export namespace Prisma {
     transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAiPromptCacheInput = {
@@ -19712,6 +25196,9 @@ export namespace Prisma {
     transactions?: TransactionCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAiPromptCacheInput = {
@@ -19727,6 +25214,9 @@ export namespace Prisma {
     transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAiPromptCacheInput = {
@@ -19758,6 +25248,9 @@ export namespace Prisma {
     transactions?: TransactionUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAiPromptCacheInput = {
@@ -19773,6 +25266,9 @@ export namespace Prisma {
     transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAiUsageLogsInput = {
@@ -19788,6 +25284,9 @@ export namespace Prisma {
     transactions?: TransactionCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAiUsageLogsInput = {
@@ -19803,6 +25302,9 @@ export namespace Prisma {
     transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAiUsageLogsInput = {
@@ -19834,6 +25336,9 @@ export namespace Prisma {
     transactions?: TransactionUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAiUsageLogsInput = {
@@ -19849,6 +25354,9 @@ export namespace Prisma {
     transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CategoryCreateWithoutChildrenInput = {
@@ -19943,6 +25451,9 @@ export namespace Prisma {
     transactions?: TransactionCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutCategoriesInput = {
@@ -19958,6 +25469,9 @@ export namespace Prisma {
     transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutCategoriesInput = {
@@ -20180,6 +25694,9 @@ export namespace Prisma {
     transactions?: TransactionUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutCategoriesInput = {
@@ -20195,6 +25712,9 @@ export namespace Prisma {
     transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TransactionUpsertWithWhereUniqueWithoutCategoryInput = {
@@ -20258,6 +25778,9 @@ export namespace Prisma {
     transactions?: TransactionCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAccountsInput = {
@@ -20273,6 +25796,9 @@ export namespace Prisma {
     transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAccountsInput = {
@@ -20436,6 +25962,9 @@ export namespace Prisma {
     transactions?: TransactionUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAccountsInput = {
@@ -20451,6 +25980,9 @@ export namespace Prisma {
     transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TransactionUpsertWithWhereUniqueWithoutAccountInput = {
@@ -20639,6 +26171,9 @@ export namespace Prisma {
     accounts?: AccountCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutTransactionsInput = {
@@ -20654,6 +26189,9 @@ export namespace Prisma {
     accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutTransactionsInput = {
@@ -20828,6 +26366,9 @@ export namespace Prisma {
     accounts?: AccountUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutTransactionsInput = {
@@ -20843,6 +26384,9 @@ export namespace Prisma {
     accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CategoryCreateWithoutBudgetEnvelopesInput = {
@@ -20932,6 +26476,9 @@ export namespace Prisma {
     accounts?: AccountCreateNestedManyWithoutTenantInput
     transactions?: TransactionCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutBudgetEnvelopesInput = {
@@ -20947,6 +26494,9 @@ export namespace Prisma {
     accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
     transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
     recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutBudgetEnvelopesInput = {
@@ -21064,6 +26614,9 @@ export namespace Prisma {
     accounts?: AccountUpdateManyWithoutTenantNestedInput
     transactions?: TransactionUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutBudgetEnvelopesInput = {
@@ -21079,6 +26632,9 @@ export namespace Prisma {
     accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
     transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
     recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type AccountCreateWithoutRecurringRulesInput = {
@@ -21168,6 +26724,9 @@ export namespace Prisma {
     accounts?: AccountCreateNestedManyWithoutTenantInput
     transactions?: TransactionCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutRecurringRulesInput = {
@@ -21183,6 +26742,9 @@ export namespace Prisma {
     accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
     transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutRecurringRulesInput = {
@@ -21342,6 +26904,9 @@ export namespace Prisma {
     accounts?: AccountUpdateManyWithoutTenantNestedInput
     transactions?: TransactionUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutRecurringRulesInput = {
@@ -21357,6 +26922,9 @@ export namespace Prisma {
     accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
     transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
     budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TransactionUpsertWithWhereUniqueWithoutRecurringRuleInput = {
@@ -21373,6 +26941,534 @@ export namespace Prisma {
   export type TransactionUpdateManyWithWhereWithoutRecurringRuleInput = {
     where: TransactionScalarWhereInput
     data: XOR<TransactionUpdateManyMutationInput, TransactionUncheckedUpdateManyWithoutRecurringRuleInput>
+  }
+
+  export type TaskCreateWithoutChildrenInput = {
+    id?: string
+    title: string
+    description?: string | null
+    dueDate?: Date | string | null
+    priority?: number
+    tags?: TaskCreatetagsInput | string[]
+    isCompleted?: boolean
+    completedAt?: Date | string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parent?: TaskCreateNestedOneWithoutChildrenInput
+    tenant: TenantCreateNestedOneWithoutTasksInput
+  }
+
+  export type TaskUncheckedCreateWithoutChildrenInput = {
+    id?: string
+    tenantId: string
+    parentId?: string | null
+    title: string
+    description?: string | null
+    dueDate?: Date | string | null
+    priority?: number
+    tags?: TaskCreatetagsInput | string[]
+    isCompleted?: boolean
+    completedAt?: Date | string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TaskCreateOrConnectWithoutChildrenInput = {
+    where: TaskWhereUniqueInput
+    create: XOR<TaskCreateWithoutChildrenInput, TaskUncheckedCreateWithoutChildrenInput>
+  }
+
+  export type TaskCreateWithoutParentInput = {
+    id?: string
+    title: string
+    description?: string | null
+    dueDate?: Date | string | null
+    priority?: number
+    tags?: TaskCreatetagsInput | string[]
+    isCompleted?: boolean
+    completedAt?: Date | string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    children?: TaskCreateNestedManyWithoutParentInput
+    tenant: TenantCreateNestedOneWithoutTasksInput
+  }
+
+  export type TaskUncheckedCreateWithoutParentInput = {
+    id?: string
+    tenantId: string
+    title: string
+    description?: string | null
+    dueDate?: Date | string | null
+    priority?: number
+    tags?: TaskCreatetagsInput | string[]
+    isCompleted?: boolean
+    completedAt?: Date | string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    children?: TaskUncheckedCreateNestedManyWithoutParentInput
+  }
+
+  export type TaskCreateOrConnectWithoutParentInput = {
+    where: TaskWhereUniqueInput
+    create: XOR<TaskCreateWithoutParentInput, TaskUncheckedCreateWithoutParentInput>
+  }
+
+  export type TaskCreateManyParentInputEnvelope = {
+    data: TaskCreateManyParentInput | TaskCreateManyParentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TenantCreateWithoutTasksInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutTasksInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutTasksInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutTasksInput, TenantUncheckedCreateWithoutTasksInput>
+  }
+
+  export type TaskUpsertWithoutChildrenInput = {
+    update: XOR<TaskUpdateWithoutChildrenInput, TaskUncheckedUpdateWithoutChildrenInput>
+    create: XOR<TaskCreateWithoutChildrenInput, TaskUncheckedCreateWithoutChildrenInput>
+    where?: TaskWhereInput
+  }
+
+  export type TaskUpdateToOneWithWhereWithoutChildrenInput = {
+    where?: TaskWhereInput
+    data: XOR<TaskUpdateWithoutChildrenInput, TaskUncheckedUpdateWithoutChildrenInput>
+  }
+
+  export type TaskUpdateWithoutChildrenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    priority?: IntFieldUpdateOperationsInput | number
+    tags?: TaskUpdatetagsInput | string[]
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parent?: TaskUpdateOneWithoutChildrenNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutTasksNestedInput
+  }
+
+  export type TaskUncheckedUpdateWithoutChildrenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    priority?: IntFieldUpdateOperationsInput | number
+    tags?: TaskUpdatetagsInput | string[]
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskUpsertWithWhereUniqueWithoutParentInput = {
+    where: TaskWhereUniqueInput
+    update: XOR<TaskUpdateWithoutParentInput, TaskUncheckedUpdateWithoutParentInput>
+    create: XOR<TaskCreateWithoutParentInput, TaskUncheckedCreateWithoutParentInput>
+  }
+
+  export type TaskUpdateWithWhereUniqueWithoutParentInput = {
+    where: TaskWhereUniqueInput
+    data: XOR<TaskUpdateWithoutParentInput, TaskUncheckedUpdateWithoutParentInput>
+  }
+
+  export type TaskUpdateManyWithWhereWithoutParentInput = {
+    where: TaskScalarWhereInput
+    data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyWithoutParentInput>
+  }
+
+  export type TenantUpsertWithoutTasksInput = {
+    update: XOR<TenantUpdateWithoutTasksInput, TenantUncheckedUpdateWithoutTasksInput>
+    create: XOR<TenantCreateWithoutTasksInput, TenantUncheckedCreateWithoutTasksInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutTasksInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutTasksInput, TenantUncheckedUpdateWithoutTasksInput>
+  }
+
+  export type TenantUpdateWithoutTasksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutTasksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantCreateWithoutHabitsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutHabitsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutHabitsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutHabitsInput, TenantUncheckedCreateWithoutHabitsInput>
+  }
+
+  export type HabitCompletionCreateWithoutHabitInput = {
+    id?: string
+    date: Date | string
+    completed?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutHabitCompletionsInput
+  }
+
+  export type HabitCompletionUncheckedCreateWithoutHabitInput = {
+    id?: string
+    tenantId: string
+    date: Date | string
+    completed?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HabitCompletionCreateOrConnectWithoutHabitInput = {
+    where: HabitCompletionWhereUniqueInput
+    create: XOR<HabitCompletionCreateWithoutHabitInput, HabitCompletionUncheckedCreateWithoutHabitInput>
+  }
+
+  export type HabitCompletionCreateManyHabitInputEnvelope = {
+    data: HabitCompletionCreateManyHabitInput | HabitCompletionCreateManyHabitInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TenantUpsertWithoutHabitsInput = {
+    update: XOR<TenantUpdateWithoutHabitsInput, TenantUncheckedUpdateWithoutHabitsInput>
+    create: XOR<TenantCreateWithoutHabitsInput, TenantUncheckedCreateWithoutHabitsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutHabitsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutHabitsInput, TenantUncheckedUpdateWithoutHabitsInput>
+  }
+
+  export type TenantUpdateWithoutHabitsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutHabitsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type HabitCompletionUpsertWithWhereUniqueWithoutHabitInput = {
+    where: HabitCompletionWhereUniqueInput
+    update: XOR<HabitCompletionUpdateWithoutHabitInput, HabitCompletionUncheckedUpdateWithoutHabitInput>
+    create: XOR<HabitCompletionCreateWithoutHabitInput, HabitCompletionUncheckedCreateWithoutHabitInput>
+  }
+
+  export type HabitCompletionUpdateWithWhereUniqueWithoutHabitInput = {
+    where: HabitCompletionWhereUniqueInput
+    data: XOR<HabitCompletionUpdateWithoutHabitInput, HabitCompletionUncheckedUpdateWithoutHabitInput>
+  }
+
+  export type HabitCompletionUpdateManyWithWhereWithoutHabitInput = {
+    where: HabitCompletionScalarWhereInput
+    data: XOR<HabitCompletionUpdateManyMutationInput, HabitCompletionUncheckedUpdateManyWithoutHabitInput>
+  }
+
+  export type HabitCreateWithoutCompletionsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    frequency: string
+    cronExpression?: string | null
+    color?: string | null
+    icon?: string | null
+    isActive?: boolean
+    currentStreak?: number
+    longestStreak?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutHabitsInput
+  }
+
+  export type HabitUncheckedCreateWithoutCompletionsInput = {
+    id?: string
+    tenantId: string
+    name: string
+    description?: string | null
+    frequency: string
+    cronExpression?: string | null
+    color?: string | null
+    icon?: string | null
+    isActive?: boolean
+    currentStreak?: number
+    longestStreak?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HabitCreateOrConnectWithoutCompletionsInput = {
+    where: HabitWhereUniqueInput
+    create: XOR<HabitCreateWithoutCompletionsInput, HabitUncheckedCreateWithoutCompletionsInput>
+  }
+
+  export type TenantCreateWithoutHabitCompletionsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutHabitCompletionsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutHabitCompletionsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutHabitCompletionsInput, TenantUncheckedCreateWithoutHabitCompletionsInput>
+  }
+
+  export type HabitUpsertWithoutCompletionsInput = {
+    update: XOR<HabitUpdateWithoutCompletionsInput, HabitUncheckedUpdateWithoutCompletionsInput>
+    create: XOR<HabitCreateWithoutCompletionsInput, HabitUncheckedCreateWithoutCompletionsInput>
+    where?: HabitWhereInput
+  }
+
+  export type HabitUpdateToOneWithWhereWithoutCompletionsInput = {
+    where?: HabitWhereInput
+    data: XOR<HabitUpdateWithoutCompletionsInput, HabitUncheckedUpdateWithoutCompletionsInput>
+  }
+
+  export type HabitUpdateWithoutCompletionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    cronExpression?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutHabitsNestedInput
+  }
+
+  export type HabitUncheckedUpdateWithoutCompletionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    cronExpression?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TenantUpsertWithoutHabitCompletionsInput = {
+    update: XOR<TenantUpdateWithoutHabitCompletionsInput, TenantUncheckedUpdateWithoutHabitCompletionsInput>
+    create: XOR<TenantCreateWithoutHabitCompletionsInput, TenantUncheckedCreateWithoutHabitCompletionsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutHabitCompletionsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutHabitCompletionsInput, TenantUncheckedUpdateWithoutHabitCompletionsInput>
+  }
+
+  export type TenantUpdateWithoutHabitCompletionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutHabitCompletionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UserCreateManyTenantInput = {
@@ -21494,6 +27590,46 @@ export namespace Prisma {
     nextRunAt?: Date | string | null
     lastRunAt?: Date | string | null
     isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TaskCreateManyTenantInput = {
+    id?: string
+    parentId?: string | null
+    title: string
+    description?: string | null
+    dueDate?: Date | string | null
+    priority?: number
+    tags?: TaskCreatetagsInput | string[]
+    isCompleted?: boolean
+    completedAt?: Date | string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HabitCreateManyTenantInput = {
+    id?: string
+    name: string
+    description?: string | null
+    frequency: string
+    cronExpression?: string | null
+    color?: string | null
+    icon?: string | null
+    isActive?: boolean
+    currentStreak?: number
+    longestStreak?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HabitCompletionCreateManyTenantInput = {
+    id?: string
+    habitId: string
+    date: Date | string
+    completed?: boolean
+    notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -21879,6 +28015,130 @@ export namespace Prisma {
     nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    priority?: IntFieldUpdateOperationsInput | number
+    tags?: TaskUpdatetagsInput | string[]
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parent?: TaskUpdateOneWithoutChildrenNestedInput
+    children?: TaskUpdateManyWithoutParentNestedInput
+  }
+
+  export type TaskUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    priority?: IntFieldUpdateOperationsInput | number
+    tags?: TaskUpdatetagsInput | string[]
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    children?: TaskUncheckedUpdateManyWithoutParentNestedInput
+  }
+
+  export type TaskUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    priority?: IntFieldUpdateOperationsInput | number
+    tags?: TaskUpdatetagsInput | string[]
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HabitUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    cronExpression?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completions?: HabitCompletionUpdateManyWithoutHabitNestedInput
+  }
+
+  export type HabitUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    cronExpression?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completions?: HabitCompletionUncheckedUpdateManyWithoutHabitNestedInput
+  }
+
+  export type HabitUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    cronExpression?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HabitCompletionUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    habit?: HabitUpdateOneRequiredWithoutCompletionsNestedInput
+  }
+
+  export type HabitCompletionUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    habitId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HabitCompletionUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    habitId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -22403,6 +28663,108 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     isRecurring?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskCreateManyParentInput = {
+    id?: string
+    tenantId: string
+    title: string
+    description?: string | null
+    dueDate?: Date | string | null
+    priority?: number
+    tags?: TaskCreatetagsInput | string[]
+    isCompleted?: boolean
+    completedAt?: Date | string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TaskUpdateWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    priority?: IntFieldUpdateOperationsInput | number
+    tags?: TaskUpdatetagsInput | string[]
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    children?: TaskUpdateManyWithoutParentNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutTasksNestedInput
+  }
+
+  export type TaskUncheckedUpdateWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    priority?: IntFieldUpdateOperationsInput | number
+    tags?: TaskUpdatetagsInput | string[]
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    children?: TaskUncheckedUpdateManyWithoutParentNestedInput
+  }
+
+  export type TaskUncheckedUpdateManyWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    priority?: IntFieldUpdateOperationsInput | number
+    tags?: TaskUpdatetagsInput | string[]
+    isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HabitCompletionCreateManyHabitInput = {
+    id?: string
+    tenantId: string
+    date: Date | string
+    completed?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HabitCompletionUpdateWithoutHabitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutHabitCompletionsNestedInput
+  }
+
+  export type HabitCompletionUncheckedUpdateWithoutHabitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HabitCompletionUncheckedUpdateManyWithoutHabitInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
