@@ -31,7 +31,7 @@
 - [x] **AI-02**: Groq as primary provider (gemma2-9b-it, llama-3.3-70b-versatile)
 - [x] **AI-03**: Gemini 2.0 Flash as fallback provider
 - [ ] **AI-04**: Circuit breaker logic (429 → 60s block, 5xx → immediate rotate)
-- [ ] **AI-05**: Task type matrix (CLASSIFY, LABEL, SUMMARIZE, ANALYZE, EXTRACT, CHAT)
+- [x] **AI-05**: Task type matrix (CLASSIFY, LABEL, SUMMARIZE, ANALYZE, EXTRACT, CHAT)
 - [x] **AI-06**: Prompt caching with 24h TTL in ai_prompt_cache table
 - [x] **AI-07**: Per-tenant token quota tracking in ai_usage_logs table
 - [x] **AI-08**: All AI calls logged with provider, model, tokens, latency
@@ -205,7 +205,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | AI-02 | Phase 2 | Complete |
 | AI-03 | Phase 2 | Complete |
 | AI-04 | Phase 2 | Pending |
-| AI-05 | Phase 2 | Pending |
+| AI-05 | Phase 2 | Complete |
 | AI-06 | Phase 2 | Complete |
 | AI-07 | Phase 2 | Complete |
 | AI-08 | Phase 2 | Complete |

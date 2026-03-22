@@ -64,7 +64,7 @@ Plans:
 - [ ] 02-02: Circuit breaker pattern with provider rotation logic
 - [x] 02-03: Prompt caching with 24h TTL and token budgeting per tenant
 - [x] 02-04: AI usage logging and monitoring (provider, model, tokens, latency)
-- [ ] 02-05: Task type matrix implementation (CLASSIFY, LABEL, SUMMARIZE, ANALYZE, EXTRACT, CHAT)
+- [x] 02-05: Task type matrix implementation (CLASSIFY, LABEL, SUMMARIZE, ANALYZE, EXTRACT, CHAT)
 
 ### Phase 3: Financial Module
 **Goal**: Complete financial tracking with transactions, categories, accounts, envelope budgets, recurring rules, and AI categorization
