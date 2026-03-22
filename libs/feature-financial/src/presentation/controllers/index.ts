@@ -1,3 +1,2 @@
-// Controllers - will be populated in later plans
-export {};
-
+export * from './account.controller';
+export * from './category.controller';
