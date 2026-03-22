@@ -80,3 +80,36 @@ export const MarkCompleteSchema = z.object({
   completed: z.boolean(),
 });
 export type MarkCompleteDto = z.infer<typeof MarkCompleteSchema>;
+
+// Natural language task creation
+export const CreateTaskFromNLSchema = z.object({
+  input: z.string().min(1).max(500),
+  timezone: z.string().optional(), // e.g., "America/New_York"
+});
+export type CreateTaskFromNLDto = z.infer<typeof CreateTaskFromNLSchema>;
+
+// Parsed task from NL input
+export const ParsedTaskSchema = z.object({
+  title: z.string(),
+  description: z.string().optional(),
+  dueDate: z.date().nullable(),
+  priority: z.number().min(1).max(4).optional(),
+  tags: z.array(z.string()),
+  confidence: z.number().min(0).max(1),
+});
+export type ParsedTask = z.infer<typeof ParsedTaskSchema>;
+
+// Response from NL parsing
+export const TaskParsingResponseSchema = z.object({
+  original: z.string(),
+  parsed: ParsedTaskSchema,
+  task: TaskResponseSchema,
+});
+export type TaskParsingResponse = z.infer<typeof TaskParsingResponseSchema>;
+
+// Preview response (without created task)
+export const TaskParsingPreviewResponseSchema = z.object({
+  original: z.string(),
+  parsed: ParsedTaskSchema,
+});
+export type TaskParsingPreviewResponse = z.infer<typeof TaskParsingPreviewResponseSchema>;
