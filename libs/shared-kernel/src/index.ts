@@ -1,5 +1,6 @@
 // Shared kernel - core domain utilities
 
+export * from './ai';
 export * from './pipes/zod-validation.pipe';
 export * from './filters/all-exceptions.filter';
 export * from './interceptors/transform.interceptor';
