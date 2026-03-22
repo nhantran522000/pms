@@ -23,7 +23,7 @@
 - [ ] **AUTH-03**: User can reset password via email link
 - [ ] **AUTH-04**: User session persists across browser refresh (JWT + httpOnly cookies)
 - [ ] **AUTH-05**: User can log out from any page
-- [ ] **AUTH-06**: Tenant context injected via AsyncLocalStorage for RLS
+- [x] **AUTH-06**: Tenant context injected via AsyncLocalStorage for RLS
 
 ### AI Gateway
 
@@ -200,7 +200,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | AUTH-03 | Phase 1 | Pending |
 | AUTH-04 | Phase 1 | Pending |
 | AUTH-05 | Phase 1 | Pending |
-| AUTH-06 | Phase 1 | Pending |
+| AUTH-06 | Phase 1 | Complete |
 | AI-01 | Phase 2 | Pending |
 | AI-02 | Phase 2 | Pending |
 | AI-03 | Phase 2 | Pending |
