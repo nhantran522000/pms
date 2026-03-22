@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { PrismaModule } from '@pms/data-access';
+import { HealthModule } from './health/health.module';
 import configuration from './config/configuration';
 import { validationSchema } from './config/validation.schema';
 
@@ -10,6 +12,8 @@ import { validationSchema } from './config/validation.schema';
       load: [configuration],
       validationSchema: validationSchema,
     }),
+    PrismaModule,
+    HealthModule,
   ],
   controllers: [],
   providers: [],
