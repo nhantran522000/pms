@@ -38,18 +38,18 @@
 
 ### Financial Module
 
-- [ ] **FIN-01**: User can create transaction with date, amount, category, payee, notes
-- [ ] **FIN-02**: User can edit and delete their own transactions
-- [ ] **FIN-03**: User can create hierarchical categories (parent/child)
-- [ ] **FIN-04**: User can create multiple accounts (checking, savings, cash, credit)
-- [ ] **FIN-05**: User can view account balances with running totals
+- [x] **FIN-01**: User can create transaction with date, amount, category, payee, notes
+- [x] **FIN-02**: User can edit and delete their own transactions
+- [x] **FIN-03**: User can create hierarchical categories (parent/child)
+- [x] **FIN-04**: User can create multiple accounts (checking, savings, cash, credit)
+- [x] **FIN-05**: User can view account balances with running totals
 - [ ] **FIN-06**: User can filter transactions by date range, category, account
 - [ ] **FIN-07**: System auto-categorizes transactions using AI from payee/description
-- [ ] **FIN-08**: User can create envelope budgets allocating income to categories
+- [x] **FIN-08**: User can create envelope budgets allocating income to categories
 - [ ] **FIN-09**: Envelope balances roll over to next month
-- [ ] **FIN-10**: User can create recurring transaction rules (daily, weekly, monthly, yearly)
-- [ ] **FIN-11**: System auto-creates transactions from recurring rules via pg-boss
-- [ ] **FIN-12**: Recurring transactions flagged and excluded from anomaly detection
+- [x] **FIN-10**: User can create recurring transaction rules (daily, weekly, monthly, yearly)
+- [x] **FIN-11**: System auto-creates transactions from recurring rules via pg-boss
+- [x] **FIN-12**: Recurring transactions flagged and excluded from anomaly detection
 
 ### Habits Module
 
@@ -209,18 +209,18 @@ Which phases cover which requirements. Updated during roadmap creation.
 | AI-06 | Phase 2 | Complete |
 | AI-07 | Phase 2 | Complete |
 | AI-08 | Phase 2 | Complete |
-| FIN-01 | Phase 3 | Pending |
-| FIN-02 | Phase 3 | Pending |
-| FIN-03 | Phase 3 | Pending |
-| FIN-04 | Phase 3 | Pending |
-| FIN-05 | Phase 3 | Pending |
+| FIN-01 | Phase 3 | Complete |
+| FIN-02 | Phase 3 | Complete |
+| FIN-03 | Phase 3 | Complete |
+| FIN-04 | Phase 3 | Complete |
+| FIN-05 | Phase 3 | Complete |
 | FIN-06 | Phase 3 | Pending |
 | FIN-07 | Phase 3 | Pending |
-| FIN-08 | Phase 3 | Pending |
+| FIN-08 | Phase 3 | Complete |
 | FIN-09 | Phase 3 | Pending |
-| FIN-10 | Phase 3 | Pending |
-| FIN-11 | Phase 3 | Pending |
-| FIN-12 | Phase 3 | Pending |
+| FIN-10 | Phase 3 | Complete |
+| FIN-11 | Phase 3 | Complete |
+| FIN-12 | Phase 3 | Complete |
 | HAB-01 | Phase 4 | Pending |
 | HAB-02 | Phase 4 | Pending |
 | HAB-03 | Phase 4 | Pending |
