@@ -3,6 +3,7 @@ export * from './circuit-breaker.service';
 export * from './prompt-cache.service';
 export * from './token-budget.service';
 export * from './usage-logging.service';
+export * from './task-type-matrix';
 export * from './types';
 export * from './providers/base.provider';
 export * from './providers/groq.provider';
