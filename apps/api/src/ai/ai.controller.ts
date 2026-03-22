@@ -1,10 +1,43 @@
-import { Controller, Get, Query } from '@nestjs/common';
-import { UsageLoggingService, UsageQueryOptions } from '@pms/shared-kernel';
+import { Controller, Get, Post, Query, Body } from '@nestjs/common';
+import { UsageLoggingService, UsageQueryOptions, AiGatewayService } from '@pms/shared-kernel';
+import { AiRequest, AiRequestSchema } from '@pms/shared-types';
+import { ZodValidationPipe } from '@pms/shared-kernel';
 import { Public } from '@pms/feature-auth';
 
 @Controller('api/v1/ai')
 export class AiController {
-  constructor(private readonly usageLogging: UsageLoggingService) {}
+  constructor(
+    private readonly usageLogging: UsageLoggingService,
+    private readonly aiGateway: AiGatewayService,
+  ) {}
+
+  /**
+   * Execute an AI task
+   */
+  @Public()
+  @Post('execute')
+  async execute(
+    @Body(new ZodValidationPipe(AiRequestSchema)) request: AiRequest,
+  ) {
+    const response = await this.aiGateway.execute(request);
+
+    return {
+      success: response.success,
+      data: {
+        content: response.content,
+        result: response.result,
+        provider: response.provider,
+        model: response.model,
+        tokens: {
+          input: response.inputTokens,
+          output: response.outputTokens,
+        },
+        latencyMs: response.latencyMs,
+        cached: response.cached,
+      },
+      error: response.error,
+    };
+  }
 
   /**
    * Get usage logs with optional filtering
