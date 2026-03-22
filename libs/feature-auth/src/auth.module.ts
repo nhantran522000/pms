@@ -9,6 +9,8 @@ import { JwtStrategy } from './presentation/strategies/jwt.strategy';
 import { JwtAuthGuard } from './presentation/guards/jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { PrismaModule } from '@pms/data-access';
+import { UserRepository } from './infrastructure/repositories/user.repository';
+import { TenantRepository } from './infrastructure/repositories/tenant.repository';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { PrismaModule } from '@pms/data-access';
   controllers: [AuthController],
   providers: [
     AuthService,
+    UserRepository,
+    TenantRepository,
     EmailService,
     JwtStrategy,
     {
