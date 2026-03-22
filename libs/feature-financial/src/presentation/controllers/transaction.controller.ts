@@ -9,12 +9,15 @@ import {
   Query,
 } from '@nestjs/common';
 import { TransactionService } from '../../application/services/transaction.service';
+import { AiCategorizationService } from '../../application/services/ai-categorization.service';
 import { ZodValidationPipe } from '@pms/shared-kernel';
 import {
   CreateTransactionSchema,
   CreateTransactionDto,
   UpdateTransactionSchema,
   UpdateTransactionDto,
+  CategorizeTransactionSchema,
+  CategorizeTransactionDto,
 } from '@pms/shared-types';
 import { z } from 'zod';
 
@@ -30,7 +33,10 @@ const DateQuerySchema = z.object({
 
 @Controller('transactions')
 export class TransactionController {
-  constructor(private readonly transactionService: TransactionService) {}
+  constructor(
+    private readonly transactionService: TransactionService,
+    private readonly aiCategorizationService: AiCategorizationService,
+  ) {}
 
   @Post()
   async create(
@@ -127,6 +133,54 @@ export class TransactionController {
     return {
       success: true,
       data: transaction.toJSON(),
+    };
+  }
+
+  @Post('categorize')
+  async categorize(
+    @Body(new ZodValidationPipe(CategorizeTransactionSchema)) dto: CategorizeTransactionDto,
+  ) {
+    const suggestion = await this.aiCategorizationService.categorize(dto);
+    return {
+      success: true,
+      data: suggestion,
+    };
+  }
+
+  @Post(':id/suggest-category')
+  async suggestCategory(@Param('id') id: string) {
+    // Get transaction details
+    const transaction = await this.transactionService.findById(id);
+
+    const suggestion = await this.aiCategorizationService.categorize({
+      payee: transaction.payee ?? undefined,
+      description: transaction.description ?? undefined,
+      type: transaction.type,
+    });
+
+    return {
+      success: true,
+      data: {
+        transactionId: id,
+        ...suggestion,
+      },
+    };
+  }
+
+  @Post('batch-categorize')
+  async batchCategorize(
+    @Body() body: { transactions: Array<{ id: string; payee?: string; description?: string; type?: 'income' | 'expense' }> },
+  ) {
+    const results = await this.aiCategorizationService.batchCategorize(body.transactions);
+
+    const data = Array.from(results.entries()).map(([id, suggestion]) => ({
+      transactionId: id,
+      ...suggestion,
+    }));
+
+    return {
+      success: true,
+      data,
     };
   }
 }
