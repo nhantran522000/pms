@@ -1,5 +1,17 @@
 {
   "name": "feature-auth",
   "tags": ["type:lib", "domain:auth", "layer:domain", "layer:application", "layer:infrastructure", "layer:presentation"],
-  "sourceRoot": "libs/feature-auth/src"
+  "sourceRoot": "libs/feature-auth/src",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/feature-auth",
+        "main": "libs/feature-auth/src/index.ts",
+        "tsConfig": "libs/feature-auth/tsconfig.lib.json",
+        "assets": []
+      }
+    }
+  }
 }
