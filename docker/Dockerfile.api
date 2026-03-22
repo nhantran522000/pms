@@ -21,7 +21,6 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 
 # Copy dependencies from deps stage
 COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/.pnpm-store ./.pnpm-store 2>/dev/null || true
 
 # Copy source files
 COPY . .
