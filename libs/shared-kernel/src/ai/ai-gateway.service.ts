@@ -4,10 +4,17 @@ import { GroqProvider } from './providers/groq.provider';
 import { GeminiProvider } from './providers/gemini.provider';
 import { AiProviderInterface } from './types';
 import { UsageLoggingService } from './usage-logging.service';
-import { AiRequest, AiResponse, AiProvider } from '@pms/shared-types';
+import { AiRequest, AiResponse, AiProvider, AiResponseWithResult, TaskResult } from '@pms/shared-types';
 import { getTenantId } from '@pms/data-access';
 import { PromptCacheService } from './prompt-cache.service';
 import { TokenBudgetService } from './token-budget.service';
+import { CircuitBreakerService } from './circuit-breaker.service';
+import { CircuitBreakerState } from './types';
+import {
+  enhancePrompt,
+  parseResponse,
+  getModelParams,
+} from './task-type-matrix';
 
 /**
  * AI Gateway Service
@@ -26,6 +33,7 @@ export class AiGatewayService {
     private readonly promptCache: PromptCacheService,
     private readonly tokenBudget: TokenBudgetService,
     private readonly usageLogging: UsageLoggingService,
+    private readonly circuitBreaker: CircuitBreakerService,
   ) {
     this.providers = new Map([
       ['groq', groqProvider],
@@ -37,7 +45,7 @@ export class AiGatewayService {
    * Execute AI request with automatic provider selection and fallback
    * Tries providers in priority order (groq -> gemini) until one succeeds
    */
-  async execute(request: AiRequest): Promise<AiResponse> {
+  async execute(request: AiRequest): Promise<AiResponseWithResult> {
     const tenantId = getTenantId();
     this.logger.debug(`AI request from tenant ${tenantId}: ${request.taskType}`);
 
@@ -45,11 +53,12 @@ export class AiGatewayService {
     const cachedResponse = await this.promptCache.get(request.prompt, request.taskType);
     if (cachedResponse) {
       this.logger.log(`Cache hit for ${request.taskType}`);
-      return cachedResponse;
+      return cachedResponse as AiResponseWithResult;
     }
 
     // STEP 2: Check token budget
-    const hasBudget = await this.tokenBudget.hasBudget(1000); // Estimate ~1000 tokens
+    const modelParams = getModelParams(request);
+    const hasBudget = await this.tokenBudget.hasBudget(modelParams.maxTokens);
     if (!hasBudget) {
       const usage = await this.tokenBudget.getCurrentUsage();
       this.logger.error(`Tenant ${tenantId} over budget: ${usage.percentUsed}%`);
@@ -61,11 +70,22 @@ export class AiGatewayService {
         inputTokens: 0,
         outputTokens: 0,
         latencyMs: 0,
-        error: `Token budget exceeded. Used ${usage.used} of ${usage.quota} tokens (${usage.percentUsed}%).`,
+        error: `Token budget exceeded. Used ${usage.used} of ${usage.quota} tokens.`,
       };
     }
 
-    // STEP 3: Try providers in priority order
+    // STEP 3: Enhance prompt with task-specific formatting
+    const enhancedPrompt = enhancePrompt(request);
+
+    // Create enhanced request for providers
+    const enhancedRequest: AiRequest = {
+      ...request,
+      prompt: enhancedPrompt,
+      maxTokens: modelParams.maxTokens,
+      temperature: modelParams.temperature,
+    };
+
+    // STEP 4: Try providers in priority order
     for (const providerName of this.providerPriority) {
       const provider = this.providers.get(providerName);
 
@@ -88,22 +108,31 @@ export class AiGatewayService {
       }
 
       // Execute request
-      const response = await provider.execute(request);
+      const response = await provider.execute(enhancedRequest);
 
       if (response.success) {
-        // STEP 4: Cache successful response
-        await this.promptCache.set(request.prompt, request.taskType, response);
+        // Parse response into typed result
+        const result = parseResponse(request.taskType, response.content);
 
-        // STEP 5: Log usage
-        await this.logUsage(request, response);
+        // Create enhanced response with result
+        const enhancedResponse: AiResponseWithResult = {
+          ...response,
+          result,
+        };
+
+        // Cache successful response
+        await this.promptCache.set(request.prompt, request.taskType, enhancedResponse);
+
+        // Log usage
+        await this.logUsage(request, enhancedResponse);
 
         // Check budget alert
         await this.tokenBudget.checkAndAlert();
 
         this.logger.log(
-          `AI request completed: provider=${providerName}, model=${response.model}, tokens=${response.inputTokens + response.outputTokens}, latency=${response.latencyMs}ms`
+          `AI request completed: provider=${providerName}, task=${request.taskType}, tokens=${enhancedResponse.inputTokens + enhancedResponse.outputTokens}`
         );
-        return response;
+        return enhancedResponse;
       }
 
       // Log failure and try next provider
