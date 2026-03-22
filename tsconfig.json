@@ -5,6 +5,12 @@
   "references": [
     {
       "path": "./libs/shared-kernel"
+    },
+    {
+      "path": "./libs/shared-types"
+    },
+    {
+      "path": "./libs/data-access"
     }
   ]
 }

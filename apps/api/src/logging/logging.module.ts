@@ -23,9 +23,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
                   },
                 }
               : undefined,
-            genReqId: (req) => (req as any).correlationId,
+            genReqId: (req: any) => req.correlationId,
             serializers: {
-              req: (req) => ({
+              req: (req: any) => ({
                 id: req.id,
                 method: req.method,
                 url: req.url,
@@ -35,7 +35,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
                   'content-type': req.headers['content-type'],
                 },
               }),
-              res: (res) => ({
+              res: (res: any) => ({
                 statusCode: res.statusCode,
               }),
             },

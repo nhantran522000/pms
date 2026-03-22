@@ -1,0 +1,45 @@
+{
+    "mcpServers": {
+        "gitnexus": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "gitnexus@latest",
+                "mcp"
+            ]
+        },
+        "next-devtools": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "next-devtools-mcp@latest"
+            ]
+        },
+        "shadcn": {
+            "command": "npx",
+            "args": [
+                "shadcn@latest",
+                "mcp"
+            ]
+        },
+        "tailwindcss-server": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "tailwindcss-mcp-server"
+            ]
+        },
+        "zustand Docs": {
+            "url": "https://gitmcp.io/pmndrs/zustand"
+        },
+        "nx Docs": {
+            "url": "https://gitmcp.io/nrwl/nx"
+        },
+        "Prisma-Remote": {
+            "url": "https://mcp.prisma.io/mcp"
+        },
+        "nest Docs": {
+            "url": "https://gitmcp.io/nestjs/nest"
+        }
+    }
+}
