@@ -34,7 +34,7 @@
 - [ ] **AI-05**: Task type matrix (CLASSIFY, LABEL, SUMMARIZE, ANALYZE, EXTRACT, CHAT)
 - [ ] **AI-06**: Prompt caching with 24h TTL in ai_prompt_cache table
 - [ ] **AI-07**: Per-tenant token quota tracking in ai_usage_logs table
-- [ ] **AI-08**: All AI calls logged with provider, model, tokens, latency
+- [x] **AI-08**: All AI calls logged with provider, model, tokens, latency
 
 ### Financial Module
 
@@ -208,7 +208,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | AI-05 | Phase 2 | Pending |
 | AI-06 | Phase 2 | Pending |
 | AI-07 | Phase 2 | Pending |
-| AI-08 | Phase 2 | Pending |
+| AI-08 | Phase 2 | Complete |
 | FIN-01 | Phase 3 | Pending |
 | FIN-02 | Phase 3 | Pending |
 | FIN-03 | Phase 3 | Pending |
