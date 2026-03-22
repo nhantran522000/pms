@@ -1,5 +1,5 @@
-import { Controller, Post, Body, Get, UseGuards, Res, Req, HttpStatus } from '@nestjs/common';
-import { Response } from 'express';
+import { Controller, Post, Body, Get, UseGuards, Res, HttpStatus } from '@nestjs/common';
+import { FastifyReply } from 'fastify';
 import { AuthService } from '../../application/auth.service';
 import { ZodValidationPipe } from '@pms/shared-kernel';
 import { SignupDto, signupSchema, LoginDto, loginSchema, VerifyEmailDto, verifyEmailSchema, ForgotPasswordDto, forgotPasswordSchema, ResetPasswordDto, resetPasswordSchema } from '@pms/shared-types';
@@ -14,12 +14,12 @@ export class AuthController {
   @Post('signup')
   async signup(
     @Body(new ZodValidationPipe(signupSchema)) dto: SignupDto,
-    @Res({ passthrough: true }) res: Response,
+    @Res() res: FastifyReply,
   ) {
     const authResponse = await this.authService.signup(dto);
 
     // Set httpOnly cookie
-    res.cookie('jwt', authResponse.accessToken, {
+    res.setCookie('jwt', authResponse.accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
@@ -27,7 +27,7 @@ export class AuthController {
       path: '/',
     });
 
-    res.status(HttpStatus.CREATED).json({
+    return res.status(HttpStatus.CREATED).send({
       success: true,
       data: authResponse,
     });
@@ -37,12 +37,12 @@ export class AuthController {
   @Post('login')
   async login(
     @Body(new ZodValidationPipe(loginSchema)) dto: LoginDto,
-    @Res({ passthrough: true }) res: Response,
+    @Res() res: FastifyReply,
   ) {
     const authResponse = await this.authService.login(dto);
 
     // Set httpOnly cookie
-    res.cookie('jwt', authResponse.accessToken, {
+    res.setCookie('jwt', authResponse.accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
@@ -50,7 +50,7 @@ export class AuthController {
       path: '/',
     });
 
-    res.status(HttpStatus.OK).json({
+    return res.status(HttpStatus.OK).send({
       success: true,
       data: authResponse,
     });
@@ -58,7 +58,7 @@ export class AuthController {
 
   @Post('logout')
   @UseGuards(JwtAuthGuard)
-  async logout(@Res({ passthrough: true }) res: Response) {
+  async logout(@Res() res: FastifyReply) {
     // Clear jwt cookie
     res.clearCookie('jwt', {
       httpOnly: true,
@@ -67,7 +67,7 @@ export class AuthController {
       path: '/',
     });
 
-    res.status(HttpStatus.OK).json({
+    return res.status(HttpStatus.OK).send({
       success: true,
       data: { message: 'Logged out successfully' },
     });
