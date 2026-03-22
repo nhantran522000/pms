@@ -23,7 +23,8 @@
     "paths": {
       "@pms/shared-kernel": ["libs/shared-kernel/src/index.ts"],
       "@pms/shared-types": ["libs/shared-types/src/index.ts"],
-      "@pms/data-access": ["libs/data-access/src/index.ts"]
+      "@pms/data-access": ["libs/data-access/src/index.ts"],
+      "@pms/feature-auth": ["libs/feature-auth/src/index.ts"]
     }
   }
 }
