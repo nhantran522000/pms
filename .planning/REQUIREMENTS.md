@@ -46,7 +46,7 @@
 - [ ] **FIN-06**: User can filter transactions by date range, category, account
 - [x] **FIN-07**: System auto-categorizes transactions using AI from payee/description
 - [x] **FIN-08**: User can create envelope budgets allocating income to categories
-- [ ] **FIN-09**: Envelope balances roll over to next month
+- [x] **FIN-09**: Envelope balances roll over to next month
 - [x] **FIN-10**: User can create recurring transaction rules (daily, weekly, monthly, yearly)
 - [x] **FIN-11**: System auto-creates transactions from recurring rules via pg-boss
 - [x] **FIN-12**: Recurring transactions flagged and excluded from anomaly detection
@@ -217,7 +217,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FIN-06 | Phase 3 | Pending |
 | FIN-07 | Phase 3 | Complete |
 | FIN-08 | Phase 3 | Complete |
-| FIN-09 | Phase 3 | Pending |
+| FIN-09 | Phase 3 | Complete |
 | FIN-10 | Phase 3 | Complete |
 | FIN-11 | Phase 3 | Complete |
 | FIN-12 | Phase 3 | Complete |
