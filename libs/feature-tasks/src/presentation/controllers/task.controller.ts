@@ -19,6 +19,17 @@ import {
   CreateTaskFromNLSchema,
   CreateTaskFromNLDto,
 } from '@pms/shared-types';
+import { z } from 'zod';
+
+// Task query schema for validation
+const TaskQuerySchema = z.object({
+  status: z.enum(['pending', 'completed', 'overdue']).optional(),
+  priority: z.coerce.number().int().min(1).max(4).optional(),
+  tags: z.string().optional(),
+  rootOnly: z.enum(['true', 'false']).optional(),
+  sortBy: z.enum(['dueDate', 'priority', 'createdAt', 'title']).optional(),
+  sortOrder: z.enum(['asc', 'desc']).optional(),
+});
 
 @Controller('tasks')
 export class TaskController {
@@ -41,12 +52,16 @@ export class TaskController {
     priority?: string;
     tags?: string;
     rootOnly?: string;
+    sortBy?: 'dueDate' | 'priority' | 'createdAt' | 'title';
+    sortOrder?: 'asc' | 'desc';
   }) {
     const tasks = await this.taskService.findAll({
       status: query.status,
       priority: query.priority ? parseInt(query.priority, 10) : undefined,
       tags: query.tags?.split(',').filter(Boolean),
       rootOnly: query.rootOnly === 'true',
+      sortBy: query.sortBy ?? 'createdAt',
+      sortOrder: query.sortOrder ?? 'desc',
     });
     return { success: true, data: tasks.map(t => t.toJSON()) };
   }
