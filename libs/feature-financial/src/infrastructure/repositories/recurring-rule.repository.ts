@@ -20,6 +20,7 @@ export interface CreateRecurringRuleInput {
   startDate: Date;
   endDate: Date | null;
   nextRunAt: Date;
+  isActive?: boolean;
 }
 
 @Injectable()

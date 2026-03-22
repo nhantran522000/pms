@@ -1,6 +1,6 @@
 import { Injectable, Logger, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import PgBoss from 'pg-boss';
+import { PgBoss, Job } from 'pg-boss';
 import { RecurringTransactionService } from '../../application/services/recurring-transaction.service';
 
 export const RECURRING_TRANSACTION_JOB = 'recurring-transaction-process';
@@ -45,7 +45,7 @@ export class RecurringTransactionJob implements OnModuleInit, OnModuleDestroy {
       this.logger.log('pg-boss started successfully');
 
       // Register the job handler
-      await this.boss.work(RECURRING_TRANSACTION_JOB, async (job: PgBoss.Job) => {
+      await this.boss.work(RECURRING_TRANSACTION_JOB, async (job: Job) => {
         this.logger.log(`Processing job: ${job.id}`);
         return this.handleJob(job);
       });
@@ -75,7 +75,7 @@ export class RecurringTransactionJob implements OnModuleInit, OnModuleDestroy {
   /**
    * Handle the recurring transaction processing job
    */
-  private async handleJob(job: PgBoss.Job): Promise<void> {
+  private async handleJob(job: Job): Promise<void> {
     this.logger.log('Starting recurring transaction processing');
 
     try {
