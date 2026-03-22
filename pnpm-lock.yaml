@@ -47,6 +47,9 @@ importers:
       class-validator:
         specifier: ^0.15.1
         version: 0.15.1
+      cron-parser:
+        specifier: ^5.5.0
+        version: 5.5.0
       decimal.js:
         specifier: ^10.6.0
         version: 10.6.0
