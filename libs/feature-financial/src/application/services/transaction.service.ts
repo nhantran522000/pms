@@ -108,11 +108,14 @@ export class TransactionService {
     }
     const transactions = await this.transactionRepository.findWithRelations(tenantId, options);
 
-    return transactions.map((t) => ({
-      ...t.toJSON(),
-      account: t.account,
-      category: t.category,
-    }));
+    return transactions.map((t) => {
+      const json = t.toJSON() as TransactionWithRelations;
+      return {
+        ...json,
+        account: t.account,
+        category: t.category,
+      };
+    });
   }
 
   async update(id: string, dto: UpdateTransactionDto): Promise<TransactionEntity> {
