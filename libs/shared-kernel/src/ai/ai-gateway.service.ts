@@ -25,7 +25,7 @@ export class AiGatewayService {
     private readonly configService: ConfigService,
     private readonly promptCache: PromptCacheService,
     private readonly tokenBudget: TokenBudgetService,
-    private readonly prisma: PrismaService,
+    private readonly usageLogging: UsageLoggingService,
   ) {
     this.providers = new Map([
       ['groq', groqProvider],
@@ -157,22 +157,16 @@ export class AiGatewayService {
    * Log AI usage to database
    */
   private async logUsage(request: AiRequest, response: AiResponse): Promise<void> {
-    const tenantId = getTenantId();
-    if (!tenantId) return;
-
     try {
-      await this.prisma.aiUsageLog.create({
-        data: {
-          tenantId,
-          provider: response.provider,
-          model: response.model,
-          taskType: request.taskType,
-          inputTokens: response.inputTokens,
-          outputTokens: response.outputTokens,
-          latencyMs: response.latencyMs,
-          success: response.success,
-          errorMessage: response.error,
-        },
+      await this.usageLogging.log({
+        provider: response.provider,
+        model: response.model,
+        taskType: request.taskType,
+        inputTokens: response.inputTokens,
+        outputTokens: response.outputTokens,
+        latencyMs: response.latencyMs,
+        success: response.success,
+        errorMessage: response.error,
       });
     } catch (error) {
       this.logger.error(`Failed to log usage: ${error}`);
