@@ -11,6 +11,12 @@
     },
     {
       "path": "./libs/data-access"
+    },
+    {
+      "path": "./libs/feature-auth"
+    },
+    {
+      "path": "./apps/api"
     }
   ]
 }
