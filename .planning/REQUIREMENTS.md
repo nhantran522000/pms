@@ -18,11 +18,11 @@
 
 ### Authentication
 
-- [ ] **AUTH-01**: User can sign up with email and password
+- [x] **AUTH-01**: User can sign up with email and password
 - [ ] **AUTH-02**: User receives email verification after signup
 - [ ] **AUTH-03**: User can reset password via email link
-- [ ] **AUTH-04**: User session persists across browser refresh (JWT + httpOnly cookies)
-- [ ] **AUTH-05**: User can log out from any page
+- [x] **AUTH-04**: User session persists across browser refresh (JWT + httpOnly cookies)
+- [x] **AUTH-05**: User can log out from any page
 - [x] **AUTH-06**: Tenant context injected via AsyncLocalStorage for RLS
 
 ### AI Gateway
@@ -195,11 +195,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INFRA-06 | Phase 1 | Complete |
 | INFRA-07 | Phase 1 | Complete |
 | INFRA-08 | Phase 1 | Complete |
-| AUTH-01 | Phase 1 | Pending |
+| AUTH-01 | Phase 1 | Complete |
 | AUTH-02 | Phase 1 | Pending |
 | AUTH-03 | Phase 1 | Pending |
-| AUTH-04 | Phase 1 | Pending |
-| AUTH-05 | Phase 1 | Pending |
+| AUTH-04 | Phase 1 | Complete |
+| AUTH-05 | Phase 1 | Complete |
 | AUTH-06 | Phase 1 | Complete |
 | AI-01 | Phase 2 | Pending |
 | AI-02 | Phase 2 | Pending |
