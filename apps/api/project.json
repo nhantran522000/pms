@@ -1,0 +1,5 @@
+{
+  "name": "api",
+  "tags": ["type:app", "layer:backend"],
+  "sourceRoot": "apps/api/src"
+}
