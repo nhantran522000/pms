@@ -149,4 +149,37 @@ export class HabitCompletionRepository {
 
     return completions.map((c) => HabitCompletionEntity.fromPrisma(c));
   }
+
+  /**
+   * Find completions for multiple habits within a date range
+   */
+  async findByHabitAndDateRange(
+    tenantId: string,
+    habitIds: string[],
+    startDate: Date,
+    endDate: Date,
+  ): Promise<HabitCompletionEntity[]> {
+    if (habitIds.length === 0) {
+      return [];
+    }
+
+    const startOfDay = new Date(startDate);
+    startOfDay.setHours(0, 0, 0, 0);
+    const endOfDay = new Date(endDate);
+    endOfDay.setHours(23, 59, 59, 999);
+
+    const completions = await this.prisma.habitCompletion.findMany({
+      where: {
+        tenantId,
+        habitId: { in: habitIds },
+        date: {
+          gte: startOfDay,
+          lte: endOfDay,
+        },
+      },
+      orderBy: { date: 'asc' },
+    });
+
+    return completions.map((c) => HabitCompletionEntity.fromPrisma(c));
+  }
 }
