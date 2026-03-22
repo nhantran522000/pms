@@ -94,6 +94,12 @@ export class AiGatewayService {
         continue;
       }
 
+      // CHECK: Is provider blocked by circuit breaker?
+      if (this.circuitBreaker.isBlocked(providerName)) {
+        this.logger.debug(`Provider ${providerName} is blocked by circuit breaker. Skipping...`);
+        continue;
+      }
+
       // Check if provider supports this task type
       if (!provider.supportedTaskTypes.includes(request.taskType)) {
         this.logger.debug(`Provider ${providerName} does not support ${request.taskType}`);
@@ -111,6 +117,9 @@ export class AiGatewayService {
       const response = await provider.execute(enhancedRequest);
 
       if (response.success) {
+        // Record success to reset failure count
+        this.circuitBreaker.recordSuccess(providerName);
+
         // Parse response into typed result
         const result = parseResponse(request.taskType, response.content);
 
@@ -135,9 +144,12 @@ export class AiGatewayService {
         return enhancedResponse;
       }
 
+      // Record failure and potentially block provider
+      const shouldRotate = this.circuitBreaker.recordFailure(providerName, response.error || 'Unknown error');
+
       // Log failure and try next provider
       this.logger.warn(
-        `Provider ${providerName} failed: ${response.error}. Trying next provider...`
+        `Provider ${providerName} failed: ${response.error}.${shouldRotate ? ' Rotating to next provider...' : ''}`
       );
     }
 
@@ -180,6 +192,13 @@ export class AiGatewayService {
     }
 
     return available;
+  }
+
+  /**
+   * Get circuit breaker status for monitoring
+   */
+  getCircuitBreakerStatus(): Map<AiProvider, CircuitBreakerState> {
+    return this.circuitBreaker.getProviderStates();
   }
 
   /**
