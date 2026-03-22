@@ -72,8 +72,8 @@
 - [x] **TASK-04**: User can create subtasks under parent tasks
 - [x] **TASK-05**: User can create tasks via natural language ("Buy milk tomorrow 5pm #errands")
 - [x] **TASK-06**: System parses title, due date, and tags from natural language input
-- [ ] **TASK-07**: User can filter tasks by status (pending, completed, overdue)
-- [ ] **TASK-08**: User can sort tasks by due date, priority, creation date
+- [x] **TASK-07**: User can filter tasks by status (pending, completed, overdue)
+- [x] **TASK-08**: User can sort tasks by due date, priority, creation date
 
 ### Health Module
 
@@ -237,8 +237,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | TASK-04 | Phase 4 | Complete |
 | TASK-05 | Phase 4 | Complete |
 | TASK-06 | Phase 4 | Complete |
-| TASK-07 | Phase 4 | Pending |
-| TASK-08 | Phase 4 | Pending |
+| TASK-07 | Phase 4 | Complete |
+| TASK-08 | Phase 4 | Complete |
 | HLTH-01 | Phase 5 | Pending |
 | HLTH-02 | Phase 5 | Pending |
 | HLTH-03 | Phase 5 | Pending |

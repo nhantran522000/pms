@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 04-habits-tasks-05-PLAN.md
-last_updated: "2026-03-22T19:00:34.568Z"
+stopped_at: Completed 04-06 Task Filtering and Sorting
+last_updated: "2026-03-22T19:04:41.760Z"
 progress:
   total_phases: 12
   completed_phases: 2
   total_plans: 19
-  completed_plans: 23
+  completed_plans: 24
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-21)
 ## Current Position
 
 Phase: 04 (Habits & Tasks) — EXECUTING
-Plan: 4 of 7
+Plan: 5 of 7
 
 ## Performance Metrics
 
@@ -70,6 +70,7 @@ Plan: 4 of 7
 | Phase 04 P01 | 9min | 7 tasks | 24 files |
 | Phase 04-habits-tasks P04 | 12min | 7 tasks | 18 files |
 | Phase 04-habits-tasks P05 | 5min | 4 tasks | 4 files |
+| Phase 04 P06 | 9min | 4 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -132,6 +133,7 @@ Recent decisions affecting current work:
 - [Phase 04-habits-tasks]: Overdue detection uses start of today for comparison (not current time)
 - [Phase 04-habits-tasks]: Use AI Gateway EXTRACT task type with fallback to regex patterns for NL task parsing
 - [Phase 04-habits-tasks]: Extract hashtags with regex before AI parsing for reliable tag extraction
+- [Phase 04]: Task sorting default is createdAt desc; dueDate sorting uses nulls: 'last' to push tasks without deadlines to the end
 
 ### Pending Todos
 
@@ -143,6 +145,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-22T19:00:34.565Z
-Stopped at: Completed 04-habits-tasks-05-PLAN.md
+Last session: 2026-03-22T19:04:41.757Z
+Stopped at: Completed 04-06 Task Filtering and Sorting
 Resume file: None

@@ -106,7 +106,7 @@ Plans:
 - [ ] 04-03: RPG gamification (XP, levels, achievements) and dashboard display
 - [x] 04-04: Tasks domain module with CRUD, subtasks, and overdue highlighting
 - [x] 04-05: Natural language task parsing (title, due date, tags extraction)
-- [ ] 04-06: Task filtering by status and sorting by due date/priority/creation date
+- [x] 04-06: Task filtering by status and sorting by due date/priority/creation date
 - [ ] 04-07: Habit calendar with completion history visualization
 
 ### Phase 5: Health Module
