@@ -1,5 +1,7 @@
 // Data access layer - Prisma client, tenant context, repositories
-// Prisma schema location: libs/data-access/prisma/schema.prisma
-// Tenant context: libs/data-access/tenant-context/src/
+
+// Re-export Prisma from the prisma subdirectory
+export { PrismaService, PrismaModule } from '../prisma/src';
+export * from './generated';
 
 export const DATA_ACCESS_VERSION = '1.0.0';
