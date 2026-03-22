@@ -44,7 +44,7 @@
 - [x] **FIN-04**: User can create multiple accounts (checking, savings, cash, credit)
 - [x] **FIN-05**: User can view account balances with running totals
 - [ ] **FIN-06**: User can filter transactions by date range, category, account
-- [ ] **FIN-07**: System auto-categorizes transactions using AI from payee/description
+- [x] **FIN-07**: System auto-categorizes transactions using AI from payee/description
 - [x] **FIN-08**: User can create envelope budgets allocating income to categories
 - [ ] **FIN-09**: Envelope balances roll over to next month
 - [x] **FIN-10**: User can create recurring transaction rules (daily, weekly, monthly, yearly)
@@ -215,7 +215,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FIN-04 | Phase 3 | Complete |
 | FIN-05 | Phase 3 | Complete |
 | FIN-06 | Phase 3 | Pending |
-| FIN-07 | Phase 3 | Pending |
+| FIN-07 | Phase 3 | Complete |
 | FIN-08 | Phase 3 | Complete |
 | FIN-09 | Phase 3 | Pending |
 | FIN-10 | Phase 3 | Complete |
