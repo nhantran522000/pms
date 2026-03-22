@@ -1,0 +1,18 @@
+{
+  "name": "feature-financial",
+  "tags": ["type:lib", "domain:financial", "layer:domain", "layer:application", "layer:infrastructure", "layer:presentation"],
+  "sourceRoot": "libs/feature-financial/src",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/feature-financial",
+        "main": "libs/feature-financial/src/index.ts",
+        "tsConfig": "libs/feature-financial/tsconfig.lib.json",
+        "assets": [],
+        "skipTypeCheck": true
+      }
+    }
+  }
+}
