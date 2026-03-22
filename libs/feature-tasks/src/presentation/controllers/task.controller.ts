@@ -9,17 +9,23 @@ import {
   Query,
 } from '@nestjs/common';
 import { TaskService } from '../../application/services/task.service';
+import { TaskParsingService } from '../../application/services/task-parsing.service';
 import { ZodValidationPipe } from '@pms/shared-kernel';
 import {
   CreateTaskSchema,
   CreateTaskDto,
   UpdateTaskSchema,
   UpdateTaskDto,
+  CreateTaskFromNLSchema,
+  CreateTaskFromNLDto,
 } from '@pms/shared-types';
 
 @Controller('tasks')
 export class TaskController {
-  constructor(private readonly taskService: TaskService) {}
+  constructor(
+    private readonly taskService: TaskService,
+    private readonly taskParsingService: TaskParsingService,
+  ) {}
 
   @Post()
   async create(
@@ -55,6 +61,22 @@ export class TaskController {
   async getOverdue() {
     const tasks = await this.taskService.findAll({ status: 'overdue' });
     return { success: true, data: tasks.map(t => t.toJSON()) };
+  }
+
+  @Post('parse')
+  async parseAndCreate(
+    @Body(new ZodValidationPipe(CreateTaskFromNLSchema)) dto: CreateTaskFromNLDto,
+  ) {
+    const result = await this.taskParsingService.parseAndCreate(dto);
+    return { success: true, data: result };
+  }
+
+  @Post('parse/preview')
+  async parsePreview(
+    @Body(new ZodValidationPipe(CreateTaskFromNLSchema)) dto: CreateTaskFromNLDto,
+  ) {
+    const result = await this.taskParsingService.preview(dto);
+    return { success: true, data: result };
   }
 
   @Get(':id')
