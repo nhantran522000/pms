@@ -1,5 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { getTenantId } from '@pms/data-access/tenant-context';
+import { getTenantId } from '@pms/data-access';
 
 /**
  * Decorator to extract tenant ID from AsyncLocalStorage
