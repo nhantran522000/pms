@@ -4,3 +4,4 @@ export * from './auth';
 export * from './ai';
 export * from './financial';
 export * from './habits';
+export * from './tasks';
