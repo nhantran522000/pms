@@ -95,3 +95,67 @@ export const CategoryTreeSchema: z.ZodType<CategoryTree> = z.lazy(() =>
     children: z.array(CategoryTreeSchema).optional(),
   })
 );
+
+// ============================================
+// Transaction types
+// ============================================
+export const TransactionTypeSchema = z.enum(['income', 'expense']);
+export type TransactionType = z.infer<typeof TransactionTypeSchema>;
+
+// Create Transaction
+export const CreateTransactionSchema = z.object({
+  accountId: z.string().cuid(),
+  categoryId: z.string().cuid().optional().nullable(),
+  amount: z.string().regex(/^\d+(\.\d{1,2})?$/),
+  type: TransactionTypeSchema,
+  payee: z.string().max(200).optional(),
+  description: z.string().max(1000).optional(),
+  date: z.string().datetime().or(z.date()),
+});
+export type CreateTransactionDto = z.infer<typeof CreateTransactionSchema>;
+
+// Update Transaction
+export const UpdateTransactionSchema = z.object({
+  accountId: z.string().cuid().optional(),
+  categoryId: z.string().cuid().nullable().optional(),
+  amount: z.string().regex(/^\d+(\.\d{1,2})?$/).optional(),
+  type: TransactionTypeSchema.optional(),
+  payee: z.string().max(200).optional(),
+  description: z.string().max(1000).optional(),
+  date: z.string().datetime().or(z.date()).optional(),
+});
+export type UpdateTransactionDto = z.infer<typeof UpdateTransactionSchema>;
+
+// Transaction response
+export const TransactionResponseSchema = z.object({
+  id: z.string(),
+  tenantId: z.string(),
+  accountId: z.string(),
+  categoryId: z.string().nullable(),
+  amount: z.string(),
+  type: TransactionTypeSchema,
+  payee: z.string().nullable(),
+  description: z.string().nullable(),
+  date: z.date(),
+  isRecurring: z.boolean(),
+  recurringRuleId: z.string().nullable(),
+  isDeleted: z.boolean(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+export type TransactionResponse = z.infer<typeof TransactionResponseSchema>;
+
+// Transaction with related entities
+export const TransactionWithRelationsSchema = TransactionResponseSchema.extend({
+  account: z.object({
+    id: z.string(),
+    name: z.string(),
+    type: AccountTypeSchema,
+  }).optional(),
+  category: z.object({
+    id: z.string(),
+    name: z.string(),
+    type: CategoryTypeSchema,
+  }).nullable().optional(),
+});
+export type TransactionWithRelations = z.infer<typeof TransactionWithRelationsSchema>;
