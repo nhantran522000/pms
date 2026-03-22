@@ -63,6 +63,8 @@ export class TaskService {
     priority?: number;
     tags?: string[];
     rootOnly?: boolean;
+    sortBy?: 'dueDate' | 'priority' | 'createdAt' | 'title';
+    sortOrder?: 'asc' | 'desc';
   }): Promise<TaskEntity[]> {
     const tenantId = getTenantId();
     if (!tenantId) {
