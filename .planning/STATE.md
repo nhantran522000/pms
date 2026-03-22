@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 03-02 Category CRUD with Hierarchy
-last_updated: "2026-03-22T17:50:34.996Z"
+stopped_at: Completed 03-04 Transaction CRUD with Balance Tracking
+last_updated: "2026-03-22T17:58:16.180Z"
 progress:
   total_phases: 12
   completed_phases: 1
   total_plans: 12
-  completed_plans: 15
+  completed_plans: 16
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-21)
 ## Current Position
 
 Phase: 03 (Financial Module) — EXECUTING
-Plan: 4 of 7
+Plan: 5 of 7
 
 ## Performance Metrics
 
@@ -63,6 +63,7 @@ Plan: 4 of 7
 | Phase 03-financial-module P01 | 462s | 4 tasks | 24 files |
 | Phase 03-financial-module P03 | 5min | 4 tasks | 7 files |
 | Phase 03-financial-module P02 | 298s | 4 tasks | 5 files |
+| Phase 03-financial-module P04 | 459s | 4 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -107,6 +108,10 @@ Recent decisions affecting current work:
 - [Phase 03-financial-module]: Lazy Zod schema for CategoryTree to handle recursive type
 - [Phase 03-financial-module]: Tenant context validation in service layer with explicit error messages
 - [Phase 03-financial-module]: Parent validation in repository to ensure same-tenant hierarchy
+- [Phase 03-financial-module]: Automatic balance updates: income adds to balance, expense subtracts from balance
+- [Phase 03-financial-module]: Transaction update handles account change by reversing old account and applying to new account
+- [Phase 03-financial-module]: Transaction update handles amount/type change by applying the difference
+- [Phase 03-financial-module]: Soft delete reverses balance adjustment to maintain accurate current balance
 
 ### Pending Todos
 
@@ -118,6 +123,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-22T17:50:34.994Z
-Stopped at: Completed 03-02 Category CRUD with Hierarchy
+Last session: 2026-03-22T17:58:16.178Z
+Stopped at: Completed 03-04 Transaction CRUD with Balance Tracking
 Resume file: None

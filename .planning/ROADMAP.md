@@ -82,7 +82,7 @@ Plans:
 - [x] 03-01: Financial domain module with hexagonal architecture - Prisma schema, domain entities, Money value object
 - [x] 03-02: Category CRUD with hierarchical parent-child relationships
 - [x] 03-03: Account management with running balance totals
-- [ ] 03-04: Transaction CRUD with automatic account balance updates and soft delete
+- [x] 03-04: Transaction CRUD with automatic account balance updates and soft delete
 - [ ] 03-05: AI transaction categorization using CLASSIFY task type
 - [ ] 03-06: Envelope budgeting with income allocation and monthly rollover
 - [ ] 03-07: Recurring transaction rules with pg-boss scheduled jobs
