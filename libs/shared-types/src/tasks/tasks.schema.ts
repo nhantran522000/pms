@@ -11,6 +11,17 @@ export const PRIORITY_LABELS: Record<TaskPriority, string> = {
   4: 'Urgent',
 };
 
+// Task status enum
+export const TaskStatusSchema = z.enum(['pending', 'completed', 'overdue']);
+export type TaskStatus = z.infer<typeof TaskStatusSchema>;
+
+// Sort options
+export const TaskSortBySchema = z.enum(['dueDate', 'priority', 'createdAt', 'title']);
+export type TaskSortBy = z.infer<typeof TaskSortBySchema>;
+
+export const SortOrderSchema = z.enum(['asc', 'desc']);
+export type SortOrder = z.infer<typeof SortOrderSchema>;
+
 // Create Task
 export const CreateTaskSchema = z.object({
   title: z.string().min(1).max(200),
@@ -50,6 +61,16 @@ export const TaskResponseSchema = z.object({
   updatedAt: z.date(),
 });
 export type TaskResponse = z.infer<typeof TaskResponseSchema>;
+
+// Task list response with metadata
+export const TaskListResponseSchema = z.object({
+  tasks: z.array(TaskResponseSchema),
+  total: z.number(),
+  pending: z.number(),
+  completed: z.number(),
+  overdue: z.number(),
+});
+export type TaskListResponse = z.infer<typeof TaskListResponseSchema>;
 
 // Task with subtasks
 export const TaskWithSubtasksSchema: z.ZodType<TaskWithSubtasks> = z.lazy(() =>
