@@ -71,3 +71,19 @@ export const StreakInfoSchema = z.object({
   longestStreak: z.number(),
 });
 export type StreakInfo = z.infer<typeof StreakInfoSchema>;
+
+// Habit with completion status for daily view
+export const HabitWithCompletionSchema = HabitResponseSchema.extend({
+  completedToday: z.boolean(),
+  completionId: z.string().nullable().optional(),
+});
+export type HabitWithCompletion = z.infer<typeof HabitWithCompletionSchema>;
+
+// Today's habits response
+export const TodayHabitsResponseSchema = z.object({
+  habits: z.array(HabitWithCompletionSchema),
+  date: z.string(),
+  total: z.number(),
+  completed: z.number(),
+});
+export type TodayHabitsResponse = z.infer<typeof TodayHabitsResponseSchema>;
