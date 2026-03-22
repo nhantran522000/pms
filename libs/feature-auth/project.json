@@ -1,0 +1,5 @@
+{
+  "name": "feature-auth",
+  "tags": ["type:lib", "domain:auth", "layer:domain", "layer:application", "layer:infrastructure", "layer:presentation"],
+  "sourceRoot": "libs/feature-auth/src"
+}
