@@ -54,3 +54,100 @@ export interface AiResponseInterface {
   cached?: boolean;
   error?: string;
 }
+
+// Task-specific result types
+export interface ClassifyResult {
+  category: string;
+  confidence: number; // 0-1
+  alternatives?: Array<{ category: string; confidence: number }>;
+}
+
+export interface LabelResult {
+  labels: string[];
+  confidence: Record<string, number>;
+}
+
+export interface SummarizeResult {
+  summary: string;
+  keyPoints?: string[];
+  wordCount: number;
+}
+
+export interface AnalyzeResult {
+  insights: string[];
+  sentiment?: 'positive' | 'negative' | 'neutral';
+  themes?: string[];
+  recommendations?: string[];
+}
+
+export interface ExtractResult {
+  entities: Array<{
+    type: string;
+    value: string;
+    confidence: number;
+  }>;
+  metadata?: Record<string, unknown>;
+}
+
+export interface ChatResult {
+  response: string;
+  followUpQuestions?: string[];
+  contextUsed?: boolean;
+}
+
+// Union type for all results
+export type TaskResult =
+  | ClassifyResult
+  | LabelResult
+  | SummarizeResult
+  | AnalyzeResult
+  | ExtractResult
+  | ChatResult;
+
+// Extended AiResponse with parsed result
+export interface AiResponseWithResult extends AiResponse {
+  result?: TaskResult;
+}
+
+// Zod schemas for validation
+export const ClassifyResultSchema = z.object({
+  category: z.string(),
+  confidence: z.number().min(0).max(1),
+  alternatives: z.array(z.object({
+    category: z.string(),
+    confidence: z.number(),
+  })).optional(),
+});
+
+export const LabelResultSchema = z.object({
+  labels: z.array(z.string()),
+  confidence: z.record(z.number()),
+});
+
+export const SummarizeResultSchema = z.object({
+  summary: z.string(),
+  keyPoints: z.array(z.string()).optional(),
+  wordCount: z.number(),
+});
+
+export const AnalyzeResultSchema = z.object({
+  insights: z.array(z.string()),
+  sentiment: z.enum(['positive', 'negative', 'neutral']).optional(),
+  themes: z.array(z.string()).optional(),
+  recommendations: z.array(z.string()).optional(),
+});
+
+export const ExtractResultSchema = z.object({
+  entities: z.array(z.object({
+    type: z.string(),
+    value: z.string(),
+    confidence: z.number(),
+  })),
+  metadata: z.record(z.unknown()).optional(),
+});
+
+export const ChatResultSchema = z.object({
+  response: z.string(),
+  followUpQuestions: z.array(z.string()).optional(),
+  contextUsed: z.boolean().optional(),
+});
