@@ -4,8 +4,10 @@ import { PrismaModule } from '@pms/data-access';
 import { HabitController } from './presentation/controllers/habit.controller';
 import { HabitService } from './application/services/habit.service';
 import { HabitCompletionService } from './application/services/habit-completion.service';
+import { HabitScheduleService } from './application/services/habit-schedule.service';
 import { HabitRepository } from './infrastructure/repositories/habit.repository';
 import { HabitCompletionRepository } from './infrastructure/repositories/habit-completion.repository';
+import { CronParserService } from './infrastructure/services/cron-parser.service';
 
 @Module({
   imports: [PrismaModule, ConfigModule],
@@ -13,9 +15,11 @@ import { HabitCompletionRepository } from './infrastructure/repositories/habit-c
   providers: [
     HabitService,
     HabitCompletionService,
+    HabitScheduleService,
     HabitRepository,
     HabitCompletionRepository,
+    CronParserService,
   ],
-  exports: [HabitService, HabitCompletionService],
+  exports: [HabitService, HabitCompletionService, HabitScheduleService],
 })
 export class HabitsModule {}
