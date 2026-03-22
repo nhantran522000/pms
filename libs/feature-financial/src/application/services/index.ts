@@ -3,3 +3,4 @@ export * from './category.service';
 export * from './transaction.service';
 export * from './ai-categorization.service';
 export * from './budget.service';
+export * from './recurring-transaction.service';
