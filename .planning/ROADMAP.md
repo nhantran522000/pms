@@ -60,7 +60,7 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 02-01: AiGateway service with Groq primary and Gemini 2.0 Flash fallback
+- [x] 02-01: AiGateway service with Groq primary and Gemini 2.0 Flash fallback
 - [ ] 02-02: Circuit breaker pattern with provider rotation logic
 - [ ] 02-03: Prompt caching with 24h TTL and token budgeting per tenant
 - [ ] 02-04: AI usage logging and monitoring (provider, model, tokens, latency)
