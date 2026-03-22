@@ -57,7 +57,7 @@ Plans:
   3. Identical prompts cached for 24h in ai_prompt_cache table
   4. Per-tenant token quota tracked in ai_usage_logs with alerts at 80% capacity
   5. All AI calls logged with provider, model, tokens, latency for monitoring
-**Plans**: 5 plans
+**Plans**: 7 plans
 
 Plans:
 - [x] 02-01: AiGateway service with Groq primary and Gemini 2.0 Flash fallback
@@ -98,7 +98,7 @@ Plans:
   4. User can create tasks with title, description, due date, priority, subtasks, mark complete/incomplete
   5. User can create tasks via natural language ("Buy milk tomorrow 5pm #errands") with system parsing title, due date, tags
   6. System highlights overdue tasks and enables filtering by status (pending/completed/overdue) and sorting by due date/priority/creation date
-**Plans**: 5 plans
+**Plans**: 7 plans
 
 Plans:
 - [ ] 04-01: Habits domain module with CRUD, daily check-in, streak calculation
@@ -119,7 +119,7 @@ Plans:
   3. System generates weekly health digest via AI (correlations, trends, insights)
   4. Health digest sent via email (Resend) every Sunday
   5. Dashboard shows health metrics summary with trends (weight, vitals, sleep, workouts)
-**Plans**: 5 plans
+**Plans**: 7 plans
 
 Plans:
 - [ ] 05-01: Health domain module with weight tracking and trend charts (30/90/365 day views)
@@ -139,7 +139,7 @@ Plans:
   3. User can organize notes with folders and tags
   4. User can create journal entries with mood indicator and view mood trends over time
   5. Notes auto-save with debounce (500ms)
-**Plans**: 5 plans
+**Plans**: 7 plans
 
 Plans:
 - [ ] 06-01: Notes domain module with CRUD operations
@@ -160,7 +160,7 @@ Plans:
   3. User can view hobby progress over time with charts
   4. System generates hobby progress insights
   5. User can set hobby goals (target counter, target percentage) and view completion percentage on dashboard
-**Plans**: 5 plans
+**Plans**: 7 plans
 
 Plans:
 - [ ] 07-01: Hobbies domain module with flexible tracking types (counter, percentage, list)
@@ -180,7 +180,7 @@ Plans:
   3. LemonSqueezy webhook handles subscription events with idempotent processing
   4. PlanFeatureGuard restricts gated endpoints based on subscription tier
   5. Tenant branding stored as JSONB (primaryColor, appName, logoUrl)
-**Plans**: 5 plans
+**Plans**: 7 plans
 
 Plans:
 - [ ] 08-01: Subscription domain module with trial management (30-day automatic trial, trial end date tracking)
@@ -199,7 +199,7 @@ Plans:
   3. TanStack Query for server state management with caching and invalidation
   4. shadcn/ui components with Tailwind styling and dark/light theme toggle
   5. Recharts for data visualization (financial charts, health trends, habit streaks, hobby progress)
-**Plans**: 5 plans
+**Plans**: 7 plans
 
 Plans:
 - [ ] 09-01: Next.js 16.2 app with static export configuration
@@ -220,7 +220,7 @@ Plans:
   3. Expo Push notifications integration
   4. Shared data-access hooks with web client (TanStack Query)
   5. Offline queue for actions without connectivity
-**Plans**: 5 plans
+**Plans**: 7 plans
 
 Plans:
 - [ ] 10-01: Expo SDK 55 project with React Native 0.83
@@ -240,7 +240,7 @@ Plans:
   3. Auto-update mechanism
   4. Keyboard shortcuts for common actions
   5. System notifications via ntfy.sh
-**Plans**: 5 plans
+**Plans**: 7 plans
 
 Plans:
 - [ ] 11-01: Tauri 2 project wrapping Next.js static build
@@ -259,7 +259,7 @@ Plans:
   3. Docker container logs capped at 30 MB per service
   4. Nightly API restart at 3 AM (memory leak prevention)
   5. ntfy.sh push notifications for 500 errors
-**Plans**: 5 plans
+**Plans**: 7 plans
 
 Plans:
 - [ ] 12-01: rclone configuration for Google Drive backups
