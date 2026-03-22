@@ -40,7 +40,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: TBD
 
 Plans:
-- [ ] 01-01: Nx workspace initialization with module boundaries and shared libraries
+- [x] 01-01: Nx workspace initialization with module boundaries and shared libraries
 - [ ] 01-02: Docker Compose with PostgreSQL 17, Caddy, and memory tuning
 - [ ] 01-03: NestJS API skeleton with Fastify and Prisma 7.3
 - [ ] 01-04: PostgreSQL RLS policies on all tables with tenant context middleware
@@ -277,7 +277,7 @@ Phases execute in numeric order: 2 → 2.1 → 2.2 → 3 → 3.1 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/6 | Not started | - |
+| 1. Foundation | 1/6 | In progress | 2026-03-22 |
 | 2. AI Gateway | 0/5 | Not started | - |
 | 3. Financial Module | 0/8 | Not started | - |
 | 4. Habits & Tasks | 0/7 | Not started | - |
