@@ -85,7 +85,7 @@ Plans:
 - [x] 03-04: Transaction CRUD with automatic account balance updates and soft delete
 - [x] 03-05: AI transaction categorization using CLASSIFY task type
 - [x] 03-06: Envelope budgeting with income allocation and monthly rollover
-- [ ] 03-07: Recurring transaction rules with pg-boss scheduled jobs
+- [x] 03-07: Recurring transaction rules with pg-boss scheduled jobs
 
 ### Phase 4: Habits & Tasks
 **Goal**: Habit tracking with streaks, RPG gamification, and task management with natural language parsing
