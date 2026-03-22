@@ -48,6 +48,8 @@ export class TaskRepository {
     tags?: string[];
     parentId?: string | null; // null for root tasks, string for subtasks
     hasDueDate?: boolean;
+    sortBy?: 'dueDate' | 'priority' | 'createdAt' | 'title';
+    sortOrder?: 'asc' | 'desc';
     limit?: number;
     offset?: number;
   }): Promise<TaskEntity[]> {
@@ -83,13 +85,33 @@ export class TaskRepository {
       }
     }
 
+    // Build dynamic orderBy based on sortBy and sortOrder
+    const sortOrder = options?.sortOrder ?? 'desc';
+    let orderBy: Prisma.TaskOrderByWithRelationInput[];
+
+    switch (options?.sortBy) {
+      case 'dueDate':
+        // Sort by dueDate with nulls last
+        orderBy = [
+          { dueDate: { sort: sortOrder, nulls: 'last' } },
+          { priority: 'desc' },
+        ];
+        break;
+      case 'priority':
+        orderBy = [{ priority: sortOrder }];
+        break;
+      case 'title':
+        orderBy = [{ title: sortOrder }];
+        break;
+      case 'createdAt':
+      default:
+        orderBy = [{ createdAt: sortOrder }];
+        break;
+    }
+
     const tasks = await this.prisma.task.findMany({
       where,
-      orderBy: [
-        { priority: 'desc' },
-        { dueDate: 'asc' },
-        { createdAt: 'desc' },
-      ],
+      orderBy,
       take: options?.limit ?? 50,
       skip: options?.offset ?? 0,
     });
