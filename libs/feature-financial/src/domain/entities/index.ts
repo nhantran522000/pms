@@ -1,3 +1,6 @@
-// Domain entities - will be populated in Task 4
-export {};
+export * from './transaction.entity';
+export * from './category.entity';
+export * from './account.entity';
+export * from './budget-envelope.entity';
+export * from './recurring-rule.entity';
 
