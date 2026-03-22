@@ -7,9 +7,11 @@ import {
   Body,
   Param,
   Query,
+  BadRequestException,
 } from '@nestjs/common';
 import { HabitService } from '../../application/services/habit.service';
 import { HabitCompletionService } from '../../application/services/habit-completion.service';
+import { HabitScheduleService } from '../../application/services/habit-schedule.service';
 import { ZodValidationPipe } from '@pms/shared-kernel';
 import {
   CreateHabitSchema,
@@ -38,6 +40,7 @@ export class HabitController {
   constructor(
     private readonly habitService: HabitService,
     private readonly completionService: HabitCompletionService,
+    private readonly habitScheduleService: HabitScheduleService,
   ) {}
 
   @Post()
@@ -59,6 +62,36 @@ export class HabitController {
     return {
       success: true,
       data: habits.map((h) => h.toJSON()),
+    };
+  }
+
+  @Get('today')
+  async getHabitsForToday() {
+    const habits = await this.habitScheduleService.getHabitsForToday();
+    return {
+      success: true,
+      data: habits.map((h) => ({
+        ...h.toJSON(),
+        completedToday: h.completedToday,
+        completionId: h.completionId,
+      })),
+    };
+  }
+
+  @Get('date/:date')
+  async getHabitsForDate(@Param('date') dateStr: string) {
+    const date = new Date(dateStr);
+    if (isNaN(date.getTime())) {
+      throw new BadRequestException('Invalid date format');
+    }
+    const habits = await this.habitScheduleService.getHabitsForDate(date);
+    return {
+      success: true,
+      data: habits.map((h) => ({
+        ...h.toJSON(),
+        completedToday: h.completedToday,
+        completionId: h.completionId,
+      })),
     };
   }
 
@@ -125,6 +158,21 @@ export class HabitController {
     return {
       success: true,
       data: streakInfo,
+    };
+  }
+
+  @Get(':id/schedule')
+  async getUpcomingSchedule(
+    @Param('id') id: string,
+    @Query('count') count?: string,
+  ) {
+    const schedule = await this.habitScheduleService.getUpcomingSchedule(
+      id,
+      count ? parseInt(count, 10) : 10,
+    );
+    return {
+      success: true,
+      data: schedule,
     };
   }
 }
