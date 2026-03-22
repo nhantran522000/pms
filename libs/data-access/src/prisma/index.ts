@@ -1,3 +1,3 @@
 export { PrismaService } from './prisma.service';
 export { PrismaModule } from './prisma.module';
-export * from '../../src/generated';
+export * from '../generated';

@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
-import { runWithTenantContext } from '../../tenant-context/src/async-local-storage';
-import { PrismaService } from '../src/prisma.service';
+import { runWithTenantContext } from '../../src/tenant-context/async-local-storage';
+import { PrismaService } from '../../src/prisma/prisma.service';
 
 describe('Row Level Security', () => {
   let prisma: PrismaService;
