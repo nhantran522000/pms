@@ -1,19 +1,12 @@
 # Caddyfile for PMS Ecosystem
-# Automatic HTTPS with on-demand TLS for custom domains (future SaaS)
+# Caddy automatically provisions and renews Let's Encrypt certificates
 
-# Production configuration (uncomment when deploying)
-# {
-#   email admin@yourdomain.com
-#   acme_ca https://acme-v02.api.letsencrypt.org/directory
-# }
-
-# Development configuration (HTTP only)
 {
-  local_certs
+    email nhan.tranthienthanh@gmail.com
 }
 
-# API endpoint
-:80 {
+# API endpoint - HTTPS automatic via Let's Encrypt
+myselfecos.uk {
     # Health check endpoint (no auth required)
     handle /health {
         reverse_proxy api:3000
@@ -29,7 +22,7 @@
         }
     }
 
-    # Default: redirect to API docs or return 404
+    # Default: return 404
     handle {
         respond "Not Found" 404
     }
@@ -40,27 +33,3 @@
         format json
     }
 }
-
-# Future: Production domain configuration
-# api.yourdomain.com {
-#     tls {
-#         dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-#     }
-#
-#     handle /health {
-#         reverse_proxy api:3000
-#     }
-#
-#     handle /api/v1/* {
-#         reverse_proxy api:3000 {
-#             header_up X-Real-IP {remote_host}
-#             header_up X-Forwarded-For {remote_host}
-#             header_up X-Forwarded-Proto {scheme}
-#         }
-#     }
-#
-#     log {
-#         output stdout
-#         format json
-#     }
-# }

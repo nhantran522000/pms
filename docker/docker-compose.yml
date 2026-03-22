@@ -8,11 +8,7 @@ services:
     env_file:
       - ../.env
     environment:
-      # Memory tuning for 8 GB VPS
       - NODE_OPTIONS=--max-old-space-size=4096
-      - DATABASE_URL=postgresql://pms:pms_password@db:5432/pms?connection_limit=10&pool_timeout=30
-      - PORT=3000
-      - NODE_ENV=production
     depends_on:
       db:
         condition: service_healthy
@@ -40,10 +36,12 @@ services:
     image: postgres:17-alpine
     container_name: pms-db
     restart: unless-stopped
+    env_file:
+      - ../.env
     environment:
-      - POSTGRES_USER=pms
-      - POSTGRES_PASSWORD=pms_password
-      - POSTGRES_DB=pms
+      - POSTGRES_USER=${POSTGRES_USER:-pms}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB:-pms}
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro
