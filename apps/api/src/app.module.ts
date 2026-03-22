@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { PrismaModule, TenantContextModule, TenantContextMiddleware } from '@pms/data-access';
 import { AllExceptionsFilter, TransformInterceptor } from '@pms/shared-kernel';
+import { AuthModule } from '@pms/feature-auth';
 import configuration from './config/configuration';
 import { validationSchema } from './config/validation.schema';
 import { HealthModule } from './health/health.module';
@@ -19,6 +20,7 @@ import { LoggingModule } from './logging/logging.module';
     PrismaModule,
     TenantContextModule,
     HealthModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [
