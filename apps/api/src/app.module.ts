@@ -14,7 +14,7 @@ import { LoggingModule } from './logging/logging.module';
     ConfigModule.forRoot({
       isGlobal: true,
       load: [configuration],
-      validationSchema: validationSchema,
+      validate: (config: Record<string, unknown>) => validationSchema.parse(config),
     }),
     LoggingModule,
     PrismaModule,
