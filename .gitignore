@@ -4,9 +4,42 @@
 dist
 tmp
 out-tsc
+build
 
 # dependencies
 node_modules
+.pnpm-store
+
+# Environment files (contain secrets)
+.env
+.env.local
+.env.*.local
+
+# Keep .env.example
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# Docker volumes (local development)
+postgres_data/
+caddy_data/
+caddy_config/
+
+# Prisma
+libs/data-access/prisma/*.db
+libs/data-access/prisma/*.db-journal
+
+# Misc
+*.pem
+*.key
 
 # IDEs and editors
 /.idea
