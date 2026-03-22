@@ -44,3 +44,54 @@ export const AccountSummarySchema = AccountResponseSchema.extend({
   transactionCount: z.number(),
 });
 export type AccountSummary = z.infer<typeof AccountSummarySchema>;
+
+// ============================================
+// Category types
+// ============================================
+export const CategoryTypeSchema = z.enum(['income', 'expense']);
+export type CategoryType = z.infer<typeof CategoryTypeSchema>;
+
+// Create Category
+export const CreateCategorySchema = z.object({
+  name: z.string().min(1).max(100),
+  parentId: z.string().cuid().optional().nullable(),
+  type: CategoryTypeSchema,
+  icon: z.string().max(50).optional(),
+  color: z.string().regex(/^#[0-9A-Fa-f]{6}$/).optional(),
+});
+export type CreateCategoryDto = z.infer<typeof CreateCategorySchema>;
+
+// Update Category
+export const UpdateCategorySchema = z.object({
+  name: z.string().min(1).max(100).optional(),
+  parentId: z.string().cuid().nullable().optional(),
+  icon: z.string().max(50).optional(),
+  color: z.string().regex(/^#[0-9A-Fa-f]{6}$/).optional(),
+});
+export type UpdateCategoryDto = z.infer<typeof UpdateCategorySchema>;
+
+// Category response
+export const CategoryResponseSchema = z.object({
+  id: z.string(),
+  tenantId: z.string(),
+  name: z.string(),
+  parentId: z.string().nullable(),
+  icon: z.string().nullable(),
+  color: z.string().nullable(),
+  type: CategoryTypeSchema,
+  isSystem: z.boolean(),
+  createdAt: z.coerce.date(),
+  updatedAt: z.coerce.date(),
+});
+export type CategoryResponse = z.infer<typeof CategoryResponseSchema>;
+
+// Category with children (for hierarchy)
+export interface CategoryTree extends z.infer<typeof CategoryResponseSchema> {
+  children?: CategoryTree[];
+}
+
+export const CategoryTreeSchema: z.ZodType<CategoryTree> = z.lazy(() =>
+  CategoryResponseSchema.extend({
+    children: z.array(CategoryTreeSchema).optional(),
+  })
+);
