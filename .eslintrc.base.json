@@ -1,0 +1,58 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nx"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "type:app",
+                "onlyDependOnLibsWithTags": ["type:lib"]
+              },
+              {
+                "sourceTag": "type:lib",
+                "onlyDependOnLibsWithTags": ["type:lib"]
+              },
+              {
+                "sourceTag": "layer:domain",
+                "onlyDependOnLibsWithTags": ["layer:domain"]
+              },
+              {
+                "sourceTag": "layer:application",
+                "onlyDependOnLibsWithTags": ["layer:domain", "layer:application"]
+              },
+              {
+                "sourceTag": "layer:infrastructure",
+                "onlyDependOnLibsWithTags": ["layer:domain", "layer:application", "layer:infrastructure"]
+              },
+              {
+                "sourceTag": "layer:presentation",
+                "onlyDependOnLibsWithTags": ["layer:domain", "layer:application", "layer:infrastructure", "layer:presentation"]
+              },
+              {
+                "sourceTag": "domain:shared",
+                "onlyDependOnLibsWithTags": ["domain:shared"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nx/typescript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nx/javascript"],
+      "rules": {}
+    }
+  ]
+}
