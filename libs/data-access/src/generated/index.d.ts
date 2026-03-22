@@ -38,6 +38,31 @@ export type AiPromptCache = $Result.DefaultSelection<Prisma.$AiPromptCachePayloa
  * AiUsageLog - Track AI usage for analytics and budgeting
  */
 export type AiUsageLog = $Result.DefaultSelection<Prisma.$AiUsageLogPayload>
+/**
+ * Model Category
+ * Category - Hierarchical categories for transactions
+ */
+export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>
+/**
+ * Model Account
+ * Account - Financial accounts (checking, savings, cash, credit)
+ */
+export type Account = $Result.DefaultSelection<Prisma.$AccountPayload>
+/**
+ * Model Transaction
+ * Transaction - Financial transactions
+ */
+export type Transaction = $Result.DefaultSelection<Prisma.$TransactionPayload>
+/**
+ * Model BudgetEnvelope
+ * BudgetEnvelope - Envelope budgeting per category per month
+ */
+export type BudgetEnvelope = $Result.DefaultSelection<Prisma.$BudgetEnvelopePayload>
+/**
+ * Model RecurringRule
+ * RecurringRule - Recurring transaction templates
+ */
+export type RecurringRule = $Result.DefaultSelection<Prisma.$RecurringRulePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -209,6 +234,56 @@ export class PrismaClient<
     * ```
     */
   get aiUsageLog(): Prisma.AiUsageLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.category`: Exposes CRUD operations for the **Category** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Categories
+    * const categories = await prisma.category.findMany()
+    * ```
+    */
+  get category(): Prisma.CategoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.account`: Exposes CRUD operations for the **Account** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Accounts
+    * const accounts = await prisma.account.findMany()
+    * ```
+    */
+  get account(): Prisma.AccountDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.transaction`: Exposes CRUD operations for the **Transaction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Transactions
+    * const transactions = await prisma.transaction.findMany()
+    * ```
+    */
+  get transaction(): Prisma.TransactionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.budgetEnvelope`: Exposes CRUD operations for the **BudgetEnvelope** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BudgetEnvelopes
+    * const budgetEnvelopes = await prisma.budgetEnvelope.findMany()
+    * ```
+    */
+  get budgetEnvelope(): Prisma.BudgetEnvelopeDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.recurringRule`: Exposes CRUD operations for the **RecurringRule** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RecurringRules
+    * const recurringRules = await prisma.recurringRule.findMany()
+    * ```
+    */
+  get recurringRule(): Prisma.RecurringRuleDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -647,7 +722,12 @@ export namespace Prisma {
     User: 'User',
     AiProviderConfig: 'AiProviderConfig',
     AiPromptCache: 'AiPromptCache',
-    AiUsageLog: 'AiUsageLog'
+    AiUsageLog: 'AiUsageLog',
+    Category: 'Category',
+    Account: 'Account',
+    Transaction: 'Transaction',
+    BudgetEnvelope: 'BudgetEnvelope',
+    RecurringRule: 'RecurringRule'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -663,7 +743,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "tenant" | "user" | "aiProviderConfig" | "aiPromptCache" | "aiUsageLog"
+      modelProps: "tenant" | "user" | "aiProviderConfig" | "aiPromptCache" | "aiUsageLog" | "category" | "account" | "transaction" | "budgetEnvelope" | "recurringRule"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1037,6 +1117,376 @@ export namespace Prisma {
           }
         }
       }
+      Category: {
+        payload: Prisma.$CategoryPayload<ExtArgs>
+        fields: Prisma.CategoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CategoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CategoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          findFirst: {
+            args: Prisma.CategoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CategoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          findMany: {
+            args: Prisma.CategoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>[]
+          }
+          create: {
+            args: Prisma.CategoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          createMany: {
+            args: Prisma.CategoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CategoryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>[]
+          }
+          delete: {
+            args: Prisma.CategoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          update: {
+            args: Prisma.CategoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.CategoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CategoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CategoryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>[]
+          }
+          upsert: {
+            args: Prisma.CategoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          aggregate: {
+            args: Prisma.CategoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCategory>
+          }
+          groupBy: {
+            args: Prisma.CategoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CategoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CategoryCountArgs<ExtArgs>
+            result: $Utils.Optional<CategoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      Account: {
+        payload: Prisma.$AccountPayload<ExtArgs>
+        fields: Prisma.AccountFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AccountFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AccountFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
+          }
+          findFirst: {
+            args: Prisma.AccountFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AccountFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
+          }
+          findMany: {
+            args: Prisma.AccountFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>[]
+          }
+          create: {
+            args: Prisma.AccountCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
+          }
+          createMany: {
+            args: Prisma.AccountCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AccountCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>[]
+          }
+          delete: {
+            args: Prisma.AccountDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
+          }
+          update: {
+            args: Prisma.AccountUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
+          }
+          deleteMany: {
+            args: Prisma.AccountDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AccountUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AccountUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>[]
+          }
+          upsert: {
+            args: Prisma.AccountUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
+          }
+          aggregate: {
+            args: Prisma.AccountAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAccount>
+          }
+          groupBy: {
+            args: Prisma.AccountGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AccountGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AccountCountArgs<ExtArgs>
+            result: $Utils.Optional<AccountCountAggregateOutputType> | number
+          }
+        }
+      }
+      Transaction: {
+        payload: Prisma.$TransactionPayload<ExtArgs>
+        fields: Prisma.TransactionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TransactionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TransactionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          findFirst: {
+            args: Prisma.TransactionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TransactionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          findMany: {
+            args: Prisma.TransactionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>[]
+          }
+          create: {
+            args: Prisma.TransactionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          createMany: {
+            args: Prisma.TransactionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TransactionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>[]
+          }
+          delete: {
+            args: Prisma.TransactionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          update: {
+            args: Prisma.TransactionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          deleteMany: {
+            args: Prisma.TransactionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TransactionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TransactionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>[]
+          }
+          upsert: {
+            args: Prisma.TransactionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          aggregate: {
+            args: Prisma.TransactionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTransaction>
+          }
+          groupBy: {
+            args: Prisma.TransactionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TransactionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TransactionCountArgs<ExtArgs>
+            result: $Utils.Optional<TransactionCountAggregateOutputType> | number
+          }
+        }
+      }
+      BudgetEnvelope: {
+        payload: Prisma.$BudgetEnvelopePayload<ExtArgs>
+        fields: Prisma.BudgetEnvelopeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BudgetEnvelopeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BudgetEnvelopePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BudgetEnvelopeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BudgetEnvelopePayload>
+          }
+          findFirst: {
+            args: Prisma.BudgetEnvelopeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BudgetEnvelopePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BudgetEnvelopeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BudgetEnvelopePayload>
+          }
+          findMany: {
+            args: Prisma.BudgetEnvelopeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BudgetEnvelopePayload>[]
+          }
+          create: {
+            args: Prisma.BudgetEnvelopeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BudgetEnvelopePayload>
+          }
+          createMany: {
+            args: Prisma.BudgetEnvelopeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BudgetEnvelopeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BudgetEnvelopePayload>[]
+          }
+          delete: {
+            args: Prisma.BudgetEnvelopeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BudgetEnvelopePayload>
+          }
+          update: {
+            args: Prisma.BudgetEnvelopeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BudgetEnvelopePayload>
+          }
+          deleteMany: {
+            args: Prisma.BudgetEnvelopeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BudgetEnvelopeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BudgetEnvelopeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BudgetEnvelopePayload>[]
+          }
+          upsert: {
+            args: Prisma.BudgetEnvelopeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BudgetEnvelopePayload>
+          }
+          aggregate: {
+            args: Prisma.BudgetEnvelopeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBudgetEnvelope>
+          }
+          groupBy: {
+            args: Prisma.BudgetEnvelopeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BudgetEnvelopeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BudgetEnvelopeCountArgs<ExtArgs>
+            result: $Utils.Optional<BudgetEnvelopeCountAggregateOutputType> | number
+          }
+        }
+      }
+      RecurringRule: {
+        payload: Prisma.$RecurringRulePayload<ExtArgs>
+        fields: Prisma.RecurringRuleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RecurringRuleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecurringRulePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RecurringRuleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecurringRulePayload>
+          }
+          findFirst: {
+            args: Prisma.RecurringRuleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecurringRulePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RecurringRuleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecurringRulePayload>
+          }
+          findMany: {
+            args: Prisma.RecurringRuleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecurringRulePayload>[]
+          }
+          create: {
+            args: Prisma.RecurringRuleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecurringRulePayload>
+          }
+          createMany: {
+            args: Prisma.RecurringRuleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RecurringRuleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecurringRulePayload>[]
+          }
+          delete: {
+            args: Prisma.RecurringRuleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecurringRulePayload>
+          }
+          update: {
+            args: Prisma.RecurringRuleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecurringRulePayload>
+          }
+          deleteMany: {
+            args: Prisma.RecurringRuleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RecurringRuleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RecurringRuleUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecurringRulePayload>[]
+          }
+          upsert: {
+            args: Prisma.RecurringRuleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RecurringRulePayload>
+          }
+          aggregate: {
+            args: Prisma.RecurringRuleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRecurringRule>
+          }
+          groupBy: {
+            args: Prisma.RecurringRuleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RecurringRuleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RecurringRuleCountArgs<ExtArgs>
+            result: $Utils.Optional<RecurringRuleCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1150,6 +1600,11 @@ export namespace Prisma {
     aiProviderConfig?: AiProviderConfigOmit
     aiPromptCache?: AiPromptCacheOmit
     aiUsageLog?: AiUsageLogOmit
+    category?: CategoryOmit
+    account?: AccountOmit
+    transaction?: TransactionOmit
+    budgetEnvelope?: BudgetEnvelopeOmit
+    recurringRule?: RecurringRuleOmit
   }
 
   /* Types for Logging */
@@ -1234,6 +1689,11 @@ export namespace Prisma {
     aiProviderConfigs: number
     aiPromptCache: number
     aiUsageLogs: number
+    categories: number
+    accounts: number
+    transactions: number
+    budgetEnvelopes: number
+    recurringRules: number
   }
 
   export type TenantCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1241,6 +1701,11 @@ export namespace Prisma {
     aiProviderConfigs?: boolean | TenantCountOutputTypeCountAiProviderConfigsArgs
     aiPromptCache?: boolean | TenantCountOutputTypeCountAiPromptCacheArgs
     aiUsageLogs?: boolean | TenantCountOutputTypeCountAiUsageLogsArgs
+    categories?: boolean | TenantCountOutputTypeCountCategoriesArgs
+    accounts?: boolean | TenantCountOutputTypeCountAccountsArgs
+    transactions?: boolean | TenantCountOutputTypeCountTransactionsArgs
+    budgetEnvelopes?: boolean | TenantCountOutputTypeCountBudgetEnvelopesArgs
+    recurringRules?: boolean | TenantCountOutputTypeCountRecurringRulesArgs
   }
 
   // Custom InputTypes
@@ -1280,6 +1745,179 @@ export namespace Prisma {
    */
   export type TenantCountOutputTypeCountAiUsageLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AiUsageLogWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CategoryWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccountWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransactionWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountBudgetEnvelopesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BudgetEnvelopeWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountRecurringRulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RecurringRuleWhereInput
+  }
+
+
+  /**
+   * Count Type CategoryCountOutputType
+   */
+
+  export type CategoryCountOutputType = {
+    children: number
+    transactions: number
+    budgetEnvelopes: number
+    recurringRules: number
+  }
+
+  export type CategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    children?: boolean | CategoryCountOutputTypeCountChildrenArgs
+    transactions?: boolean | CategoryCountOutputTypeCountTransactionsArgs
+    budgetEnvelopes?: boolean | CategoryCountOutputTypeCountBudgetEnvelopesArgs
+    recurringRules?: boolean | CategoryCountOutputTypeCountRecurringRulesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CategoryCountOutputType without action
+   */
+  export type CategoryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CategoryCountOutputType
+     */
+    select?: CategoryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CategoryCountOutputType without action
+   */
+  export type CategoryCountOutputTypeCountChildrenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CategoryWhereInput
+  }
+
+  /**
+   * CategoryCountOutputType without action
+   */
+  export type CategoryCountOutputTypeCountTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransactionWhereInput
+  }
+
+  /**
+   * CategoryCountOutputType without action
+   */
+  export type CategoryCountOutputTypeCountBudgetEnvelopesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BudgetEnvelopeWhereInput
+  }
+
+  /**
+   * CategoryCountOutputType without action
+   */
+  export type CategoryCountOutputTypeCountRecurringRulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RecurringRuleWhereInput
+  }
+
+
+  /**
+   * Count Type AccountCountOutputType
+   */
+
+  export type AccountCountOutputType = {
+    transactions: number
+    budgetEnvelopes: number
+    recurringRules: number
+  }
+
+  export type AccountCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    transactions?: boolean | AccountCountOutputTypeCountTransactionsArgs
+    budgetEnvelopes?: boolean | AccountCountOutputTypeCountBudgetEnvelopesArgs
+    recurringRules?: boolean | AccountCountOutputTypeCountRecurringRulesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AccountCountOutputType without action
+   */
+  export type AccountCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountCountOutputType
+     */
+    select?: AccountCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AccountCountOutputType without action
+   */
+  export type AccountCountOutputTypeCountTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransactionWhereInput
+  }
+
+  /**
+   * AccountCountOutputType without action
+   */
+  export type AccountCountOutputTypeCountBudgetEnvelopesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BudgetEnvelopeWhereInput
+  }
+
+  /**
+   * AccountCountOutputType without action
+   */
+  export type AccountCountOutputTypeCountRecurringRulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RecurringRuleWhereInput
+  }
+
+
+  /**
+   * Count Type RecurringRuleCountOutputType
+   */
+
+  export type RecurringRuleCountOutputType = {
+    transactions: number
+  }
+
+  export type RecurringRuleCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    transactions?: boolean | RecurringRuleCountOutputTypeCountTransactionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * RecurringRuleCountOutputType without action
+   */
+  export type RecurringRuleCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecurringRuleCountOutputType
+     */
+    select?: RecurringRuleCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * RecurringRuleCountOutputType without action
+   */
+  export type RecurringRuleCountOutputTypeCountTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransactionWhereInput
   }
 
 
@@ -1447,6 +2085,11 @@ export namespace Prisma {
     aiProviderConfigs?: boolean | Tenant$aiProviderConfigsArgs<ExtArgs>
     aiPromptCache?: boolean | Tenant$aiPromptCacheArgs<ExtArgs>
     aiUsageLogs?: boolean | Tenant$aiUsageLogsArgs<ExtArgs>
+    categories?: boolean | Tenant$categoriesArgs<ExtArgs>
+    accounts?: boolean | Tenant$accountsArgs<ExtArgs>
+    transactions?: boolean | Tenant$transactionsArgs<ExtArgs>
+    budgetEnvelopes?: boolean | Tenant$budgetEnvelopesArgs<ExtArgs>
+    recurringRules?: boolean | Tenant$recurringRulesArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tenant"]>
 
@@ -1477,6 +2120,11 @@ export namespace Prisma {
     aiProviderConfigs?: boolean | Tenant$aiProviderConfigsArgs<ExtArgs>
     aiPromptCache?: boolean | Tenant$aiPromptCacheArgs<ExtArgs>
     aiUsageLogs?: boolean | Tenant$aiUsageLogsArgs<ExtArgs>
+    categories?: boolean | Tenant$categoriesArgs<ExtArgs>
+    accounts?: boolean | Tenant$accountsArgs<ExtArgs>
+    transactions?: boolean | Tenant$transactionsArgs<ExtArgs>
+    budgetEnvelopes?: boolean | Tenant$budgetEnvelopesArgs<ExtArgs>
+    recurringRules?: boolean | Tenant$recurringRulesArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TenantIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1489,6 +2137,11 @@ export namespace Prisma {
       aiProviderConfigs: Prisma.$AiProviderConfigPayload<ExtArgs>[]
       aiPromptCache: Prisma.$AiPromptCachePayload<ExtArgs>[]
       aiUsageLogs: Prisma.$AiUsageLogPayload<ExtArgs>[]
+      categories: Prisma.$CategoryPayload<ExtArgs>[]
+      accounts: Prisma.$AccountPayload<ExtArgs>[]
+      transactions: Prisma.$TransactionPayload<ExtArgs>[]
+      budgetEnvelopes: Prisma.$BudgetEnvelopePayload<ExtArgs>[]
+      recurringRules: Prisma.$RecurringRulePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1893,6 +2546,11 @@ export namespace Prisma {
     aiProviderConfigs<T extends Tenant$aiProviderConfigsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$aiProviderConfigsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AiProviderConfigPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     aiPromptCache<T extends Tenant$aiPromptCacheArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$aiPromptCacheArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AiPromptCachePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     aiUsageLogs<T extends Tenant$aiUsageLogsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$aiUsageLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AiUsageLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    categories<T extends Tenant$categoriesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    accounts<T extends Tenant$accountsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    transactions<T extends Tenant$transactionsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    budgetEnvelopes<T extends Tenant$budgetEnvelopesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$budgetEnvelopesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BudgetEnvelopePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    recurringRules<T extends Tenant$recurringRulesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$recurringRulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecurringRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2412,6 +3070,126 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AiUsageLogScalarFieldEnum | AiUsageLogScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.categories
+   */
+  export type Tenant$categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    where?: CategoryWhereInput
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    cursor?: CategoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.accounts
+   */
+  export type Tenant$accountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    where?: AccountWhereInput
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
+    cursor?: AccountWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.transactions
+   */
+  export type Tenant$transactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    where?: TransactionWhereInput
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    cursor?: TransactionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.budgetEnvelopes
+   */
+  export type Tenant$budgetEnvelopesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BudgetEnvelope
+     */
+    select?: BudgetEnvelopeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BudgetEnvelope
+     */
+    omit?: BudgetEnvelopeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BudgetEnvelopeInclude<ExtArgs> | null
+    where?: BudgetEnvelopeWhereInput
+    orderBy?: BudgetEnvelopeOrderByWithRelationInput | BudgetEnvelopeOrderByWithRelationInput[]
+    cursor?: BudgetEnvelopeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BudgetEnvelopeScalarFieldEnum | BudgetEnvelopeScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.recurringRules
+   */
+  export type Tenant$recurringRulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecurringRule
+     */
+    select?: RecurringRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecurringRule
+     */
+    omit?: RecurringRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecurringRuleInclude<ExtArgs> | null
+    where?: RecurringRuleWhereInput
+    orderBy?: RecurringRuleOrderByWithRelationInput | RecurringRuleOrderByWithRelationInput[]
+    cursor?: RecurringRuleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RecurringRuleScalarFieldEnum | RecurringRuleScalarFieldEnum[]
   }
 
   /**
@@ -7048,6 +7826,6375 @@ export namespace Prisma {
 
 
   /**
+   * Model Category
+   */
+
+  export type AggregateCategory = {
+    _count: CategoryCountAggregateOutputType | null
+    _min: CategoryMinAggregateOutputType | null
+    _max: CategoryMaxAggregateOutputType | null
+  }
+
+  export type CategoryMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    name: string | null
+    parentId: string | null
+    icon: string | null
+    color: string | null
+    type: string | null
+    isSystem: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CategoryMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    name: string | null
+    parentId: string | null
+    icon: string | null
+    color: string | null
+    type: string | null
+    isSystem: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CategoryCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    name: number
+    parentId: number
+    icon: number
+    color: number
+    type: number
+    isSystem: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CategoryMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    name?: true
+    parentId?: true
+    icon?: true
+    color?: true
+    type?: true
+    isSystem?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CategoryMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    name?: true
+    parentId?: true
+    icon?: true
+    color?: true
+    type?: true
+    isSystem?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CategoryCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    name?: true
+    parentId?: true
+    icon?: true
+    color?: true
+    type?: true
+    isSystem?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CategoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Category to aggregate.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Categories
+    **/
+    _count?: true | CategoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CategoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CategoryMaxAggregateInputType
+  }
+
+  export type GetCategoryAggregateType<T extends CategoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateCategory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCategory[P]>
+      : GetScalarType<T[P], AggregateCategory[P]>
+  }
+
+
+
+
+  export type CategoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CategoryWhereInput
+    orderBy?: CategoryOrderByWithAggregationInput | CategoryOrderByWithAggregationInput[]
+    by: CategoryScalarFieldEnum[] | CategoryScalarFieldEnum
+    having?: CategoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CategoryCountAggregateInputType | true
+    _min?: CategoryMinAggregateInputType
+    _max?: CategoryMaxAggregateInputType
+  }
+
+  export type CategoryGroupByOutputType = {
+    id: string
+    tenantId: string
+    name: string
+    parentId: string | null
+    icon: string | null
+    color: string | null
+    type: string
+    isSystem: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: CategoryCountAggregateOutputType | null
+    _min: CategoryMinAggregateOutputType | null
+    _max: CategoryMaxAggregateOutputType | null
+  }
+
+  type GetCategoryGroupByPayload<T extends CategoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CategoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CategoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CategoryGroupByOutputType[P]>
+            : GetScalarType<T[P], CategoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    parentId?: boolean
+    icon?: boolean
+    color?: boolean
+    type?: boolean
+    isSystem?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    parent?: boolean | Category$parentArgs<ExtArgs>
+    children?: boolean | Category$childrenArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    transactions?: boolean | Category$transactionsArgs<ExtArgs>
+    budgetEnvelopes?: boolean | Category$budgetEnvelopesArgs<ExtArgs>
+    recurringRules?: boolean | Category$recurringRulesArgs<ExtArgs>
+    _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["category"]>
+
+  export type CategorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    parentId?: boolean
+    icon?: boolean
+    color?: boolean
+    type?: boolean
+    isSystem?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    parent?: boolean | Category$parentArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["category"]>
+
+  export type CategorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    parentId?: boolean
+    icon?: boolean
+    color?: boolean
+    type?: boolean
+    isSystem?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    parent?: boolean | Category$parentArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["category"]>
+
+  export type CategorySelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    parentId?: boolean
+    icon?: boolean
+    color?: boolean
+    type?: boolean
+    isSystem?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "name" | "parentId" | "icon" | "color" | "type" | "isSystem" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
+  export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parent?: boolean | Category$parentArgs<ExtArgs>
+    children?: boolean | Category$childrenArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    transactions?: boolean | Category$transactionsArgs<ExtArgs>
+    budgetEnvelopes?: boolean | Category$budgetEnvelopesArgs<ExtArgs>
+    recurringRules?: boolean | Category$recurringRulesArgs<ExtArgs>
+    _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type CategoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parent?: boolean | Category$parentArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type CategoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parent?: boolean | Category$parentArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $CategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Category"
+    objects: {
+      parent: Prisma.$CategoryPayload<ExtArgs> | null
+      children: Prisma.$CategoryPayload<ExtArgs>[]
+      tenant: Prisma.$TenantPayload<ExtArgs>
+      transactions: Prisma.$TransactionPayload<ExtArgs>[]
+      budgetEnvelopes: Prisma.$BudgetEnvelopePayload<ExtArgs>[]
+      recurringRules: Prisma.$RecurringRulePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      name: string
+      parentId: string | null
+      icon: string | null
+      color: string | null
+      type: string
+      isSystem: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["category"]>
+    composites: {}
+  }
+
+  type CategoryGetPayload<S extends boolean | null | undefined | CategoryDefaultArgs> = $Result.GetResult<Prisma.$CategoryPayload, S>
+
+  type CategoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CategoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CategoryCountAggregateInputType | true
+    }
+
+  export interface CategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Category'], meta: { name: 'Category' } }
+    /**
+     * Find zero or one Category that matches the filter.
+     * @param {CategoryFindUniqueArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CategoryFindUniqueArgs>(args: SelectSubset<T, CategoryFindUniqueArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Category that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CategoryFindUniqueOrThrowArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CategoryFindUniqueOrThrowArgs>(args: SelectSubset<T, CategoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Category that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryFindFirstArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CategoryFindFirstArgs>(args?: SelectSubset<T, CategoryFindFirstArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Category that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryFindFirstOrThrowArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CategoryFindFirstOrThrowArgs>(args?: SelectSubset<T, CategoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Categories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Categories
+     * const categories = await prisma.category.findMany()
+     * 
+     * // Get first 10 Categories
+     * const categories = await prisma.category.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const categoryWithIdOnly = await prisma.category.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CategoryFindManyArgs>(args?: SelectSubset<T, CategoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Category.
+     * @param {CategoryCreateArgs} args - Arguments to create a Category.
+     * @example
+     * // Create one Category
+     * const Category = await prisma.category.create({
+     *   data: {
+     *     // ... data to create a Category
+     *   }
+     * })
+     * 
+     */
+    create<T extends CategoryCreateArgs>(args: SelectSubset<T, CategoryCreateArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Categories.
+     * @param {CategoryCreateManyArgs} args - Arguments to create many Categories.
+     * @example
+     * // Create many Categories
+     * const category = await prisma.category.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CategoryCreateManyArgs>(args?: SelectSubset<T, CategoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Categories and returns the data saved in the database.
+     * @param {CategoryCreateManyAndReturnArgs} args - Arguments to create many Categories.
+     * @example
+     * // Create many Categories
+     * const category = await prisma.category.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Categories and only return the `id`
+     * const categoryWithIdOnly = await prisma.category.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CategoryCreateManyAndReturnArgs>(args?: SelectSubset<T, CategoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Category.
+     * @param {CategoryDeleteArgs} args - Arguments to delete one Category.
+     * @example
+     * // Delete one Category
+     * const Category = await prisma.category.delete({
+     *   where: {
+     *     // ... filter to delete one Category
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CategoryDeleteArgs>(args: SelectSubset<T, CategoryDeleteArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Category.
+     * @param {CategoryUpdateArgs} args - Arguments to update one Category.
+     * @example
+     * // Update one Category
+     * const category = await prisma.category.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CategoryUpdateArgs>(args: SelectSubset<T, CategoryUpdateArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Categories.
+     * @param {CategoryDeleteManyArgs} args - Arguments to filter Categories to delete.
+     * @example
+     * // Delete a few Categories
+     * const { count } = await prisma.category.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CategoryDeleteManyArgs>(args?: SelectSubset<T, CategoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Categories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Categories
+     * const category = await prisma.category.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CategoryUpdateManyArgs>(args: SelectSubset<T, CategoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Categories and returns the data updated in the database.
+     * @param {CategoryUpdateManyAndReturnArgs} args - Arguments to update many Categories.
+     * @example
+     * // Update many Categories
+     * const category = await prisma.category.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Categories and only return the `id`
+     * const categoryWithIdOnly = await prisma.category.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CategoryUpdateManyAndReturnArgs>(args: SelectSubset<T, CategoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Category.
+     * @param {CategoryUpsertArgs} args - Arguments to update or create a Category.
+     * @example
+     * // Update or create a Category
+     * const category = await prisma.category.upsert({
+     *   create: {
+     *     // ... data to create a Category
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Category we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CategoryUpsertArgs>(args: SelectSubset<T, CategoryUpsertArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Categories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryCountArgs} args - Arguments to filter Categories to count.
+     * @example
+     * // Count the number of Categories
+     * const count = await prisma.category.count({
+     *   where: {
+     *     // ... the filter for the Categories we want to count
+     *   }
+     * })
+    **/
+    count<T extends CategoryCountArgs>(
+      args?: Subset<T, CategoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CategoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Category.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CategoryAggregateArgs>(args: Subset<T, CategoryAggregateArgs>): Prisma.PrismaPromise<GetCategoryAggregateType<T>>
+
+    /**
+     * Group by Category.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CategoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CategoryGroupByArgs['orderBy'] }
+        : { orderBy?: CategoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CategoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCategoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Category model
+   */
+  readonly fields: CategoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Category.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    parent<T extends Category$parentArgs<ExtArgs> = {}>(args?: Subset<T, Category$parentArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    children<T extends Category$childrenArgs<ExtArgs> = {}>(args?: Subset<T, Category$childrenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    transactions<T extends Category$transactionsArgs<ExtArgs> = {}>(args?: Subset<T, Category$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    budgetEnvelopes<T extends Category$budgetEnvelopesArgs<ExtArgs> = {}>(args?: Subset<T, Category$budgetEnvelopesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BudgetEnvelopePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    recurringRules<T extends Category$recurringRulesArgs<ExtArgs> = {}>(args?: Subset<T, Category$recurringRulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecurringRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Category model
+   */
+  interface CategoryFieldRefs {
+    readonly id: FieldRef<"Category", 'String'>
+    readonly tenantId: FieldRef<"Category", 'String'>
+    readonly name: FieldRef<"Category", 'String'>
+    readonly parentId: FieldRef<"Category", 'String'>
+    readonly icon: FieldRef<"Category", 'String'>
+    readonly color: FieldRef<"Category", 'String'>
+    readonly type: FieldRef<"Category", 'String'>
+    readonly isSystem: FieldRef<"Category", 'Boolean'>
+    readonly createdAt: FieldRef<"Category", 'DateTime'>
+    readonly updatedAt: FieldRef<"Category", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Category findUnique
+   */
+  export type CategoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category findUniqueOrThrow
+   */
+  export type CategoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category findFirst
+   */
+  export type CategoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Categories.
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Categories.
+     */
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Category findFirstOrThrow
+   */
+  export type CategoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Categories.
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Categories.
+     */
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Category findMany
+   */
+  export type CategoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Categories to fetch.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Categories.
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Categories.
+     */
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Category create
+   */
+  export type CategoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Category.
+     */
+    data: XOR<CategoryCreateInput, CategoryUncheckedCreateInput>
+  }
+
+  /**
+   * Category createMany
+   */
+  export type CategoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Categories.
+     */
+    data: CategoryCreateManyInput | CategoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Category createManyAndReturn
+   */
+  export type CategoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * The data used to create many Categories.
+     */
+    data: CategoryCreateManyInput | CategoryCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Category update
+   */
+  export type CategoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Category.
+     */
+    data: XOR<CategoryUpdateInput, CategoryUncheckedUpdateInput>
+    /**
+     * Choose, which Category to update.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category updateMany
+   */
+  export type CategoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Categories.
+     */
+    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyInput>
+    /**
+     * Filter which Categories to update
+     */
+    where?: CategoryWhereInput
+    /**
+     * Limit how many Categories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Category updateManyAndReturn
+   */
+  export type CategoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * The data used to update Categories.
+     */
+    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyInput>
+    /**
+     * Filter which Categories to update
+     */
+    where?: CategoryWhereInput
+    /**
+     * Limit how many Categories to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Category upsert
+   */
+  export type CategoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Category to update in case it exists.
+     */
+    where: CategoryWhereUniqueInput
+    /**
+     * In case the Category found by the `where` argument doesn't exist, create a new Category with this data.
+     */
+    create: XOR<CategoryCreateInput, CategoryUncheckedCreateInput>
+    /**
+     * In case the Category was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CategoryUpdateInput, CategoryUncheckedUpdateInput>
+  }
+
+  /**
+   * Category delete
+   */
+  export type CategoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter which Category to delete.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category deleteMany
+   */
+  export type CategoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Categories to delete
+     */
+    where?: CategoryWhereInput
+    /**
+     * Limit how many Categories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Category.parent
+   */
+  export type Category$parentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    where?: CategoryWhereInput
+  }
+
+  /**
+   * Category.children
+   */
+  export type Category$childrenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    where?: CategoryWhereInput
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    cursor?: CategoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Category.transactions
+   */
+  export type Category$transactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    where?: TransactionWhereInput
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    cursor?: TransactionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * Category.budgetEnvelopes
+   */
+  export type Category$budgetEnvelopesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BudgetEnvelope
+     */
+    select?: BudgetEnvelopeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BudgetEnvelope
+     */
+    omit?: BudgetEnvelopeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BudgetEnvelopeInclude<ExtArgs> | null
+    where?: BudgetEnvelopeWhereInput
+    orderBy?: BudgetEnvelopeOrderByWithRelationInput | BudgetEnvelopeOrderByWithRelationInput[]
+    cursor?: BudgetEnvelopeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BudgetEnvelopeScalarFieldEnum | BudgetEnvelopeScalarFieldEnum[]
+  }
+
+  /**
+   * Category.recurringRules
+   */
+  export type Category$recurringRulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecurringRule
+     */
+    select?: RecurringRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecurringRule
+     */
+    omit?: RecurringRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecurringRuleInclude<ExtArgs> | null
+    where?: RecurringRuleWhereInput
+    orderBy?: RecurringRuleOrderByWithRelationInput | RecurringRuleOrderByWithRelationInput[]
+    cursor?: RecurringRuleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RecurringRuleScalarFieldEnum | RecurringRuleScalarFieldEnum[]
+  }
+
+  /**
+   * Category without action
+   */
+  export type CategoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Account
+   */
+
+  export type AggregateAccount = {
+    _count: AccountCountAggregateOutputType | null
+    _avg: AccountAvgAggregateOutputType | null
+    _sum: AccountSumAggregateOutputType | null
+    _min: AccountMinAggregateOutputType | null
+    _max: AccountMaxAggregateOutputType | null
+  }
+
+  export type AccountAvgAggregateOutputType = {
+    initialBalance: Decimal | null
+    currentBalance: Decimal | null
+  }
+
+  export type AccountSumAggregateOutputType = {
+    initialBalance: Decimal | null
+    currentBalance: Decimal | null
+  }
+
+  export type AccountMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    name: string | null
+    type: string | null
+    initialBalance: Decimal | null
+    currentBalance: Decimal | null
+    icon: string | null
+    color: string | null
+    isArchived: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AccountMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    name: string | null
+    type: string | null
+    initialBalance: Decimal | null
+    currentBalance: Decimal | null
+    icon: string | null
+    color: string | null
+    isArchived: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AccountCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    name: number
+    type: number
+    initialBalance: number
+    currentBalance: number
+    icon: number
+    color: number
+    isArchived: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AccountAvgAggregateInputType = {
+    initialBalance?: true
+    currentBalance?: true
+  }
+
+  export type AccountSumAggregateInputType = {
+    initialBalance?: true
+    currentBalance?: true
+  }
+
+  export type AccountMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    name?: true
+    type?: true
+    initialBalance?: true
+    currentBalance?: true
+    icon?: true
+    color?: true
+    isArchived?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AccountMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    name?: true
+    type?: true
+    initialBalance?: true
+    currentBalance?: true
+    icon?: true
+    color?: true
+    isArchived?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AccountCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    name?: true
+    type?: true
+    initialBalance?: true
+    currentBalance?: true
+    icon?: true
+    color?: true
+    isArchived?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Account to aggregate.
+     */
+    where?: AccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Accounts to fetch.
+     */
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Accounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Accounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Accounts
+    **/
+    _count?: true | AccountCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AccountAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AccountSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AccountMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AccountMaxAggregateInputType
+  }
+
+  export type GetAccountAggregateType<T extends AccountAggregateArgs> = {
+        [P in keyof T & keyof AggregateAccount]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAccount[P]>
+      : GetScalarType<T[P], AggregateAccount[P]>
+  }
+
+
+
+
+  export type AccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccountWhereInput
+    orderBy?: AccountOrderByWithAggregationInput | AccountOrderByWithAggregationInput[]
+    by: AccountScalarFieldEnum[] | AccountScalarFieldEnum
+    having?: AccountScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AccountCountAggregateInputType | true
+    _avg?: AccountAvgAggregateInputType
+    _sum?: AccountSumAggregateInputType
+    _min?: AccountMinAggregateInputType
+    _max?: AccountMaxAggregateInputType
+  }
+
+  export type AccountGroupByOutputType = {
+    id: string
+    tenantId: string
+    name: string
+    type: string
+    initialBalance: Decimal
+    currentBalance: Decimal
+    icon: string | null
+    color: string | null
+    isArchived: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: AccountCountAggregateOutputType | null
+    _avg: AccountAvgAggregateOutputType | null
+    _sum: AccountSumAggregateOutputType | null
+    _min: AccountMinAggregateOutputType | null
+    _max: AccountMaxAggregateOutputType | null
+  }
+
+  type GetAccountGroupByPayload<T extends AccountGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AccountGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AccountGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AccountGroupByOutputType[P]>
+            : GetScalarType<T[P], AccountGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    type?: boolean
+    initialBalance?: boolean
+    currentBalance?: boolean
+    icon?: boolean
+    color?: boolean
+    isArchived?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    transactions?: boolean | Account$transactionsArgs<ExtArgs>
+    budgetEnvelopes?: boolean | Account$budgetEnvelopesArgs<ExtArgs>
+    recurringRules?: boolean | Account$recurringRulesArgs<ExtArgs>
+    _count?: boolean | AccountCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["account"]>
+
+  export type AccountSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    type?: boolean
+    initialBalance?: boolean
+    currentBalance?: boolean
+    icon?: boolean
+    color?: boolean
+    isArchived?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["account"]>
+
+  export type AccountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    type?: boolean
+    initialBalance?: boolean
+    currentBalance?: boolean
+    icon?: boolean
+    color?: boolean
+    isArchived?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["account"]>
+
+  export type AccountSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    type?: boolean
+    initialBalance?: boolean
+    currentBalance?: boolean
+    icon?: boolean
+    color?: boolean
+    isArchived?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "name" | "type" | "initialBalance" | "currentBalance" | "icon" | "color" | "isArchived" | "createdAt" | "updatedAt", ExtArgs["result"]["account"]>
+  export type AccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    transactions?: boolean | Account$transactionsArgs<ExtArgs>
+    budgetEnvelopes?: boolean | Account$budgetEnvelopesArgs<ExtArgs>
+    recurringRules?: boolean | Account$recurringRulesArgs<ExtArgs>
+    _count?: boolean | AccountCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AccountIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type AccountIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $AccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Account"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+      transactions: Prisma.$TransactionPayload<ExtArgs>[]
+      budgetEnvelopes: Prisma.$BudgetEnvelopePayload<ExtArgs>[]
+      recurringRules: Prisma.$RecurringRulePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      name: string
+      type: string
+      initialBalance: Prisma.Decimal
+      currentBalance: Prisma.Decimal
+      icon: string | null
+      color: string | null
+      isArchived: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["account"]>
+    composites: {}
+  }
+
+  type AccountGetPayload<S extends boolean | null | undefined | AccountDefaultArgs> = $Result.GetResult<Prisma.$AccountPayload, S>
+
+  type AccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AccountFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AccountCountAggregateInputType | true
+    }
+
+  export interface AccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Account'], meta: { name: 'Account' } }
+    /**
+     * Find zero or one Account that matches the filter.
+     * @param {AccountFindUniqueArgs} args - Arguments to find a Account
+     * @example
+     * // Get one Account
+     * const account = await prisma.account.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AccountFindUniqueArgs>(args: SelectSubset<T, AccountFindUniqueArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Account that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AccountFindUniqueOrThrowArgs} args - Arguments to find a Account
+     * @example
+     * // Get one Account
+     * const account = await prisma.account.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AccountFindUniqueOrThrowArgs>(args: SelectSubset<T, AccountFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Account that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountFindFirstArgs} args - Arguments to find a Account
+     * @example
+     * // Get one Account
+     * const account = await prisma.account.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AccountFindFirstArgs>(args?: SelectSubset<T, AccountFindFirstArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Account that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountFindFirstOrThrowArgs} args - Arguments to find a Account
+     * @example
+     * // Get one Account
+     * const account = await prisma.account.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AccountFindFirstOrThrowArgs>(args?: SelectSubset<T, AccountFindFirstOrThrowArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Accounts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Accounts
+     * const accounts = await prisma.account.findMany()
+     * 
+     * // Get first 10 Accounts
+     * const accounts = await prisma.account.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const accountWithIdOnly = await prisma.account.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AccountFindManyArgs>(args?: SelectSubset<T, AccountFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Account.
+     * @param {AccountCreateArgs} args - Arguments to create a Account.
+     * @example
+     * // Create one Account
+     * const Account = await prisma.account.create({
+     *   data: {
+     *     // ... data to create a Account
+     *   }
+     * })
+     * 
+     */
+    create<T extends AccountCreateArgs>(args: SelectSubset<T, AccountCreateArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Accounts.
+     * @param {AccountCreateManyArgs} args - Arguments to create many Accounts.
+     * @example
+     * // Create many Accounts
+     * const account = await prisma.account.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AccountCreateManyArgs>(args?: SelectSubset<T, AccountCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Accounts and returns the data saved in the database.
+     * @param {AccountCreateManyAndReturnArgs} args - Arguments to create many Accounts.
+     * @example
+     * // Create many Accounts
+     * const account = await prisma.account.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Accounts and only return the `id`
+     * const accountWithIdOnly = await prisma.account.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AccountCreateManyAndReturnArgs>(args?: SelectSubset<T, AccountCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Account.
+     * @param {AccountDeleteArgs} args - Arguments to delete one Account.
+     * @example
+     * // Delete one Account
+     * const Account = await prisma.account.delete({
+     *   where: {
+     *     // ... filter to delete one Account
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AccountDeleteArgs>(args: SelectSubset<T, AccountDeleteArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Account.
+     * @param {AccountUpdateArgs} args - Arguments to update one Account.
+     * @example
+     * // Update one Account
+     * const account = await prisma.account.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AccountUpdateArgs>(args: SelectSubset<T, AccountUpdateArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Accounts.
+     * @param {AccountDeleteManyArgs} args - Arguments to filter Accounts to delete.
+     * @example
+     * // Delete a few Accounts
+     * const { count } = await prisma.account.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AccountDeleteManyArgs>(args?: SelectSubset<T, AccountDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Accounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Accounts
+     * const account = await prisma.account.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AccountUpdateManyArgs>(args: SelectSubset<T, AccountUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Accounts and returns the data updated in the database.
+     * @param {AccountUpdateManyAndReturnArgs} args - Arguments to update many Accounts.
+     * @example
+     * // Update many Accounts
+     * const account = await prisma.account.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Accounts and only return the `id`
+     * const accountWithIdOnly = await prisma.account.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AccountUpdateManyAndReturnArgs>(args: SelectSubset<T, AccountUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Account.
+     * @param {AccountUpsertArgs} args - Arguments to update or create a Account.
+     * @example
+     * // Update or create a Account
+     * const account = await prisma.account.upsert({
+     *   create: {
+     *     // ... data to create a Account
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Account we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AccountUpsertArgs>(args: SelectSubset<T, AccountUpsertArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Accounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountCountArgs} args - Arguments to filter Accounts to count.
+     * @example
+     * // Count the number of Accounts
+     * const count = await prisma.account.count({
+     *   where: {
+     *     // ... the filter for the Accounts we want to count
+     *   }
+     * })
+    **/
+    count<T extends AccountCountArgs>(
+      args?: Subset<T, AccountCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AccountCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Account.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AccountAggregateArgs>(args: Subset<T, AccountAggregateArgs>): Prisma.PrismaPromise<GetAccountAggregateType<T>>
+
+    /**
+     * Group by Account.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccountGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AccountGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AccountGroupByArgs['orderBy'] }
+        : { orderBy?: AccountGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AccountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAccountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Account model
+   */
+  readonly fields: AccountFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Account.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    transactions<T extends Account$transactionsArgs<ExtArgs> = {}>(args?: Subset<T, Account$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    budgetEnvelopes<T extends Account$budgetEnvelopesArgs<ExtArgs> = {}>(args?: Subset<T, Account$budgetEnvelopesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BudgetEnvelopePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    recurringRules<T extends Account$recurringRulesArgs<ExtArgs> = {}>(args?: Subset<T, Account$recurringRulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecurringRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Account model
+   */
+  interface AccountFieldRefs {
+    readonly id: FieldRef<"Account", 'String'>
+    readonly tenantId: FieldRef<"Account", 'String'>
+    readonly name: FieldRef<"Account", 'String'>
+    readonly type: FieldRef<"Account", 'String'>
+    readonly initialBalance: FieldRef<"Account", 'Decimal'>
+    readonly currentBalance: FieldRef<"Account", 'Decimal'>
+    readonly icon: FieldRef<"Account", 'String'>
+    readonly color: FieldRef<"Account", 'String'>
+    readonly isArchived: FieldRef<"Account", 'Boolean'>
+    readonly createdAt: FieldRef<"Account", 'DateTime'>
+    readonly updatedAt: FieldRef<"Account", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Account findUnique
+   */
+  export type AccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * Filter, which Account to fetch.
+     */
+    where: AccountWhereUniqueInput
+  }
+
+  /**
+   * Account findUniqueOrThrow
+   */
+  export type AccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * Filter, which Account to fetch.
+     */
+    where: AccountWhereUniqueInput
+  }
+
+  /**
+   * Account findFirst
+   */
+  export type AccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * Filter, which Account to fetch.
+     */
+    where?: AccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Accounts to fetch.
+     */
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Accounts.
+     */
+    cursor?: AccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Accounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Accounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Accounts.
+     */
+    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
+  }
+
+  /**
+   * Account findFirstOrThrow
+   */
+  export type AccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * Filter, which Account to fetch.
+     */
+    where?: AccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Accounts to fetch.
+     */
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Accounts.
+     */
+    cursor?: AccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Accounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Accounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Accounts.
+     */
+    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
+  }
+
+  /**
+   * Account findMany
+   */
+  export type AccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * Filter, which Accounts to fetch.
+     */
+    where?: AccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Accounts to fetch.
+     */
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Accounts.
+     */
+    cursor?: AccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Accounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Accounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Accounts.
+     */
+    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
+  }
+
+  /**
+   * Account create
+   */
+  export type AccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Account.
+     */
+    data: XOR<AccountCreateInput, AccountUncheckedCreateInput>
+  }
+
+  /**
+   * Account createMany
+   */
+  export type AccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Accounts.
+     */
+    data: AccountCreateManyInput | AccountCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Account createManyAndReturn
+   */
+  export type AccountCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * The data used to create many Accounts.
+     */
+    data: AccountCreateManyInput | AccountCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Account update
+   */
+  export type AccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Account.
+     */
+    data: XOR<AccountUpdateInput, AccountUncheckedUpdateInput>
+    /**
+     * Choose, which Account to update.
+     */
+    where: AccountWhereUniqueInput
+  }
+
+  /**
+   * Account updateMany
+   */
+  export type AccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Accounts.
+     */
+    data: XOR<AccountUpdateManyMutationInput, AccountUncheckedUpdateManyInput>
+    /**
+     * Filter which Accounts to update
+     */
+    where?: AccountWhereInput
+    /**
+     * Limit how many Accounts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Account updateManyAndReturn
+   */
+  export type AccountUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * The data used to update Accounts.
+     */
+    data: XOR<AccountUpdateManyMutationInput, AccountUncheckedUpdateManyInput>
+    /**
+     * Filter which Accounts to update
+     */
+    where?: AccountWhereInput
+    /**
+     * Limit how many Accounts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Account upsert
+   */
+  export type AccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Account to update in case it exists.
+     */
+    where: AccountWhereUniqueInput
+    /**
+     * In case the Account found by the `where` argument doesn't exist, create a new Account with this data.
+     */
+    create: XOR<AccountCreateInput, AccountUncheckedCreateInput>
+    /**
+     * In case the Account was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AccountUpdateInput, AccountUncheckedUpdateInput>
+  }
+
+  /**
+   * Account delete
+   */
+  export type AccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
+     * Filter which Account to delete.
+     */
+    where: AccountWhereUniqueInput
+  }
+
+  /**
+   * Account deleteMany
+   */
+  export type AccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Accounts to delete
+     */
+    where?: AccountWhereInput
+    /**
+     * Limit how many Accounts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Account.transactions
+   */
+  export type Account$transactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    where?: TransactionWhereInput
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    cursor?: TransactionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * Account.budgetEnvelopes
+   */
+  export type Account$budgetEnvelopesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BudgetEnvelope
+     */
+    select?: BudgetEnvelopeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BudgetEnvelope
+     */
+    omit?: BudgetEnvelopeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BudgetEnvelopeInclude<ExtArgs> | null
+    where?: BudgetEnvelopeWhereInput
+    orderBy?: BudgetEnvelopeOrderByWithRelationInput | BudgetEnvelopeOrderByWithRelationInput[]
+    cursor?: BudgetEnvelopeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BudgetEnvelopeScalarFieldEnum | BudgetEnvelopeScalarFieldEnum[]
+  }
+
+  /**
+   * Account.recurringRules
+   */
+  export type Account$recurringRulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecurringRule
+     */
+    select?: RecurringRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecurringRule
+     */
+    omit?: RecurringRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecurringRuleInclude<ExtArgs> | null
+    where?: RecurringRuleWhereInput
+    orderBy?: RecurringRuleOrderByWithRelationInput | RecurringRuleOrderByWithRelationInput[]
+    cursor?: RecurringRuleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RecurringRuleScalarFieldEnum | RecurringRuleScalarFieldEnum[]
+  }
+
+  /**
+   * Account without action
+   */
+  export type AccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Account
+     */
+    select?: AccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Account
+     */
+    omit?: AccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccountInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Transaction
+   */
+
+  export type AggregateTransaction = {
+    _count: TransactionCountAggregateOutputType | null
+    _avg: TransactionAvgAggregateOutputType | null
+    _sum: TransactionSumAggregateOutputType | null
+    _min: TransactionMinAggregateOutputType | null
+    _max: TransactionMaxAggregateOutputType | null
+  }
+
+  export type TransactionAvgAggregateOutputType = {
+    amount: Decimal | null
+  }
+
+  export type TransactionSumAggregateOutputType = {
+    amount: Decimal | null
+  }
+
+  export type TransactionMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    accountId: string | null
+    categoryId: string | null
+    amount: Decimal | null
+    type: string | null
+    payee: string | null
+    description: string | null
+    date: Date | null
+    isRecurring: boolean | null
+    recurringRuleId: string | null
+    isDeleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TransactionMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    accountId: string | null
+    categoryId: string | null
+    amount: Decimal | null
+    type: string | null
+    payee: string | null
+    description: string | null
+    date: Date | null
+    isRecurring: boolean | null
+    recurringRuleId: string | null
+    isDeleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TransactionCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    accountId: number
+    categoryId: number
+    amount: number
+    type: number
+    payee: number
+    description: number
+    date: number
+    isRecurring: number
+    recurringRuleId: number
+    isDeleted: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TransactionAvgAggregateInputType = {
+    amount?: true
+  }
+
+  export type TransactionSumAggregateInputType = {
+    amount?: true
+  }
+
+  export type TransactionMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    accountId?: true
+    categoryId?: true
+    amount?: true
+    type?: true
+    payee?: true
+    description?: true
+    date?: true
+    isRecurring?: true
+    recurringRuleId?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TransactionMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    accountId?: true
+    categoryId?: true
+    amount?: true
+    type?: true
+    payee?: true
+    description?: true
+    date?: true
+    isRecurring?: true
+    recurringRuleId?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TransactionCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    accountId?: true
+    categoryId?: true
+    amount?: true
+    type?: true
+    payee?: true
+    description?: true
+    date?: true
+    isRecurring?: true
+    recurringRuleId?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TransactionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Transaction to aggregate.
+     */
+    where?: TransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Transactions to fetch.
+     */
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Transactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Transactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Transactions
+    **/
+    _count?: true | TransactionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TransactionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TransactionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TransactionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TransactionMaxAggregateInputType
+  }
+
+  export type GetTransactionAggregateType<T extends TransactionAggregateArgs> = {
+        [P in keyof T & keyof AggregateTransaction]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTransaction[P]>
+      : GetScalarType<T[P], AggregateTransaction[P]>
+  }
+
+
+
+
+  export type TransactionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransactionWhereInput
+    orderBy?: TransactionOrderByWithAggregationInput | TransactionOrderByWithAggregationInput[]
+    by: TransactionScalarFieldEnum[] | TransactionScalarFieldEnum
+    having?: TransactionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TransactionCountAggregateInputType | true
+    _avg?: TransactionAvgAggregateInputType
+    _sum?: TransactionSumAggregateInputType
+    _min?: TransactionMinAggregateInputType
+    _max?: TransactionMaxAggregateInputType
+  }
+
+  export type TransactionGroupByOutputType = {
+    id: string
+    tenantId: string
+    accountId: string
+    categoryId: string | null
+    amount: Decimal
+    type: string
+    payee: string | null
+    description: string | null
+    date: Date
+    isRecurring: boolean
+    recurringRuleId: string | null
+    isDeleted: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: TransactionCountAggregateOutputType | null
+    _avg: TransactionAvgAggregateOutputType | null
+    _sum: TransactionSumAggregateOutputType | null
+    _min: TransactionMinAggregateOutputType | null
+    _max: TransactionMaxAggregateOutputType | null
+  }
+
+  type GetTransactionGroupByPayload<T extends TransactionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TransactionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TransactionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TransactionGroupByOutputType[P]>
+            : GetScalarType<T[P], TransactionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TransactionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    accountId?: boolean
+    categoryId?: boolean
+    amount?: boolean
+    type?: boolean
+    payee?: boolean
+    description?: boolean
+    date?: boolean
+    isRecurring?: boolean
+    recurringRuleId?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    category?: boolean | Transaction$categoryArgs<ExtArgs>
+    recurringRule?: boolean | Transaction$recurringRuleArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["transaction"]>
+
+  export type TransactionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    accountId?: boolean
+    categoryId?: boolean
+    amount?: boolean
+    type?: boolean
+    payee?: boolean
+    description?: boolean
+    date?: boolean
+    isRecurring?: boolean
+    recurringRuleId?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    category?: boolean | Transaction$categoryArgs<ExtArgs>
+    recurringRule?: boolean | Transaction$recurringRuleArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["transaction"]>
+
+  export type TransactionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    accountId?: boolean
+    categoryId?: boolean
+    amount?: boolean
+    type?: boolean
+    payee?: boolean
+    description?: boolean
+    date?: boolean
+    isRecurring?: boolean
+    recurringRuleId?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    category?: boolean | Transaction$categoryArgs<ExtArgs>
+    recurringRule?: boolean | Transaction$recurringRuleArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["transaction"]>
+
+  export type TransactionSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    accountId?: boolean
+    categoryId?: boolean
+    amount?: boolean
+    type?: boolean
+    payee?: boolean
+    description?: boolean
+    date?: boolean
+    isRecurring?: boolean
+    recurringRuleId?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "accountId" | "categoryId" | "amount" | "type" | "payee" | "description" | "date" | "isRecurring" | "recurringRuleId" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["transaction"]>
+  export type TransactionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    category?: boolean | Transaction$categoryArgs<ExtArgs>
+    recurringRule?: boolean | Transaction$recurringRuleArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type TransactionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    category?: boolean | Transaction$categoryArgs<ExtArgs>
+    recurringRule?: boolean | Transaction$recurringRuleArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type TransactionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    category?: boolean | Transaction$categoryArgs<ExtArgs>
+    recurringRule?: boolean | Transaction$recurringRuleArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $TransactionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Transaction"
+    objects: {
+      account: Prisma.$AccountPayload<ExtArgs>
+      category: Prisma.$CategoryPayload<ExtArgs> | null
+      recurringRule: Prisma.$RecurringRulePayload<ExtArgs> | null
+      tenant: Prisma.$TenantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      accountId: string
+      categoryId: string | null
+      amount: Prisma.Decimal
+      type: string
+      payee: string | null
+      description: string | null
+      date: Date
+      isRecurring: boolean
+      recurringRuleId: string | null
+      isDeleted: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["transaction"]>
+    composites: {}
+  }
+
+  type TransactionGetPayload<S extends boolean | null | undefined | TransactionDefaultArgs> = $Result.GetResult<Prisma.$TransactionPayload, S>
+
+  type TransactionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TransactionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TransactionCountAggregateInputType | true
+    }
+
+  export interface TransactionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Transaction'], meta: { name: 'Transaction' } }
+    /**
+     * Find zero or one Transaction that matches the filter.
+     * @param {TransactionFindUniqueArgs} args - Arguments to find a Transaction
+     * @example
+     * // Get one Transaction
+     * const transaction = await prisma.transaction.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TransactionFindUniqueArgs>(args: SelectSubset<T, TransactionFindUniqueArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Transaction that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TransactionFindUniqueOrThrowArgs} args - Arguments to find a Transaction
+     * @example
+     * // Get one Transaction
+     * const transaction = await prisma.transaction.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TransactionFindUniqueOrThrowArgs>(args: SelectSubset<T, TransactionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Transaction that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionFindFirstArgs} args - Arguments to find a Transaction
+     * @example
+     * // Get one Transaction
+     * const transaction = await prisma.transaction.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TransactionFindFirstArgs>(args?: SelectSubset<T, TransactionFindFirstArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Transaction that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionFindFirstOrThrowArgs} args - Arguments to find a Transaction
+     * @example
+     * // Get one Transaction
+     * const transaction = await prisma.transaction.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TransactionFindFirstOrThrowArgs>(args?: SelectSubset<T, TransactionFindFirstOrThrowArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Transactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Transactions
+     * const transactions = await prisma.transaction.findMany()
+     * 
+     * // Get first 10 Transactions
+     * const transactions = await prisma.transaction.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const transactionWithIdOnly = await prisma.transaction.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TransactionFindManyArgs>(args?: SelectSubset<T, TransactionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Transaction.
+     * @param {TransactionCreateArgs} args - Arguments to create a Transaction.
+     * @example
+     * // Create one Transaction
+     * const Transaction = await prisma.transaction.create({
+     *   data: {
+     *     // ... data to create a Transaction
+     *   }
+     * })
+     * 
+     */
+    create<T extends TransactionCreateArgs>(args: SelectSubset<T, TransactionCreateArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Transactions.
+     * @param {TransactionCreateManyArgs} args - Arguments to create many Transactions.
+     * @example
+     * // Create many Transactions
+     * const transaction = await prisma.transaction.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TransactionCreateManyArgs>(args?: SelectSubset<T, TransactionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Transactions and returns the data saved in the database.
+     * @param {TransactionCreateManyAndReturnArgs} args - Arguments to create many Transactions.
+     * @example
+     * // Create many Transactions
+     * const transaction = await prisma.transaction.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Transactions and only return the `id`
+     * const transactionWithIdOnly = await prisma.transaction.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TransactionCreateManyAndReturnArgs>(args?: SelectSubset<T, TransactionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Transaction.
+     * @param {TransactionDeleteArgs} args - Arguments to delete one Transaction.
+     * @example
+     * // Delete one Transaction
+     * const Transaction = await prisma.transaction.delete({
+     *   where: {
+     *     // ... filter to delete one Transaction
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TransactionDeleteArgs>(args: SelectSubset<T, TransactionDeleteArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Transaction.
+     * @param {TransactionUpdateArgs} args - Arguments to update one Transaction.
+     * @example
+     * // Update one Transaction
+     * const transaction = await prisma.transaction.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TransactionUpdateArgs>(args: SelectSubset<T, TransactionUpdateArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Transactions.
+     * @param {TransactionDeleteManyArgs} args - Arguments to filter Transactions to delete.
+     * @example
+     * // Delete a few Transactions
+     * const { count } = await prisma.transaction.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TransactionDeleteManyArgs>(args?: SelectSubset<T, TransactionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Transactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Transactions
+     * const transaction = await prisma.transaction.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TransactionUpdateManyArgs>(args: SelectSubset<T, TransactionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Transactions and returns the data updated in the database.
+     * @param {TransactionUpdateManyAndReturnArgs} args - Arguments to update many Transactions.
+     * @example
+     * // Update many Transactions
+     * const transaction = await prisma.transaction.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Transactions and only return the `id`
+     * const transactionWithIdOnly = await prisma.transaction.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TransactionUpdateManyAndReturnArgs>(args: SelectSubset<T, TransactionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Transaction.
+     * @param {TransactionUpsertArgs} args - Arguments to update or create a Transaction.
+     * @example
+     * // Update or create a Transaction
+     * const transaction = await prisma.transaction.upsert({
+     *   create: {
+     *     // ... data to create a Transaction
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Transaction we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TransactionUpsertArgs>(args: SelectSubset<T, TransactionUpsertArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Transactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionCountArgs} args - Arguments to filter Transactions to count.
+     * @example
+     * // Count the number of Transactions
+     * const count = await prisma.transaction.count({
+     *   where: {
+     *     // ... the filter for the Transactions we want to count
+     *   }
+     * })
+    **/
+    count<T extends TransactionCountArgs>(
+      args?: Subset<T, TransactionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TransactionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Transaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TransactionAggregateArgs>(args: Subset<T, TransactionAggregateArgs>): Prisma.PrismaPromise<GetTransactionAggregateType<T>>
+
+    /**
+     * Group by Transaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TransactionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TransactionGroupByArgs['orderBy'] }
+        : { orderBy?: TransactionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TransactionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTransactionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Transaction model
+   */
+  readonly fields: TransactionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Transaction.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TransactionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    account<T extends AccountDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AccountDefaultArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    category<T extends Transaction$categoryArgs<ExtArgs> = {}>(args?: Subset<T, Transaction$categoryArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    recurringRule<T extends Transaction$recurringRuleArgs<ExtArgs> = {}>(args?: Subset<T, Transaction$recurringRuleArgs<ExtArgs>>): Prisma__RecurringRuleClient<$Result.GetResult<Prisma.$RecurringRulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Transaction model
+   */
+  interface TransactionFieldRefs {
+    readonly id: FieldRef<"Transaction", 'String'>
+    readonly tenantId: FieldRef<"Transaction", 'String'>
+    readonly accountId: FieldRef<"Transaction", 'String'>
+    readonly categoryId: FieldRef<"Transaction", 'String'>
+    readonly amount: FieldRef<"Transaction", 'Decimal'>
+    readonly type: FieldRef<"Transaction", 'String'>
+    readonly payee: FieldRef<"Transaction", 'String'>
+    readonly description: FieldRef<"Transaction", 'String'>
+    readonly date: FieldRef<"Transaction", 'DateTime'>
+    readonly isRecurring: FieldRef<"Transaction", 'Boolean'>
+    readonly recurringRuleId: FieldRef<"Transaction", 'String'>
+    readonly isDeleted: FieldRef<"Transaction", 'Boolean'>
+    readonly createdAt: FieldRef<"Transaction", 'DateTime'>
+    readonly updatedAt: FieldRef<"Transaction", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Transaction findUnique
+   */
+  export type TransactionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Transaction to fetch.
+     */
+    where: TransactionWhereUniqueInput
+  }
+
+  /**
+   * Transaction findUniqueOrThrow
+   */
+  export type TransactionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Transaction to fetch.
+     */
+    where: TransactionWhereUniqueInput
+  }
+
+  /**
+   * Transaction findFirst
+   */
+  export type TransactionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Transaction to fetch.
+     */
+    where?: TransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Transactions to fetch.
+     */
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Transactions.
+     */
+    cursor?: TransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Transactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Transactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Transactions.
+     */
+    distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * Transaction findFirstOrThrow
+   */
+  export type TransactionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Transaction to fetch.
+     */
+    where?: TransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Transactions to fetch.
+     */
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Transactions.
+     */
+    cursor?: TransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Transactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Transactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Transactions.
+     */
+    distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * Transaction findMany
+   */
+  export type TransactionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Transactions to fetch.
+     */
+    where?: TransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Transactions to fetch.
+     */
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Transactions.
+     */
+    cursor?: TransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Transactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Transactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Transactions.
+     */
+    distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * Transaction create
+   */
+  export type TransactionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Transaction.
+     */
+    data: XOR<TransactionCreateInput, TransactionUncheckedCreateInput>
+  }
+
+  /**
+   * Transaction createMany
+   */
+  export type TransactionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Transactions.
+     */
+    data: TransactionCreateManyInput | TransactionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Transaction createManyAndReturn
+   */
+  export type TransactionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * The data used to create many Transactions.
+     */
+    data: TransactionCreateManyInput | TransactionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Transaction update
+   */
+  export type TransactionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Transaction.
+     */
+    data: XOR<TransactionUpdateInput, TransactionUncheckedUpdateInput>
+    /**
+     * Choose, which Transaction to update.
+     */
+    where: TransactionWhereUniqueInput
+  }
+
+  /**
+   * Transaction updateMany
+   */
+  export type TransactionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Transactions.
+     */
+    data: XOR<TransactionUpdateManyMutationInput, TransactionUncheckedUpdateManyInput>
+    /**
+     * Filter which Transactions to update
+     */
+    where?: TransactionWhereInput
+    /**
+     * Limit how many Transactions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Transaction updateManyAndReturn
+   */
+  export type TransactionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * The data used to update Transactions.
+     */
+    data: XOR<TransactionUpdateManyMutationInput, TransactionUncheckedUpdateManyInput>
+    /**
+     * Filter which Transactions to update
+     */
+    where?: TransactionWhereInput
+    /**
+     * Limit how many Transactions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Transaction upsert
+   */
+  export type TransactionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Transaction to update in case it exists.
+     */
+    where: TransactionWhereUniqueInput
+    /**
+     * In case the Transaction found by the `where` argument doesn't exist, create a new Transaction with this data.
+     */
+    create: XOR<TransactionCreateInput, TransactionUncheckedCreateInput>
+    /**
+     * In case the Transaction was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TransactionUpdateInput, TransactionUncheckedUpdateInput>
+  }
+
+  /**
+   * Transaction delete
+   */
+  export type TransactionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter which Transaction to delete.
+     */
+    where: TransactionWhereUniqueInput
+  }
+
+  /**
+   * Transaction deleteMany
+   */
+  export type TransactionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Transactions to delete
+     */
+    where?: TransactionWhereInput
+    /**
+     * Limit how many Transactions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Transaction.category
+   */
+  export type Transaction$categoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    where?: CategoryWhereInput
+  }
+
+  /**
+   * Transaction.recurringRule
+   */
+  export type Transaction$recurringRuleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecurringRule
+     */
+    select?: RecurringRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecurringRule
+     */
+    omit?: RecurringRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecurringRuleInclude<ExtArgs> | null
+    where?: RecurringRuleWhereInput
+  }
+
+  /**
+   * Transaction without action
+   */
+  export type TransactionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BudgetEnvelope
+   */
+
+  export type AggregateBudgetEnvelope = {
+    _count: BudgetEnvelopeCountAggregateOutputType | null
+    _avg: BudgetEnvelopeAvgAggregateOutputType | null
+    _sum: BudgetEnvelopeSumAggregateOutputType | null
+    _min: BudgetEnvelopeMinAggregateOutputType | null
+    _max: BudgetEnvelopeMaxAggregateOutputType | null
+  }
+
+  export type BudgetEnvelopeAvgAggregateOutputType = {
+    allocated: Decimal | null
+    spent: Decimal | null
+    rolledOver: Decimal | null
+  }
+
+  export type BudgetEnvelopeSumAggregateOutputType = {
+    allocated: Decimal | null
+    spent: Decimal | null
+    rolledOver: Decimal | null
+  }
+
+  export type BudgetEnvelopeMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    categoryId: string | null
+    accountId: string | null
+    month: Date | null
+    allocated: Decimal | null
+    spent: Decimal | null
+    rolledOver: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BudgetEnvelopeMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    categoryId: string | null
+    accountId: string | null
+    month: Date | null
+    allocated: Decimal | null
+    spent: Decimal | null
+    rolledOver: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BudgetEnvelopeCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    categoryId: number
+    accountId: number
+    month: number
+    allocated: number
+    spent: number
+    rolledOver: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BudgetEnvelopeAvgAggregateInputType = {
+    allocated?: true
+    spent?: true
+    rolledOver?: true
+  }
+
+  export type BudgetEnvelopeSumAggregateInputType = {
+    allocated?: true
+    spent?: true
+    rolledOver?: true
+  }
+
+  export type BudgetEnvelopeMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    categoryId?: true
+    accountId?: true
+    month?: true
+    allocated?: true
+    spent?: true
+    rolledOver?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BudgetEnvelopeMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    categoryId?: true
+    accountId?: true
+    month?: true
+    allocated?: true
+    spent?: true
+    rolledOver?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BudgetEnvelopeCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    categoryId?: true
+    accountId?: true
+    month?: true
+    allocated?: true
+    spent?: true
+    rolledOver?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BudgetEnvelopeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BudgetEnvelope to aggregate.
+     */
+    where?: BudgetEnvelopeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BudgetEnvelopes to fetch.
+     */
+    orderBy?: BudgetEnvelopeOrderByWithRelationInput | BudgetEnvelopeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BudgetEnvelopeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BudgetEnvelopes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BudgetEnvelopes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BudgetEnvelopes
+    **/
+    _count?: true | BudgetEnvelopeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BudgetEnvelopeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BudgetEnvelopeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BudgetEnvelopeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BudgetEnvelopeMaxAggregateInputType
+  }
+
+  export type GetBudgetEnvelopeAggregateType<T extends BudgetEnvelopeAggregateArgs> = {
+        [P in keyof T & keyof AggregateBudgetEnvelope]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBudgetEnvelope[P]>
+      : GetScalarType<T[P], AggregateBudgetEnvelope[P]>
+  }
+
+
+
+
+  export type BudgetEnvelopeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BudgetEnvelopeWhereInput
+    orderBy?: BudgetEnvelopeOrderByWithAggregationInput | BudgetEnvelopeOrderByWithAggregationInput[]
+    by: BudgetEnvelopeScalarFieldEnum[] | BudgetEnvelopeScalarFieldEnum
+    having?: BudgetEnvelopeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BudgetEnvelopeCountAggregateInputType | true
+    _avg?: BudgetEnvelopeAvgAggregateInputType
+    _sum?: BudgetEnvelopeSumAggregateInputType
+    _min?: BudgetEnvelopeMinAggregateInputType
+    _max?: BudgetEnvelopeMaxAggregateInputType
+  }
+
+  export type BudgetEnvelopeGroupByOutputType = {
+    id: string
+    tenantId: string
+    categoryId: string
+    accountId: string
+    month: Date
+    allocated: Decimal
+    spent: Decimal
+    rolledOver: Decimal
+    createdAt: Date
+    updatedAt: Date
+    _count: BudgetEnvelopeCountAggregateOutputType | null
+    _avg: BudgetEnvelopeAvgAggregateOutputType | null
+    _sum: BudgetEnvelopeSumAggregateOutputType | null
+    _min: BudgetEnvelopeMinAggregateOutputType | null
+    _max: BudgetEnvelopeMaxAggregateOutputType | null
+  }
+
+  type GetBudgetEnvelopeGroupByPayload<T extends BudgetEnvelopeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BudgetEnvelopeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BudgetEnvelopeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BudgetEnvelopeGroupByOutputType[P]>
+            : GetScalarType<T[P], BudgetEnvelopeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BudgetEnvelopeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    categoryId?: boolean
+    accountId?: boolean
+    month?: boolean
+    allocated?: boolean
+    spent?: boolean
+    rolledOver?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    category?: boolean | CategoryDefaultArgs<ExtArgs>
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["budgetEnvelope"]>
+
+  export type BudgetEnvelopeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    categoryId?: boolean
+    accountId?: boolean
+    month?: boolean
+    allocated?: boolean
+    spent?: boolean
+    rolledOver?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    category?: boolean | CategoryDefaultArgs<ExtArgs>
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["budgetEnvelope"]>
+
+  export type BudgetEnvelopeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    categoryId?: boolean
+    accountId?: boolean
+    month?: boolean
+    allocated?: boolean
+    spent?: boolean
+    rolledOver?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    category?: boolean | CategoryDefaultArgs<ExtArgs>
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["budgetEnvelope"]>
+
+  export type BudgetEnvelopeSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    categoryId?: boolean
+    accountId?: boolean
+    month?: boolean
+    allocated?: boolean
+    spent?: boolean
+    rolledOver?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BudgetEnvelopeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "categoryId" | "accountId" | "month" | "allocated" | "spent" | "rolledOver" | "createdAt" | "updatedAt", ExtArgs["result"]["budgetEnvelope"]>
+  export type BudgetEnvelopeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | CategoryDefaultArgs<ExtArgs>
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type BudgetEnvelopeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | CategoryDefaultArgs<ExtArgs>
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type BudgetEnvelopeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | CategoryDefaultArgs<ExtArgs>
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $BudgetEnvelopePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BudgetEnvelope"
+    objects: {
+      category: Prisma.$CategoryPayload<ExtArgs>
+      account: Prisma.$AccountPayload<ExtArgs>
+      tenant: Prisma.$TenantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      categoryId: string
+      accountId: string
+      month: Date
+      allocated: Prisma.Decimal
+      spent: Prisma.Decimal
+      rolledOver: Prisma.Decimal
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["budgetEnvelope"]>
+    composites: {}
+  }
+
+  type BudgetEnvelopeGetPayload<S extends boolean | null | undefined | BudgetEnvelopeDefaultArgs> = $Result.GetResult<Prisma.$BudgetEnvelopePayload, S>
+
+  type BudgetEnvelopeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BudgetEnvelopeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BudgetEnvelopeCountAggregateInputType | true
+    }
+
+  export interface BudgetEnvelopeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BudgetEnvelope'], meta: { name: 'BudgetEnvelope' } }
+    /**
+     * Find zero or one BudgetEnvelope that matches the filter.
+     * @param {BudgetEnvelopeFindUniqueArgs} args - Arguments to find a BudgetEnvelope
+     * @example
+     * // Get one BudgetEnvelope
+     * const budgetEnvelope = await prisma.budgetEnvelope.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BudgetEnvelopeFindUniqueArgs>(args: SelectSubset<T, BudgetEnvelopeFindUniqueArgs<ExtArgs>>): Prisma__BudgetEnvelopeClient<$Result.GetResult<Prisma.$BudgetEnvelopePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BudgetEnvelope that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BudgetEnvelopeFindUniqueOrThrowArgs} args - Arguments to find a BudgetEnvelope
+     * @example
+     * // Get one BudgetEnvelope
+     * const budgetEnvelope = await prisma.budgetEnvelope.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BudgetEnvelopeFindUniqueOrThrowArgs>(args: SelectSubset<T, BudgetEnvelopeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BudgetEnvelopeClient<$Result.GetResult<Prisma.$BudgetEnvelopePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BudgetEnvelope that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BudgetEnvelopeFindFirstArgs} args - Arguments to find a BudgetEnvelope
+     * @example
+     * // Get one BudgetEnvelope
+     * const budgetEnvelope = await prisma.budgetEnvelope.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BudgetEnvelopeFindFirstArgs>(args?: SelectSubset<T, BudgetEnvelopeFindFirstArgs<ExtArgs>>): Prisma__BudgetEnvelopeClient<$Result.GetResult<Prisma.$BudgetEnvelopePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BudgetEnvelope that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BudgetEnvelopeFindFirstOrThrowArgs} args - Arguments to find a BudgetEnvelope
+     * @example
+     * // Get one BudgetEnvelope
+     * const budgetEnvelope = await prisma.budgetEnvelope.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BudgetEnvelopeFindFirstOrThrowArgs>(args?: SelectSubset<T, BudgetEnvelopeFindFirstOrThrowArgs<ExtArgs>>): Prisma__BudgetEnvelopeClient<$Result.GetResult<Prisma.$BudgetEnvelopePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BudgetEnvelopes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BudgetEnvelopeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BudgetEnvelopes
+     * const budgetEnvelopes = await prisma.budgetEnvelope.findMany()
+     * 
+     * // Get first 10 BudgetEnvelopes
+     * const budgetEnvelopes = await prisma.budgetEnvelope.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const budgetEnvelopeWithIdOnly = await prisma.budgetEnvelope.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BudgetEnvelopeFindManyArgs>(args?: SelectSubset<T, BudgetEnvelopeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BudgetEnvelopePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BudgetEnvelope.
+     * @param {BudgetEnvelopeCreateArgs} args - Arguments to create a BudgetEnvelope.
+     * @example
+     * // Create one BudgetEnvelope
+     * const BudgetEnvelope = await prisma.budgetEnvelope.create({
+     *   data: {
+     *     // ... data to create a BudgetEnvelope
+     *   }
+     * })
+     * 
+     */
+    create<T extends BudgetEnvelopeCreateArgs>(args: SelectSubset<T, BudgetEnvelopeCreateArgs<ExtArgs>>): Prisma__BudgetEnvelopeClient<$Result.GetResult<Prisma.$BudgetEnvelopePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BudgetEnvelopes.
+     * @param {BudgetEnvelopeCreateManyArgs} args - Arguments to create many BudgetEnvelopes.
+     * @example
+     * // Create many BudgetEnvelopes
+     * const budgetEnvelope = await prisma.budgetEnvelope.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BudgetEnvelopeCreateManyArgs>(args?: SelectSubset<T, BudgetEnvelopeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BudgetEnvelopes and returns the data saved in the database.
+     * @param {BudgetEnvelopeCreateManyAndReturnArgs} args - Arguments to create many BudgetEnvelopes.
+     * @example
+     * // Create many BudgetEnvelopes
+     * const budgetEnvelope = await prisma.budgetEnvelope.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BudgetEnvelopes and only return the `id`
+     * const budgetEnvelopeWithIdOnly = await prisma.budgetEnvelope.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BudgetEnvelopeCreateManyAndReturnArgs>(args?: SelectSubset<T, BudgetEnvelopeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BudgetEnvelopePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BudgetEnvelope.
+     * @param {BudgetEnvelopeDeleteArgs} args - Arguments to delete one BudgetEnvelope.
+     * @example
+     * // Delete one BudgetEnvelope
+     * const BudgetEnvelope = await prisma.budgetEnvelope.delete({
+     *   where: {
+     *     // ... filter to delete one BudgetEnvelope
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BudgetEnvelopeDeleteArgs>(args: SelectSubset<T, BudgetEnvelopeDeleteArgs<ExtArgs>>): Prisma__BudgetEnvelopeClient<$Result.GetResult<Prisma.$BudgetEnvelopePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BudgetEnvelope.
+     * @param {BudgetEnvelopeUpdateArgs} args - Arguments to update one BudgetEnvelope.
+     * @example
+     * // Update one BudgetEnvelope
+     * const budgetEnvelope = await prisma.budgetEnvelope.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BudgetEnvelopeUpdateArgs>(args: SelectSubset<T, BudgetEnvelopeUpdateArgs<ExtArgs>>): Prisma__BudgetEnvelopeClient<$Result.GetResult<Prisma.$BudgetEnvelopePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BudgetEnvelopes.
+     * @param {BudgetEnvelopeDeleteManyArgs} args - Arguments to filter BudgetEnvelopes to delete.
+     * @example
+     * // Delete a few BudgetEnvelopes
+     * const { count } = await prisma.budgetEnvelope.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BudgetEnvelopeDeleteManyArgs>(args?: SelectSubset<T, BudgetEnvelopeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BudgetEnvelopes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BudgetEnvelopeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BudgetEnvelopes
+     * const budgetEnvelope = await prisma.budgetEnvelope.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BudgetEnvelopeUpdateManyArgs>(args: SelectSubset<T, BudgetEnvelopeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BudgetEnvelopes and returns the data updated in the database.
+     * @param {BudgetEnvelopeUpdateManyAndReturnArgs} args - Arguments to update many BudgetEnvelopes.
+     * @example
+     * // Update many BudgetEnvelopes
+     * const budgetEnvelope = await prisma.budgetEnvelope.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BudgetEnvelopes and only return the `id`
+     * const budgetEnvelopeWithIdOnly = await prisma.budgetEnvelope.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BudgetEnvelopeUpdateManyAndReturnArgs>(args: SelectSubset<T, BudgetEnvelopeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BudgetEnvelopePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BudgetEnvelope.
+     * @param {BudgetEnvelopeUpsertArgs} args - Arguments to update or create a BudgetEnvelope.
+     * @example
+     * // Update or create a BudgetEnvelope
+     * const budgetEnvelope = await prisma.budgetEnvelope.upsert({
+     *   create: {
+     *     // ... data to create a BudgetEnvelope
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BudgetEnvelope we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BudgetEnvelopeUpsertArgs>(args: SelectSubset<T, BudgetEnvelopeUpsertArgs<ExtArgs>>): Prisma__BudgetEnvelopeClient<$Result.GetResult<Prisma.$BudgetEnvelopePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BudgetEnvelopes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BudgetEnvelopeCountArgs} args - Arguments to filter BudgetEnvelopes to count.
+     * @example
+     * // Count the number of BudgetEnvelopes
+     * const count = await prisma.budgetEnvelope.count({
+     *   where: {
+     *     // ... the filter for the BudgetEnvelopes we want to count
+     *   }
+     * })
+    **/
+    count<T extends BudgetEnvelopeCountArgs>(
+      args?: Subset<T, BudgetEnvelopeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BudgetEnvelopeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BudgetEnvelope.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BudgetEnvelopeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BudgetEnvelopeAggregateArgs>(args: Subset<T, BudgetEnvelopeAggregateArgs>): Prisma.PrismaPromise<GetBudgetEnvelopeAggregateType<T>>
+
+    /**
+     * Group by BudgetEnvelope.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BudgetEnvelopeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BudgetEnvelopeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BudgetEnvelopeGroupByArgs['orderBy'] }
+        : { orderBy?: BudgetEnvelopeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BudgetEnvelopeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBudgetEnvelopeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BudgetEnvelope model
+   */
+  readonly fields: BudgetEnvelopeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BudgetEnvelope.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BudgetEnvelopeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    account<T extends AccountDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AccountDefaultArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BudgetEnvelope model
+   */
+  interface BudgetEnvelopeFieldRefs {
+    readonly id: FieldRef<"BudgetEnvelope", 'String'>
+    readonly tenantId: FieldRef<"BudgetEnvelope", 'String'>
+    readonly categoryId: FieldRef<"BudgetEnvelope", 'String'>
+    readonly accountId: FieldRef<"BudgetEnvelope", 'String'>
+    readonly month: FieldRef<"BudgetEnvelope", 'DateTime'>
+    readonly allocated: FieldRef<"BudgetEnvelope", 'Decimal'>
+    readonly spent: FieldRef<"BudgetEnvelope", 'Decimal'>
+    readonly rolledOver: FieldRef<"BudgetEnvelope", 'Decimal'>
+    readonly createdAt: FieldRef<"BudgetEnvelope", 'DateTime'>
+    readonly updatedAt: FieldRef<"BudgetEnvelope", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BudgetEnvelope findUnique
+   */
+  export type BudgetEnvelopeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BudgetEnvelope
+     */
+    select?: BudgetEnvelopeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BudgetEnvelope
+     */
+    omit?: BudgetEnvelopeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BudgetEnvelopeInclude<ExtArgs> | null
+    /**
+     * Filter, which BudgetEnvelope to fetch.
+     */
+    where: BudgetEnvelopeWhereUniqueInput
+  }
+
+  /**
+   * BudgetEnvelope findUniqueOrThrow
+   */
+  export type BudgetEnvelopeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BudgetEnvelope
+     */
+    select?: BudgetEnvelopeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BudgetEnvelope
+     */
+    omit?: BudgetEnvelopeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BudgetEnvelopeInclude<ExtArgs> | null
+    /**
+     * Filter, which BudgetEnvelope to fetch.
+     */
+    where: BudgetEnvelopeWhereUniqueInput
+  }
+
+  /**
+   * BudgetEnvelope findFirst
+   */
+  export type BudgetEnvelopeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BudgetEnvelope
+     */
+    select?: BudgetEnvelopeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BudgetEnvelope
+     */
+    omit?: BudgetEnvelopeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BudgetEnvelopeInclude<ExtArgs> | null
+    /**
+     * Filter, which BudgetEnvelope to fetch.
+     */
+    where?: BudgetEnvelopeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BudgetEnvelopes to fetch.
+     */
+    orderBy?: BudgetEnvelopeOrderByWithRelationInput | BudgetEnvelopeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BudgetEnvelopes.
+     */
+    cursor?: BudgetEnvelopeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BudgetEnvelopes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BudgetEnvelopes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BudgetEnvelopes.
+     */
+    distinct?: BudgetEnvelopeScalarFieldEnum | BudgetEnvelopeScalarFieldEnum[]
+  }
+
+  /**
+   * BudgetEnvelope findFirstOrThrow
+   */
+  export type BudgetEnvelopeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BudgetEnvelope
+     */
+    select?: BudgetEnvelopeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BudgetEnvelope
+     */
+    omit?: BudgetEnvelopeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BudgetEnvelopeInclude<ExtArgs> | null
+    /**
+     * Filter, which BudgetEnvelope to fetch.
+     */
+    where?: BudgetEnvelopeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BudgetEnvelopes to fetch.
+     */
+    orderBy?: BudgetEnvelopeOrderByWithRelationInput | BudgetEnvelopeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BudgetEnvelopes.
+     */
+    cursor?: BudgetEnvelopeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BudgetEnvelopes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BudgetEnvelopes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BudgetEnvelopes.
+     */
+    distinct?: BudgetEnvelopeScalarFieldEnum | BudgetEnvelopeScalarFieldEnum[]
+  }
+
+  /**
+   * BudgetEnvelope findMany
+   */
+  export type BudgetEnvelopeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BudgetEnvelope
+     */
+    select?: BudgetEnvelopeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BudgetEnvelope
+     */
+    omit?: BudgetEnvelopeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BudgetEnvelopeInclude<ExtArgs> | null
+    /**
+     * Filter, which BudgetEnvelopes to fetch.
+     */
+    where?: BudgetEnvelopeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BudgetEnvelopes to fetch.
+     */
+    orderBy?: BudgetEnvelopeOrderByWithRelationInput | BudgetEnvelopeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BudgetEnvelopes.
+     */
+    cursor?: BudgetEnvelopeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BudgetEnvelopes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BudgetEnvelopes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BudgetEnvelopes.
+     */
+    distinct?: BudgetEnvelopeScalarFieldEnum | BudgetEnvelopeScalarFieldEnum[]
+  }
+
+  /**
+   * BudgetEnvelope create
+   */
+  export type BudgetEnvelopeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BudgetEnvelope
+     */
+    select?: BudgetEnvelopeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BudgetEnvelope
+     */
+    omit?: BudgetEnvelopeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BudgetEnvelopeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BudgetEnvelope.
+     */
+    data: XOR<BudgetEnvelopeCreateInput, BudgetEnvelopeUncheckedCreateInput>
+  }
+
+  /**
+   * BudgetEnvelope createMany
+   */
+  export type BudgetEnvelopeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BudgetEnvelopes.
+     */
+    data: BudgetEnvelopeCreateManyInput | BudgetEnvelopeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BudgetEnvelope createManyAndReturn
+   */
+  export type BudgetEnvelopeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BudgetEnvelope
+     */
+    select?: BudgetEnvelopeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BudgetEnvelope
+     */
+    omit?: BudgetEnvelopeOmit<ExtArgs> | null
+    /**
+     * The data used to create many BudgetEnvelopes.
+     */
+    data: BudgetEnvelopeCreateManyInput | BudgetEnvelopeCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BudgetEnvelopeIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BudgetEnvelope update
+   */
+  export type BudgetEnvelopeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BudgetEnvelope
+     */
+    select?: BudgetEnvelopeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BudgetEnvelope
+     */
+    omit?: BudgetEnvelopeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BudgetEnvelopeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BudgetEnvelope.
+     */
+    data: XOR<BudgetEnvelopeUpdateInput, BudgetEnvelopeUncheckedUpdateInput>
+    /**
+     * Choose, which BudgetEnvelope to update.
+     */
+    where: BudgetEnvelopeWhereUniqueInput
+  }
+
+  /**
+   * BudgetEnvelope updateMany
+   */
+  export type BudgetEnvelopeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BudgetEnvelopes.
+     */
+    data: XOR<BudgetEnvelopeUpdateManyMutationInput, BudgetEnvelopeUncheckedUpdateManyInput>
+    /**
+     * Filter which BudgetEnvelopes to update
+     */
+    where?: BudgetEnvelopeWhereInput
+    /**
+     * Limit how many BudgetEnvelopes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BudgetEnvelope updateManyAndReturn
+   */
+  export type BudgetEnvelopeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BudgetEnvelope
+     */
+    select?: BudgetEnvelopeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BudgetEnvelope
+     */
+    omit?: BudgetEnvelopeOmit<ExtArgs> | null
+    /**
+     * The data used to update BudgetEnvelopes.
+     */
+    data: XOR<BudgetEnvelopeUpdateManyMutationInput, BudgetEnvelopeUncheckedUpdateManyInput>
+    /**
+     * Filter which BudgetEnvelopes to update
+     */
+    where?: BudgetEnvelopeWhereInput
+    /**
+     * Limit how many BudgetEnvelopes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BudgetEnvelopeIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BudgetEnvelope upsert
+   */
+  export type BudgetEnvelopeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BudgetEnvelope
+     */
+    select?: BudgetEnvelopeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BudgetEnvelope
+     */
+    omit?: BudgetEnvelopeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BudgetEnvelopeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BudgetEnvelope to update in case it exists.
+     */
+    where: BudgetEnvelopeWhereUniqueInput
+    /**
+     * In case the BudgetEnvelope found by the `where` argument doesn't exist, create a new BudgetEnvelope with this data.
+     */
+    create: XOR<BudgetEnvelopeCreateInput, BudgetEnvelopeUncheckedCreateInput>
+    /**
+     * In case the BudgetEnvelope was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BudgetEnvelopeUpdateInput, BudgetEnvelopeUncheckedUpdateInput>
+  }
+
+  /**
+   * BudgetEnvelope delete
+   */
+  export type BudgetEnvelopeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BudgetEnvelope
+     */
+    select?: BudgetEnvelopeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BudgetEnvelope
+     */
+    omit?: BudgetEnvelopeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BudgetEnvelopeInclude<ExtArgs> | null
+    /**
+     * Filter which BudgetEnvelope to delete.
+     */
+    where: BudgetEnvelopeWhereUniqueInput
+  }
+
+  /**
+   * BudgetEnvelope deleteMany
+   */
+  export type BudgetEnvelopeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BudgetEnvelopes to delete
+     */
+    where?: BudgetEnvelopeWhereInput
+    /**
+     * Limit how many BudgetEnvelopes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BudgetEnvelope without action
+   */
+  export type BudgetEnvelopeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BudgetEnvelope
+     */
+    select?: BudgetEnvelopeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BudgetEnvelope
+     */
+    omit?: BudgetEnvelopeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BudgetEnvelopeInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RecurringRule
+   */
+
+  export type AggregateRecurringRule = {
+    _count: RecurringRuleCountAggregateOutputType | null
+    _avg: RecurringRuleAvgAggregateOutputType | null
+    _sum: RecurringRuleSumAggregateOutputType | null
+    _min: RecurringRuleMinAggregateOutputType | null
+    _max: RecurringRuleMaxAggregateOutputType | null
+  }
+
+  export type RecurringRuleAvgAggregateOutputType = {
+    amount: Decimal | null
+    interval: number | null
+    dayOfMonth: number | null
+    dayOfWeek: number | null
+    monthOfYear: number | null
+  }
+
+  export type RecurringRuleSumAggregateOutputType = {
+    amount: Decimal | null
+    interval: number | null
+    dayOfMonth: number | null
+    dayOfWeek: number | null
+    monthOfYear: number | null
+  }
+
+  export type RecurringRuleMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    accountId: string | null
+    categoryId: string | null
+    amount: Decimal | null
+    type: string | null
+    payee: string | null
+    description: string | null
+    frequency: string | null
+    interval: number | null
+    dayOfMonth: number | null
+    dayOfWeek: number | null
+    monthOfYear: number | null
+    startDate: Date | null
+    endDate: Date | null
+    nextRunAt: Date | null
+    lastRunAt: Date | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RecurringRuleMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    accountId: string | null
+    categoryId: string | null
+    amount: Decimal | null
+    type: string | null
+    payee: string | null
+    description: string | null
+    frequency: string | null
+    interval: number | null
+    dayOfMonth: number | null
+    dayOfWeek: number | null
+    monthOfYear: number | null
+    startDate: Date | null
+    endDate: Date | null
+    nextRunAt: Date | null
+    lastRunAt: Date | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RecurringRuleCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    accountId: number
+    categoryId: number
+    amount: number
+    type: number
+    payee: number
+    description: number
+    frequency: number
+    interval: number
+    dayOfMonth: number
+    dayOfWeek: number
+    monthOfYear: number
+    startDate: number
+    endDate: number
+    nextRunAt: number
+    lastRunAt: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RecurringRuleAvgAggregateInputType = {
+    amount?: true
+    interval?: true
+    dayOfMonth?: true
+    dayOfWeek?: true
+    monthOfYear?: true
+  }
+
+  export type RecurringRuleSumAggregateInputType = {
+    amount?: true
+    interval?: true
+    dayOfMonth?: true
+    dayOfWeek?: true
+    monthOfYear?: true
+  }
+
+  export type RecurringRuleMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    accountId?: true
+    categoryId?: true
+    amount?: true
+    type?: true
+    payee?: true
+    description?: true
+    frequency?: true
+    interval?: true
+    dayOfMonth?: true
+    dayOfWeek?: true
+    monthOfYear?: true
+    startDate?: true
+    endDate?: true
+    nextRunAt?: true
+    lastRunAt?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RecurringRuleMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    accountId?: true
+    categoryId?: true
+    amount?: true
+    type?: true
+    payee?: true
+    description?: true
+    frequency?: true
+    interval?: true
+    dayOfMonth?: true
+    dayOfWeek?: true
+    monthOfYear?: true
+    startDate?: true
+    endDate?: true
+    nextRunAt?: true
+    lastRunAt?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RecurringRuleCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    accountId?: true
+    categoryId?: true
+    amount?: true
+    type?: true
+    payee?: true
+    description?: true
+    frequency?: true
+    interval?: true
+    dayOfMonth?: true
+    dayOfWeek?: true
+    monthOfYear?: true
+    startDate?: true
+    endDate?: true
+    nextRunAt?: true
+    lastRunAt?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RecurringRuleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RecurringRule to aggregate.
+     */
+    where?: RecurringRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RecurringRules to fetch.
+     */
+    orderBy?: RecurringRuleOrderByWithRelationInput | RecurringRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RecurringRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RecurringRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RecurringRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RecurringRules
+    **/
+    _count?: true | RecurringRuleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RecurringRuleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RecurringRuleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RecurringRuleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RecurringRuleMaxAggregateInputType
+  }
+
+  export type GetRecurringRuleAggregateType<T extends RecurringRuleAggregateArgs> = {
+        [P in keyof T & keyof AggregateRecurringRule]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRecurringRule[P]>
+      : GetScalarType<T[P], AggregateRecurringRule[P]>
+  }
+
+
+
+
+  export type RecurringRuleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RecurringRuleWhereInput
+    orderBy?: RecurringRuleOrderByWithAggregationInput | RecurringRuleOrderByWithAggregationInput[]
+    by: RecurringRuleScalarFieldEnum[] | RecurringRuleScalarFieldEnum
+    having?: RecurringRuleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RecurringRuleCountAggregateInputType | true
+    _avg?: RecurringRuleAvgAggregateInputType
+    _sum?: RecurringRuleSumAggregateInputType
+    _min?: RecurringRuleMinAggregateInputType
+    _max?: RecurringRuleMaxAggregateInputType
+  }
+
+  export type RecurringRuleGroupByOutputType = {
+    id: string
+    tenantId: string
+    accountId: string
+    categoryId: string | null
+    amount: Decimal
+    type: string
+    payee: string | null
+    description: string | null
+    frequency: string
+    interval: number
+    dayOfMonth: number | null
+    dayOfWeek: number | null
+    monthOfYear: number | null
+    startDate: Date
+    endDate: Date | null
+    nextRunAt: Date | null
+    lastRunAt: Date | null
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: RecurringRuleCountAggregateOutputType | null
+    _avg: RecurringRuleAvgAggregateOutputType | null
+    _sum: RecurringRuleSumAggregateOutputType | null
+    _min: RecurringRuleMinAggregateOutputType | null
+    _max: RecurringRuleMaxAggregateOutputType | null
+  }
+
+  type GetRecurringRuleGroupByPayload<T extends RecurringRuleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RecurringRuleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RecurringRuleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RecurringRuleGroupByOutputType[P]>
+            : GetScalarType<T[P], RecurringRuleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RecurringRuleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    accountId?: boolean
+    categoryId?: boolean
+    amount?: boolean
+    type?: boolean
+    payee?: boolean
+    description?: boolean
+    frequency?: boolean
+    interval?: boolean
+    dayOfMonth?: boolean
+    dayOfWeek?: boolean
+    monthOfYear?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    nextRunAt?: boolean
+    lastRunAt?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    category?: boolean | RecurringRule$categoryArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    transactions?: boolean | RecurringRule$transactionsArgs<ExtArgs>
+    _count?: boolean | RecurringRuleCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["recurringRule"]>
+
+  export type RecurringRuleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    accountId?: boolean
+    categoryId?: boolean
+    amount?: boolean
+    type?: boolean
+    payee?: boolean
+    description?: boolean
+    frequency?: boolean
+    interval?: boolean
+    dayOfMonth?: boolean
+    dayOfWeek?: boolean
+    monthOfYear?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    nextRunAt?: boolean
+    lastRunAt?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    category?: boolean | RecurringRule$categoryArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["recurringRule"]>
+
+  export type RecurringRuleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    accountId?: boolean
+    categoryId?: boolean
+    amount?: boolean
+    type?: boolean
+    payee?: boolean
+    description?: boolean
+    frequency?: boolean
+    interval?: boolean
+    dayOfMonth?: boolean
+    dayOfWeek?: boolean
+    monthOfYear?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    nextRunAt?: boolean
+    lastRunAt?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    category?: boolean | RecurringRule$categoryArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["recurringRule"]>
+
+  export type RecurringRuleSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    accountId?: boolean
+    categoryId?: boolean
+    amount?: boolean
+    type?: boolean
+    payee?: boolean
+    description?: boolean
+    frequency?: boolean
+    interval?: boolean
+    dayOfMonth?: boolean
+    dayOfWeek?: boolean
+    monthOfYear?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    nextRunAt?: boolean
+    lastRunAt?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RecurringRuleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "accountId" | "categoryId" | "amount" | "type" | "payee" | "description" | "frequency" | "interval" | "dayOfMonth" | "dayOfWeek" | "monthOfYear" | "startDate" | "endDate" | "nextRunAt" | "lastRunAt" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["recurringRule"]>
+  export type RecurringRuleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    category?: boolean | RecurringRule$categoryArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    transactions?: boolean | RecurringRule$transactionsArgs<ExtArgs>
+    _count?: boolean | RecurringRuleCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type RecurringRuleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    category?: boolean | RecurringRule$categoryArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type RecurringRuleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+    category?: boolean | RecurringRule$categoryArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $RecurringRulePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RecurringRule"
+    objects: {
+      account: Prisma.$AccountPayload<ExtArgs>
+      category: Prisma.$CategoryPayload<ExtArgs> | null
+      tenant: Prisma.$TenantPayload<ExtArgs>
+      transactions: Prisma.$TransactionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      accountId: string
+      categoryId: string | null
+      amount: Prisma.Decimal
+      type: string
+      payee: string | null
+      description: string | null
+      frequency: string
+      interval: number
+      dayOfMonth: number | null
+      dayOfWeek: number | null
+      monthOfYear: number | null
+      startDate: Date
+      endDate: Date | null
+      nextRunAt: Date | null
+      lastRunAt: Date | null
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["recurringRule"]>
+    composites: {}
+  }
+
+  type RecurringRuleGetPayload<S extends boolean | null | undefined | RecurringRuleDefaultArgs> = $Result.GetResult<Prisma.$RecurringRulePayload, S>
+
+  type RecurringRuleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RecurringRuleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RecurringRuleCountAggregateInputType | true
+    }
+
+  export interface RecurringRuleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RecurringRule'], meta: { name: 'RecurringRule' } }
+    /**
+     * Find zero or one RecurringRule that matches the filter.
+     * @param {RecurringRuleFindUniqueArgs} args - Arguments to find a RecurringRule
+     * @example
+     * // Get one RecurringRule
+     * const recurringRule = await prisma.recurringRule.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RecurringRuleFindUniqueArgs>(args: SelectSubset<T, RecurringRuleFindUniqueArgs<ExtArgs>>): Prisma__RecurringRuleClient<$Result.GetResult<Prisma.$RecurringRulePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RecurringRule that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RecurringRuleFindUniqueOrThrowArgs} args - Arguments to find a RecurringRule
+     * @example
+     * // Get one RecurringRule
+     * const recurringRule = await prisma.recurringRule.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RecurringRuleFindUniqueOrThrowArgs>(args: SelectSubset<T, RecurringRuleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RecurringRuleClient<$Result.GetResult<Prisma.$RecurringRulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RecurringRule that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecurringRuleFindFirstArgs} args - Arguments to find a RecurringRule
+     * @example
+     * // Get one RecurringRule
+     * const recurringRule = await prisma.recurringRule.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RecurringRuleFindFirstArgs>(args?: SelectSubset<T, RecurringRuleFindFirstArgs<ExtArgs>>): Prisma__RecurringRuleClient<$Result.GetResult<Prisma.$RecurringRulePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RecurringRule that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecurringRuleFindFirstOrThrowArgs} args - Arguments to find a RecurringRule
+     * @example
+     * // Get one RecurringRule
+     * const recurringRule = await prisma.recurringRule.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RecurringRuleFindFirstOrThrowArgs>(args?: SelectSubset<T, RecurringRuleFindFirstOrThrowArgs<ExtArgs>>): Prisma__RecurringRuleClient<$Result.GetResult<Prisma.$RecurringRulePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RecurringRules that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecurringRuleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RecurringRules
+     * const recurringRules = await prisma.recurringRule.findMany()
+     * 
+     * // Get first 10 RecurringRules
+     * const recurringRules = await prisma.recurringRule.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const recurringRuleWithIdOnly = await prisma.recurringRule.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RecurringRuleFindManyArgs>(args?: SelectSubset<T, RecurringRuleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecurringRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RecurringRule.
+     * @param {RecurringRuleCreateArgs} args - Arguments to create a RecurringRule.
+     * @example
+     * // Create one RecurringRule
+     * const RecurringRule = await prisma.recurringRule.create({
+     *   data: {
+     *     // ... data to create a RecurringRule
+     *   }
+     * })
+     * 
+     */
+    create<T extends RecurringRuleCreateArgs>(args: SelectSubset<T, RecurringRuleCreateArgs<ExtArgs>>): Prisma__RecurringRuleClient<$Result.GetResult<Prisma.$RecurringRulePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RecurringRules.
+     * @param {RecurringRuleCreateManyArgs} args - Arguments to create many RecurringRules.
+     * @example
+     * // Create many RecurringRules
+     * const recurringRule = await prisma.recurringRule.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RecurringRuleCreateManyArgs>(args?: SelectSubset<T, RecurringRuleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RecurringRules and returns the data saved in the database.
+     * @param {RecurringRuleCreateManyAndReturnArgs} args - Arguments to create many RecurringRules.
+     * @example
+     * // Create many RecurringRules
+     * const recurringRule = await prisma.recurringRule.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RecurringRules and only return the `id`
+     * const recurringRuleWithIdOnly = await prisma.recurringRule.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RecurringRuleCreateManyAndReturnArgs>(args?: SelectSubset<T, RecurringRuleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecurringRulePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RecurringRule.
+     * @param {RecurringRuleDeleteArgs} args - Arguments to delete one RecurringRule.
+     * @example
+     * // Delete one RecurringRule
+     * const RecurringRule = await prisma.recurringRule.delete({
+     *   where: {
+     *     // ... filter to delete one RecurringRule
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RecurringRuleDeleteArgs>(args: SelectSubset<T, RecurringRuleDeleteArgs<ExtArgs>>): Prisma__RecurringRuleClient<$Result.GetResult<Prisma.$RecurringRulePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RecurringRule.
+     * @param {RecurringRuleUpdateArgs} args - Arguments to update one RecurringRule.
+     * @example
+     * // Update one RecurringRule
+     * const recurringRule = await prisma.recurringRule.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RecurringRuleUpdateArgs>(args: SelectSubset<T, RecurringRuleUpdateArgs<ExtArgs>>): Prisma__RecurringRuleClient<$Result.GetResult<Prisma.$RecurringRulePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RecurringRules.
+     * @param {RecurringRuleDeleteManyArgs} args - Arguments to filter RecurringRules to delete.
+     * @example
+     * // Delete a few RecurringRules
+     * const { count } = await prisma.recurringRule.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RecurringRuleDeleteManyArgs>(args?: SelectSubset<T, RecurringRuleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RecurringRules.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecurringRuleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RecurringRules
+     * const recurringRule = await prisma.recurringRule.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RecurringRuleUpdateManyArgs>(args: SelectSubset<T, RecurringRuleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RecurringRules and returns the data updated in the database.
+     * @param {RecurringRuleUpdateManyAndReturnArgs} args - Arguments to update many RecurringRules.
+     * @example
+     * // Update many RecurringRules
+     * const recurringRule = await prisma.recurringRule.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RecurringRules and only return the `id`
+     * const recurringRuleWithIdOnly = await prisma.recurringRule.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RecurringRuleUpdateManyAndReturnArgs>(args: SelectSubset<T, RecurringRuleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecurringRulePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RecurringRule.
+     * @param {RecurringRuleUpsertArgs} args - Arguments to update or create a RecurringRule.
+     * @example
+     * // Update or create a RecurringRule
+     * const recurringRule = await prisma.recurringRule.upsert({
+     *   create: {
+     *     // ... data to create a RecurringRule
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RecurringRule we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RecurringRuleUpsertArgs>(args: SelectSubset<T, RecurringRuleUpsertArgs<ExtArgs>>): Prisma__RecurringRuleClient<$Result.GetResult<Prisma.$RecurringRulePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RecurringRules.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecurringRuleCountArgs} args - Arguments to filter RecurringRules to count.
+     * @example
+     * // Count the number of RecurringRules
+     * const count = await prisma.recurringRule.count({
+     *   where: {
+     *     // ... the filter for the RecurringRules we want to count
+     *   }
+     * })
+    **/
+    count<T extends RecurringRuleCountArgs>(
+      args?: Subset<T, RecurringRuleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RecurringRuleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RecurringRule.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecurringRuleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RecurringRuleAggregateArgs>(args: Subset<T, RecurringRuleAggregateArgs>): Prisma.PrismaPromise<GetRecurringRuleAggregateType<T>>
+
+    /**
+     * Group by RecurringRule.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RecurringRuleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RecurringRuleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RecurringRuleGroupByArgs['orderBy'] }
+        : { orderBy?: RecurringRuleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RecurringRuleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRecurringRuleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RecurringRule model
+   */
+  readonly fields: RecurringRuleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RecurringRule.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RecurringRuleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    account<T extends AccountDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AccountDefaultArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    category<T extends RecurringRule$categoryArgs<ExtArgs> = {}>(args?: Subset<T, RecurringRule$categoryArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    transactions<T extends RecurringRule$transactionsArgs<ExtArgs> = {}>(args?: Subset<T, RecurringRule$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RecurringRule model
+   */
+  interface RecurringRuleFieldRefs {
+    readonly id: FieldRef<"RecurringRule", 'String'>
+    readonly tenantId: FieldRef<"RecurringRule", 'String'>
+    readonly accountId: FieldRef<"RecurringRule", 'String'>
+    readonly categoryId: FieldRef<"RecurringRule", 'String'>
+    readonly amount: FieldRef<"RecurringRule", 'Decimal'>
+    readonly type: FieldRef<"RecurringRule", 'String'>
+    readonly payee: FieldRef<"RecurringRule", 'String'>
+    readonly description: FieldRef<"RecurringRule", 'String'>
+    readonly frequency: FieldRef<"RecurringRule", 'String'>
+    readonly interval: FieldRef<"RecurringRule", 'Int'>
+    readonly dayOfMonth: FieldRef<"RecurringRule", 'Int'>
+    readonly dayOfWeek: FieldRef<"RecurringRule", 'Int'>
+    readonly monthOfYear: FieldRef<"RecurringRule", 'Int'>
+    readonly startDate: FieldRef<"RecurringRule", 'DateTime'>
+    readonly endDate: FieldRef<"RecurringRule", 'DateTime'>
+    readonly nextRunAt: FieldRef<"RecurringRule", 'DateTime'>
+    readonly lastRunAt: FieldRef<"RecurringRule", 'DateTime'>
+    readonly isActive: FieldRef<"RecurringRule", 'Boolean'>
+    readonly createdAt: FieldRef<"RecurringRule", 'DateTime'>
+    readonly updatedAt: FieldRef<"RecurringRule", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RecurringRule findUnique
+   */
+  export type RecurringRuleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecurringRule
+     */
+    select?: RecurringRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecurringRule
+     */
+    omit?: RecurringRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecurringRuleInclude<ExtArgs> | null
+    /**
+     * Filter, which RecurringRule to fetch.
+     */
+    where: RecurringRuleWhereUniqueInput
+  }
+
+  /**
+   * RecurringRule findUniqueOrThrow
+   */
+  export type RecurringRuleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecurringRule
+     */
+    select?: RecurringRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecurringRule
+     */
+    omit?: RecurringRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecurringRuleInclude<ExtArgs> | null
+    /**
+     * Filter, which RecurringRule to fetch.
+     */
+    where: RecurringRuleWhereUniqueInput
+  }
+
+  /**
+   * RecurringRule findFirst
+   */
+  export type RecurringRuleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecurringRule
+     */
+    select?: RecurringRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecurringRule
+     */
+    omit?: RecurringRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecurringRuleInclude<ExtArgs> | null
+    /**
+     * Filter, which RecurringRule to fetch.
+     */
+    where?: RecurringRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RecurringRules to fetch.
+     */
+    orderBy?: RecurringRuleOrderByWithRelationInput | RecurringRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RecurringRules.
+     */
+    cursor?: RecurringRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RecurringRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RecurringRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RecurringRules.
+     */
+    distinct?: RecurringRuleScalarFieldEnum | RecurringRuleScalarFieldEnum[]
+  }
+
+  /**
+   * RecurringRule findFirstOrThrow
+   */
+  export type RecurringRuleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecurringRule
+     */
+    select?: RecurringRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecurringRule
+     */
+    omit?: RecurringRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecurringRuleInclude<ExtArgs> | null
+    /**
+     * Filter, which RecurringRule to fetch.
+     */
+    where?: RecurringRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RecurringRules to fetch.
+     */
+    orderBy?: RecurringRuleOrderByWithRelationInput | RecurringRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RecurringRules.
+     */
+    cursor?: RecurringRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RecurringRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RecurringRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RecurringRules.
+     */
+    distinct?: RecurringRuleScalarFieldEnum | RecurringRuleScalarFieldEnum[]
+  }
+
+  /**
+   * RecurringRule findMany
+   */
+  export type RecurringRuleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecurringRule
+     */
+    select?: RecurringRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecurringRule
+     */
+    omit?: RecurringRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecurringRuleInclude<ExtArgs> | null
+    /**
+     * Filter, which RecurringRules to fetch.
+     */
+    where?: RecurringRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RecurringRules to fetch.
+     */
+    orderBy?: RecurringRuleOrderByWithRelationInput | RecurringRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RecurringRules.
+     */
+    cursor?: RecurringRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RecurringRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RecurringRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RecurringRules.
+     */
+    distinct?: RecurringRuleScalarFieldEnum | RecurringRuleScalarFieldEnum[]
+  }
+
+  /**
+   * RecurringRule create
+   */
+  export type RecurringRuleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecurringRule
+     */
+    select?: RecurringRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecurringRule
+     */
+    omit?: RecurringRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecurringRuleInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RecurringRule.
+     */
+    data: XOR<RecurringRuleCreateInput, RecurringRuleUncheckedCreateInput>
+  }
+
+  /**
+   * RecurringRule createMany
+   */
+  export type RecurringRuleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RecurringRules.
+     */
+    data: RecurringRuleCreateManyInput | RecurringRuleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RecurringRule createManyAndReturn
+   */
+  export type RecurringRuleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecurringRule
+     */
+    select?: RecurringRuleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecurringRule
+     */
+    omit?: RecurringRuleOmit<ExtArgs> | null
+    /**
+     * The data used to create many RecurringRules.
+     */
+    data: RecurringRuleCreateManyInput | RecurringRuleCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecurringRuleIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RecurringRule update
+   */
+  export type RecurringRuleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecurringRule
+     */
+    select?: RecurringRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecurringRule
+     */
+    omit?: RecurringRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecurringRuleInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RecurringRule.
+     */
+    data: XOR<RecurringRuleUpdateInput, RecurringRuleUncheckedUpdateInput>
+    /**
+     * Choose, which RecurringRule to update.
+     */
+    where: RecurringRuleWhereUniqueInput
+  }
+
+  /**
+   * RecurringRule updateMany
+   */
+  export type RecurringRuleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RecurringRules.
+     */
+    data: XOR<RecurringRuleUpdateManyMutationInput, RecurringRuleUncheckedUpdateManyInput>
+    /**
+     * Filter which RecurringRules to update
+     */
+    where?: RecurringRuleWhereInput
+    /**
+     * Limit how many RecurringRules to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RecurringRule updateManyAndReturn
+   */
+  export type RecurringRuleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecurringRule
+     */
+    select?: RecurringRuleSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecurringRule
+     */
+    omit?: RecurringRuleOmit<ExtArgs> | null
+    /**
+     * The data used to update RecurringRules.
+     */
+    data: XOR<RecurringRuleUpdateManyMutationInput, RecurringRuleUncheckedUpdateManyInput>
+    /**
+     * Filter which RecurringRules to update
+     */
+    where?: RecurringRuleWhereInput
+    /**
+     * Limit how many RecurringRules to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecurringRuleIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RecurringRule upsert
+   */
+  export type RecurringRuleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecurringRule
+     */
+    select?: RecurringRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecurringRule
+     */
+    omit?: RecurringRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecurringRuleInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RecurringRule to update in case it exists.
+     */
+    where: RecurringRuleWhereUniqueInput
+    /**
+     * In case the RecurringRule found by the `where` argument doesn't exist, create a new RecurringRule with this data.
+     */
+    create: XOR<RecurringRuleCreateInput, RecurringRuleUncheckedCreateInput>
+    /**
+     * In case the RecurringRule was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RecurringRuleUpdateInput, RecurringRuleUncheckedUpdateInput>
+  }
+
+  /**
+   * RecurringRule delete
+   */
+  export type RecurringRuleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecurringRule
+     */
+    select?: RecurringRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecurringRule
+     */
+    omit?: RecurringRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecurringRuleInclude<ExtArgs> | null
+    /**
+     * Filter which RecurringRule to delete.
+     */
+    where: RecurringRuleWhereUniqueInput
+  }
+
+  /**
+   * RecurringRule deleteMany
+   */
+  export type RecurringRuleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RecurringRules to delete
+     */
+    where?: RecurringRuleWhereInput
+    /**
+     * Limit how many RecurringRules to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RecurringRule.category
+   */
+  export type RecurringRule$categoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    where?: CategoryWhereInput
+  }
+
+  /**
+   * RecurringRule.transactions
+   */
+  export type RecurringRule$transactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    where?: TransactionWhereInput
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    cursor?: TransactionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * RecurringRule without action
+   */
+  export type RecurringRuleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RecurringRule
+     */
+    select?: RecurringRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RecurringRule
+     */
+    omit?: RecurringRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecurringRuleInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -7133,6 +14280,101 @@ export namespace Prisma {
   };
 
   export type AiUsageLogScalarFieldEnum = (typeof AiUsageLogScalarFieldEnum)[keyof typeof AiUsageLogScalarFieldEnum]
+
+
+  export const CategoryScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    name: 'name',
+    parentId: 'parentId',
+    icon: 'icon',
+    color: 'color',
+    type: 'type',
+    isSystem: 'isSystem',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
+  export const AccountScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    name: 'name',
+    type: 'type',
+    initialBalance: 'initialBalance',
+    currentBalance: 'currentBalance',
+    icon: 'icon',
+    color: 'color',
+    isArchived: 'isArchived',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
+
+
+  export const TransactionScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    accountId: 'accountId',
+    categoryId: 'categoryId',
+    amount: 'amount',
+    type: 'type',
+    payee: 'payee',
+    description: 'description',
+    date: 'date',
+    isRecurring: 'isRecurring',
+    recurringRuleId: 'recurringRuleId',
+    isDeleted: 'isDeleted',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
+
+
+  export const BudgetEnvelopeScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    categoryId: 'categoryId',
+    accountId: 'accountId',
+    month: 'month',
+    allocated: 'allocated',
+    spent: 'spent',
+    rolledOver: 'rolledOver',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BudgetEnvelopeScalarFieldEnum = (typeof BudgetEnvelopeScalarFieldEnum)[keyof typeof BudgetEnvelopeScalarFieldEnum]
+
+
+  export const RecurringRuleScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    accountId: 'accountId',
+    categoryId: 'categoryId',
+    amount: 'amount',
+    type: 'type',
+    payee: 'payee',
+    description: 'description',
+    frequency: 'frequency',
+    interval: 'interval',
+    dayOfMonth: 'dayOfMonth',
+    dayOfWeek: 'dayOfWeek',
+    monthOfYear: 'monthOfYear',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    nextRunAt: 'nextRunAt',
+    lastRunAt: 'lastRunAt',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RecurringRuleScalarFieldEnum = (typeof RecurringRuleScalarFieldEnum)[keyof typeof RecurringRuleScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -7236,6 +14478,69 @@ export namespace Prisma {
   export type AiUsageLogOrderByRelevanceFieldEnum = (typeof AiUsageLogOrderByRelevanceFieldEnum)[keyof typeof AiUsageLogOrderByRelevanceFieldEnum]
 
 
+  export const CategoryOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    name: 'name',
+    parentId: 'parentId',
+    icon: 'icon',
+    color: 'color',
+    type: 'type'
+  };
+
+  export type CategoryOrderByRelevanceFieldEnum = (typeof CategoryOrderByRelevanceFieldEnum)[keyof typeof CategoryOrderByRelevanceFieldEnum]
+
+
+  export const AccountOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    name: 'name',
+    type: 'type',
+    icon: 'icon',
+    color: 'color'
+  };
+
+  export type AccountOrderByRelevanceFieldEnum = (typeof AccountOrderByRelevanceFieldEnum)[keyof typeof AccountOrderByRelevanceFieldEnum]
+
+
+  export const TransactionOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    accountId: 'accountId',
+    categoryId: 'categoryId',
+    type: 'type',
+    payee: 'payee',
+    description: 'description',
+    recurringRuleId: 'recurringRuleId'
+  };
+
+  export type TransactionOrderByRelevanceFieldEnum = (typeof TransactionOrderByRelevanceFieldEnum)[keyof typeof TransactionOrderByRelevanceFieldEnum]
+
+
+  export const BudgetEnvelopeOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    categoryId: 'categoryId',
+    accountId: 'accountId'
+  };
+
+  export type BudgetEnvelopeOrderByRelevanceFieldEnum = (typeof BudgetEnvelopeOrderByRelevanceFieldEnum)[keyof typeof BudgetEnvelopeOrderByRelevanceFieldEnum]
+
+
+  export const RecurringRuleOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    accountId: 'accountId',
+    categoryId: 'categoryId',
+    type: 'type',
+    payee: 'payee',
+    description: 'description',
+    frequency: 'frequency'
+  };
+
+  export type RecurringRuleOrderByRelevanceFieldEnum = (typeof RecurringRuleOrderByRelevanceFieldEnum)[keyof typeof RecurringRuleOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references
    */
@@ -7305,6 +14610,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Decimal'
+   */
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal[]'
+   */
+  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -7333,6 +14652,11 @@ export namespace Prisma {
     aiProviderConfigs?: AiProviderConfigListRelationFilter
     aiPromptCache?: AiPromptCacheListRelationFilter
     aiUsageLogs?: AiUsageLogListRelationFilter
+    categories?: CategoryListRelationFilter
+    accounts?: AccountListRelationFilter
+    transactions?: TransactionListRelationFilter
+    budgetEnvelopes?: BudgetEnvelopeListRelationFilter
+    recurringRules?: RecurringRuleListRelationFilter
   }
 
   export type TenantOrderByWithRelationInput = {
@@ -7344,6 +14668,11 @@ export namespace Prisma {
     aiProviderConfigs?: AiProviderConfigOrderByRelationAggregateInput
     aiPromptCache?: AiPromptCacheOrderByRelationAggregateInput
     aiUsageLogs?: AiUsageLogOrderByRelationAggregateInput
+    categories?: CategoryOrderByRelationAggregateInput
+    accounts?: AccountOrderByRelationAggregateInput
+    transactions?: TransactionOrderByRelationAggregateInput
+    budgetEnvelopes?: BudgetEnvelopeOrderByRelationAggregateInput
+    recurringRules?: RecurringRuleOrderByRelationAggregateInput
     _relevance?: TenantOrderByRelevanceInput
   }
 
@@ -7359,6 +14688,11 @@ export namespace Prisma {
     aiProviderConfigs?: AiProviderConfigListRelationFilter
     aiPromptCache?: AiPromptCacheListRelationFilter
     aiUsageLogs?: AiUsageLogListRelationFilter
+    categories?: CategoryListRelationFilter
+    accounts?: AccountListRelationFilter
+    transactions?: TransactionListRelationFilter
+    budgetEnvelopes?: BudgetEnvelopeListRelationFilter
+    recurringRules?: RecurringRuleListRelationFilter
   }, "id">
 
   export type TenantOrderByWithAggregationInput = {
@@ -7712,6 +15046,545 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"AiUsageLog"> | Date | string
   }
 
+  export type CategoryWhereInput = {
+    AND?: CategoryWhereInput | CategoryWhereInput[]
+    OR?: CategoryWhereInput[]
+    NOT?: CategoryWhereInput | CategoryWhereInput[]
+    id?: StringFilter<"Category"> | string
+    tenantId?: StringFilter<"Category"> | string
+    name?: StringFilter<"Category"> | string
+    parentId?: StringNullableFilter<"Category"> | string | null
+    icon?: StringNullableFilter<"Category"> | string | null
+    color?: StringNullableFilter<"Category"> | string | null
+    type?: StringFilter<"Category"> | string
+    isSystem?: BoolFilter<"Category"> | boolean
+    createdAt?: DateTimeFilter<"Category"> | Date | string
+    updatedAt?: DateTimeFilter<"Category"> | Date | string
+    parent?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
+    children?: CategoryListRelationFilter
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    transactions?: TransactionListRelationFilter
+    budgetEnvelopes?: BudgetEnvelopeListRelationFilter
+    recurringRules?: RecurringRuleListRelationFilter
+  }
+
+  export type CategoryOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    parentId?: SortOrderInput | SortOrder
+    icon?: SortOrderInput | SortOrder
+    color?: SortOrderInput | SortOrder
+    type?: SortOrder
+    isSystem?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    parent?: CategoryOrderByWithRelationInput
+    children?: CategoryOrderByRelationAggregateInput
+    tenant?: TenantOrderByWithRelationInput
+    transactions?: TransactionOrderByRelationAggregateInput
+    budgetEnvelopes?: BudgetEnvelopeOrderByRelationAggregateInput
+    recurringRules?: RecurringRuleOrderByRelationAggregateInput
+    _relevance?: CategoryOrderByRelevanceInput
+  }
+
+  export type CategoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tenantId_name?: CategoryTenantIdNameCompoundUniqueInput
+    AND?: CategoryWhereInput | CategoryWhereInput[]
+    OR?: CategoryWhereInput[]
+    NOT?: CategoryWhereInput | CategoryWhereInput[]
+    tenantId?: StringFilter<"Category"> | string
+    name?: StringFilter<"Category"> | string
+    parentId?: StringNullableFilter<"Category"> | string | null
+    icon?: StringNullableFilter<"Category"> | string | null
+    color?: StringNullableFilter<"Category"> | string | null
+    type?: StringFilter<"Category"> | string
+    isSystem?: BoolFilter<"Category"> | boolean
+    createdAt?: DateTimeFilter<"Category"> | Date | string
+    updatedAt?: DateTimeFilter<"Category"> | Date | string
+    parent?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
+    children?: CategoryListRelationFilter
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    transactions?: TransactionListRelationFilter
+    budgetEnvelopes?: BudgetEnvelopeListRelationFilter
+    recurringRules?: RecurringRuleListRelationFilter
+  }, "id" | "tenantId_name">
+
+  export type CategoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    parentId?: SortOrderInput | SortOrder
+    icon?: SortOrderInput | SortOrder
+    color?: SortOrderInput | SortOrder
+    type?: SortOrder
+    isSystem?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CategoryCountOrderByAggregateInput
+    _max?: CategoryMaxOrderByAggregateInput
+    _min?: CategoryMinOrderByAggregateInput
+  }
+
+  export type CategoryScalarWhereWithAggregatesInput = {
+    AND?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
+    OR?: CategoryScalarWhereWithAggregatesInput[]
+    NOT?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Category"> | string
+    tenantId?: StringWithAggregatesFilter<"Category"> | string
+    name?: StringWithAggregatesFilter<"Category"> | string
+    parentId?: StringNullableWithAggregatesFilter<"Category"> | string | null
+    icon?: StringNullableWithAggregatesFilter<"Category"> | string | null
+    color?: StringNullableWithAggregatesFilter<"Category"> | string | null
+    type?: StringWithAggregatesFilter<"Category"> | string
+    isSystem?: BoolWithAggregatesFilter<"Category"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
+  }
+
+  export type AccountWhereInput = {
+    AND?: AccountWhereInput | AccountWhereInput[]
+    OR?: AccountWhereInput[]
+    NOT?: AccountWhereInput | AccountWhereInput[]
+    id?: StringFilter<"Account"> | string
+    tenantId?: StringFilter<"Account"> | string
+    name?: StringFilter<"Account"> | string
+    type?: StringFilter<"Account"> | string
+    initialBalance?: DecimalFilter<"Account"> | Decimal | DecimalJsLike | number | string
+    currentBalance?: DecimalFilter<"Account"> | Decimal | DecimalJsLike | number | string
+    icon?: StringNullableFilter<"Account"> | string | null
+    color?: StringNullableFilter<"Account"> | string | null
+    isArchived?: BoolFilter<"Account"> | boolean
+    createdAt?: DateTimeFilter<"Account"> | Date | string
+    updatedAt?: DateTimeFilter<"Account"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    transactions?: TransactionListRelationFilter
+    budgetEnvelopes?: BudgetEnvelopeListRelationFilter
+    recurringRules?: RecurringRuleListRelationFilter
+  }
+
+  export type AccountOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    initialBalance?: SortOrder
+    currentBalance?: SortOrder
+    icon?: SortOrderInput | SortOrder
+    color?: SortOrderInput | SortOrder
+    isArchived?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    transactions?: TransactionOrderByRelationAggregateInput
+    budgetEnvelopes?: BudgetEnvelopeOrderByRelationAggregateInput
+    recurringRules?: RecurringRuleOrderByRelationAggregateInput
+    _relevance?: AccountOrderByRelevanceInput
+  }
+
+  export type AccountWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tenantId_name?: AccountTenantIdNameCompoundUniqueInput
+    AND?: AccountWhereInput | AccountWhereInput[]
+    OR?: AccountWhereInput[]
+    NOT?: AccountWhereInput | AccountWhereInput[]
+    tenantId?: StringFilter<"Account"> | string
+    name?: StringFilter<"Account"> | string
+    type?: StringFilter<"Account"> | string
+    initialBalance?: DecimalFilter<"Account"> | Decimal | DecimalJsLike | number | string
+    currentBalance?: DecimalFilter<"Account"> | Decimal | DecimalJsLike | number | string
+    icon?: StringNullableFilter<"Account"> | string | null
+    color?: StringNullableFilter<"Account"> | string | null
+    isArchived?: BoolFilter<"Account"> | boolean
+    createdAt?: DateTimeFilter<"Account"> | Date | string
+    updatedAt?: DateTimeFilter<"Account"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    transactions?: TransactionListRelationFilter
+    budgetEnvelopes?: BudgetEnvelopeListRelationFilter
+    recurringRules?: RecurringRuleListRelationFilter
+  }, "id" | "tenantId_name">
+
+  export type AccountOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    initialBalance?: SortOrder
+    currentBalance?: SortOrder
+    icon?: SortOrderInput | SortOrder
+    color?: SortOrderInput | SortOrder
+    isArchived?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AccountCountOrderByAggregateInput
+    _avg?: AccountAvgOrderByAggregateInput
+    _max?: AccountMaxOrderByAggregateInput
+    _min?: AccountMinOrderByAggregateInput
+    _sum?: AccountSumOrderByAggregateInput
+  }
+
+  export type AccountScalarWhereWithAggregatesInput = {
+    AND?: AccountScalarWhereWithAggregatesInput | AccountScalarWhereWithAggregatesInput[]
+    OR?: AccountScalarWhereWithAggregatesInput[]
+    NOT?: AccountScalarWhereWithAggregatesInput | AccountScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Account"> | string
+    tenantId?: StringWithAggregatesFilter<"Account"> | string
+    name?: StringWithAggregatesFilter<"Account"> | string
+    type?: StringWithAggregatesFilter<"Account"> | string
+    initialBalance?: DecimalWithAggregatesFilter<"Account"> | Decimal | DecimalJsLike | number | string
+    currentBalance?: DecimalWithAggregatesFilter<"Account"> | Decimal | DecimalJsLike | number | string
+    icon?: StringNullableWithAggregatesFilter<"Account"> | string | null
+    color?: StringNullableWithAggregatesFilter<"Account"> | string | null
+    isArchived?: BoolWithAggregatesFilter<"Account"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Account"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Account"> | Date | string
+  }
+
+  export type TransactionWhereInput = {
+    AND?: TransactionWhereInput | TransactionWhereInput[]
+    OR?: TransactionWhereInput[]
+    NOT?: TransactionWhereInput | TransactionWhereInput[]
+    id?: StringFilter<"Transaction"> | string
+    tenantId?: StringFilter<"Transaction"> | string
+    accountId?: StringFilter<"Transaction"> | string
+    categoryId?: StringNullableFilter<"Transaction"> | string | null
+    amount?: DecimalFilter<"Transaction"> | Decimal | DecimalJsLike | number | string
+    type?: StringFilter<"Transaction"> | string
+    payee?: StringNullableFilter<"Transaction"> | string | null
+    description?: StringNullableFilter<"Transaction"> | string | null
+    date?: DateTimeFilter<"Transaction"> | Date | string
+    isRecurring?: BoolFilter<"Transaction"> | boolean
+    recurringRuleId?: StringNullableFilter<"Transaction"> | string | null
+    isDeleted?: BoolFilter<"Transaction"> | boolean
+    createdAt?: DateTimeFilter<"Transaction"> | Date | string
+    updatedAt?: DateTimeFilter<"Transaction"> | Date | string
+    account?: XOR<AccountScalarRelationFilter, AccountWhereInput>
+    category?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
+    recurringRule?: XOR<RecurringRuleNullableScalarRelationFilter, RecurringRuleWhereInput> | null
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }
+
+  export type TransactionOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    accountId?: SortOrder
+    categoryId?: SortOrderInput | SortOrder
+    amount?: SortOrder
+    type?: SortOrder
+    payee?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    date?: SortOrder
+    isRecurring?: SortOrder
+    recurringRuleId?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    account?: AccountOrderByWithRelationInput
+    category?: CategoryOrderByWithRelationInput
+    recurringRule?: RecurringRuleOrderByWithRelationInput
+    tenant?: TenantOrderByWithRelationInput
+    _relevance?: TransactionOrderByRelevanceInput
+  }
+
+  export type TransactionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TransactionWhereInput | TransactionWhereInput[]
+    OR?: TransactionWhereInput[]
+    NOT?: TransactionWhereInput | TransactionWhereInput[]
+    tenantId?: StringFilter<"Transaction"> | string
+    accountId?: StringFilter<"Transaction"> | string
+    categoryId?: StringNullableFilter<"Transaction"> | string | null
+    amount?: DecimalFilter<"Transaction"> | Decimal | DecimalJsLike | number | string
+    type?: StringFilter<"Transaction"> | string
+    payee?: StringNullableFilter<"Transaction"> | string | null
+    description?: StringNullableFilter<"Transaction"> | string | null
+    date?: DateTimeFilter<"Transaction"> | Date | string
+    isRecurring?: BoolFilter<"Transaction"> | boolean
+    recurringRuleId?: StringNullableFilter<"Transaction"> | string | null
+    isDeleted?: BoolFilter<"Transaction"> | boolean
+    createdAt?: DateTimeFilter<"Transaction"> | Date | string
+    updatedAt?: DateTimeFilter<"Transaction"> | Date | string
+    account?: XOR<AccountScalarRelationFilter, AccountWhereInput>
+    category?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
+    recurringRule?: XOR<RecurringRuleNullableScalarRelationFilter, RecurringRuleWhereInput> | null
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }, "id">
+
+  export type TransactionOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    accountId?: SortOrder
+    categoryId?: SortOrderInput | SortOrder
+    amount?: SortOrder
+    type?: SortOrder
+    payee?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    date?: SortOrder
+    isRecurring?: SortOrder
+    recurringRuleId?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TransactionCountOrderByAggregateInput
+    _avg?: TransactionAvgOrderByAggregateInput
+    _max?: TransactionMaxOrderByAggregateInput
+    _min?: TransactionMinOrderByAggregateInput
+    _sum?: TransactionSumOrderByAggregateInput
+  }
+
+  export type TransactionScalarWhereWithAggregatesInput = {
+    AND?: TransactionScalarWhereWithAggregatesInput | TransactionScalarWhereWithAggregatesInput[]
+    OR?: TransactionScalarWhereWithAggregatesInput[]
+    NOT?: TransactionScalarWhereWithAggregatesInput | TransactionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Transaction"> | string
+    tenantId?: StringWithAggregatesFilter<"Transaction"> | string
+    accountId?: StringWithAggregatesFilter<"Transaction"> | string
+    categoryId?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
+    amount?: DecimalWithAggregatesFilter<"Transaction"> | Decimal | DecimalJsLike | number | string
+    type?: StringWithAggregatesFilter<"Transaction"> | string
+    payee?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
+    description?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
+    date?: DateTimeWithAggregatesFilter<"Transaction"> | Date | string
+    isRecurring?: BoolWithAggregatesFilter<"Transaction"> | boolean
+    recurringRuleId?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
+    isDeleted?: BoolWithAggregatesFilter<"Transaction"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Transaction"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Transaction"> | Date | string
+  }
+
+  export type BudgetEnvelopeWhereInput = {
+    AND?: BudgetEnvelopeWhereInput | BudgetEnvelopeWhereInput[]
+    OR?: BudgetEnvelopeWhereInput[]
+    NOT?: BudgetEnvelopeWhereInput | BudgetEnvelopeWhereInput[]
+    id?: StringFilter<"BudgetEnvelope"> | string
+    tenantId?: StringFilter<"BudgetEnvelope"> | string
+    categoryId?: StringFilter<"BudgetEnvelope"> | string
+    accountId?: StringFilter<"BudgetEnvelope"> | string
+    month?: DateTimeFilter<"BudgetEnvelope"> | Date | string
+    allocated?: DecimalFilter<"BudgetEnvelope"> | Decimal | DecimalJsLike | number | string
+    spent?: DecimalFilter<"BudgetEnvelope"> | Decimal | DecimalJsLike | number | string
+    rolledOver?: DecimalFilter<"BudgetEnvelope"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"BudgetEnvelope"> | Date | string
+    updatedAt?: DateTimeFilter<"BudgetEnvelope"> | Date | string
+    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
+    account?: XOR<AccountScalarRelationFilter, AccountWhereInput>
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }
+
+  export type BudgetEnvelopeOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    categoryId?: SortOrder
+    accountId?: SortOrder
+    month?: SortOrder
+    allocated?: SortOrder
+    spent?: SortOrder
+    rolledOver?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    category?: CategoryOrderByWithRelationInput
+    account?: AccountOrderByWithRelationInput
+    tenant?: TenantOrderByWithRelationInput
+    _relevance?: BudgetEnvelopeOrderByRelevanceInput
+  }
+
+  export type BudgetEnvelopeWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tenantId_categoryId_accountId_month?: BudgetEnvelopeTenantIdCategoryIdAccountIdMonthCompoundUniqueInput
+    AND?: BudgetEnvelopeWhereInput | BudgetEnvelopeWhereInput[]
+    OR?: BudgetEnvelopeWhereInput[]
+    NOT?: BudgetEnvelopeWhereInput | BudgetEnvelopeWhereInput[]
+    tenantId?: StringFilter<"BudgetEnvelope"> | string
+    categoryId?: StringFilter<"BudgetEnvelope"> | string
+    accountId?: StringFilter<"BudgetEnvelope"> | string
+    month?: DateTimeFilter<"BudgetEnvelope"> | Date | string
+    allocated?: DecimalFilter<"BudgetEnvelope"> | Decimal | DecimalJsLike | number | string
+    spent?: DecimalFilter<"BudgetEnvelope"> | Decimal | DecimalJsLike | number | string
+    rolledOver?: DecimalFilter<"BudgetEnvelope"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"BudgetEnvelope"> | Date | string
+    updatedAt?: DateTimeFilter<"BudgetEnvelope"> | Date | string
+    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
+    account?: XOR<AccountScalarRelationFilter, AccountWhereInput>
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }, "id" | "tenantId_categoryId_accountId_month">
+
+  export type BudgetEnvelopeOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    categoryId?: SortOrder
+    accountId?: SortOrder
+    month?: SortOrder
+    allocated?: SortOrder
+    spent?: SortOrder
+    rolledOver?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BudgetEnvelopeCountOrderByAggregateInput
+    _avg?: BudgetEnvelopeAvgOrderByAggregateInput
+    _max?: BudgetEnvelopeMaxOrderByAggregateInput
+    _min?: BudgetEnvelopeMinOrderByAggregateInput
+    _sum?: BudgetEnvelopeSumOrderByAggregateInput
+  }
+
+  export type BudgetEnvelopeScalarWhereWithAggregatesInput = {
+    AND?: BudgetEnvelopeScalarWhereWithAggregatesInput | BudgetEnvelopeScalarWhereWithAggregatesInput[]
+    OR?: BudgetEnvelopeScalarWhereWithAggregatesInput[]
+    NOT?: BudgetEnvelopeScalarWhereWithAggregatesInput | BudgetEnvelopeScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BudgetEnvelope"> | string
+    tenantId?: StringWithAggregatesFilter<"BudgetEnvelope"> | string
+    categoryId?: StringWithAggregatesFilter<"BudgetEnvelope"> | string
+    accountId?: StringWithAggregatesFilter<"BudgetEnvelope"> | string
+    month?: DateTimeWithAggregatesFilter<"BudgetEnvelope"> | Date | string
+    allocated?: DecimalWithAggregatesFilter<"BudgetEnvelope"> | Decimal | DecimalJsLike | number | string
+    spent?: DecimalWithAggregatesFilter<"BudgetEnvelope"> | Decimal | DecimalJsLike | number | string
+    rolledOver?: DecimalWithAggregatesFilter<"BudgetEnvelope"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeWithAggregatesFilter<"BudgetEnvelope"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BudgetEnvelope"> | Date | string
+  }
+
+  export type RecurringRuleWhereInput = {
+    AND?: RecurringRuleWhereInput | RecurringRuleWhereInput[]
+    OR?: RecurringRuleWhereInput[]
+    NOT?: RecurringRuleWhereInput | RecurringRuleWhereInput[]
+    id?: StringFilter<"RecurringRule"> | string
+    tenantId?: StringFilter<"RecurringRule"> | string
+    accountId?: StringFilter<"RecurringRule"> | string
+    categoryId?: StringNullableFilter<"RecurringRule"> | string | null
+    amount?: DecimalFilter<"RecurringRule"> | Decimal | DecimalJsLike | number | string
+    type?: StringFilter<"RecurringRule"> | string
+    payee?: StringNullableFilter<"RecurringRule"> | string | null
+    description?: StringNullableFilter<"RecurringRule"> | string | null
+    frequency?: StringFilter<"RecurringRule"> | string
+    interval?: IntFilter<"RecurringRule"> | number
+    dayOfMonth?: IntNullableFilter<"RecurringRule"> | number | null
+    dayOfWeek?: IntNullableFilter<"RecurringRule"> | number | null
+    monthOfYear?: IntNullableFilter<"RecurringRule"> | number | null
+    startDate?: DateTimeFilter<"RecurringRule"> | Date | string
+    endDate?: DateTimeNullableFilter<"RecurringRule"> | Date | string | null
+    nextRunAt?: DateTimeNullableFilter<"RecurringRule"> | Date | string | null
+    lastRunAt?: DateTimeNullableFilter<"RecurringRule"> | Date | string | null
+    isActive?: BoolFilter<"RecurringRule"> | boolean
+    createdAt?: DateTimeFilter<"RecurringRule"> | Date | string
+    updatedAt?: DateTimeFilter<"RecurringRule"> | Date | string
+    account?: XOR<AccountScalarRelationFilter, AccountWhereInput>
+    category?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    transactions?: TransactionListRelationFilter
+  }
+
+  export type RecurringRuleOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    accountId?: SortOrder
+    categoryId?: SortOrderInput | SortOrder
+    amount?: SortOrder
+    type?: SortOrder
+    payee?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    frequency?: SortOrder
+    interval?: SortOrder
+    dayOfMonth?: SortOrderInput | SortOrder
+    dayOfWeek?: SortOrderInput | SortOrder
+    monthOfYear?: SortOrderInput | SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrderInput | SortOrder
+    nextRunAt?: SortOrderInput | SortOrder
+    lastRunAt?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    account?: AccountOrderByWithRelationInput
+    category?: CategoryOrderByWithRelationInput
+    tenant?: TenantOrderByWithRelationInput
+    transactions?: TransactionOrderByRelationAggregateInput
+    _relevance?: RecurringRuleOrderByRelevanceInput
+  }
+
+  export type RecurringRuleWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: RecurringRuleWhereInput | RecurringRuleWhereInput[]
+    OR?: RecurringRuleWhereInput[]
+    NOT?: RecurringRuleWhereInput | RecurringRuleWhereInput[]
+    tenantId?: StringFilter<"RecurringRule"> | string
+    accountId?: StringFilter<"RecurringRule"> | string
+    categoryId?: StringNullableFilter<"RecurringRule"> | string | null
+    amount?: DecimalFilter<"RecurringRule"> | Decimal | DecimalJsLike | number | string
+    type?: StringFilter<"RecurringRule"> | string
+    payee?: StringNullableFilter<"RecurringRule"> | string | null
+    description?: StringNullableFilter<"RecurringRule"> | string | null
+    frequency?: StringFilter<"RecurringRule"> | string
+    interval?: IntFilter<"RecurringRule"> | number
+    dayOfMonth?: IntNullableFilter<"RecurringRule"> | number | null
+    dayOfWeek?: IntNullableFilter<"RecurringRule"> | number | null
+    monthOfYear?: IntNullableFilter<"RecurringRule"> | number | null
+    startDate?: DateTimeFilter<"RecurringRule"> | Date | string
+    endDate?: DateTimeNullableFilter<"RecurringRule"> | Date | string | null
+    nextRunAt?: DateTimeNullableFilter<"RecurringRule"> | Date | string | null
+    lastRunAt?: DateTimeNullableFilter<"RecurringRule"> | Date | string | null
+    isActive?: BoolFilter<"RecurringRule"> | boolean
+    createdAt?: DateTimeFilter<"RecurringRule"> | Date | string
+    updatedAt?: DateTimeFilter<"RecurringRule"> | Date | string
+    account?: XOR<AccountScalarRelationFilter, AccountWhereInput>
+    category?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    transactions?: TransactionListRelationFilter
+  }, "id">
+
+  export type RecurringRuleOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    accountId?: SortOrder
+    categoryId?: SortOrderInput | SortOrder
+    amount?: SortOrder
+    type?: SortOrder
+    payee?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    frequency?: SortOrder
+    interval?: SortOrder
+    dayOfMonth?: SortOrderInput | SortOrder
+    dayOfWeek?: SortOrderInput | SortOrder
+    monthOfYear?: SortOrderInput | SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrderInput | SortOrder
+    nextRunAt?: SortOrderInput | SortOrder
+    lastRunAt?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RecurringRuleCountOrderByAggregateInput
+    _avg?: RecurringRuleAvgOrderByAggregateInput
+    _max?: RecurringRuleMaxOrderByAggregateInput
+    _min?: RecurringRuleMinOrderByAggregateInput
+    _sum?: RecurringRuleSumOrderByAggregateInput
+  }
+
+  export type RecurringRuleScalarWhereWithAggregatesInput = {
+    AND?: RecurringRuleScalarWhereWithAggregatesInput | RecurringRuleScalarWhereWithAggregatesInput[]
+    OR?: RecurringRuleScalarWhereWithAggregatesInput[]
+    NOT?: RecurringRuleScalarWhereWithAggregatesInput | RecurringRuleScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RecurringRule"> | string
+    tenantId?: StringWithAggregatesFilter<"RecurringRule"> | string
+    accountId?: StringWithAggregatesFilter<"RecurringRule"> | string
+    categoryId?: StringNullableWithAggregatesFilter<"RecurringRule"> | string | null
+    amount?: DecimalWithAggregatesFilter<"RecurringRule"> | Decimal | DecimalJsLike | number | string
+    type?: StringWithAggregatesFilter<"RecurringRule"> | string
+    payee?: StringNullableWithAggregatesFilter<"RecurringRule"> | string | null
+    description?: StringNullableWithAggregatesFilter<"RecurringRule"> | string | null
+    frequency?: StringWithAggregatesFilter<"RecurringRule"> | string
+    interval?: IntWithAggregatesFilter<"RecurringRule"> | number
+    dayOfMonth?: IntNullableWithAggregatesFilter<"RecurringRule"> | number | null
+    dayOfWeek?: IntNullableWithAggregatesFilter<"RecurringRule"> | number | null
+    monthOfYear?: IntNullableWithAggregatesFilter<"RecurringRule"> | number | null
+    startDate?: DateTimeWithAggregatesFilter<"RecurringRule"> | Date | string
+    endDate?: DateTimeNullableWithAggregatesFilter<"RecurringRule"> | Date | string | null
+    nextRunAt?: DateTimeNullableWithAggregatesFilter<"RecurringRule"> | Date | string | null
+    lastRunAt?: DateTimeNullableWithAggregatesFilter<"RecurringRule"> | Date | string | null
+    isActive?: BoolWithAggregatesFilter<"RecurringRule"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"RecurringRule"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RecurringRule"> | Date | string
+  }
+
   export type TenantCreateInput = {
     id?: string
     name: string
@@ -7721,6 +15594,11 @@ export namespace Prisma {
     aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
     aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
     aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateInput = {
@@ -7732,6 +15610,11 @@ export namespace Prisma {
     aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
     aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
     aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUpdateInput = {
@@ -7743,6 +15626,11 @@ export namespace Prisma {
     aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
     aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
     aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateInput = {
@@ -7754,6 +15642,11 @@ export namespace Prisma {
     aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
     aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
     aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateManyInput = {
@@ -8137,6 +16030,585 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CategoryCreateInput = {
+    id?: string
+    name: string
+    icon?: string | null
+    color?: string | null
+    type: string
+    isSystem?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parent?: CategoryCreateNestedOneWithoutChildrenInput
+    children?: CategoryCreateNestedManyWithoutParentInput
+    tenant: TenantCreateNestedOneWithoutCategoriesInput
+    transactions?: TransactionCreateNestedManyWithoutCategoryInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutCategoryInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    name: string
+    parentId?: string | null
+    icon?: string | null
+    color?: string | null
+    type: string
+    isSystem?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    children?: CategoryUncheckedCreateNestedManyWithoutParentInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutCategoryInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutCategoryInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parent?: CategoryUpdateOneWithoutChildrenNestedInput
+    children?: CategoryUpdateManyWithoutParentNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutCategoriesNestedInput
+    transactions?: TransactionUpdateManyWithoutCategoryNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutCategoryNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    children?: CategoryUncheckedUpdateManyWithoutParentNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutCategoryNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutCategoryNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryCreateManyInput = {
+    id?: string
+    tenantId: string
+    name: string
+    parentId?: string | null
+    icon?: string | null
+    color?: string | null
+    type: string
+    isSystem?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CategoryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CategoryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AccountCreateInput = {
+    id?: string
+    name: string
+    type: string
+    initialBalance?: Decimal | DecimalJsLike | number | string
+    currentBalance?: Decimal | DecimalJsLike | number | string
+    icon?: string | null
+    color?: string | null
+    isArchived?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutAccountsInput
+    transactions?: TransactionCreateNestedManyWithoutAccountInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutAccountInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    name: string
+    type: string
+    initialBalance?: Decimal | DecimalJsLike | number | string
+    currentBalance?: Decimal | DecimalJsLike | number | string
+    icon?: string | null
+    color?: string | null
+    isArchived?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutAccountInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutAccountInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    initialBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currentBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutAccountsNestedInput
+    transactions?: TransactionUpdateManyWithoutAccountNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutAccountNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutAccountNestedInput
+  }
+
+  export type AccountUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    initialBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currentBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutAccountNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutAccountNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutAccountNestedInput
+  }
+
+  export type AccountCreateManyInput = {
+    id?: string
+    tenantId: string
+    name: string
+    type: string
+    initialBalance?: Decimal | DecimalJsLike | number | string
+    currentBalance?: Decimal | DecimalJsLike | number | string
+    icon?: string | null
+    color?: string | null
+    isArchived?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AccountUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    initialBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currentBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AccountUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    initialBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currentBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionCreateInput = {
+    id?: string
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    date: Date | string
+    isRecurring?: boolean
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    account: AccountCreateNestedOneWithoutTransactionsInput
+    category?: CategoryCreateNestedOneWithoutTransactionsInput
+    recurringRule?: RecurringRuleCreateNestedOneWithoutTransactionsInput
+    tenant: TenantCreateNestedOneWithoutTransactionsInput
+  }
+
+  export type TransactionUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    accountId: string
+    categoryId?: string | null
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    date: Date | string
+    isRecurring?: boolean
+    recurringRuleId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    isRecurring?: BoolFieldUpdateOperationsInput | boolean
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    account?: AccountUpdateOneRequiredWithoutTransactionsNestedInput
+    category?: CategoryUpdateOneWithoutTransactionsNestedInput
+    recurringRule?: RecurringRuleUpdateOneWithoutTransactionsNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutTransactionsNestedInput
+  }
+
+  export type TransactionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    isRecurring?: BoolFieldUpdateOperationsInput | boolean
+    recurringRuleId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionCreateManyInput = {
+    id?: string
+    tenantId: string
+    accountId: string
+    categoryId?: string | null
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    date: Date | string
+    isRecurring?: boolean
+    recurringRuleId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    isRecurring?: BoolFieldUpdateOperationsInput | boolean
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    isRecurring?: BoolFieldUpdateOperationsInput | boolean
+    recurringRuleId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BudgetEnvelopeCreateInput = {
+    id?: string
+    month: Date | string
+    allocated: Decimal | DecimalJsLike | number | string
+    spent?: Decimal | DecimalJsLike | number | string
+    rolledOver?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: CategoryCreateNestedOneWithoutBudgetEnvelopesInput
+    account: AccountCreateNestedOneWithoutBudgetEnvelopesInput
+    tenant: TenantCreateNestedOneWithoutBudgetEnvelopesInput
+  }
+
+  export type BudgetEnvelopeUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    categoryId: string
+    accountId: string
+    month: Date | string
+    allocated: Decimal | DecimalJsLike | number | string
+    spent?: Decimal | DecimalJsLike | number | string
+    rolledOver?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BudgetEnvelopeUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    month?: DateTimeFieldUpdateOperationsInput | Date | string
+    allocated?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    spent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rolledOver?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: CategoryUpdateOneRequiredWithoutBudgetEnvelopesNestedInput
+    account?: AccountUpdateOneRequiredWithoutBudgetEnvelopesNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutBudgetEnvelopesNestedInput
+  }
+
+  export type BudgetEnvelopeUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    month?: DateTimeFieldUpdateOperationsInput | Date | string
+    allocated?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    spent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rolledOver?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BudgetEnvelopeCreateManyInput = {
+    id?: string
+    tenantId: string
+    categoryId: string
+    accountId: string
+    month: Date | string
+    allocated: Decimal | DecimalJsLike | number | string
+    spent?: Decimal | DecimalJsLike | number | string
+    rolledOver?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BudgetEnvelopeUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    month?: DateTimeFieldUpdateOperationsInput | Date | string
+    allocated?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    spent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rolledOver?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BudgetEnvelopeUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    month?: DateTimeFieldUpdateOperationsInput | Date | string
+    allocated?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    spent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rolledOver?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RecurringRuleCreateInput = {
+    id?: string
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    frequency: string
+    interval?: number
+    dayOfMonth?: number | null
+    dayOfWeek?: number | null
+    monthOfYear?: number | null
+    startDate: Date | string
+    endDate?: Date | string | null
+    nextRunAt?: Date | string | null
+    lastRunAt?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    account: AccountCreateNestedOneWithoutRecurringRulesInput
+    category?: CategoryCreateNestedOneWithoutRecurringRulesInput
+    tenant: TenantCreateNestedOneWithoutRecurringRulesInput
+    transactions?: TransactionCreateNestedManyWithoutRecurringRuleInput
+  }
+
+  export type RecurringRuleUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    accountId: string
+    categoryId?: string | null
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    frequency: string
+    interval?: number
+    dayOfMonth?: number | null
+    dayOfWeek?: number | null
+    monthOfYear?: number | null
+    startDate: Date | string
+    endDate?: Date | string | null
+    nextRunAt?: Date | string | null
+    lastRunAt?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutRecurringRuleInput
+  }
+
+  export type RecurringRuleUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    interval?: IntFieldUpdateOperationsInput | number
+    dayOfMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    dayOfWeek?: NullableIntFieldUpdateOperationsInput | number | null
+    monthOfYear?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    account?: AccountUpdateOneRequiredWithoutRecurringRulesNestedInput
+    category?: CategoryUpdateOneWithoutRecurringRulesNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutRecurringRulesNestedInput
+    transactions?: TransactionUpdateManyWithoutRecurringRuleNestedInput
+  }
+
+  export type RecurringRuleUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    interval?: IntFieldUpdateOperationsInput | number
+    dayOfMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    dayOfWeek?: NullableIntFieldUpdateOperationsInput | number | null
+    monthOfYear?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutRecurringRuleNestedInput
+  }
+
+  export type RecurringRuleCreateManyInput = {
+    id?: string
+    tenantId: string
+    accountId: string
+    categoryId?: string | null
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    frequency: string
+    interval?: number
+    dayOfMonth?: number | null
+    dayOfWeek?: number | null
+    monthOfYear?: number | null
+    startDate: Date | string
+    endDate?: Date | string | null
+    nextRunAt?: Date | string | null
+    lastRunAt?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RecurringRuleUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    interval?: IntFieldUpdateOperationsInput | number
+    dayOfMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    dayOfWeek?: NullableIntFieldUpdateOperationsInput | number | null
+    monthOfYear?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RecurringRuleUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    interval?: IntFieldUpdateOperationsInput | number
+    dayOfMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    dayOfWeek?: NullableIntFieldUpdateOperationsInput | number | null
+    monthOfYear?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -8188,6 +16660,36 @@ export namespace Prisma {
     none?: AiUsageLogWhereInput
   }
 
+  export type CategoryListRelationFilter = {
+    every?: CategoryWhereInput
+    some?: CategoryWhereInput
+    none?: CategoryWhereInput
+  }
+
+  export type AccountListRelationFilter = {
+    every?: AccountWhereInput
+    some?: AccountWhereInput
+    none?: AccountWhereInput
+  }
+
+  export type TransactionListRelationFilter = {
+    every?: TransactionWhereInput
+    some?: TransactionWhereInput
+    none?: TransactionWhereInput
+  }
+
+  export type BudgetEnvelopeListRelationFilter = {
+    every?: BudgetEnvelopeWhereInput
+    some?: BudgetEnvelopeWhereInput
+    none?: BudgetEnvelopeWhereInput
+  }
+
+  export type RecurringRuleListRelationFilter = {
+    every?: RecurringRuleWhereInput
+    some?: RecurringRuleWhereInput
+    none?: RecurringRuleWhereInput
+  }
+
   export type UserOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -8201,6 +16703,26 @@ export namespace Prisma {
   }
 
   export type AiUsageLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CategoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AccountOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TransactionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BudgetEnvelopeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RecurringRuleOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -8681,6 +17203,413 @@ export namespace Prisma {
     latencyMs?: SortOrder
   }
 
+  export type CategoryNullableScalarRelationFilter = {
+    is?: CategoryWhereInput | null
+    isNot?: CategoryWhereInput | null
+  }
+
+  export type CategoryOrderByRelevanceInput = {
+    fields: CategoryOrderByRelevanceFieldEnum | CategoryOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type CategoryTenantIdNameCompoundUniqueInput = {
+    tenantId: string
+    name: string
+  }
+
+  export type CategoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    parentId?: SortOrder
+    icon?: SortOrder
+    color?: SortOrder
+    type?: SortOrder
+    isSystem?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CategoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    parentId?: SortOrder
+    icon?: SortOrder
+    color?: SortOrder
+    type?: SortOrder
+    isSystem?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CategoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    parentId?: SortOrder
+    icon?: SortOrder
+    color?: SortOrder
+    type?: SortOrder
+    isSystem?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type AccountOrderByRelevanceInput = {
+    fields: AccountOrderByRelevanceFieldEnum | AccountOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type AccountTenantIdNameCompoundUniqueInput = {
+    tenantId: string
+    name: string
+  }
+
+  export type AccountCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    initialBalance?: SortOrder
+    currentBalance?: SortOrder
+    icon?: SortOrder
+    color?: SortOrder
+    isArchived?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AccountAvgOrderByAggregateInput = {
+    initialBalance?: SortOrder
+    currentBalance?: SortOrder
+  }
+
+  export type AccountMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    initialBalance?: SortOrder
+    currentBalance?: SortOrder
+    icon?: SortOrder
+    color?: SortOrder
+    isArchived?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AccountMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    initialBalance?: SortOrder
+    currentBalance?: SortOrder
+    icon?: SortOrder
+    color?: SortOrder
+    isArchived?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AccountSumOrderByAggregateInput = {
+    initialBalance?: SortOrder
+    currentBalance?: SortOrder
+  }
+
+  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type AccountScalarRelationFilter = {
+    is?: AccountWhereInput
+    isNot?: AccountWhereInput
+  }
+
+  export type RecurringRuleNullableScalarRelationFilter = {
+    is?: RecurringRuleWhereInput | null
+    isNot?: RecurringRuleWhereInput | null
+  }
+
+  export type TransactionOrderByRelevanceInput = {
+    fields: TransactionOrderByRelevanceFieldEnum | TransactionOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type TransactionCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    accountId?: SortOrder
+    categoryId?: SortOrder
+    amount?: SortOrder
+    type?: SortOrder
+    payee?: SortOrder
+    description?: SortOrder
+    date?: SortOrder
+    isRecurring?: SortOrder
+    recurringRuleId?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TransactionAvgOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type TransactionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    accountId?: SortOrder
+    categoryId?: SortOrder
+    amount?: SortOrder
+    type?: SortOrder
+    payee?: SortOrder
+    description?: SortOrder
+    date?: SortOrder
+    isRecurring?: SortOrder
+    recurringRuleId?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TransactionMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    accountId?: SortOrder
+    categoryId?: SortOrder
+    amount?: SortOrder
+    type?: SortOrder
+    payee?: SortOrder
+    description?: SortOrder
+    date?: SortOrder
+    isRecurring?: SortOrder
+    recurringRuleId?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TransactionSumOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type CategoryScalarRelationFilter = {
+    is?: CategoryWhereInput
+    isNot?: CategoryWhereInput
+  }
+
+  export type BudgetEnvelopeOrderByRelevanceInput = {
+    fields: BudgetEnvelopeOrderByRelevanceFieldEnum | BudgetEnvelopeOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type BudgetEnvelopeTenantIdCategoryIdAccountIdMonthCompoundUniqueInput = {
+    tenantId: string
+    categoryId: string
+    accountId: string
+    month: Date | string
+  }
+
+  export type BudgetEnvelopeCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    categoryId?: SortOrder
+    accountId?: SortOrder
+    month?: SortOrder
+    allocated?: SortOrder
+    spent?: SortOrder
+    rolledOver?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BudgetEnvelopeAvgOrderByAggregateInput = {
+    allocated?: SortOrder
+    spent?: SortOrder
+    rolledOver?: SortOrder
+  }
+
+  export type BudgetEnvelopeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    categoryId?: SortOrder
+    accountId?: SortOrder
+    month?: SortOrder
+    allocated?: SortOrder
+    spent?: SortOrder
+    rolledOver?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BudgetEnvelopeMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    categoryId?: SortOrder
+    accountId?: SortOrder
+    month?: SortOrder
+    allocated?: SortOrder
+    spent?: SortOrder
+    rolledOver?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BudgetEnvelopeSumOrderByAggregateInput = {
+    allocated?: SortOrder
+    spent?: SortOrder
+    rolledOver?: SortOrder
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type RecurringRuleOrderByRelevanceInput = {
+    fields: RecurringRuleOrderByRelevanceFieldEnum | RecurringRuleOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type RecurringRuleCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    accountId?: SortOrder
+    categoryId?: SortOrder
+    amount?: SortOrder
+    type?: SortOrder
+    payee?: SortOrder
+    description?: SortOrder
+    frequency?: SortOrder
+    interval?: SortOrder
+    dayOfMonth?: SortOrder
+    dayOfWeek?: SortOrder
+    monthOfYear?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    nextRunAt?: SortOrder
+    lastRunAt?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RecurringRuleAvgOrderByAggregateInput = {
+    amount?: SortOrder
+    interval?: SortOrder
+    dayOfMonth?: SortOrder
+    dayOfWeek?: SortOrder
+    monthOfYear?: SortOrder
+  }
+
+  export type RecurringRuleMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    accountId?: SortOrder
+    categoryId?: SortOrder
+    amount?: SortOrder
+    type?: SortOrder
+    payee?: SortOrder
+    description?: SortOrder
+    frequency?: SortOrder
+    interval?: SortOrder
+    dayOfMonth?: SortOrder
+    dayOfWeek?: SortOrder
+    monthOfYear?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    nextRunAt?: SortOrder
+    lastRunAt?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RecurringRuleMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    accountId?: SortOrder
+    categoryId?: SortOrder
+    amount?: SortOrder
+    type?: SortOrder
+    payee?: SortOrder
+    description?: SortOrder
+    frequency?: SortOrder
+    interval?: SortOrder
+    dayOfMonth?: SortOrder
+    dayOfWeek?: SortOrder
+    monthOfYear?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    nextRunAt?: SortOrder
+    lastRunAt?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RecurringRuleSumOrderByAggregateInput = {
+    amount?: SortOrder
+    interval?: SortOrder
+    dayOfMonth?: SortOrder
+    dayOfWeek?: SortOrder
+    monthOfYear?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type UserCreateNestedManyWithoutTenantInput = {
     create?: XOR<UserCreateWithoutTenantInput, UserUncheckedCreateWithoutTenantInput> | UserCreateWithoutTenantInput[] | UserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: UserCreateOrConnectWithoutTenantInput | UserCreateOrConnectWithoutTenantInput[]
@@ -8709,6 +17638,41 @@ export namespace Prisma {
     connect?: AiUsageLogWhereUniqueInput | AiUsageLogWhereUniqueInput[]
   }
 
+  export type CategoryCreateNestedManyWithoutTenantInput = {
+    create?: XOR<CategoryCreateWithoutTenantInput, CategoryUncheckedCreateWithoutTenantInput> | CategoryCreateWithoutTenantInput[] | CategoryUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutTenantInput | CategoryCreateOrConnectWithoutTenantInput[]
+    createMany?: CategoryCreateManyTenantInputEnvelope
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+  }
+
+  export type AccountCreateNestedManyWithoutTenantInput = {
+    create?: XOR<AccountCreateWithoutTenantInput, AccountUncheckedCreateWithoutTenantInput> | AccountCreateWithoutTenantInput[] | AccountUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutTenantInput | AccountCreateOrConnectWithoutTenantInput[]
+    createMany?: AccountCreateManyTenantInputEnvelope
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+  }
+
+  export type TransactionCreateNestedManyWithoutTenantInput = {
+    create?: XOR<TransactionCreateWithoutTenantInput, TransactionUncheckedCreateWithoutTenantInput> | TransactionCreateWithoutTenantInput[] | TransactionUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutTenantInput | TransactionCreateOrConnectWithoutTenantInput[]
+    createMany?: TransactionCreateManyTenantInputEnvelope
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+  }
+
+  export type BudgetEnvelopeCreateNestedManyWithoutTenantInput = {
+    create?: XOR<BudgetEnvelopeCreateWithoutTenantInput, BudgetEnvelopeUncheckedCreateWithoutTenantInput> | BudgetEnvelopeCreateWithoutTenantInput[] | BudgetEnvelopeUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: BudgetEnvelopeCreateOrConnectWithoutTenantInput | BudgetEnvelopeCreateOrConnectWithoutTenantInput[]
+    createMany?: BudgetEnvelopeCreateManyTenantInputEnvelope
+    connect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+  }
+
+  export type RecurringRuleCreateNestedManyWithoutTenantInput = {
+    create?: XOR<RecurringRuleCreateWithoutTenantInput, RecurringRuleUncheckedCreateWithoutTenantInput> | RecurringRuleCreateWithoutTenantInput[] | RecurringRuleUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: RecurringRuleCreateOrConnectWithoutTenantInput | RecurringRuleCreateOrConnectWithoutTenantInput[]
+    createMany?: RecurringRuleCreateManyTenantInputEnvelope
+    connect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+  }
+
   export type UserUncheckedCreateNestedManyWithoutTenantInput = {
     create?: XOR<UserCreateWithoutTenantInput, UserUncheckedCreateWithoutTenantInput> | UserCreateWithoutTenantInput[] | UserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: UserCreateOrConnectWithoutTenantInput | UserCreateOrConnectWithoutTenantInput[]
@@ -8735,6 +17699,41 @@ export namespace Prisma {
     connectOrCreate?: AiUsageLogCreateOrConnectWithoutTenantInput | AiUsageLogCreateOrConnectWithoutTenantInput[]
     createMany?: AiUsageLogCreateManyTenantInputEnvelope
     connect?: AiUsageLogWhereUniqueInput | AiUsageLogWhereUniqueInput[]
+  }
+
+  export type CategoryUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<CategoryCreateWithoutTenantInput, CategoryUncheckedCreateWithoutTenantInput> | CategoryCreateWithoutTenantInput[] | CategoryUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutTenantInput | CategoryCreateOrConnectWithoutTenantInput[]
+    createMany?: CategoryCreateManyTenantInputEnvelope
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+  }
+
+  export type AccountUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<AccountCreateWithoutTenantInput, AccountUncheckedCreateWithoutTenantInput> | AccountCreateWithoutTenantInput[] | AccountUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutTenantInput | AccountCreateOrConnectWithoutTenantInput[]
+    createMany?: AccountCreateManyTenantInputEnvelope
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+  }
+
+  export type TransactionUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<TransactionCreateWithoutTenantInput, TransactionUncheckedCreateWithoutTenantInput> | TransactionCreateWithoutTenantInput[] | TransactionUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutTenantInput | TransactionCreateOrConnectWithoutTenantInput[]
+    createMany?: TransactionCreateManyTenantInputEnvelope
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+  }
+
+  export type BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<BudgetEnvelopeCreateWithoutTenantInput, BudgetEnvelopeUncheckedCreateWithoutTenantInput> | BudgetEnvelopeCreateWithoutTenantInput[] | BudgetEnvelopeUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: BudgetEnvelopeCreateOrConnectWithoutTenantInput | BudgetEnvelopeCreateOrConnectWithoutTenantInput[]
+    createMany?: BudgetEnvelopeCreateManyTenantInputEnvelope
+    connect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+  }
+
+  export type RecurringRuleUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<RecurringRuleCreateWithoutTenantInput, RecurringRuleUncheckedCreateWithoutTenantInput> | RecurringRuleCreateWithoutTenantInput[] | RecurringRuleUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: RecurringRuleCreateOrConnectWithoutTenantInput | RecurringRuleCreateOrConnectWithoutTenantInput[]
+    createMany?: RecurringRuleCreateManyTenantInputEnvelope
+    connect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -8801,6 +17800,76 @@ export namespace Prisma {
     deleteMany?: AiUsageLogScalarWhereInput | AiUsageLogScalarWhereInput[]
   }
 
+  export type CategoryUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<CategoryCreateWithoutTenantInput, CategoryUncheckedCreateWithoutTenantInput> | CategoryCreateWithoutTenantInput[] | CategoryUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutTenantInput | CategoryCreateOrConnectWithoutTenantInput[]
+    upsert?: CategoryUpsertWithWhereUniqueWithoutTenantInput | CategoryUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: CategoryCreateManyTenantInputEnvelope
+    set?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    disconnect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    delete?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    update?: CategoryUpdateWithWhereUniqueWithoutTenantInput | CategoryUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: CategoryUpdateManyWithWhereWithoutTenantInput | CategoryUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+  }
+
+  export type AccountUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<AccountCreateWithoutTenantInput, AccountUncheckedCreateWithoutTenantInput> | AccountCreateWithoutTenantInput[] | AccountUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutTenantInput | AccountCreateOrConnectWithoutTenantInput[]
+    upsert?: AccountUpsertWithWhereUniqueWithoutTenantInput | AccountUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: AccountCreateManyTenantInputEnvelope
+    set?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    disconnect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    delete?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    update?: AccountUpdateWithWhereUniqueWithoutTenantInput | AccountUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: AccountUpdateManyWithWhereWithoutTenantInput | AccountUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
+  }
+
+  export type TransactionUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<TransactionCreateWithoutTenantInput, TransactionUncheckedCreateWithoutTenantInput> | TransactionCreateWithoutTenantInput[] | TransactionUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutTenantInput | TransactionCreateOrConnectWithoutTenantInput[]
+    upsert?: TransactionUpsertWithWhereUniqueWithoutTenantInput | TransactionUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: TransactionCreateManyTenantInputEnvelope
+    set?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    disconnect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    delete?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    update?: TransactionUpdateWithWhereUniqueWithoutTenantInput | TransactionUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: TransactionUpdateManyWithWhereWithoutTenantInput | TransactionUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+  }
+
+  export type BudgetEnvelopeUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<BudgetEnvelopeCreateWithoutTenantInput, BudgetEnvelopeUncheckedCreateWithoutTenantInput> | BudgetEnvelopeCreateWithoutTenantInput[] | BudgetEnvelopeUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: BudgetEnvelopeCreateOrConnectWithoutTenantInput | BudgetEnvelopeCreateOrConnectWithoutTenantInput[]
+    upsert?: BudgetEnvelopeUpsertWithWhereUniqueWithoutTenantInput | BudgetEnvelopeUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: BudgetEnvelopeCreateManyTenantInputEnvelope
+    set?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    disconnect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    delete?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    connect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    update?: BudgetEnvelopeUpdateWithWhereUniqueWithoutTenantInput | BudgetEnvelopeUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: BudgetEnvelopeUpdateManyWithWhereWithoutTenantInput | BudgetEnvelopeUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: BudgetEnvelopeScalarWhereInput | BudgetEnvelopeScalarWhereInput[]
+  }
+
+  export type RecurringRuleUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<RecurringRuleCreateWithoutTenantInput, RecurringRuleUncheckedCreateWithoutTenantInput> | RecurringRuleCreateWithoutTenantInput[] | RecurringRuleUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: RecurringRuleCreateOrConnectWithoutTenantInput | RecurringRuleCreateOrConnectWithoutTenantInput[]
+    upsert?: RecurringRuleUpsertWithWhereUniqueWithoutTenantInput | RecurringRuleUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: RecurringRuleCreateManyTenantInputEnvelope
+    set?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    disconnect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    delete?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    connect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    update?: RecurringRuleUpdateWithWhereUniqueWithoutTenantInput | RecurringRuleUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: RecurringRuleUpdateManyWithWhereWithoutTenantInput | RecurringRuleUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: RecurringRuleScalarWhereInput | RecurringRuleScalarWhereInput[]
+  }
+
   export type UserUncheckedUpdateManyWithoutTenantNestedInput = {
     create?: XOR<UserCreateWithoutTenantInput, UserUncheckedCreateWithoutTenantInput> | UserCreateWithoutTenantInput[] | UserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: UserCreateOrConnectWithoutTenantInput | UserCreateOrConnectWithoutTenantInput[]
@@ -8855,6 +17924,76 @@ export namespace Prisma {
     update?: AiUsageLogUpdateWithWhereUniqueWithoutTenantInput | AiUsageLogUpdateWithWhereUniqueWithoutTenantInput[]
     updateMany?: AiUsageLogUpdateManyWithWhereWithoutTenantInput | AiUsageLogUpdateManyWithWhereWithoutTenantInput[]
     deleteMany?: AiUsageLogScalarWhereInput | AiUsageLogScalarWhereInput[]
+  }
+
+  export type CategoryUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<CategoryCreateWithoutTenantInput, CategoryUncheckedCreateWithoutTenantInput> | CategoryCreateWithoutTenantInput[] | CategoryUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutTenantInput | CategoryCreateOrConnectWithoutTenantInput[]
+    upsert?: CategoryUpsertWithWhereUniqueWithoutTenantInput | CategoryUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: CategoryCreateManyTenantInputEnvelope
+    set?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    disconnect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    delete?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    update?: CategoryUpdateWithWhereUniqueWithoutTenantInput | CategoryUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: CategoryUpdateManyWithWhereWithoutTenantInput | CategoryUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+  }
+
+  export type AccountUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<AccountCreateWithoutTenantInput, AccountUncheckedCreateWithoutTenantInput> | AccountCreateWithoutTenantInput[] | AccountUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutTenantInput | AccountCreateOrConnectWithoutTenantInput[]
+    upsert?: AccountUpsertWithWhereUniqueWithoutTenantInput | AccountUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: AccountCreateManyTenantInputEnvelope
+    set?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    disconnect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    delete?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    update?: AccountUpdateWithWhereUniqueWithoutTenantInput | AccountUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: AccountUpdateManyWithWhereWithoutTenantInput | AccountUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
+  }
+
+  export type TransactionUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<TransactionCreateWithoutTenantInput, TransactionUncheckedCreateWithoutTenantInput> | TransactionCreateWithoutTenantInput[] | TransactionUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutTenantInput | TransactionCreateOrConnectWithoutTenantInput[]
+    upsert?: TransactionUpsertWithWhereUniqueWithoutTenantInput | TransactionUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: TransactionCreateManyTenantInputEnvelope
+    set?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    disconnect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    delete?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    update?: TransactionUpdateWithWhereUniqueWithoutTenantInput | TransactionUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: TransactionUpdateManyWithWhereWithoutTenantInput | TransactionUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+  }
+
+  export type BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<BudgetEnvelopeCreateWithoutTenantInput, BudgetEnvelopeUncheckedCreateWithoutTenantInput> | BudgetEnvelopeCreateWithoutTenantInput[] | BudgetEnvelopeUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: BudgetEnvelopeCreateOrConnectWithoutTenantInput | BudgetEnvelopeCreateOrConnectWithoutTenantInput[]
+    upsert?: BudgetEnvelopeUpsertWithWhereUniqueWithoutTenantInput | BudgetEnvelopeUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: BudgetEnvelopeCreateManyTenantInputEnvelope
+    set?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    disconnect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    delete?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    connect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    update?: BudgetEnvelopeUpdateWithWhereUniqueWithoutTenantInput | BudgetEnvelopeUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: BudgetEnvelopeUpdateManyWithWhereWithoutTenantInput | BudgetEnvelopeUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: BudgetEnvelopeScalarWhereInput | BudgetEnvelopeScalarWhereInput[]
+  }
+
+  export type RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<RecurringRuleCreateWithoutTenantInput, RecurringRuleUncheckedCreateWithoutTenantInput> | RecurringRuleCreateWithoutTenantInput[] | RecurringRuleUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: RecurringRuleCreateOrConnectWithoutTenantInput | RecurringRuleCreateOrConnectWithoutTenantInput[]
+    upsert?: RecurringRuleUpsertWithWhereUniqueWithoutTenantInput | RecurringRuleUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: RecurringRuleCreateManyTenantInputEnvelope
+    set?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    disconnect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    delete?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    connect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    update?: RecurringRuleUpdateWithWhereUniqueWithoutTenantInput | RecurringRuleUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: RecurringRuleUpdateManyWithWhereWithoutTenantInput | RecurringRuleUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: RecurringRuleScalarWhereInput | RecurringRuleScalarWhereInput[]
   }
 
   export type TenantCreateNestedOneWithoutUsersInput = {
@@ -8931,6 +18070,548 @@ export namespace Prisma {
     upsert?: TenantUpsertWithoutAiUsageLogsInput
     connect?: TenantWhereUniqueInput
     update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutAiUsageLogsInput, TenantUpdateWithoutAiUsageLogsInput>, TenantUncheckedUpdateWithoutAiUsageLogsInput>
+  }
+
+  export type CategoryCreateNestedOneWithoutChildrenInput = {
+    create?: XOR<CategoryCreateWithoutChildrenInput, CategoryUncheckedCreateWithoutChildrenInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutChildrenInput
+    connect?: CategoryWhereUniqueInput
+  }
+
+  export type CategoryCreateNestedManyWithoutParentInput = {
+    create?: XOR<CategoryCreateWithoutParentInput, CategoryUncheckedCreateWithoutParentInput> | CategoryCreateWithoutParentInput[] | CategoryUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutParentInput | CategoryCreateOrConnectWithoutParentInput[]
+    createMany?: CategoryCreateManyParentInputEnvelope
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+  }
+
+  export type TenantCreateNestedOneWithoutCategoriesInput = {
+    create?: XOR<TenantCreateWithoutCategoriesInput, TenantUncheckedCreateWithoutCategoriesInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutCategoriesInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type TransactionCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<TransactionCreateWithoutCategoryInput, TransactionUncheckedCreateWithoutCategoryInput> | TransactionCreateWithoutCategoryInput[] | TransactionUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutCategoryInput | TransactionCreateOrConnectWithoutCategoryInput[]
+    createMany?: TransactionCreateManyCategoryInputEnvelope
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+  }
+
+  export type BudgetEnvelopeCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<BudgetEnvelopeCreateWithoutCategoryInput, BudgetEnvelopeUncheckedCreateWithoutCategoryInput> | BudgetEnvelopeCreateWithoutCategoryInput[] | BudgetEnvelopeUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: BudgetEnvelopeCreateOrConnectWithoutCategoryInput | BudgetEnvelopeCreateOrConnectWithoutCategoryInput[]
+    createMany?: BudgetEnvelopeCreateManyCategoryInputEnvelope
+    connect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+  }
+
+  export type RecurringRuleCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<RecurringRuleCreateWithoutCategoryInput, RecurringRuleUncheckedCreateWithoutCategoryInput> | RecurringRuleCreateWithoutCategoryInput[] | RecurringRuleUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: RecurringRuleCreateOrConnectWithoutCategoryInput | RecurringRuleCreateOrConnectWithoutCategoryInput[]
+    createMany?: RecurringRuleCreateManyCategoryInputEnvelope
+    connect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+  }
+
+  export type CategoryUncheckedCreateNestedManyWithoutParentInput = {
+    create?: XOR<CategoryCreateWithoutParentInput, CategoryUncheckedCreateWithoutParentInput> | CategoryCreateWithoutParentInput[] | CategoryUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutParentInput | CategoryCreateOrConnectWithoutParentInput[]
+    createMany?: CategoryCreateManyParentInputEnvelope
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+  }
+
+  export type TransactionUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<TransactionCreateWithoutCategoryInput, TransactionUncheckedCreateWithoutCategoryInput> | TransactionCreateWithoutCategoryInput[] | TransactionUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutCategoryInput | TransactionCreateOrConnectWithoutCategoryInput[]
+    createMany?: TransactionCreateManyCategoryInputEnvelope
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+  }
+
+  export type BudgetEnvelopeUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<BudgetEnvelopeCreateWithoutCategoryInput, BudgetEnvelopeUncheckedCreateWithoutCategoryInput> | BudgetEnvelopeCreateWithoutCategoryInput[] | BudgetEnvelopeUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: BudgetEnvelopeCreateOrConnectWithoutCategoryInput | BudgetEnvelopeCreateOrConnectWithoutCategoryInput[]
+    createMany?: BudgetEnvelopeCreateManyCategoryInputEnvelope
+    connect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+  }
+
+  export type RecurringRuleUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<RecurringRuleCreateWithoutCategoryInput, RecurringRuleUncheckedCreateWithoutCategoryInput> | RecurringRuleCreateWithoutCategoryInput[] | RecurringRuleUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: RecurringRuleCreateOrConnectWithoutCategoryInput | RecurringRuleCreateOrConnectWithoutCategoryInput[]
+    createMany?: RecurringRuleCreateManyCategoryInputEnvelope
+    connect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+  }
+
+  export type CategoryUpdateOneWithoutChildrenNestedInput = {
+    create?: XOR<CategoryCreateWithoutChildrenInput, CategoryUncheckedCreateWithoutChildrenInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutChildrenInput
+    upsert?: CategoryUpsertWithoutChildrenInput
+    disconnect?: CategoryWhereInput | boolean
+    delete?: CategoryWhereInput | boolean
+    connect?: CategoryWhereUniqueInput
+    update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutChildrenInput, CategoryUpdateWithoutChildrenInput>, CategoryUncheckedUpdateWithoutChildrenInput>
+  }
+
+  export type CategoryUpdateManyWithoutParentNestedInput = {
+    create?: XOR<CategoryCreateWithoutParentInput, CategoryUncheckedCreateWithoutParentInput> | CategoryCreateWithoutParentInput[] | CategoryUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutParentInput | CategoryCreateOrConnectWithoutParentInput[]
+    upsert?: CategoryUpsertWithWhereUniqueWithoutParentInput | CategoryUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: CategoryCreateManyParentInputEnvelope
+    set?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    disconnect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    delete?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    update?: CategoryUpdateWithWhereUniqueWithoutParentInput | CategoryUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: CategoryUpdateManyWithWhereWithoutParentInput | CategoryUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+  }
+
+  export type TenantUpdateOneRequiredWithoutCategoriesNestedInput = {
+    create?: XOR<TenantCreateWithoutCategoriesInput, TenantUncheckedCreateWithoutCategoriesInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutCategoriesInput
+    upsert?: TenantUpsertWithoutCategoriesInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutCategoriesInput, TenantUpdateWithoutCategoriesInput>, TenantUncheckedUpdateWithoutCategoriesInput>
+  }
+
+  export type TransactionUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<TransactionCreateWithoutCategoryInput, TransactionUncheckedCreateWithoutCategoryInput> | TransactionCreateWithoutCategoryInput[] | TransactionUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutCategoryInput | TransactionCreateOrConnectWithoutCategoryInput[]
+    upsert?: TransactionUpsertWithWhereUniqueWithoutCategoryInput | TransactionUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: TransactionCreateManyCategoryInputEnvelope
+    set?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    disconnect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    delete?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    update?: TransactionUpdateWithWhereUniqueWithoutCategoryInput | TransactionUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: TransactionUpdateManyWithWhereWithoutCategoryInput | TransactionUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+  }
+
+  export type BudgetEnvelopeUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<BudgetEnvelopeCreateWithoutCategoryInput, BudgetEnvelopeUncheckedCreateWithoutCategoryInput> | BudgetEnvelopeCreateWithoutCategoryInput[] | BudgetEnvelopeUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: BudgetEnvelopeCreateOrConnectWithoutCategoryInput | BudgetEnvelopeCreateOrConnectWithoutCategoryInput[]
+    upsert?: BudgetEnvelopeUpsertWithWhereUniqueWithoutCategoryInput | BudgetEnvelopeUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: BudgetEnvelopeCreateManyCategoryInputEnvelope
+    set?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    disconnect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    delete?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    connect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    update?: BudgetEnvelopeUpdateWithWhereUniqueWithoutCategoryInput | BudgetEnvelopeUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: BudgetEnvelopeUpdateManyWithWhereWithoutCategoryInput | BudgetEnvelopeUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: BudgetEnvelopeScalarWhereInput | BudgetEnvelopeScalarWhereInput[]
+  }
+
+  export type RecurringRuleUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<RecurringRuleCreateWithoutCategoryInput, RecurringRuleUncheckedCreateWithoutCategoryInput> | RecurringRuleCreateWithoutCategoryInput[] | RecurringRuleUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: RecurringRuleCreateOrConnectWithoutCategoryInput | RecurringRuleCreateOrConnectWithoutCategoryInput[]
+    upsert?: RecurringRuleUpsertWithWhereUniqueWithoutCategoryInput | RecurringRuleUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: RecurringRuleCreateManyCategoryInputEnvelope
+    set?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    disconnect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    delete?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    connect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    update?: RecurringRuleUpdateWithWhereUniqueWithoutCategoryInput | RecurringRuleUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: RecurringRuleUpdateManyWithWhereWithoutCategoryInput | RecurringRuleUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: RecurringRuleScalarWhereInput | RecurringRuleScalarWhereInput[]
+  }
+
+  export type CategoryUncheckedUpdateManyWithoutParentNestedInput = {
+    create?: XOR<CategoryCreateWithoutParentInput, CategoryUncheckedCreateWithoutParentInput> | CategoryCreateWithoutParentInput[] | CategoryUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutParentInput | CategoryCreateOrConnectWithoutParentInput[]
+    upsert?: CategoryUpsertWithWhereUniqueWithoutParentInput | CategoryUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: CategoryCreateManyParentInputEnvelope
+    set?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    disconnect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    delete?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    update?: CategoryUpdateWithWhereUniqueWithoutParentInput | CategoryUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: CategoryUpdateManyWithWhereWithoutParentInput | CategoryUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+  }
+
+  export type TransactionUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<TransactionCreateWithoutCategoryInput, TransactionUncheckedCreateWithoutCategoryInput> | TransactionCreateWithoutCategoryInput[] | TransactionUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutCategoryInput | TransactionCreateOrConnectWithoutCategoryInput[]
+    upsert?: TransactionUpsertWithWhereUniqueWithoutCategoryInput | TransactionUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: TransactionCreateManyCategoryInputEnvelope
+    set?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    disconnect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    delete?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    update?: TransactionUpdateWithWhereUniqueWithoutCategoryInput | TransactionUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: TransactionUpdateManyWithWhereWithoutCategoryInput | TransactionUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+  }
+
+  export type BudgetEnvelopeUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<BudgetEnvelopeCreateWithoutCategoryInput, BudgetEnvelopeUncheckedCreateWithoutCategoryInput> | BudgetEnvelopeCreateWithoutCategoryInput[] | BudgetEnvelopeUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: BudgetEnvelopeCreateOrConnectWithoutCategoryInput | BudgetEnvelopeCreateOrConnectWithoutCategoryInput[]
+    upsert?: BudgetEnvelopeUpsertWithWhereUniqueWithoutCategoryInput | BudgetEnvelopeUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: BudgetEnvelopeCreateManyCategoryInputEnvelope
+    set?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    disconnect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    delete?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    connect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    update?: BudgetEnvelopeUpdateWithWhereUniqueWithoutCategoryInput | BudgetEnvelopeUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: BudgetEnvelopeUpdateManyWithWhereWithoutCategoryInput | BudgetEnvelopeUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: BudgetEnvelopeScalarWhereInput | BudgetEnvelopeScalarWhereInput[]
+  }
+
+  export type RecurringRuleUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<RecurringRuleCreateWithoutCategoryInput, RecurringRuleUncheckedCreateWithoutCategoryInput> | RecurringRuleCreateWithoutCategoryInput[] | RecurringRuleUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: RecurringRuleCreateOrConnectWithoutCategoryInput | RecurringRuleCreateOrConnectWithoutCategoryInput[]
+    upsert?: RecurringRuleUpsertWithWhereUniqueWithoutCategoryInput | RecurringRuleUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: RecurringRuleCreateManyCategoryInputEnvelope
+    set?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    disconnect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    delete?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    connect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    update?: RecurringRuleUpdateWithWhereUniqueWithoutCategoryInput | RecurringRuleUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: RecurringRuleUpdateManyWithWhereWithoutCategoryInput | RecurringRuleUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: RecurringRuleScalarWhereInput | RecurringRuleScalarWhereInput[]
+  }
+
+  export type TenantCreateNestedOneWithoutAccountsInput = {
+    create?: XOR<TenantCreateWithoutAccountsInput, TenantUncheckedCreateWithoutAccountsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutAccountsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type TransactionCreateNestedManyWithoutAccountInput = {
+    create?: XOR<TransactionCreateWithoutAccountInput, TransactionUncheckedCreateWithoutAccountInput> | TransactionCreateWithoutAccountInput[] | TransactionUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutAccountInput | TransactionCreateOrConnectWithoutAccountInput[]
+    createMany?: TransactionCreateManyAccountInputEnvelope
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+  }
+
+  export type BudgetEnvelopeCreateNestedManyWithoutAccountInput = {
+    create?: XOR<BudgetEnvelopeCreateWithoutAccountInput, BudgetEnvelopeUncheckedCreateWithoutAccountInput> | BudgetEnvelopeCreateWithoutAccountInput[] | BudgetEnvelopeUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: BudgetEnvelopeCreateOrConnectWithoutAccountInput | BudgetEnvelopeCreateOrConnectWithoutAccountInput[]
+    createMany?: BudgetEnvelopeCreateManyAccountInputEnvelope
+    connect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+  }
+
+  export type RecurringRuleCreateNestedManyWithoutAccountInput = {
+    create?: XOR<RecurringRuleCreateWithoutAccountInput, RecurringRuleUncheckedCreateWithoutAccountInput> | RecurringRuleCreateWithoutAccountInput[] | RecurringRuleUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: RecurringRuleCreateOrConnectWithoutAccountInput | RecurringRuleCreateOrConnectWithoutAccountInput[]
+    createMany?: RecurringRuleCreateManyAccountInputEnvelope
+    connect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+  }
+
+  export type TransactionUncheckedCreateNestedManyWithoutAccountInput = {
+    create?: XOR<TransactionCreateWithoutAccountInput, TransactionUncheckedCreateWithoutAccountInput> | TransactionCreateWithoutAccountInput[] | TransactionUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutAccountInput | TransactionCreateOrConnectWithoutAccountInput[]
+    createMany?: TransactionCreateManyAccountInputEnvelope
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+  }
+
+  export type BudgetEnvelopeUncheckedCreateNestedManyWithoutAccountInput = {
+    create?: XOR<BudgetEnvelopeCreateWithoutAccountInput, BudgetEnvelopeUncheckedCreateWithoutAccountInput> | BudgetEnvelopeCreateWithoutAccountInput[] | BudgetEnvelopeUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: BudgetEnvelopeCreateOrConnectWithoutAccountInput | BudgetEnvelopeCreateOrConnectWithoutAccountInput[]
+    createMany?: BudgetEnvelopeCreateManyAccountInputEnvelope
+    connect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+  }
+
+  export type RecurringRuleUncheckedCreateNestedManyWithoutAccountInput = {
+    create?: XOR<RecurringRuleCreateWithoutAccountInput, RecurringRuleUncheckedCreateWithoutAccountInput> | RecurringRuleCreateWithoutAccountInput[] | RecurringRuleUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: RecurringRuleCreateOrConnectWithoutAccountInput | RecurringRuleCreateOrConnectWithoutAccountInput[]
+    createMany?: RecurringRuleCreateManyAccountInputEnvelope
+    connect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+  }
+
+  export type DecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type TenantUpdateOneRequiredWithoutAccountsNestedInput = {
+    create?: XOR<TenantCreateWithoutAccountsInput, TenantUncheckedCreateWithoutAccountsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutAccountsInput
+    upsert?: TenantUpsertWithoutAccountsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutAccountsInput, TenantUpdateWithoutAccountsInput>, TenantUncheckedUpdateWithoutAccountsInput>
+  }
+
+  export type TransactionUpdateManyWithoutAccountNestedInput = {
+    create?: XOR<TransactionCreateWithoutAccountInput, TransactionUncheckedCreateWithoutAccountInput> | TransactionCreateWithoutAccountInput[] | TransactionUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutAccountInput | TransactionCreateOrConnectWithoutAccountInput[]
+    upsert?: TransactionUpsertWithWhereUniqueWithoutAccountInput | TransactionUpsertWithWhereUniqueWithoutAccountInput[]
+    createMany?: TransactionCreateManyAccountInputEnvelope
+    set?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    disconnect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    delete?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    update?: TransactionUpdateWithWhereUniqueWithoutAccountInput | TransactionUpdateWithWhereUniqueWithoutAccountInput[]
+    updateMany?: TransactionUpdateManyWithWhereWithoutAccountInput | TransactionUpdateManyWithWhereWithoutAccountInput[]
+    deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+  }
+
+  export type BudgetEnvelopeUpdateManyWithoutAccountNestedInput = {
+    create?: XOR<BudgetEnvelopeCreateWithoutAccountInput, BudgetEnvelopeUncheckedCreateWithoutAccountInput> | BudgetEnvelopeCreateWithoutAccountInput[] | BudgetEnvelopeUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: BudgetEnvelopeCreateOrConnectWithoutAccountInput | BudgetEnvelopeCreateOrConnectWithoutAccountInput[]
+    upsert?: BudgetEnvelopeUpsertWithWhereUniqueWithoutAccountInput | BudgetEnvelopeUpsertWithWhereUniqueWithoutAccountInput[]
+    createMany?: BudgetEnvelopeCreateManyAccountInputEnvelope
+    set?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    disconnect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    delete?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    connect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    update?: BudgetEnvelopeUpdateWithWhereUniqueWithoutAccountInput | BudgetEnvelopeUpdateWithWhereUniqueWithoutAccountInput[]
+    updateMany?: BudgetEnvelopeUpdateManyWithWhereWithoutAccountInput | BudgetEnvelopeUpdateManyWithWhereWithoutAccountInput[]
+    deleteMany?: BudgetEnvelopeScalarWhereInput | BudgetEnvelopeScalarWhereInput[]
+  }
+
+  export type RecurringRuleUpdateManyWithoutAccountNestedInput = {
+    create?: XOR<RecurringRuleCreateWithoutAccountInput, RecurringRuleUncheckedCreateWithoutAccountInput> | RecurringRuleCreateWithoutAccountInput[] | RecurringRuleUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: RecurringRuleCreateOrConnectWithoutAccountInput | RecurringRuleCreateOrConnectWithoutAccountInput[]
+    upsert?: RecurringRuleUpsertWithWhereUniqueWithoutAccountInput | RecurringRuleUpsertWithWhereUniqueWithoutAccountInput[]
+    createMany?: RecurringRuleCreateManyAccountInputEnvelope
+    set?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    disconnect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    delete?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    connect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    update?: RecurringRuleUpdateWithWhereUniqueWithoutAccountInput | RecurringRuleUpdateWithWhereUniqueWithoutAccountInput[]
+    updateMany?: RecurringRuleUpdateManyWithWhereWithoutAccountInput | RecurringRuleUpdateManyWithWhereWithoutAccountInput[]
+    deleteMany?: RecurringRuleScalarWhereInput | RecurringRuleScalarWhereInput[]
+  }
+
+  export type TransactionUncheckedUpdateManyWithoutAccountNestedInput = {
+    create?: XOR<TransactionCreateWithoutAccountInput, TransactionUncheckedCreateWithoutAccountInput> | TransactionCreateWithoutAccountInput[] | TransactionUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutAccountInput | TransactionCreateOrConnectWithoutAccountInput[]
+    upsert?: TransactionUpsertWithWhereUniqueWithoutAccountInput | TransactionUpsertWithWhereUniqueWithoutAccountInput[]
+    createMany?: TransactionCreateManyAccountInputEnvelope
+    set?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    disconnect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    delete?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    update?: TransactionUpdateWithWhereUniqueWithoutAccountInput | TransactionUpdateWithWhereUniqueWithoutAccountInput[]
+    updateMany?: TransactionUpdateManyWithWhereWithoutAccountInput | TransactionUpdateManyWithWhereWithoutAccountInput[]
+    deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+  }
+
+  export type BudgetEnvelopeUncheckedUpdateManyWithoutAccountNestedInput = {
+    create?: XOR<BudgetEnvelopeCreateWithoutAccountInput, BudgetEnvelopeUncheckedCreateWithoutAccountInput> | BudgetEnvelopeCreateWithoutAccountInput[] | BudgetEnvelopeUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: BudgetEnvelopeCreateOrConnectWithoutAccountInput | BudgetEnvelopeCreateOrConnectWithoutAccountInput[]
+    upsert?: BudgetEnvelopeUpsertWithWhereUniqueWithoutAccountInput | BudgetEnvelopeUpsertWithWhereUniqueWithoutAccountInput[]
+    createMany?: BudgetEnvelopeCreateManyAccountInputEnvelope
+    set?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    disconnect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    delete?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    connect?: BudgetEnvelopeWhereUniqueInput | BudgetEnvelopeWhereUniqueInput[]
+    update?: BudgetEnvelopeUpdateWithWhereUniqueWithoutAccountInput | BudgetEnvelopeUpdateWithWhereUniqueWithoutAccountInput[]
+    updateMany?: BudgetEnvelopeUpdateManyWithWhereWithoutAccountInput | BudgetEnvelopeUpdateManyWithWhereWithoutAccountInput[]
+    deleteMany?: BudgetEnvelopeScalarWhereInput | BudgetEnvelopeScalarWhereInput[]
+  }
+
+  export type RecurringRuleUncheckedUpdateManyWithoutAccountNestedInput = {
+    create?: XOR<RecurringRuleCreateWithoutAccountInput, RecurringRuleUncheckedCreateWithoutAccountInput> | RecurringRuleCreateWithoutAccountInput[] | RecurringRuleUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: RecurringRuleCreateOrConnectWithoutAccountInput | RecurringRuleCreateOrConnectWithoutAccountInput[]
+    upsert?: RecurringRuleUpsertWithWhereUniqueWithoutAccountInput | RecurringRuleUpsertWithWhereUniqueWithoutAccountInput[]
+    createMany?: RecurringRuleCreateManyAccountInputEnvelope
+    set?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    disconnect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    delete?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    connect?: RecurringRuleWhereUniqueInput | RecurringRuleWhereUniqueInput[]
+    update?: RecurringRuleUpdateWithWhereUniqueWithoutAccountInput | RecurringRuleUpdateWithWhereUniqueWithoutAccountInput[]
+    updateMany?: RecurringRuleUpdateManyWithWhereWithoutAccountInput | RecurringRuleUpdateManyWithWhereWithoutAccountInput[]
+    deleteMany?: RecurringRuleScalarWhereInput | RecurringRuleScalarWhereInput[]
+  }
+
+  export type AccountCreateNestedOneWithoutTransactionsInput = {
+    create?: XOR<AccountCreateWithoutTransactionsInput, AccountUncheckedCreateWithoutTransactionsInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutTransactionsInput
+    connect?: AccountWhereUniqueInput
+  }
+
+  export type CategoryCreateNestedOneWithoutTransactionsInput = {
+    create?: XOR<CategoryCreateWithoutTransactionsInput, CategoryUncheckedCreateWithoutTransactionsInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutTransactionsInput
+    connect?: CategoryWhereUniqueInput
+  }
+
+  export type RecurringRuleCreateNestedOneWithoutTransactionsInput = {
+    create?: XOR<RecurringRuleCreateWithoutTransactionsInput, RecurringRuleUncheckedCreateWithoutTransactionsInput>
+    connectOrCreate?: RecurringRuleCreateOrConnectWithoutTransactionsInput
+    connect?: RecurringRuleWhereUniqueInput
+  }
+
+  export type TenantCreateNestedOneWithoutTransactionsInput = {
+    create?: XOR<TenantCreateWithoutTransactionsInput, TenantUncheckedCreateWithoutTransactionsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutTransactionsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type AccountUpdateOneRequiredWithoutTransactionsNestedInput = {
+    create?: XOR<AccountCreateWithoutTransactionsInput, AccountUncheckedCreateWithoutTransactionsInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutTransactionsInput
+    upsert?: AccountUpsertWithoutTransactionsInput
+    connect?: AccountWhereUniqueInput
+    update?: XOR<XOR<AccountUpdateToOneWithWhereWithoutTransactionsInput, AccountUpdateWithoutTransactionsInput>, AccountUncheckedUpdateWithoutTransactionsInput>
+  }
+
+  export type CategoryUpdateOneWithoutTransactionsNestedInput = {
+    create?: XOR<CategoryCreateWithoutTransactionsInput, CategoryUncheckedCreateWithoutTransactionsInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutTransactionsInput
+    upsert?: CategoryUpsertWithoutTransactionsInput
+    disconnect?: CategoryWhereInput | boolean
+    delete?: CategoryWhereInput | boolean
+    connect?: CategoryWhereUniqueInput
+    update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutTransactionsInput, CategoryUpdateWithoutTransactionsInput>, CategoryUncheckedUpdateWithoutTransactionsInput>
+  }
+
+  export type RecurringRuleUpdateOneWithoutTransactionsNestedInput = {
+    create?: XOR<RecurringRuleCreateWithoutTransactionsInput, RecurringRuleUncheckedCreateWithoutTransactionsInput>
+    connectOrCreate?: RecurringRuleCreateOrConnectWithoutTransactionsInput
+    upsert?: RecurringRuleUpsertWithoutTransactionsInput
+    disconnect?: RecurringRuleWhereInput | boolean
+    delete?: RecurringRuleWhereInput | boolean
+    connect?: RecurringRuleWhereUniqueInput
+    update?: XOR<XOR<RecurringRuleUpdateToOneWithWhereWithoutTransactionsInput, RecurringRuleUpdateWithoutTransactionsInput>, RecurringRuleUncheckedUpdateWithoutTransactionsInput>
+  }
+
+  export type TenantUpdateOneRequiredWithoutTransactionsNestedInput = {
+    create?: XOR<TenantCreateWithoutTransactionsInput, TenantUncheckedCreateWithoutTransactionsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutTransactionsInput
+    upsert?: TenantUpsertWithoutTransactionsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutTransactionsInput, TenantUpdateWithoutTransactionsInput>, TenantUncheckedUpdateWithoutTransactionsInput>
+  }
+
+  export type CategoryCreateNestedOneWithoutBudgetEnvelopesInput = {
+    create?: XOR<CategoryCreateWithoutBudgetEnvelopesInput, CategoryUncheckedCreateWithoutBudgetEnvelopesInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutBudgetEnvelopesInput
+    connect?: CategoryWhereUniqueInput
+  }
+
+  export type AccountCreateNestedOneWithoutBudgetEnvelopesInput = {
+    create?: XOR<AccountCreateWithoutBudgetEnvelopesInput, AccountUncheckedCreateWithoutBudgetEnvelopesInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutBudgetEnvelopesInput
+    connect?: AccountWhereUniqueInput
+  }
+
+  export type TenantCreateNestedOneWithoutBudgetEnvelopesInput = {
+    create?: XOR<TenantCreateWithoutBudgetEnvelopesInput, TenantUncheckedCreateWithoutBudgetEnvelopesInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutBudgetEnvelopesInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type CategoryUpdateOneRequiredWithoutBudgetEnvelopesNestedInput = {
+    create?: XOR<CategoryCreateWithoutBudgetEnvelopesInput, CategoryUncheckedCreateWithoutBudgetEnvelopesInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutBudgetEnvelopesInput
+    upsert?: CategoryUpsertWithoutBudgetEnvelopesInput
+    connect?: CategoryWhereUniqueInput
+    update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutBudgetEnvelopesInput, CategoryUpdateWithoutBudgetEnvelopesInput>, CategoryUncheckedUpdateWithoutBudgetEnvelopesInput>
+  }
+
+  export type AccountUpdateOneRequiredWithoutBudgetEnvelopesNestedInput = {
+    create?: XOR<AccountCreateWithoutBudgetEnvelopesInput, AccountUncheckedCreateWithoutBudgetEnvelopesInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutBudgetEnvelopesInput
+    upsert?: AccountUpsertWithoutBudgetEnvelopesInput
+    connect?: AccountWhereUniqueInput
+    update?: XOR<XOR<AccountUpdateToOneWithWhereWithoutBudgetEnvelopesInput, AccountUpdateWithoutBudgetEnvelopesInput>, AccountUncheckedUpdateWithoutBudgetEnvelopesInput>
+  }
+
+  export type TenantUpdateOneRequiredWithoutBudgetEnvelopesNestedInput = {
+    create?: XOR<TenantCreateWithoutBudgetEnvelopesInput, TenantUncheckedCreateWithoutBudgetEnvelopesInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutBudgetEnvelopesInput
+    upsert?: TenantUpsertWithoutBudgetEnvelopesInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutBudgetEnvelopesInput, TenantUpdateWithoutBudgetEnvelopesInput>, TenantUncheckedUpdateWithoutBudgetEnvelopesInput>
+  }
+
+  export type AccountCreateNestedOneWithoutRecurringRulesInput = {
+    create?: XOR<AccountCreateWithoutRecurringRulesInput, AccountUncheckedCreateWithoutRecurringRulesInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutRecurringRulesInput
+    connect?: AccountWhereUniqueInput
+  }
+
+  export type CategoryCreateNestedOneWithoutRecurringRulesInput = {
+    create?: XOR<CategoryCreateWithoutRecurringRulesInput, CategoryUncheckedCreateWithoutRecurringRulesInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutRecurringRulesInput
+    connect?: CategoryWhereUniqueInput
+  }
+
+  export type TenantCreateNestedOneWithoutRecurringRulesInput = {
+    create?: XOR<TenantCreateWithoutRecurringRulesInput, TenantUncheckedCreateWithoutRecurringRulesInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutRecurringRulesInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type TransactionCreateNestedManyWithoutRecurringRuleInput = {
+    create?: XOR<TransactionCreateWithoutRecurringRuleInput, TransactionUncheckedCreateWithoutRecurringRuleInput> | TransactionCreateWithoutRecurringRuleInput[] | TransactionUncheckedCreateWithoutRecurringRuleInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutRecurringRuleInput | TransactionCreateOrConnectWithoutRecurringRuleInput[]
+    createMany?: TransactionCreateManyRecurringRuleInputEnvelope
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+  }
+
+  export type TransactionUncheckedCreateNestedManyWithoutRecurringRuleInput = {
+    create?: XOR<TransactionCreateWithoutRecurringRuleInput, TransactionUncheckedCreateWithoutRecurringRuleInput> | TransactionCreateWithoutRecurringRuleInput[] | TransactionUncheckedCreateWithoutRecurringRuleInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutRecurringRuleInput | TransactionCreateOrConnectWithoutRecurringRuleInput[]
+    createMany?: TransactionCreateManyRecurringRuleInputEnvelope
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type AccountUpdateOneRequiredWithoutRecurringRulesNestedInput = {
+    create?: XOR<AccountCreateWithoutRecurringRulesInput, AccountUncheckedCreateWithoutRecurringRulesInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutRecurringRulesInput
+    upsert?: AccountUpsertWithoutRecurringRulesInput
+    connect?: AccountWhereUniqueInput
+    update?: XOR<XOR<AccountUpdateToOneWithWhereWithoutRecurringRulesInput, AccountUpdateWithoutRecurringRulesInput>, AccountUncheckedUpdateWithoutRecurringRulesInput>
+  }
+
+  export type CategoryUpdateOneWithoutRecurringRulesNestedInput = {
+    create?: XOR<CategoryCreateWithoutRecurringRulesInput, CategoryUncheckedCreateWithoutRecurringRulesInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutRecurringRulesInput
+    upsert?: CategoryUpsertWithoutRecurringRulesInput
+    disconnect?: CategoryWhereInput | boolean
+    delete?: CategoryWhereInput | boolean
+    connect?: CategoryWhereUniqueInput
+    update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutRecurringRulesInput, CategoryUpdateWithoutRecurringRulesInput>, CategoryUncheckedUpdateWithoutRecurringRulesInput>
+  }
+
+  export type TenantUpdateOneRequiredWithoutRecurringRulesNestedInput = {
+    create?: XOR<TenantCreateWithoutRecurringRulesInput, TenantUncheckedCreateWithoutRecurringRulesInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutRecurringRulesInput
+    upsert?: TenantUpsertWithoutRecurringRulesInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutRecurringRulesInput, TenantUpdateWithoutRecurringRulesInput>, TenantUncheckedUpdateWithoutRecurringRulesInput>
+  }
+
+  export type TransactionUpdateManyWithoutRecurringRuleNestedInput = {
+    create?: XOR<TransactionCreateWithoutRecurringRuleInput, TransactionUncheckedCreateWithoutRecurringRuleInput> | TransactionCreateWithoutRecurringRuleInput[] | TransactionUncheckedCreateWithoutRecurringRuleInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutRecurringRuleInput | TransactionCreateOrConnectWithoutRecurringRuleInput[]
+    upsert?: TransactionUpsertWithWhereUniqueWithoutRecurringRuleInput | TransactionUpsertWithWhereUniqueWithoutRecurringRuleInput[]
+    createMany?: TransactionCreateManyRecurringRuleInputEnvelope
+    set?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    disconnect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    delete?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    update?: TransactionUpdateWithWhereUniqueWithoutRecurringRuleInput | TransactionUpdateWithWhereUniqueWithoutRecurringRuleInput[]
+    updateMany?: TransactionUpdateManyWithWhereWithoutRecurringRuleInput | TransactionUpdateManyWithWhereWithoutRecurringRuleInput[]
+    deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+  }
+
+  export type TransactionUncheckedUpdateManyWithoutRecurringRuleNestedInput = {
+    create?: XOR<TransactionCreateWithoutRecurringRuleInput, TransactionUncheckedCreateWithoutRecurringRuleInput> | TransactionCreateWithoutRecurringRuleInput[] | TransactionUncheckedCreateWithoutRecurringRuleInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutRecurringRuleInput | TransactionCreateOrConnectWithoutRecurringRuleInput[]
+    upsert?: TransactionUpsertWithWhereUniqueWithoutRecurringRuleInput | TransactionUpsertWithWhereUniqueWithoutRecurringRuleInput[]
+    createMany?: TransactionCreateManyRecurringRuleInputEnvelope
+    set?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    disconnect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    delete?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    update?: TransactionUpdateWithWhereUniqueWithoutRecurringRuleInput | TransactionUpdateWithWhereUniqueWithoutRecurringRuleInput[]
+    updateMany?: TransactionUpdateManyWithWhereWithoutRecurringRuleInput | TransactionUpdateManyWithWhereWithoutRecurringRuleInput[]
+    deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -9157,6 +18838,60 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type UserCreateWithoutTenantInput = {
     id?: string
     email: string
@@ -9293,6 +19028,222 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CategoryCreateWithoutTenantInput = {
+    id?: string
+    name: string
+    icon?: string | null
+    color?: string | null
+    type: string
+    isSystem?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parent?: CategoryCreateNestedOneWithoutChildrenInput
+    children?: CategoryCreateNestedManyWithoutParentInput
+    transactions?: TransactionCreateNestedManyWithoutCategoryInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutCategoryInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryUncheckedCreateWithoutTenantInput = {
+    id?: string
+    name: string
+    parentId?: string | null
+    icon?: string | null
+    color?: string | null
+    type: string
+    isSystem?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    children?: CategoryUncheckedCreateNestedManyWithoutParentInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutCategoryInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutCategoryInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryCreateOrConnectWithoutTenantInput = {
+    where: CategoryWhereUniqueInput
+    create: XOR<CategoryCreateWithoutTenantInput, CategoryUncheckedCreateWithoutTenantInput>
+  }
+
+  export type CategoryCreateManyTenantInputEnvelope = {
+    data: CategoryCreateManyTenantInput | CategoryCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AccountCreateWithoutTenantInput = {
+    id?: string
+    name: string
+    type: string
+    initialBalance?: Decimal | DecimalJsLike | number | string
+    currentBalance?: Decimal | DecimalJsLike | number | string
+    icon?: string | null
+    color?: string | null
+    isArchived?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    transactions?: TransactionCreateNestedManyWithoutAccountInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutAccountInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountUncheckedCreateWithoutTenantInput = {
+    id?: string
+    name: string
+    type: string
+    initialBalance?: Decimal | DecimalJsLike | number | string
+    currentBalance?: Decimal | DecimalJsLike | number | string
+    icon?: string | null
+    color?: string | null
+    isArchived?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutAccountInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutAccountInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountCreateOrConnectWithoutTenantInput = {
+    where: AccountWhereUniqueInput
+    create: XOR<AccountCreateWithoutTenantInput, AccountUncheckedCreateWithoutTenantInput>
+  }
+
+  export type AccountCreateManyTenantInputEnvelope = {
+    data: AccountCreateManyTenantInput | AccountCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TransactionCreateWithoutTenantInput = {
+    id?: string
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    date: Date | string
+    isRecurring?: boolean
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    account: AccountCreateNestedOneWithoutTransactionsInput
+    category?: CategoryCreateNestedOneWithoutTransactionsInput
+    recurringRule?: RecurringRuleCreateNestedOneWithoutTransactionsInput
+  }
+
+  export type TransactionUncheckedCreateWithoutTenantInput = {
+    id?: string
+    accountId: string
+    categoryId?: string | null
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    date: Date | string
+    isRecurring?: boolean
+    recurringRuleId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionCreateOrConnectWithoutTenantInput = {
+    where: TransactionWhereUniqueInput
+    create: XOR<TransactionCreateWithoutTenantInput, TransactionUncheckedCreateWithoutTenantInput>
+  }
+
+  export type TransactionCreateManyTenantInputEnvelope = {
+    data: TransactionCreateManyTenantInput | TransactionCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BudgetEnvelopeCreateWithoutTenantInput = {
+    id?: string
+    month: Date | string
+    allocated: Decimal | DecimalJsLike | number | string
+    spent?: Decimal | DecimalJsLike | number | string
+    rolledOver?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: CategoryCreateNestedOneWithoutBudgetEnvelopesInput
+    account: AccountCreateNestedOneWithoutBudgetEnvelopesInput
+  }
+
+  export type BudgetEnvelopeUncheckedCreateWithoutTenantInput = {
+    id?: string
+    categoryId: string
+    accountId: string
+    month: Date | string
+    allocated: Decimal | DecimalJsLike | number | string
+    spent?: Decimal | DecimalJsLike | number | string
+    rolledOver?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BudgetEnvelopeCreateOrConnectWithoutTenantInput = {
+    where: BudgetEnvelopeWhereUniqueInput
+    create: XOR<BudgetEnvelopeCreateWithoutTenantInput, BudgetEnvelopeUncheckedCreateWithoutTenantInput>
+  }
+
+  export type BudgetEnvelopeCreateManyTenantInputEnvelope = {
+    data: BudgetEnvelopeCreateManyTenantInput | BudgetEnvelopeCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RecurringRuleCreateWithoutTenantInput = {
+    id?: string
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    frequency: string
+    interval?: number
+    dayOfMonth?: number | null
+    dayOfWeek?: number | null
+    monthOfYear?: number | null
+    startDate: Date | string
+    endDate?: Date | string | null
+    nextRunAt?: Date | string | null
+    lastRunAt?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    account: AccountCreateNestedOneWithoutRecurringRulesInput
+    category?: CategoryCreateNestedOneWithoutRecurringRulesInput
+    transactions?: TransactionCreateNestedManyWithoutRecurringRuleInput
+  }
+
+  export type RecurringRuleUncheckedCreateWithoutTenantInput = {
+    id?: string
+    accountId: string
+    categoryId?: string | null
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    frequency: string
+    interval?: number
+    dayOfMonth?: number | null
+    dayOfWeek?: number | null
+    monthOfYear?: number | null
+    startDate: Date | string
+    endDate?: Date | string | null
+    nextRunAt?: Date | string | null
+    lastRunAt?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutRecurringRuleInput
+  }
+
+  export type RecurringRuleCreateOrConnectWithoutTenantInput = {
+    where: RecurringRuleWhereUniqueInput
+    create: XOR<RecurringRuleCreateWithoutTenantInput, RecurringRuleUncheckedCreateWithoutTenantInput>
+  }
+
+  export type RecurringRuleCreateManyTenantInputEnvelope = {
+    data: RecurringRuleCreateManyTenantInput | RecurringRuleCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithWhereUniqueWithoutTenantInput = {
     where: UserWhereUniqueInput
     update: XOR<UserUpdateWithoutTenantInput, UserUncheckedUpdateWithoutTenantInput>
@@ -9421,6 +19372,181 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"AiUsageLog"> | Date | string
   }
 
+  export type CategoryUpsertWithWhereUniqueWithoutTenantInput = {
+    where: CategoryWhereUniqueInput
+    update: XOR<CategoryUpdateWithoutTenantInput, CategoryUncheckedUpdateWithoutTenantInput>
+    create: XOR<CategoryCreateWithoutTenantInput, CategoryUncheckedCreateWithoutTenantInput>
+  }
+
+  export type CategoryUpdateWithWhereUniqueWithoutTenantInput = {
+    where: CategoryWhereUniqueInput
+    data: XOR<CategoryUpdateWithoutTenantInput, CategoryUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type CategoryUpdateManyWithWhereWithoutTenantInput = {
+    where: CategoryScalarWhereInput
+    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type CategoryScalarWhereInput = {
+    AND?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+    OR?: CategoryScalarWhereInput[]
+    NOT?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+    id?: StringFilter<"Category"> | string
+    tenantId?: StringFilter<"Category"> | string
+    name?: StringFilter<"Category"> | string
+    parentId?: StringNullableFilter<"Category"> | string | null
+    icon?: StringNullableFilter<"Category"> | string | null
+    color?: StringNullableFilter<"Category"> | string | null
+    type?: StringFilter<"Category"> | string
+    isSystem?: BoolFilter<"Category"> | boolean
+    createdAt?: DateTimeFilter<"Category"> | Date | string
+    updatedAt?: DateTimeFilter<"Category"> | Date | string
+  }
+
+  export type AccountUpsertWithWhereUniqueWithoutTenantInput = {
+    where: AccountWhereUniqueInput
+    update: XOR<AccountUpdateWithoutTenantInput, AccountUncheckedUpdateWithoutTenantInput>
+    create: XOR<AccountCreateWithoutTenantInput, AccountUncheckedCreateWithoutTenantInput>
+  }
+
+  export type AccountUpdateWithWhereUniqueWithoutTenantInput = {
+    where: AccountWhereUniqueInput
+    data: XOR<AccountUpdateWithoutTenantInput, AccountUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type AccountUpdateManyWithWhereWithoutTenantInput = {
+    where: AccountScalarWhereInput
+    data: XOR<AccountUpdateManyMutationInput, AccountUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type AccountScalarWhereInput = {
+    AND?: AccountScalarWhereInput | AccountScalarWhereInput[]
+    OR?: AccountScalarWhereInput[]
+    NOT?: AccountScalarWhereInput | AccountScalarWhereInput[]
+    id?: StringFilter<"Account"> | string
+    tenantId?: StringFilter<"Account"> | string
+    name?: StringFilter<"Account"> | string
+    type?: StringFilter<"Account"> | string
+    initialBalance?: DecimalFilter<"Account"> | Decimal | DecimalJsLike | number | string
+    currentBalance?: DecimalFilter<"Account"> | Decimal | DecimalJsLike | number | string
+    icon?: StringNullableFilter<"Account"> | string | null
+    color?: StringNullableFilter<"Account"> | string | null
+    isArchived?: BoolFilter<"Account"> | boolean
+    createdAt?: DateTimeFilter<"Account"> | Date | string
+    updatedAt?: DateTimeFilter<"Account"> | Date | string
+  }
+
+  export type TransactionUpsertWithWhereUniqueWithoutTenantInput = {
+    where: TransactionWhereUniqueInput
+    update: XOR<TransactionUpdateWithoutTenantInput, TransactionUncheckedUpdateWithoutTenantInput>
+    create: XOR<TransactionCreateWithoutTenantInput, TransactionUncheckedCreateWithoutTenantInput>
+  }
+
+  export type TransactionUpdateWithWhereUniqueWithoutTenantInput = {
+    where: TransactionWhereUniqueInput
+    data: XOR<TransactionUpdateWithoutTenantInput, TransactionUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type TransactionUpdateManyWithWhereWithoutTenantInput = {
+    where: TransactionScalarWhereInput
+    data: XOR<TransactionUpdateManyMutationInput, TransactionUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type TransactionScalarWhereInput = {
+    AND?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+    OR?: TransactionScalarWhereInput[]
+    NOT?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+    id?: StringFilter<"Transaction"> | string
+    tenantId?: StringFilter<"Transaction"> | string
+    accountId?: StringFilter<"Transaction"> | string
+    categoryId?: StringNullableFilter<"Transaction"> | string | null
+    amount?: DecimalFilter<"Transaction"> | Decimal | DecimalJsLike | number | string
+    type?: StringFilter<"Transaction"> | string
+    payee?: StringNullableFilter<"Transaction"> | string | null
+    description?: StringNullableFilter<"Transaction"> | string | null
+    date?: DateTimeFilter<"Transaction"> | Date | string
+    isRecurring?: BoolFilter<"Transaction"> | boolean
+    recurringRuleId?: StringNullableFilter<"Transaction"> | string | null
+    isDeleted?: BoolFilter<"Transaction"> | boolean
+    createdAt?: DateTimeFilter<"Transaction"> | Date | string
+    updatedAt?: DateTimeFilter<"Transaction"> | Date | string
+  }
+
+  export type BudgetEnvelopeUpsertWithWhereUniqueWithoutTenantInput = {
+    where: BudgetEnvelopeWhereUniqueInput
+    update: XOR<BudgetEnvelopeUpdateWithoutTenantInput, BudgetEnvelopeUncheckedUpdateWithoutTenantInput>
+    create: XOR<BudgetEnvelopeCreateWithoutTenantInput, BudgetEnvelopeUncheckedCreateWithoutTenantInput>
+  }
+
+  export type BudgetEnvelopeUpdateWithWhereUniqueWithoutTenantInput = {
+    where: BudgetEnvelopeWhereUniqueInput
+    data: XOR<BudgetEnvelopeUpdateWithoutTenantInput, BudgetEnvelopeUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type BudgetEnvelopeUpdateManyWithWhereWithoutTenantInput = {
+    where: BudgetEnvelopeScalarWhereInput
+    data: XOR<BudgetEnvelopeUpdateManyMutationInput, BudgetEnvelopeUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type BudgetEnvelopeScalarWhereInput = {
+    AND?: BudgetEnvelopeScalarWhereInput | BudgetEnvelopeScalarWhereInput[]
+    OR?: BudgetEnvelopeScalarWhereInput[]
+    NOT?: BudgetEnvelopeScalarWhereInput | BudgetEnvelopeScalarWhereInput[]
+    id?: StringFilter<"BudgetEnvelope"> | string
+    tenantId?: StringFilter<"BudgetEnvelope"> | string
+    categoryId?: StringFilter<"BudgetEnvelope"> | string
+    accountId?: StringFilter<"BudgetEnvelope"> | string
+    month?: DateTimeFilter<"BudgetEnvelope"> | Date | string
+    allocated?: DecimalFilter<"BudgetEnvelope"> | Decimal | DecimalJsLike | number | string
+    spent?: DecimalFilter<"BudgetEnvelope"> | Decimal | DecimalJsLike | number | string
+    rolledOver?: DecimalFilter<"BudgetEnvelope"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"BudgetEnvelope"> | Date | string
+    updatedAt?: DateTimeFilter<"BudgetEnvelope"> | Date | string
+  }
+
+  export type RecurringRuleUpsertWithWhereUniqueWithoutTenantInput = {
+    where: RecurringRuleWhereUniqueInput
+    update: XOR<RecurringRuleUpdateWithoutTenantInput, RecurringRuleUncheckedUpdateWithoutTenantInput>
+    create: XOR<RecurringRuleCreateWithoutTenantInput, RecurringRuleUncheckedCreateWithoutTenantInput>
+  }
+
+  export type RecurringRuleUpdateWithWhereUniqueWithoutTenantInput = {
+    where: RecurringRuleWhereUniqueInput
+    data: XOR<RecurringRuleUpdateWithoutTenantInput, RecurringRuleUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type RecurringRuleUpdateManyWithWhereWithoutTenantInput = {
+    where: RecurringRuleScalarWhereInput
+    data: XOR<RecurringRuleUpdateManyMutationInput, RecurringRuleUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type RecurringRuleScalarWhereInput = {
+    AND?: RecurringRuleScalarWhereInput | RecurringRuleScalarWhereInput[]
+    OR?: RecurringRuleScalarWhereInput[]
+    NOT?: RecurringRuleScalarWhereInput | RecurringRuleScalarWhereInput[]
+    id?: StringFilter<"RecurringRule"> | string
+    tenantId?: StringFilter<"RecurringRule"> | string
+    accountId?: StringFilter<"RecurringRule"> | string
+    categoryId?: StringNullableFilter<"RecurringRule"> | string | null
+    amount?: DecimalFilter<"RecurringRule"> | Decimal | DecimalJsLike | number | string
+    type?: StringFilter<"RecurringRule"> | string
+    payee?: StringNullableFilter<"RecurringRule"> | string | null
+    description?: StringNullableFilter<"RecurringRule"> | string | null
+    frequency?: StringFilter<"RecurringRule"> | string
+    interval?: IntFilter<"RecurringRule"> | number
+    dayOfMonth?: IntNullableFilter<"RecurringRule"> | number | null
+    dayOfWeek?: IntNullableFilter<"RecurringRule"> | number | null
+    monthOfYear?: IntNullableFilter<"RecurringRule"> | number | null
+    startDate?: DateTimeFilter<"RecurringRule"> | Date | string
+    endDate?: DateTimeNullableFilter<"RecurringRule"> | Date | string | null
+    nextRunAt?: DateTimeNullableFilter<"RecurringRule"> | Date | string | null
+    lastRunAt?: DateTimeNullableFilter<"RecurringRule"> | Date | string | null
+    isActive?: BoolFilter<"RecurringRule"> | boolean
+    createdAt?: DateTimeFilter<"RecurringRule"> | Date | string
+    updatedAt?: DateTimeFilter<"RecurringRule"> | Date | string
+  }
+
   export type TenantCreateWithoutUsersInput = {
     id?: string
     name: string
@@ -9429,6 +19555,11 @@ export namespace Prisma {
     aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
     aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
     aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutUsersInput = {
@@ -9439,6 +19570,11 @@ export namespace Prisma {
     aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
     aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
     aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutUsersInput = {
@@ -9465,6 +19601,11 @@ export namespace Prisma {
     aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
     aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
     aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutUsersInput = {
@@ -9475,6 +19616,11 @@ export namespace Prisma {
     aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
     aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
     aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAiProviderConfigsInput = {
@@ -9485,6 +19631,11 @@ export namespace Prisma {
     users?: UserCreateNestedManyWithoutTenantInput
     aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
     aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAiProviderConfigsInput = {
@@ -9495,6 +19646,11 @@ export namespace Prisma {
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
     aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
     aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAiProviderConfigsInput = {
@@ -9521,6 +19677,11 @@ export namespace Prisma {
     users?: UserUpdateManyWithoutTenantNestedInput
     aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
     aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAiProviderConfigsInput = {
@@ -9531,6 +19692,11 @@ export namespace Prisma {
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
     aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
     aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAiPromptCacheInput = {
@@ -9541,6 +19707,11 @@ export namespace Prisma {
     users?: UserCreateNestedManyWithoutTenantInput
     aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
     aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAiPromptCacheInput = {
@@ -9551,6 +19722,11 @@ export namespace Prisma {
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
     aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
     aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAiPromptCacheInput = {
@@ -9577,6 +19753,11 @@ export namespace Prisma {
     users?: UserUpdateManyWithoutTenantNestedInput
     aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
     aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAiPromptCacheInput = {
@@ -9587,6 +19768,11 @@ export namespace Prisma {
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
     aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
     aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAiUsageLogsInput = {
@@ -9597,6 +19783,11 @@ export namespace Prisma {
     users?: UserCreateNestedManyWithoutTenantInput
     aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
     aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAiUsageLogsInput = {
@@ -9607,6 +19798,11 @@ export namespace Prisma {
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
     aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
     aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAiUsageLogsInput = {
@@ -9633,6 +19829,11 @@ export namespace Prisma {
     users?: UserUpdateManyWithoutTenantNestedInput
     aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
     aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAiUsageLogsInput = {
@@ -9643,6 +19844,1535 @@ export namespace Prisma {
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
     aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
     aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type CategoryCreateWithoutChildrenInput = {
+    id?: string
+    name: string
+    icon?: string | null
+    color?: string | null
+    type: string
+    isSystem?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parent?: CategoryCreateNestedOneWithoutChildrenInput
+    tenant: TenantCreateNestedOneWithoutCategoriesInput
+    transactions?: TransactionCreateNestedManyWithoutCategoryInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutCategoryInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryUncheckedCreateWithoutChildrenInput = {
+    id?: string
+    tenantId: string
+    name: string
+    parentId?: string | null
+    icon?: string | null
+    color?: string | null
+    type: string
+    isSystem?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutCategoryInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutCategoryInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryCreateOrConnectWithoutChildrenInput = {
+    where: CategoryWhereUniqueInput
+    create: XOR<CategoryCreateWithoutChildrenInput, CategoryUncheckedCreateWithoutChildrenInput>
+  }
+
+  export type CategoryCreateWithoutParentInput = {
+    id?: string
+    name: string
+    icon?: string | null
+    color?: string | null
+    type: string
+    isSystem?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    children?: CategoryCreateNestedManyWithoutParentInput
+    tenant: TenantCreateNestedOneWithoutCategoriesInput
+    transactions?: TransactionCreateNestedManyWithoutCategoryInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutCategoryInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryUncheckedCreateWithoutParentInput = {
+    id?: string
+    tenantId: string
+    name: string
+    icon?: string | null
+    color?: string | null
+    type: string
+    isSystem?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    children?: CategoryUncheckedCreateNestedManyWithoutParentInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutCategoryInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutCategoryInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryCreateOrConnectWithoutParentInput = {
+    where: CategoryWhereUniqueInput
+    create: XOR<CategoryCreateWithoutParentInput, CategoryUncheckedCreateWithoutParentInput>
+  }
+
+  export type CategoryCreateManyParentInputEnvelope = {
+    data: CategoryCreateManyParentInput | CategoryCreateManyParentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TenantCreateWithoutCategoriesInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutCategoriesInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutCategoriesInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutCategoriesInput, TenantUncheckedCreateWithoutCategoriesInput>
+  }
+
+  export type TransactionCreateWithoutCategoryInput = {
+    id?: string
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    date: Date | string
+    isRecurring?: boolean
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    account: AccountCreateNestedOneWithoutTransactionsInput
+    recurringRule?: RecurringRuleCreateNestedOneWithoutTransactionsInput
+    tenant: TenantCreateNestedOneWithoutTransactionsInput
+  }
+
+  export type TransactionUncheckedCreateWithoutCategoryInput = {
+    id?: string
+    tenantId: string
+    accountId: string
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    date: Date | string
+    isRecurring?: boolean
+    recurringRuleId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionCreateOrConnectWithoutCategoryInput = {
+    where: TransactionWhereUniqueInput
+    create: XOR<TransactionCreateWithoutCategoryInput, TransactionUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type TransactionCreateManyCategoryInputEnvelope = {
+    data: TransactionCreateManyCategoryInput | TransactionCreateManyCategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BudgetEnvelopeCreateWithoutCategoryInput = {
+    id?: string
+    month: Date | string
+    allocated: Decimal | DecimalJsLike | number | string
+    spent?: Decimal | DecimalJsLike | number | string
+    rolledOver?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    account: AccountCreateNestedOneWithoutBudgetEnvelopesInput
+    tenant: TenantCreateNestedOneWithoutBudgetEnvelopesInput
+  }
+
+  export type BudgetEnvelopeUncheckedCreateWithoutCategoryInput = {
+    id?: string
+    tenantId: string
+    accountId: string
+    month: Date | string
+    allocated: Decimal | DecimalJsLike | number | string
+    spent?: Decimal | DecimalJsLike | number | string
+    rolledOver?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BudgetEnvelopeCreateOrConnectWithoutCategoryInput = {
+    where: BudgetEnvelopeWhereUniqueInput
+    create: XOR<BudgetEnvelopeCreateWithoutCategoryInput, BudgetEnvelopeUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type BudgetEnvelopeCreateManyCategoryInputEnvelope = {
+    data: BudgetEnvelopeCreateManyCategoryInput | BudgetEnvelopeCreateManyCategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RecurringRuleCreateWithoutCategoryInput = {
+    id?: string
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    frequency: string
+    interval?: number
+    dayOfMonth?: number | null
+    dayOfWeek?: number | null
+    monthOfYear?: number | null
+    startDate: Date | string
+    endDate?: Date | string | null
+    nextRunAt?: Date | string | null
+    lastRunAt?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    account: AccountCreateNestedOneWithoutRecurringRulesInput
+    tenant: TenantCreateNestedOneWithoutRecurringRulesInput
+    transactions?: TransactionCreateNestedManyWithoutRecurringRuleInput
+  }
+
+  export type RecurringRuleUncheckedCreateWithoutCategoryInput = {
+    id?: string
+    tenantId: string
+    accountId: string
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    frequency: string
+    interval?: number
+    dayOfMonth?: number | null
+    dayOfWeek?: number | null
+    monthOfYear?: number | null
+    startDate: Date | string
+    endDate?: Date | string | null
+    nextRunAt?: Date | string | null
+    lastRunAt?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutRecurringRuleInput
+  }
+
+  export type RecurringRuleCreateOrConnectWithoutCategoryInput = {
+    where: RecurringRuleWhereUniqueInput
+    create: XOR<RecurringRuleCreateWithoutCategoryInput, RecurringRuleUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type RecurringRuleCreateManyCategoryInputEnvelope = {
+    data: RecurringRuleCreateManyCategoryInput | RecurringRuleCreateManyCategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CategoryUpsertWithoutChildrenInput = {
+    update: XOR<CategoryUpdateWithoutChildrenInput, CategoryUncheckedUpdateWithoutChildrenInput>
+    create: XOR<CategoryCreateWithoutChildrenInput, CategoryUncheckedCreateWithoutChildrenInput>
+    where?: CategoryWhereInput
+  }
+
+  export type CategoryUpdateToOneWithWhereWithoutChildrenInput = {
+    where?: CategoryWhereInput
+    data: XOR<CategoryUpdateWithoutChildrenInput, CategoryUncheckedUpdateWithoutChildrenInput>
+  }
+
+  export type CategoryUpdateWithoutChildrenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parent?: CategoryUpdateOneWithoutChildrenNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutCategoriesNestedInput
+    transactions?: TransactionUpdateManyWithoutCategoryNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutCategoryNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryUncheckedUpdateWithoutChildrenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutCategoryNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutCategoryNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryUpsertWithWhereUniqueWithoutParentInput = {
+    where: CategoryWhereUniqueInput
+    update: XOR<CategoryUpdateWithoutParentInput, CategoryUncheckedUpdateWithoutParentInput>
+    create: XOR<CategoryCreateWithoutParentInput, CategoryUncheckedCreateWithoutParentInput>
+  }
+
+  export type CategoryUpdateWithWhereUniqueWithoutParentInput = {
+    where: CategoryWhereUniqueInput
+    data: XOR<CategoryUpdateWithoutParentInput, CategoryUncheckedUpdateWithoutParentInput>
+  }
+
+  export type CategoryUpdateManyWithWhereWithoutParentInput = {
+    where: CategoryScalarWhereInput
+    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyWithoutParentInput>
+  }
+
+  export type TenantUpsertWithoutCategoriesInput = {
+    update: XOR<TenantUpdateWithoutCategoriesInput, TenantUncheckedUpdateWithoutCategoriesInput>
+    create: XOR<TenantCreateWithoutCategoriesInput, TenantUncheckedCreateWithoutCategoriesInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutCategoriesInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutCategoriesInput, TenantUncheckedUpdateWithoutCategoriesInput>
+  }
+
+  export type TenantUpdateWithoutCategoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutCategoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TransactionUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: TransactionWhereUniqueInput
+    update: XOR<TransactionUpdateWithoutCategoryInput, TransactionUncheckedUpdateWithoutCategoryInput>
+    create: XOR<TransactionCreateWithoutCategoryInput, TransactionUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type TransactionUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: TransactionWhereUniqueInput
+    data: XOR<TransactionUpdateWithoutCategoryInput, TransactionUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type TransactionUpdateManyWithWhereWithoutCategoryInput = {
+    where: TransactionScalarWhereInput
+    data: XOR<TransactionUpdateManyMutationInput, TransactionUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type BudgetEnvelopeUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: BudgetEnvelopeWhereUniqueInput
+    update: XOR<BudgetEnvelopeUpdateWithoutCategoryInput, BudgetEnvelopeUncheckedUpdateWithoutCategoryInput>
+    create: XOR<BudgetEnvelopeCreateWithoutCategoryInput, BudgetEnvelopeUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type BudgetEnvelopeUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: BudgetEnvelopeWhereUniqueInput
+    data: XOR<BudgetEnvelopeUpdateWithoutCategoryInput, BudgetEnvelopeUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type BudgetEnvelopeUpdateManyWithWhereWithoutCategoryInput = {
+    where: BudgetEnvelopeScalarWhereInput
+    data: XOR<BudgetEnvelopeUpdateManyMutationInput, BudgetEnvelopeUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type RecurringRuleUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: RecurringRuleWhereUniqueInput
+    update: XOR<RecurringRuleUpdateWithoutCategoryInput, RecurringRuleUncheckedUpdateWithoutCategoryInput>
+    create: XOR<RecurringRuleCreateWithoutCategoryInput, RecurringRuleUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type RecurringRuleUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: RecurringRuleWhereUniqueInput
+    data: XOR<RecurringRuleUpdateWithoutCategoryInput, RecurringRuleUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type RecurringRuleUpdateManyWithWhereWithoutCategoryInput = {
+    where: RecurringRuleScalarWhereInput
+    data: XOR<RecurringRuleUpdateManyMutationInput, RecurringRuleUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type TenantCreateWithoutAccountsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutAccountsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutAccountsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutAccountsInput, TenantUncheckedCreateWithoutAccountsInput>
+  }
+
+  export type TransactionCreateWithoutAccountInput = {
+    id?: string
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    date: Date | string
+    isRecurring?: boolean
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category?: CategoryCreateNestedOneWithoutTransactionsInput
+    recurringRule?: RecurringRuleCreateNestedOneWithoutTransactionsInput
+    tenant: TenantCreateNestedOneWithoutTransactionsInput
+  }
+
+  export type TransactionUncheckedCreateWithoutAccountInput = {
+    id?: string
+    tenantId: string
+    categoryId?: string | null
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    date: Date | string
+    isRecurring?: boolean
+    recurringRuleId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionCreateOrConnectWithoutAccountInput = {
+    where: TransactionWhereUniqueInput
+    create: XOR<TransactionCreateWithoutAccountInput, TransactionUncheckedCreateWithoutAccountInput>
+  }
+
+  export type TransactionCreateManyAccountInputEnvelope = {
+    data: TransactionCreateManyAccountInput | TransactionCreateManyAccountInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BudgetEnvelopeCreateWithoutAccountInput = {
+    id?: string
+    month: Date | string
+    allocated: Decimal | DecimalJsLike | number | string
+    spent?: Decimal | DecimalJsLike | number | string
+    rolledOver?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: CategoryCreateNestedOneWithoutBudgetEnvelopesInput
+    tenant: TenantCreateNestedOneWithoutBudgetEnvelopesInput
+  }
+
+  export type BudgetEnvelopeUncheckedCreateWithoutAccountInput = {
+    id?: string
+    tenantId: string
+    categoryId: string
+    month: Date | string
+    allocated: Decimal | DecimalJsLike | number | string
+    spent?: Decimal | DecimalJsLike | number | string
+    rolledOver?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BudgetEnvelopeCreateOrConnectWithoutAccountInput = {
+    where: BudgetEnvelopeWhereUniqueInput
+    create: XOR<BudgetEnvelopeCreateWithoutAccountInput, BudgetEnvelopeUncheckedCreateWithoutAccountInput>
+  }
+
+  export type BudgetEnvelopeCreateManyAccountInputEnvelope = {
+    data: BudgetEnvelopeCreateManyAccountInput | BudgetEnvelopeCreateManyAccountInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RecurringRuleCreateWithoutAccountInput = {
+    id?: string
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    frequency: string
+    interval?: number
+    dayOfMonth?: number | null
+    dayOfWeek?: number | null
+    monthOfYear?: number | null
+    startDate: Date | string
+    endDate?: Date | string | null
+    nextRunAt?: Date | string | null
+    lastRunAt?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category?: CategoryCreateNestedOneWithoutRecurringRulesInput
+    tenant: TenantCreateNestedOneWithoutRecurringRulesInput
+    transactions?: TransactionCreateNestedManyWithoutRecurringRuleInput
+  }
+
+  export type RecurringRuleUncheckedCreateWithoutAccountInput = {
+    id?: string
+    tenantId: string
+    categoryId?: string | null
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    frequency: string
+    interval?: number
+    dayOfMonth?: number | null
+    dayOfWeek?: number | null
+    monthOfYear?: number | null
+    startDate: Date | string
+    endDate?: Date | string | null
+    nextRunAt?: Date | string | null
+    lastRunAt?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutRecurringRuleInput
+  }
+
+  export type RecurringRuleCreateOrConnectWithoutAccountInput = {
+    where: RecurringRuleWhereUniqueInput
+    create: XOR<RecurringRuleCreateWithoutAccountInput, RecurringRuleUncheckedCreateWithoutAccountInput>
+  }
+
+  export type RecurringRuleCreateManyAccountInputEnvelope = {
+    data: RecurringRuleCreateManyAccountInput | RecurringRuleCreateManyAccountInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TenantUpsertWithoutAccountsInput = {
+    update: XOR<TenantUpdateWithoutAccountsInput, TenantUncheckedUpdateWithoutAccountsInput>
+    create: XOR<TenantCreateWithoutAccountsInput, TenantUncheckedCreateWithoutAccountsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutAccountsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutAccountsInput, TenantUncheckedUpdateWithoutAccountsInput>
+  }
+
+  export type TenantUpdateWithoutAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TransactionUpsertWithWhereUniqueWithoutAccountInput = {
+    where: TransactionWhereUniqueInput
+    update: XOR<TransactionUpdateWithoutAccountInput, TransactionUncheckedUpdateWithoutAccountInput>
+    create: XOR<TransactionCreateWithoutAccountInput, TransactionUncheckedCreateWithoutAccountInput>
+  }
+
+  export type TransactionUpdateWithWhereUniqueWithoutAccountInput = {
+    where: TransactionWhereUniqueInput
+    data: XOR<TransactionUpdateWithoutAccountInput, TransactionUncheckedUpdateWithoutAccountInput>
+  }
+
+  export type TransactionUpdateManyWithWhereWithoutAccountInput = {
+    where: TransactionScalarWhereInput
+    data: XOR<TransactionUpdateManyMutationInput, TransactionUncheckedUpdateManyWithoutAccountInput>
+  }
+
+  export type BudgetEnvelopeUpsertWithWhereUniqueWithoutAccountInput = {
+    where: BudgetEnvelopeWhereUniqueInput
+    update: XOR<BudgetEnvelopeUpdateWithoutAccountInput, BudgetEnvelopeUncheckedUpdateWithoutAccountInput>
+    create: XOR<BudgetEnvelopeCreateWithoutAccountInput, BudgetEnvelopeUncheckedCreateWithoutAccountInput>
+  }
+
+  export type BudgetEnvelopeUpdateWithWhereUniqueWithoutAccountInput = {
+    where: BudgetEnvelopeWhereUniqueInput
+    data: XOR<BudgetEnvelopeUpdateWithoutAccountInput, BudgetEnvelopeUncheckedUpdateWithoutAccountInput>
+  }
+
+  export type BudgetEnvelopeUpdateManyWithWhereWithoutAccountInput = {
+    where: BudgetEnvelopeScalarWhereInput
+    data: XOR<BudgetEnvelopeUpdateManyMutationInput, BudgetEnvelopeUncheckedUpdateManyWithoutAccountInput>
+  }
+
+  export type RecurringRuleUpsertWithWhereUniqueWithoutAccountInput = {
+    where: RecurringRuleWhereUniqueInput
+    update: XOR<RecurringRuleUpdateWithoutAccountInput, RecurringRuleUncheckedUpdateWithoutAccountInput>
+    create: XOR<RecurringRuleCreateWithoutAccountInput, RecurringRuleUncheckedCreateWithoutAccountInput>
+  }
+
+  export type RecurringRuleUpdateWithWhereUniqueWithoutAccountInput = {
+    where: RecurringRuleWhereUniqueInput
+    data: XOR<RecurringRuleUpdateWithoutAccountInput, RecurringRuleUncheckedUpdateWithoutAccountInput>
+  }
+
+  export type RecurringRuleUpdateManyWithWhereWithoutAccountInput = {
+    where: RecurringRuleScalarWhereInput
+    data: XOR<RecurringRuleUpdateManyMutationInput, RecurringRuleUncheckedUpdateManyWithoutAccountInput>
+  }
+
+  export type AccountCreateWithoutTransactionsInput = {
+    id?: string
+    name: string
+    type: string
+    initialBalance?: Decimal | DecimalJsLike | number | string
+    currentBalance?: Decimal | DecimalJsLike | number | string
+    icon?: string | null
+    color?: string | null
+    isArchived?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutAccountsInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutAccountInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountUncheckedCreateWithoutTransactionsInput = {
+    id?: string
+    tenantId: string
+    name: string
+    type: string
+    initialBalance?: Decimal | DecimalJsLike | number | string
+    currentBalance?: Decimal | DecimalJsLike | number | string
+    icon?: string | null
+    color?: string | null
+    isArchived?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutAccountInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountCreateOrConnectWithoutTransactionsInput = {
+    where: AccountWhereUniqueInput
+    create: XOR<AccountCreateWithoutTransactionsInput, AccountUncheckedCreateWithoutTransactionsInput>
+  }
+
+  export type CategoryCreateWithoutTransactionsInput = {
+    id?: string
+    name: string
+    icon?: string | null
+    color?: string | null
+    type: string
+    isSystem?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parent?: CategoryCreateNestedOneWithoutChildrenInput
+    children?: CategoryCreateNestedManyWithoutParentInput
+    tenant: TenantCreateNestedOneWithoutCategoriesInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutCategoryInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryUncheckedCreateWithoutTransactionsInput = {
+    id?: string
+    tenantId: string
+    name: string
+    parentId?: string | null
+    icon?: string | null
+    color?: string | null
+    type: string
+    isSystem?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    children?: CategoryUncheckedCreateNestedManyWithoutParentInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutCategoryInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryCreateOrConnectWithoutTransactionsInput = {
+    where: CategoryWhereUniqueInput
+    create: XOR<CategoryCreateWithoutTransactionsInput, CategoryUncheckedCreateWithoutTransactionsInput>
+  }
+
+  export type RecurringRuleCreateWithoutTransactionsInput = {
+    id?: string
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    frequency: string
+    interval?: number
+    dayOfMonth?: number | null
+    dayOfWeek?: number | null
+    monthOfYear?: number | null
+    startDate: Date | string
+    endDate?: Date | string | null
+    nextRunAt?: Date | string | null
+    lastRunAt?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    account: AccountCreateNestedOneWithoutRecurringRulesInput
+    category?: CategoryCreateNestedOneWithoutRecurringRulesInput
+    tenant: TenantCreateNestedOneWithoutRecurringRulesInput
+  }
+
+  export type RecurringRuleUncheckedCreateWithoutTransactionsInput = {
+    id?: string
+    tenantId: string
+    accountId: string
+    categoryId?: string | null
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    frequency: string
+    interval?: number
+    dayOfMonth?: number | null
+    dayOfWeek?: number | null
+    monthOfYear?: number | null
+    startDate: Date | string
+    endDate?: Date | string | null
+    nextRunAt?: Date | string | null
+    lastRunAt?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RecurringRuleCreateOrConnectWithoutTransactionsInput = {
+    where: RecurringRuleWhereUniqueInput
+    create: XOR<RecurringRuleCreateWithoutTransactionsInput, RecurringRuleUncheckedCreateWithoutTransactionsInput>
+  }
+
+  export type TenantCreateWithoutTransactionsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutTransactionsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutTransactionsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutTransactionsInput, TenantUncheckedCreateWithoutTransactionsInput>
+  }
+
+  export type AccountUpsertWithoutTransactionsInput = {
+    update: XOR<AccountUpdateWithoutTransactionsInput, AccountUncheckedUpdateWithoutTransactionsInput>
+    create: XOR<AccountCreateWithoutTransactionsInput, AccountUncheckedCreateWithoutTransactionsInput>
+    where?: AccountWhereInput
+  }
+
+  export type AccountUpdateToOneWithWhereWithoutTransactionsInput = {
+    where?: AccountWhereInput
+    data: XOR<AccountUpdateWithoutTransactionsInput, AccountUncheckedUpdateWithoutTransactionsInput>
+  }
+
+  export type AccountUpdateWithoutTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    initialBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currentBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutAccountsNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutAccountNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutAccountNestedInput
+  }
+
+  export type AccountUncheckedUpdateWithoutTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    initialBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currentBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutAccountNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutAccountNestedInput
+  }
+
+  export type CategoryUpsertWithoutTransactionsInput = {
+    update: XOR<CategoryUpdateWithoutTransactionsInput, CategoryUncheckedUpdateWithoutTransactionsInput>
+    create: XOR<CategoryCreateWithoutTransactionsInput, CategoryUncheckedCreateWithoutTransactionsInput>
+    where?: CategoryWhereInput
+  }
+
+  export type CategoryUpdateToOneWithWhereWithoutTransactionsInput = {
+    where?: CategoryWhereInput
+    data: XOR<CategoryUpdateWithoutTransactionsInput, CategoryUncheckedUpdateWithoutTransactionsInput>
+  }
+
+  export type CategoryUpdateWithoutTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parent?: CategoryUpdateOneWithoutChildrenNestedInput
+    children?: CategoryUpdateManyWithoutParentNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutCategoriesNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutCategoryNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryUncheckedUpdateWithoutTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    children?: CategoryUncheckedUpdateManyWithoutParentNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutCategoryNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type RecurringRuleUpsertWithoutTransactionsInput = {
+    update: XOR<RecurringRuleUpdateWithoutTransactionsInput, RecurringRuleUncheckedUpdateWithoutTransactionsInput>
+    create: XOR<RecurringRuleCreateWithoutTransactionsInput, RecurringRuleUncheckedCreateWithoutTransactionsInput>
+    where?: RecurringRuleWhereInput
+  }
+
+  export type RecurringRuleUpdateToOneWithWhereWithoutTransactionsInput = {
+    where?: RecurringRuleWhereInput
+    data: XOR<RecurringRuleUpdateWithoutTransactionsInput, RecurringRuleUncheckedUpdateWithoutTransactionsInput>
+  }
+
+  export type RecurringRuleUpdateWithoutTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    interval?: IntFieldUpdateOperationsInput | number
+    dayOfMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    dayOfWeek?: NullableIntFieldUpdateOperationsInput | number | null
+    monthOfYear?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    account?: AccountUpdateOneRequiredWithoutRecurringRulesNestedInput
+    category?: CategoryUpdateOneWithoutRecurringRulesNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutRecurringRulesNestedInput
+  }
+
+  export type RecurringRuleUncheckedUpdateWithoutTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    interval?: IntFieldUpdateOperationsInput | number
+    dayOfMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    dayOfWeek?: NullableIntFieldUpdateOperationsInput | number | null
+    monthOfYear?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TenantUpsertWithoutTransactionsInput = {
+    update: XOR<TenantUpdateWithoutTransactionsInput, TenantUncheckedUpdateWithoutTransactionsInput>
+    create: XOR<TenantCreateWithoutTransactionsInput, TenantUncheckedCreateWithoutTransactionsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutTransactionsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutTransactionsInput, TenantUncheckedUpdateWithoutTransactionsInput>
+  }
+
+  export type TenantUpdateWithoutTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type CategoryCreateWithoutBudgetEnvelopesInput = {
+    id?: string
+    name: string
+    icon?: string | null
+    color?: string | null
+    type: string
+    isSystem?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parent?: CategoryCreateNestedOneWithoutChildrenInput
+    children?: CategoryCreateNestedManyWithoutParentInput
+    tenant: TenantCreateNestedOneWithoutCategoriesInput
+    transactions?: TransactionCreateNestedManyWithoutCategoryInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryUncheckedCreateWithoutBudgetEnvelopesInput = {
+    id?: string
+    tenantId: string
+    name: string
+    parentId?: string | null
+    icon?: string | null
+    color?: string | null
+    type: string
+    isSystem?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    children?: CategoryUncheckedCreateNestedManyWithoutParentInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutCategoryInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryCreateOrConnectWithoutBudgetEnvelopesInput = {
+    where: CategoryWhereUniqueInput
+    create: XOR<CategoryCreateWithoutBudgetEnvelopesInput, CategoryUncheckedCreateWithoutBudgetEnvelopesInput>
+  }
+
+  export type AccountCreateWithoutBudgetEnvelopesInput = {
+    id?: string
+    name: string
+    type: string
+    initialBalance?: Decimal | DecimalJsLike | number | string
+    currentBalance?: Decimal | DecimalJsLike | number | string
+    icon?: string | null
+    color?: string | null
+    isArchived?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutAccountsInput
+    transactions?: TransactionCreateNestedManyWithoutAccountInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountUncheckedCreateWithoutBudgetEnvelopesInput = {
+    id?: string
+    tenantId: string
+    name: string
+    type: string
+    initialBalance?: Decimal | DecimalJsLike | number | string
+    currentBalance?: Decimal | DecimalJsLike | number | string
+    icon?: string | null
+    color?: string | null
+    isArchived?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutAccountInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountCreateOrConnectWithoutBudgetEnvelopesInput = {
+    where: AccountWhereUniqueInput
+    create: XOR<AccountCreateWithoutBudgetEnvelopesInput, AccountUncheckedCreateWithoutBudgetEnvelopesInput>
+  }
+
+  export type TenantCreateWithoutBudgetEnvelopesInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutBudgetEnvelopesInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutBudgetEnvelopesInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutBudgetEnvelopesInput, TenantUncheckedCreateWithoutBudgetEnvelopesInput>
+  }
+
+  export type CategoryUpsertWithoutBudgetEnvelopesInput = {
+    update: XOR<CategoryUpdateWithoutBudgetEnvelopesInput, CategoryUncheckedUpdateWithoutBudgetEnvelopesInput>
+    create: XOR<CategoryCreateWithoutBudgetEnvelopesInput, CategoryUncheckedCreateWithoutBudgetEnvelopesInput>
+    where?: CategoryWhereInput
+  }
+
+  export type CategoryUpdateToOneWithWhereWithoutBudgetEnvelopesInput = {
+    where?: CategoryWhereInput
+    data: XOR<CategoryUpdateWithoutBudgetEnvelopesInput, CategoryUncheckedUpdateWithoutBudgetEnvelopesInput>
+  }
+
+  export type CategoryUpdateWithoutBudgetEnvelopesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parent?: CategoryUpdateOneWithoutChildrenNestedInput
+    children?: CategoryUpdateManyWithoutParentNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutCategoriesNestedInput
+    transactions?: TransactionUpdateManyWithoutCategoryNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryUncheckedUpdateWithoutBudgetEnvelopesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    children?: CategoryUncheckedUpdateManyWithoutParentNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutCategoryNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type AccountUpsertWithoutBudgetEnvelopesInput = {
+    update: XOR<AccountUpdateWithoutBudgetEnvelopesInput, AccountUncheckedUpdateWithoutBudgetEnvelopesInput>
+    create: XOR<AccountCreateWithoutBudgetEnvelopesInput, AccountUncheckedCreateWithoutBudgetEnvelopesInput>
+    where?: AccountWhereInput
+  }
+
+  export type AccountUpdateToOneWithWhereWithoutBudgetEnvelopesInput = {
+    where?: AccountWhereInput
+    data: XOR<AccountUpdateWithoutBudgetEnvelopesInput, AccountUncheckedUpdateWithoutBudgetEnvelopesInput>
+  }
+
+  export type AccountUpdateWithoutBudgetEnvelopesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    initialBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currentBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutAccountsNestedInput
+    transactions?: TransactionUpdateManyWithoutAccountNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutAccountNestedInput
+  }
+
+  export type AccountUncheckedUpdateWithoutBudgetEnvelopesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    initialBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currentBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutAccountNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutAccountNestedInput
+  }
+
+  export type TenantUpsertWithoutBudgetEnvelopesInput = {
+    update: XOR<TenantUpdateWithoutBudgetEnvelopesInput, TenantUncheckedUpdateWithoutBudgetEnvelopesInput>
+    create: XOR<TenantCreateWithoutBudgetEnvelopesInput, TenantUncheckedCreateWithoutBudgetEnvelopesInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutBudgetEnvelopesInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutBudgetEnvelopesInput, TenantUncheckedUpdateWithoutBudgetEnvelopesInput>
+  }
+
+  export type TenantUpdateWithoutBudgetEnvelopesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutBudgetEnvelopesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type AccountCreateWithoutRecurringRulesInput = {
+    id?: string
+    name: string
+    type: string
+    initialBalance?: Decimal | DecimalJsLike | number | string
+    currentBalance?: Decimal | DecimalJsLike | number | string
+    icon?: string | null
+    color?: string | null
+    isArchived?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutAccountsInput
+    transactions?: TransactionCreateNestedManyWithoutAccountInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountUncheckedCreateWithoutRecurringRulesInput = {
+    id?: string
+    tenantId: string
+    name: string
+    type: string
+    initialBalance?: Decimal | DecimalJsLike | number | string
+    currentBalance?: Decimal | DecimalJsLike | number | string
+    icon?: string | null
+    color?: string | null
+    isArchived?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutAccountInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutAccountInput
+  }
+
+  export type AccountCreateOrConnectWithoutRecurringRulesInput = {
+    where: AccountWhereUniqueInput
+    create: XOR<AccountCreateWithoutRecurringRulesInput, AccountUncheckedCreateWithoutRecurringRulesInput>
+  }
+
+  export type CategoryCreateWithoutRecurringRulesInput = {
+    id?: string
+    name: string
+    icon?: string | null
+    color?: string | null
+    type: string
+    isSystem?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    parent?: CategoryCreateNestedOneWithoutChildrenInput
+    children?: CategoryCreateNestedManyWithoutParentInput
+    tenant: TenantCreateNestedOneWithoutCategoriesInput
+    transactions?: TransactionCreateNestedManyWithoutCategoryInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryUncheckedCreateWithoutRecurringRulesInput = {
+    id?: string
+    tenantId: string
+    name: string
+    parentId?: string | null
+    icon?: string | null
+    color?: string | null
+    type: string
+    isSystem?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    children?: CategoryUncheckedCreateNestedManyWithoutParentInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutCategoryInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryCreateOrConnectWithoutRecurringRulesInput = {
+    where: CategoryWhereUniqueInput
+    create: XOR<CategoryCreateWithoutRecurringRulesInput, CategoryUncheckedCreateWithoutRecurringRulesInput>
+  }
+
+  export type TenantCreateWithoutRecurringRulesInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutRecurringRulesInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutRecurringRulesInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutRecurringRulesInput, TenantUncheckedCreateWithoutRecurringRulesInput>
+  }
+
+  export type TransactionCreateWithoutRecurringRuleInput = {
+    id?: string
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    date: Date | string
+    isRecurring?: boolean
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    account: AccountCreateNestedOneWithoutTransactionsInput
+    category?: CategoryCreateNestedOneWithoutTransactionsInput
+    tenant: TenantCreateNestedOneWithoutTransactionsInput
+  }
+
+  export type TransactionUncheckedCreateWithoutRecurringRuleInput = {
+    id?: string
+    tenantId: string
+    accountId: string
+    categoryId?: string | null
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    date: Date | string
+    isRecurring?: boolean
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionCreateOrConnectWithoutRecurringRuleInput = {
+    where: TransactionWhereUniqueInput
+    create: XOR<TransactionCreateWithoutRecurringRuleInput, TransactionUncheckedCreateWithoutRecurringRuleInput>
+  }
+
+  export type TransactionCreateManyRecurringRuleInputEnvelope = {
+    data: TransactionCreateManyRecurringRuleInput | TransactionCreateManyRecurringRuleInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AccountUpsertWithoutRecurringRulesInput = {
+    update: XOR<AccountUpdateWithoutRecurringRulesInput, AccountUncheckedUpdateWithoutRecurringRulesInput>
+    create: XOR<AccountCreateWithoutRecurringRulesInput, AccountUncheckedCreateWithoutRecurringRulesInput>
+    where?: AccountWhereInput
+  }
+
+  export type AccountUpdateToOneWithWhereWithoutRecurringRulesInput = {
+    where?: AccountWhereInput
+    data: XOR<AccountUpdateWithoutRecurringRulesInput, AccountUncheckedUpdateWithoutRecurringRulesInput>
+  }
+
+  export type AccountUpdateWithoutRecurringRulesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    initialBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currentBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutAccountsNestedInput
+    transactions?: TransactionUpdateManyWithoutAccountNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutAccountNestedInput
+  }
+
+  export type AccountUncheckedUpdateWithoutRecurringRulesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    initialBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currentBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutAccountNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutAccountNestedInput
+  }
+
+  export type CategoryUpsertWithoutRecurringRulesInput = {
+    update: XOR<CategoryUpdateWithoutRecurringRulesInput, CategoryUncheckedUpdateWithoutRecurringRulesInput>
+    create: XOR<CategoryCreateWithoutRecurringRulesInput, CategoryUncheckedCreateWithoutRecurringRulesInput>
+    where?: CategoryWhereInput
+  }
+
+  export type CategoryUpdateToOneWithWhereWithoutRecurringRulesInput = {
+    where?: CategoryWhereInput
+    data: XOR<CategoryUpdateWithoutRecurringRulesInput, CategoryUncheckedUpdateWithoutRecurringRulesInput>
+  }
+
+  export type CategoryUpdateWithoutRecurringRulesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parent?: CategoryUpdateOneWithoutChildrenNestedInput
+    children?: CategoryUpdateManyWithoutParentNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutCategoriesNestedInput
+    transactions?: TransactionUpdateManyWithoutCategoryNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryUncheckedUpdateWithoutRecurringRulesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    children?: CategoryUncheckedUpdateManyWithoutParentNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutCategoryNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type TenantUpsertWithoutRecurringRulesInput = {
+    update: XOR<TenantUpdateWithoutRecurringRulesInput, TenantUncheckedUpdateWithoutRecurringRulesInput>
+    create: XOR<TenantCreateWithoutRecurringRulesInput, TenantUncheckedCreateWithoutRecurringRulesInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutRecurringRulesInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutRecurringRulesInput, TenantUncheckedUpdateWithoutRecurringRulesInput>
+  }
+
+  export type TenantUpdateWithoutRecurringRulesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutRecurringRulesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TransactionUpsertWithWhereUniqueWithoutRecurringRuleInput = {
+    where: TransactionWhereUniqueInput
+    update: XOR<TransactionUpdateWithoutRecurringRuleInput, TransactionUncheckedUpdateWithoutRecurringRuleInput>
+    create: XOR<TransactionCreateWithoutRecurringRuleInput, TransactionUncheckedCreateWithoutRecurringRuleInput>
+  }
+
+  export type TransactionUpdateWithWhereUniqueWithoutRecurringRuleInput = {
+    where: TransactionWhereUniqueInput
+    data: XOR<TransactionUpdateWithoutRecurringRuleInput, TransactionUncheckedUpdateWithoutRecurringRuleInput>
+  }
+
+  export type TransactionUpdateManyWithWhereWithoutRecurringRuleInput = {
+    where: TransactionScalarWhereInput
+    data: XOR<TransactionUpdateManyMutationInput, TransactionUncheckedUpdateManyWithoutRecurringRuleInput>
   }
 
   export type UserCreateManyTenantInput = {
@@ -9691,6 +21421,81 @@ export namespace Prisma {
     success: boolean
     errorMessage?: string | null
     createdAt?: Date | string
+  }
+
+  export type CategoryCreateManyTenantInput = {
+    id?: string
+    name: string
+    parentId?: string | null
+    icon?: string | null
+    color?: string | null
+    type: string
+    isSystem?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AccountCreateManyTenantInput = {
+    id?: string
+    name: string
+    type: string
+    initialBalance?: Decimal | DecimalJsLike | number | string
+    currentBalance?: Decimal | DecimalJsLike | number | string
+    icon?: string | null
+    color?: string | null
+    isArchived?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionCreateManyTenantInput = {
+    id?: string
+    accountId: string
+    categoryId?: string | null
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    date: Date | string
+    isRecurring?: boolean
+    recurringRuleId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BudgetEnvelopeCreateManyTenantInput = {
+    id?: string
+    categoryId: string
+    accountId: string
+    month: Date | string
+    allocated: Decimal | DecimalJsLike | number | string
+    spent?: Decimal | DecimalJsLike | number | string
+    rolledOver?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RecurringRuleCreateManyTenantInput = {
+    id?: string
+    accountId: string
+    categoryId?: string | null
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    frequency: string
+    interval?: number
+    dayOfMonth?: number | null
+    dayOfWeek?: number | null
+    monthOfYear?: number | null
+    startDate: Date | string
+    endDate?: Date | string | null
+    nextRunAt?: Date | string | null
+    lastRunAt?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserUpdateWithoutTenantInput = {
@@ -9835,6 +21640,771 @@ export namespace Prisma {
     success?: BoolFieldUpdateOperationsInput | boolean
     errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CategoryUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parent?: CategoryUpdateOneWithoutChildrenNestedInput
+    children?: CategoryUpdateManyWithoutParentNestedInput
+    transactions?: TransactionUpdateManyWithoutCategoryNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutCategoryNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    children?: CategoryUncheckedUpdateManyWithoutParentNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutCategoryNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutCategoryNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AccountUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    initialBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currentBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUpdateManyWithoutAccountNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutAccountNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutAccountNestedInput
+  }
+
+  export type AccountUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    initialBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currentBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutAccountNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutAccountNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutAccountNestedInput
+  }
+
+  export type AccountUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    initialBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currentBalance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    isArchived?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    isRecurring?: BoolFieldUpdateOperationsInput | boolean
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    account?: AccountUpdateOneRequiredWithoutTransactionsNestedInput
+    category?: CategoryUpdateOneWithoutTransactionsNestedInput
+    recurringRule?: RecurringRuleUpdateOneWithoutTransactionsNestedInput
+  }
+
+  export type TransactionUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    isRecurring?: BoolFieldUpdateOperationsInput | boolean
+    recurringRuleId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    isRecurring?: BoolFieldUpdateOperationsInput | boolean
+    recurringRuleId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BudgetEnvelopeUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    month?: DateTimeFieldUpdateOperationsInput | Date | string
+    allocated?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    spent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rolledOver?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: CategoryUpdateOneRequiredWithoutBudgetEnvelopesNestedInput
+    account?: AccountUpdateOneRequiredWithoutBudgetEnvelopesNestedInput
+  }
+
+  export type BudgetEnvelopeUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    month?: DateTimeFieldUpdateOperationsInput | Date | string
+    allocated?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    spent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rolledOver?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BudgetEnvelopeUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    month?: DateTimeFieldUpdateOperationsInput | Date | string
+    allocated?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    spent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rolledOver?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RecurringRuleUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    interval?: IntFieldUpdateOperationsInput | number
+    dayOfMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    dayOfWeek?: NullableIntFieldUpdateOperationsInput | number | null
+    monthOfYear?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    account?: AccountUpdateOneRequiredWithoutRecurringRulesNestedInput
+    category?: CategoryUpdateOneWithoutRecurringRulesNestedInput
+    transactions?: TransactionUpdateManyWithoutRecurringRuleNestedInput
+  }
+
+  export type RecurringRuleUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    interval?: IntFieldUpdateOperationsInput | number
+    dayOfMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    dayOfWeek?: NullableIntFieldUpdateOperationsInput | number | null
+    monthOfYear?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutRecurringRuleNestedInput
+  }
+
+  export type RecurringRuleUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    interval?: IntFieldUpdateOperationsInput | number
+    dayOfMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    dayOfWeek?: NullableIntFieldUpdateOperationsInput | number | null
+    monthOfYear?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CategoryCreateManyParentInput = {
+    id?: string
+    tenantId: string
+    name: string
+    icon?: string | null
+    color?: string | null
+    type: string
+    isSystem?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionCreateManyCategoryInput = {
+    id?: string
+    tenantId: string
+    accountId: string
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    date: Date | string
+    isRecurring?: boolean
+    recurringRuleId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BudgetEnvelopeCreateManyCategoryInput = {
+    id?: string
+    tenantId: string
+    accountId: string
+    month: Date | string
+    allocated: Decimal | DecimalJsLike | number | string
+    spent?: Decimal | DecimalJsLike | number | string
+    rolledOver?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RecurringRuleCreateManyCategoryInput = {
+    id?: string
+    tenantId: string
+    accountId: string
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    frequency: string
+    interval?: number
+    dayOfMonth?: number | null
+    dayOfWeek?: number | null
+    monthOfYear?: number | null
+    startDate: Date | string
+    endDate?: Date | string | null
+    nextRunAt?: Date | string | null
+    lastRunAt?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CategoryUpdateWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    children?: CategoryUpdateManyWithoutParentNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutCategoriesNestedInput
+    transactions?: TransactionUpdateManyWithoutCategoryNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutCategoryNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryUncheckedUpdateWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    children?: CategoryUncheckedUpdateManyWithoutParentNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutCategoryNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutCategoryNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryUncheckedUpdateManyWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    isSystem?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionUpdateWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    isRecurring?: BoolFieldUpdateOperationsInput | boolean
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    account?: AccountUpdateOneRequiredWithoutTransactionsNestedInput
+    recurringRule?: RecurringRuleUpdateOneWithoutTransactionsNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutTransactionsNestedInput
+  }
+
+  export type TransactionUncheckedUpdateWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    isRecurring?: BoolFieldUpdateOperationsInput | boolean
+    recurringRuleId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionUncheckedUpdateManyWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    isRecurring?: BoolFieldUpdateOperationsInput | boolean
+    recurringRuleId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BudgetEnvelopeUpdateWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    month?: DateTimeFieldUpdateOperationsInput | Date | string
+    allocated?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    spent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rolledOver?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    account?: AccountUpdateOneRequiredWithoutBudgetEnvelopesNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutBudgetEnvelopesNestedInput
+  }
+
+  export type BudgetEnvelopeUncheckedUpdateWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    month?: DateTimeFieldUpdateOperationsInput | Date | string
+    allocated?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    spent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rolledOver?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BudgetEnvelopeUncheckedUpdateManyWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    month?: DateTimeFieldUpdateOperationsInput | Date | string
+    allocated?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    spent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rolledOver?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RecurringRuleUpdateWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    interval?: IntFieldUpdateOperationsInput | number
+    dayOfMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    dayOfWeek?: NullableIntFieldUpdateOperationsInput | number | null
+    monthOfYear?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    account?: AccountUpdateOneRequiredWithoutRecurringRulesNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutRecurringRulesNestedInput
+    transactions?: TransactionUpdateManyWithoutRecurringRuleNestedInput
+  }
+
+  export type RecurringRuleUncheckedUpdateWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    interval?: IntFieldUpdateOperationsInput | number
+    dayOfMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    dayOfWeek?: NullableIntFieldUpdateOperationsInput | number | null
+    monthOfYear?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutRecurringRuleNestedInput
+  }
+
+  export type RecurringRuleUncheckedUpdateManyWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    interval?: IntFieldUpdateOperationsInput | number
+    dayOfMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    dayOfWeek?: NullableIntFieldUpdateOperationsInput | number | null
+    monthOfYear?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionCreateManyAccountInput = {
+    id?: string
+    tenantId: string
+    categoryId?: string | null
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    date: Date | string
+    isRecurring?: boolean
+    recurringRuleId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BudgetEnvelopeCreateManyAccountInput = {
+    id?: string
+    tenantId: string
+    categoryId: string
+    month: Date | string
+    allocated: Decimal | DecimalJsLike | number | string
+    spent?: Decimal | DecimalJsLike | number | string
+    rolledOver?: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RecurringRuleCreateManyAccountInput = {
+    id?: string
+    tenantId: string
+    categoryId?: string | null
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    frequency: string
+    interval?: number
+    dayOfMonth?: number | null
+    dayOfWeek?: number | null
+    monthOfYear?: number | null
+    startDate: Date | string
+    endDate?: Date | string | null
+    nextRunAt?: Date | string | null
+    lastRunAt?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionUpdateWithoutAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    isRecurring?: BoolFieldUpdateOperationsInput | boolean
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: CategoryUpdateOneWithoutTransactionsNestedInput
+    recurringRule?: RecurringRuleUpdateOneWithoutTransactionsNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutTransactionsNestedInput
+  }
+
+  export type TransactionUncheckedUpdateWithoutAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    isRecurring?: BoolFieldUpdateOperationsInput | boolean
+    recurringRuleId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionUncheckedUpdateManyWithoutAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    isRecurring?: BoolFieldUpdateOperationsInput | boolean
+    recurringRuleId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BudgetEnvelopeUpdateWithoutAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    month?: DateTimeFieldUpdateOperationsInput | Date | string
+    allocated?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    spent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rolledOver?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: CategoryUpdateOneRequiredWithoutBudgetEnvelopesNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutBudgetEnvelopesNestedInput
+  }
+
+  export type BudgetEnvelopeUncheckedUpdateWithoutAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    month?: DateTimeFieldUpdateOperationsInput | Date | string
+    allocated?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    spent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rolledOver?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BudgetEnvelopeUncheckedUpdateManyWithoutAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    month?: DateTimeFieldUpdateOperationsInput | Date | string
+    allocated?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    spent?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rolledOver?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RecurringRuleUpdateWithoutAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    interval?: IntFieldUpdateOperationsInput | number
+    dayOfMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    dayOfWeek?: NullableIntFieldUpdateOperationsInput | number | null
+    monthOfYear?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: CategoryUpdateOneWithoutRecurringRulesNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutRecurringRulesNestedInput
+    transactions?: TransactionUpdateManyWithoutRecurringRuleNestedInput
+  }
+
+  export type RecurringRuleUncheckedUpdateWithoutAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    interval?: IntFieldUpdateOperationsInput | number
+    dayOfMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    dayOfWeek?: NullableIntFieldUpdateOperationsInput | number | null
+    monthOfYear?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutRecurringRuleNestedInput
+  }
+
+  export type RecurringRuleUncheckedUpdateManyWithoutAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    frequency?: StringFieldUpdateOperationsInput | string
+    interval?: IntFieldUpdateOperationsInput | number
+    dayOfMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    dayOfWeek?: NullableIntFieldUpdateOperationsInput | number | null
+    monthOfYear?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionCreateManyRecurringRuleInput = {
+    id?: string
+    tenantId: string
+    accountId: string
+    categoryId?: string | null
+    amount: Decimal | DecimalJsLike | number | string
+    type: string
+    payee?: string | null
+    description?: string | null
+    date: Date | string
+    isRecurring?: boolean
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TransactionUpdateWithoutRecurringRuleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    isRecurring?: BoolFieldUpdateOperationsInput | boolean
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    account?: AccountUpdateOneRequiredWithoutTransactionsNestedInput
+    category?: CategoryUpdateOneWithoutTransactionsNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutTransactionsNestedInput
+  }
+
+  export type TransactionUncheckedUpdateWithoutRecurringRuleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    isRecurring?: BoolFieldUpdateOperationsInput | boolean
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionUncheckedUpdateManyWithoutRecurringRuleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    accountId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    type?: StringFieldUpdateOperationsInput | string
+    payee?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    isRecurring?: BoolFieldUpdateOperationsInput | boolean
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

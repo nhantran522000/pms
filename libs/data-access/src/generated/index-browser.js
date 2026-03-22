@@ -179,6 +179,86 @@ exports.Prisma.AiUsageLogScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.CategoryScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  parentId: 'parentId',
+  icon: 'icon',
+  color: 'color',
+  type: 'type',
+  isSystem: 'isSystem',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AccountScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  type: 'type',
+  initialBalance: 'initialBalance',
+  currentBalance: 'currentBalance',
+  icon: 'icon',
+  color: 'color',
+  isArchived: 'isArchived',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TransactionScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  accountId: 'accountId',
+  categoryId: 'categoryId',
+  amount: 'amount',
+  type: 'type',
+  payee: 'payee',
+  description: 'description',
+  date: 'date',
+  isRecurring: 'isRecurring',
+  recurringRuleId: 'recurringRuleId',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BudgetEnvelopeScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  categoryId: 'categoryId',
+  accountId: 'accountId',
+  month: 'month',
+  allocated: 'allocated',
+  spent: 'spent',
+  rolledOver: 'rolledOver',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RecurringRuleScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  accountId: 'accountId',
+  categoryId: 'categoryId',
+  amount: 'amount',
+  type: 'type',
+  payee: 'payee',
+  description: 'description',
+  frequency: 'frequency',
+  interval: 'interval',
+  dayOfMonth: 'dayOfMonth',
+  dayOfWeek: 'dayOfWeek',
+  monthOfYear: 'monthOfYear',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  nextRunAt: 'nextRunAt',
+  lastRunAt: 'lastRunAt',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -247,13 +327,66 @@ exports.Prisma.AiUsageLogOrderByRelevanceFieldEnum = {
   errorMessage: 'errorMessage'
 };
 
+exports.Prisma.CategoryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  parentId: 'parentId',
+  icon: 'icon',
+  color: 'color',
+  type: 'type'
+};
+
+exports.Prisma.AccountOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  type: 'type',
+  icon: 'icon',
+  color: 'color'
+};
+
+exports.Prisma.TransactionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  accountId: 'accountId',
+  categoryId: 'categoryId',
+  type: 'type',
+  payee: 'payee',
+  description: 'description',
+  recurringRuleId: 'recurringRuleId'
+};
+
+exports.Prisma.BudgetEnvelopeOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  categoryId: 'categoryId',
+  accountId: 'accountId'
+};
+
+exports.Prisma.RecurringRuleOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  accountId: 'accountId',
+  categoryId: 'categoryId',
+  type: 'type',
+  payee: 'payee',
+  description: 'description',
+  frequency: 'frequency'
+};
+
 
 exports.Prisma.ModelName = {
   Tenant: 'Tenant',
   User: 'User',
   AiProviderConfig: 'AiProviderConfig',
   AiPromptCache: 'AiPromptCache',
-  AiUsageLog: 'AiUsageLog'
+  AiUsageLog: 'AiUsageLog',
+  Category: 'Category',
+  Account: 'Account',
+  Transaction: 'Transaction',
+  BudgetEnvelope: 'BudgetEnvelope',
+  RecurringRule: 'RecurringRule'
 };
 
 /**

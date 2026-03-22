@@ -19,6 +19,11 @@ model Tenant {
   aiProviderConfigs AiProviderConfig[]
   aiPromptCache     AiPromptCache[]
   aiUsageLogs       AiUsageLog[]
+  categories        Category[]
+  accounts          Account[]
+  transactions      Transaction[]
+  budgetEnvelopes   BudgetEnvelope[]
+  recurringRules    RecurringRule[]
 
   @@index([name])
   @@map("tenants")
@@ -100,4 +105,139 @@ model AiUsageLog {
   @@index([tenantId, createdAt])
   @@index([provider, createdAt])
   @@map("ai_usage_logs")
+}
+
+/// Category - Hierarchical categories for transactions
+model Category {
+  id              String        @id @default(cuid())
+  tenantId        String        @map("tenantId")
+  name            String
+  parentId        String?       @map("parentId")
+  parent          Category?     @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children        Category[]    @relation("CategoryHierarchy")
+  icon            String?
+  color           String?
+  type            String        // "income" or "expense"
+  isSystem        Boolean       @default(false) @map("isSystem")
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  tenant          Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  transactions    Transaction[]
+  budgetEnvelopes BudgetEnvelope[]
+  recurringRules  RecurringRule[]
+
+  @@unique([tenantId, name])
+  @@index([tenantId])
+  @@index([parentId])
+  @@map("categories")
+}
+
+/// Account - Financial accounts (checking, savings, cash, credit)
+model Account {
+  id              String          @id @default(cuid())
+  tenantId        String          @map("tenantId")
+  name            String
+  type            String          // "checking", "savings", "cash", "credit"
+  initialBalance  Decimal         @default(0) @map("initialBalance") @db.Decimal(15, 2)
+  currentBalance  Decimal         @default(0) @map("currentBalance") @db.Decimal(15, 2)
+  icon            String?
+  color           String?
+  isArchived      Boolean         @default(false) @map("isArchived")
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  tenant          Tenant          @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  transactions    Transaction[]
+  budgetEnvelopes BudgetEnvelope[]
+  recurringRules  RecurringRule[]
+
+  @@unique([tenantId, name])
+  @@index([tenantId])
+  @@map("accounts")
+}
+
+/// Transaction - Financial transactions
+model Transaction {
+  id              String         @id @default(cuid())
+  tenantId        String         @map("tenantId")
+  accountId       String         @map("accountId")
+  categoryId      String?        @map("categoryId")
+  amount          Decimal        @db.Decimal(15, 2)
+  type            String         // "income" or "expense"
+  payee           String?
+  description     String?
+  date            DateTime
+  isRecurring     Boolean        @default(false) @map("isRecurring")
+  recurringRuleId String?        @map("recurringRuleId")
+  isDeleted       Boolean        @default(false) @map("isDeleted")
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  account         Account        @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  category        Category?      @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  recurringRule   RecurringRule? @relation(fields: [recurringRuleId], references: [id], onDelete: SetNull)
+  tenant          Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@index([accountId])
+  @@index([categoryId])
+  @@index([date])
+  @@index([recurringRuleId])
+  @@map("transactions")
+}
+
+/// BudgetEnvelope - Envelope budgeting per category per month
+model BudgetEnvelope {
+  id          String    @id @default(cuid())
+  tenantId    String    @map("tenantId")
+  categoryId  String    @map("categoryId")
+  accountId   String    @map("accountId")
+  month       DateTime  // First day of the month
+  allocated   Decimal   @db.Decimal(15, 2)
+  spent       Decimal   @default(0) @db.Decimal(15, 2)
+  rolledOver  Decimal   @default(0) @db.Decimal(15, 2)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  category    Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  account     Account   @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  tenant      Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, categoryId, accountId, month])
+  @@index([tenantId])
+  @@index([categoryId])
+  @@index([accountId])
+  @@index([month])
+  @@map("budget_envelopes")
+}
+
+/// RecurringRule - Recurring transaction templates
+model RecurringRule {
+  id            String        @id @default(cuid())
+  tenantId      String        @map("tenantId")
+  accountId     String        @map("accountId")
+  categoryId    String?       @map("categoryId")
+  amount        Decimal       @db.Decimal(15, 2)
+  type          String        // "income" or "expense"
+  payee         String?
+  description   String?
+  frequency     String        // "daily", "weekly", "monthly", "yearly"
+  interval      Int           @default(1) // Every N frequency units
+  dayOfMonth    Int?          @map("dayOfMonth") // For monthly/yearly
+  dayOfWeek     Int?          @map("dayOfWeek") // For weekly (0=Sunday)
+  monthOfYear   Int?          @map("monthOfYear") // For yearly (1-12)
+  startDate     DateTime      @map("startDate")
+  endDate       DateTime?     @map("endDate")
+  nextRunAt     DateTime?     @map("nextRunAt")
+  lastRunAt     DateTime?     @map("lastRunAt")
+  isActive      Boolean       @default(true) @map("isActive")
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  account       Account       @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  category      Category?     @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  tenant        Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  transactions  Transaction[]
+
+  @@index([tenantId])
+  @@index([accountId])
+  @@index([nextRunAt])
+  @@index([isActive])
+  @@map("recurring_rules")
 }
