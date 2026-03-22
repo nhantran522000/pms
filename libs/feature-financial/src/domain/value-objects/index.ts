@@ -1,3 +1,2 @@
-// Value objects - will be populated in Task 3
-export {};
+export * from './money.vo';
 
