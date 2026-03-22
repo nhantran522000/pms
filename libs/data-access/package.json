@@ -20,5 +20,12 @@
       "layer:infrastructure"
     ]
   },
-  "dependencies": {}
+  "dependencies": {
+    "@nestjs/common": "^11.0.0",
+    "@prisma/client": "^7.5.0",
+    "@prisma/config": "^7.5.0"
+  },
+  "devDependencies": {
+    "prisma": "^7.5.0"
+  }
 }
