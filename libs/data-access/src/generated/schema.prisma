@@ -1,0 +1,45 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../src/generated"
+  previewFeatures = ["fullTextSearchPostgres", "postgresqlExtensions"]
+  moduleFormat    = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// Tenant - Root entity for multi-tenancy
+model Tenant {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  users     User[]
+
+  @@index([name])
+  @@map("tenants")
+}
+
+/// User - Authentication and profile
+model User {
+  id                        String    @id @default(cuid())
+  email                     String    @unique
+  passwordHash              String    @map("passwordHash")
+  name                      String?
+  emailVerified             Boolean   @default(false) @map("emailVerified")
+  verificationToken         String?   @map("verificationToken")
+  verificationTokenExpires  DateTime? @map("verificationTokenExpires")
+  passwordResetToken        String?   @map("passwordResetToken")
+  passwordResetTokenExpires DateTime? @map("passwordResetTokenExpires")
+  tenantId                  String    @map("tenantId")
+  createdAt                 DateTime  @default(now())
+  updatedAt                 DateTime  @updatedAt
+  tenant                    Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([email])
+  @@index([tenantId])
+  @@index([verificationToken])
+  @@index([passwordResetToken])
+  @@map("users")
+}
