@@ -67,8 +67,8 @@ jobs:
           script: |
             echo "$GHCR_TOKEN" | docker login ghcr.io -u nhantran522000 --password-stdin
             cd /opt/pms
-            docker compose -f docker/docker-compose.yml -f docker/docker-compose.prod.yml pull api
-            docker compose -f docker/docker-compose.yml -f docker/docker-compose.prod.yml up -d
+            docker compose --env-file .env -f docker/docker-compose.yml -f docker/docker-compose.prod.yml pull api
+            docker compose --env-file .env -f docker/docker-compose.yml -f docker/docker-compose.prod.yml up -d --no-build
             docker image prune -f
         env:
           GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}

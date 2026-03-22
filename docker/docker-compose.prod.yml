@@ -1,4 +1,3 @@
 services:
   api:
     image: ghcr.io/nhantran522000/pms-api:latest
-    build: !reset null
