@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 03-07 Recurring Transaction Rules
-last_updated: "2026-03-22T18:14:51.349Z"
+stopped_at: Completed 04-01 Habits Domain Module
+last_updated: "2026-03-22T18:49:45.476Z"
 progress:
   total_phases: 12
   completed_phases: 2
-  total_plans: 12
-  completed_plans: 19
+  total_plans: 19
+  completed_plans: 20
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** A unified personal data platform with AI-powered insights that costs ~$5/month to run and can scale to a SaaS business when ready.
-**Current focus:** Phase 03 — Financial Module
+**Current focus:** Phase 04 — Habits & Tasks
 
 ## Current Position
 
-Phase: 03 (Financial Module) — EXECUTING
-Plan: 7 of 7
+Phase: 04 (Habits & Tasks) — EXECUTING
+Plan: 2 of 7
 
 ## Performance Metrics
 
@@ -67,6 +67,7 @@ Plan: 7 of 7
 | Phase 03-financial-module P05 | 211s | 3 tasks | 4 files |
 | Phase 03 P06 | 5min | 4 tasks | 9 files |
 | Phase 03-financial-module P07 | 399 | 4 tasks | 11 files |
+| Phase 04 P01 | 9min | 7 tasks | 24 files |
 
 ## Accumulated Context
 
@@ -122,6 +123,8 @@ Recent decisions affecting current work:
 - [Phase 03-financial-module]: pg-boss for job scheduling using PostgreSQL as the queue backend
 - [Phase 03-financial-module]: Hourly cron (0 * * * *) for processing due recurring rules
 - [Phase 03-financial-module]: Recurring transactions flagged with isRecurring=true and recurringRuleId
+- [Phase 04]: Streak calculation counts consecutive completed days from today backwards, resetting to 0 when a gap is found
+- [Phase 04]: Unique constraint on [tenantId, habitId, date] prevents duplicate check-ins for the same habit on the same day
 
 ### Pending Todos
 
@@ -133,6 +136,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-22T18:14:51.347Z
-Stopped at: Completed 03-07 Recurring Transaction Rules
+Last session: 2026-03-22T18:49:45.473Z
+Stopped at: Completed 04-01 Habits Domain Module
 Resume file: None

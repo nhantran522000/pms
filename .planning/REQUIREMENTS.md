@@ -53,9 +53,9 @@
 
 ### Habits Module
 
-- [ ] **HAB-01**: User can create habits with name, description, frequency
-- [ ] **HAB-02**: User can check in habit as complete/incomplete for the day
-- [ ] **HAB-03**: System calculates current streak and longest streak
+- [x] **HAB-01**: User can create habits with name, description, frequency
+- [x] **HAB-02**: User can check in habit as complete/incomplete for the day
+- [x] **HAB-03**: System calculates current streak and longest streak
 - [ ] **HAB-04**: User can view habit calendar with completion history
 - [ ] **HAB-05**: User can create habits with cron schedule ("every Mon,Wed,Fri", "every 2 weeks")
 - [ ] **HAB-06**: System shows only habits scheduled for current day
@@ -221,9 +221,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FIN-10 | Phase 3 | Complete |
 | FIN-11 | Phase 3 | Complete |
 | FIN-12 | Phase 3 | Complete |
-| HAB-01 | Phase 4 | Pending |
-| HAB-02 | Phase 4 | Pending |
-| HAB-03 | Phase 4 | Pending |
+| HAB-01 | Phase 4 | Complete |
+| HAB-02 | Phase 4 | Complete |
+| HAB-03 | Phase 4 | Complete |
 | HAB-04 | Phase 4 | Pending |
 | HAB-05 | Phase 4 | Pending |
 | HAB-06 | Phase 4 | Pending |
