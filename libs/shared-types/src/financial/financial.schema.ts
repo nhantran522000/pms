@@ -159,3 +159,55 @@ export const TransactionWithRelationsSchema = TransactionResponseSchema.extend({
   }).nullable().optional(),
 });
 export type TransactionWithRelations = z.infer<typeof TransactionWithRelationsSchema>;
+
+// ============================================
+// Budget envelope types
+// ============================================
+
+// Allocate budget to a category for a specific month
+export const AllocateBudgetSchema = z.object({
+  categoryId: z.string().cuid(),
+  accountId: z.string().cuid(),
+  month: z.string().regex(/^\d{4}-\d{2}$/), // YYYY-MM format
+  allocated: z.string().regex(/^\d+(\.\d{1,2})?$/),
+});
+export type AllocateBudgetDto = z.infer<typeof AllocateBudgetSchema>;
+
+// Update allocation amount
+export const UpdateAllocationSchema = z.object({
+  allocated: z.string().regex(/^\d+(\.\d{1,2})?$/),
+});
+export type UpdateAllocationDto = z.infer<typeof UpdateAllocationSchema>;
+
+// Budget envelope response
+export const BudgetEnvelopeResponseSchema = z.object({
+  id: z.string(),
+  tenantId: z.string(),
+  categoryId: z.string(),
+  accountId: z.string(),
+  month: z.string(), // YYYY-MM format
+  allocated: z.string(),
+  spent: z.string(),
+  rolledOver: z.string(),
+  available: z.string(),
+  remaining: z.string(),
+  isOverBudget: z.boolean(),
+  category: z.object({
+    id: z.string(),
+    name: z.string(),
+  }).optional(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+export type BudgetEnvelopeResponse = z.infer<typeof BudgetEnvelopeResponseSchema>;
+
+// Budget summary for a month
+export const BudgetSummarySchema = z.object({
+  month: z.string(),
+  totalAllocated: z.string(),
+  totalSpent: z.string(),
+  totalRolledOver: z.string(),
+  totalAvailable: z.string(),
+  envelopes: z.array(BudgetEnvelopeResponseSchema),
+});
+export type BudgetSummary = z.infer<typeof BudgetSummarySchema>;
