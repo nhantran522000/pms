@@ -236,3 +236,65 @@ export const CategorySuggestionSchema = z.object({
   })).optional(),
 });
 export type CategorySuggestion = z.infer<typeof CategorySuggestionSchema>;
+
+// ============================================
+// Recurring Rule types
+// ============================================
+
+// Recurring frequency types
+export const RecurringFrequencySchema = z.enum(['daily', 'weekly', 'monthly', 'yearly']);
+export type RecurringFrequency = z.infer<typeof RecurringFrequencySchema>;
+
+// Create Recurring Rule
+export const CreateRecurringRuleSchema = z.object({
+  accountId: z.string().cuid(),
+  categoryId: z.string().cuid().optional().nullable(),
+  amount: z.string().regex(/^\d+(\.\d{1,2})?$/),
+  type: TransactionTypeSchema,
+  payee: z.string().max(200).optional(),
+  description: z.string().max(1000).optional(),
+  frequency: RecurringFrequencySchema,
+  interval: z.number().int().min(1).default(1),
+  dayOfMonth: z.number().int().min(1).max(31).optional(),
+  dayOfWeek: z.number().int().min(0).max(6).optional(), // 0 = Sunday
+  monthOfYear: z.number().int().min(1).max(12).optional(),
+  startDate: z.string().datetime().or(z.date()),
+  endDate: z.string().datetime().or(z.date()).optional().nullable(),
+});
+export type CreateRecurringRuleDto = z.infer<typeof CreateRecurringRuleSchema>;
+
+// Update Recurring Rule
+export const UpdateRecurringRuleSchema = z.object({
+  categoryId: z.string().cuid().nullable().optional(),
+  amount: z.string().regex(/^\d+(\.\d{1,2})?$/).optional(),
+  payee: z.string().max(200).optional(),
+  description: z.string().max(1000).optional(),
+  endDate: z.string().datetime().or(z.date()).nullable().optional(),
+  isActive: z.boolean().optional(),
+});
+export type UpdateRecurringRuleDto = z.infer<typeof UpdateRecurringRuleSchema>;
+
+// Recurring Rule response
+export const RecurringRuleResponseSchema = z.object({
+  id: z.string(),
+  tenantId: z.string(),
+  accountId: z.string(),
+  categoryId: z.string().nullable(),
+  amount: z.string(),
+  type: TransactionTypeSchema,
+  payee: z.string().nullable(),
+  description: z.string().nullable(),
+  frequency: RecurringFrequencySchema,
+  interval: z.number(),
+  dayOfMonth: z.number().nullable(),
+  dayOfWeek: z.number().nullable(),
+  monthOfYear: z.number().nullable(),
+  startDate: z.date(),
+  endDate: z.date().nullable(),
+  nextRunAt: z.date().nullable(),
+  lastRunAt: z.date().nullable(),
+  isActive: z.boolean(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+export type RecurringRuleResponse = z.infer<typeof RecurringRuleResponseSchema>;
