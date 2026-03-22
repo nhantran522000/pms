@@ -1,4 +1,5 @@
 export * from './ai-gateway.service';
+export * from './circuit-breaker.service';
 export * from './prompt-cache.service';
 export * from './token-budget.service';
 export * from './usage-logging.service';
