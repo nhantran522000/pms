@@ -211,3 +211,28 @@ export const BudgetSummarySchema = z.object({
   envelopes: z.array(BudgetEnvelopeResponseSchema),
 });
 export type BudgetSummary = z.infer<typeof BudgetSummarySchema>;
+
+// ============================================
+// AI Categorization types
+// ============================================
+
+// AI Categorization request
+export const CategorizeTransactionSchema = z.object({
+  payee: z.string().max(200).optional(),
+  description: z.string().max(1000).optional(),
+  type: TransactionTypeSchema.optional(), // Hint for income/expense categories
+});
+export type CategorizeTransactionDto = z.infer<typeof CategorizeTransactionSchema>;
+
+// AI Categorization result
+export const CategorySuggestionSchema = z.object({
+  categoryId: z.string().nullable(),
+  categoryName: z.string(),
+  confidence: z.number().min(0).max(1),
+  alternatives: z.array(z.object({
+    categoryId: z.string().nullable(),
+    categoryName: z.string(),
+    confidence: z.number(),
+  })).optional(),
+});
+export type CategorySuggestion = z.infer<typeof CategorySuggestionSchema>;
