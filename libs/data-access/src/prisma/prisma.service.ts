@@ -31,25 +31,27 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
     try {
       await this.$connect();
       this.logger.log('Successfully connected to database');
-
-      // Add middleware to set RLS context for each query
-      this.$use(async (params, next) => {
-        const tenantId = getTenantId();
-
-        if (tenantId) {
-          // Set PostgreSQL session variable for RLS
-          // This must be done before the query executes
-          await this.$executeRawUnsafe(
-            `SET LOCAL app.current_tenant_id = '${tenantId}'`
-          );
-        }
-
-        return next(params);
-      });
     } catch (error) {
       this.logger.error('Failed to connect to database', error);
       throw error;
     }
+  }
+
+  /**
+   * Execute a callback within a tenant-scoped transaction.
+   * Sets PostgreSQL session variable for RLS before running the callback.
+   */
+  async withTenantContext<T>(fn: (tx: PrismaClient) => Promise<T>): Promise<T> {
+    const tenantId = getTenantId();
+
+    return this.$transaction(async (tx) => {
+      if (tenantId) {
+        await tx.$executeRawUnsafe(
+          `SET LOCAL app.current_tenant_id = '${tenantId}'`
+        );
+      }
+      return fn(tx as PrismaClient);
+    });
   }
 
   async onModuleDestroy() {

@@ -6,7 +6,7 @@ import { SignupDto, signupSchema, LoginDto, loginSchema, VerifyEmailDto, verifyE
 import { Public, CurrentUser } from '../decorators';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 
-@Controller('api/v1/auth')
+@Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
