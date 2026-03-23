@@ -21,9 +21,11 @@ import { VitalsService } from './application/services/vitals.service';
 import { SleepService } from './application/services/sleep.service';
 import { WorkoutService } from './application/services/workout.service';
 import { HealthDigestService } from './application/services/health-digest.service';
+import { HealthDashboardService } from './application/services/health-dashboard.service';
 import { HealthLogRepository } from './infrastructure/repositories/health-log.repository';
 import { HealthDigestJob } from './infrastructure/jobs/health-digest.job';
 import { EmailService } from './infrastructure/email/email.service';
+import { HealthDashboardController } from './presentation/controllers/health-dashboard.controller';
 
 @Module({
   imports: [PrismaModule, ConfigModule],
@@ -33,6 +35,7 @@ import { EmailService } from './infrastructure/email/email.service';
     VitalsController,
     SleepController,
     WorkoutController,
+    HealthDashboardController,
   ],
   providers: [
     // AI providers for health digest
@@ -50,6 +53,7 @@ import { EmailService } from './infrastructure/email/email.service';
     SleepService,
     WorkoutService,
     HealthDigestService,
+    HealthDashboardService,
     // Infrastructure
     HealthLogRepository,
     EmailService,
@@ -62,6 +66,7 @@ import { EmailService } from './infrastructure/email/email.service';
     SleepService,
     WorkoutService,
     HealthDigestService,
+    HealthDashboardService,
     EmailService,
   ],
 })
