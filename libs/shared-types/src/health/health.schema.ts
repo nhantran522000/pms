@@ -101,3 +101,60 @@ export const TrendDataSchema = z.object({
   endDate: z.date(),
 });
 export type TrendData = z.infer<typeof TrendDataSchema>;
+
+// Sleep-specific schemas
+export const LogSleepSchema = z.object({
+  durationMinutes: z.number().int().min(0).max(1440),
+  quality: z.number().int().min(1).max(5),
+  loggedAt: z.string().datetime().or(z.date()).optional(),
+  notes: z.string().max(1000).optional(),
+  source: z.string().max(50).default('manual'),
+});
+export type LogSleepDto = z.infer<typeof LogSleepSchema>;
+
+export const SleepHistoryQuerySchema = z.object({
+  startDate: z.string().date().optional(),
+  endDate: z.string().date().optional(),
+});
+export type SleepHistoryQuery = z.infer<typeof SleepHistoryQuerySchema>;
+
+export const SleepTrendQuerySchema = z.object({
+  range: z.enum(['30', '90', '365']).default('30'),
+});
+export type SleepTrendQuery = z.infer<typeof SleepTrendQuerySchema>;
+
+export const SleepStatsQuerySchema = z.object({
+  startDate: z.string().date(),
+  endDate: z.string().date(),
+});
+export type SleepStatsQuery = z.infer<typeof SleepStatsQuerySchema>;
+
+// Workout-specific schemas
+export const LogWorkoutSchema = z.object({
+  type: z.string().min(1).max(100),
+  durationMinutes: z.number().int().min(0),
+  intensity: z.enum(['low', 'moderate', 'high']),
+  caloriesBurned: z.number().int().min(0).optional(),
+  loggedAt: z.string().datetime().or(z.date()).optional(),
+  notes: z.string().max(1000).optional(),
+  source: z.string().max(50).default('manual'),
+});
+export type LogWorkoutDto = z.infer<typeof LogWorkoutSchema>;
+
+export const WorkoutHistoryQuerySchema = z.object({
+  startDate: z.string().date().optional(),
+  endDate: z.string().date().optional(),
+  type: z.string().max(100).optional(),
+});
+export type WorkoutHistoryQuery = z.infer<typeof WorkoutHistoryQuerySchema>;
+
+export const WorkoutTrendQuerySchema = z.object({
+  range: z.enum(['30', '90', '365']).default('30'),
+});
+export type WorkoutTrendQuery = z.infer<typeof WorkoutTrendQuerySchema>;
+
+export const WorkoutStatsQuerySchema = z.object({
+  startDate: z.string().date(),
+  endDate: z.string().date(),
+});
+export type WorkoutStatsQuery = z.infer<typeof WorkoutStatsQuerySchema>;
