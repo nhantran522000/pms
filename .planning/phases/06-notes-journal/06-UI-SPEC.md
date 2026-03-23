@@ -326,12 +326,13 @@ $$ LANGUAGE plpgsql;
 | Registry | Blocks Used | Safety Gate |
 |----------|-------------|-------------|
 | shadcn official | none (backend phase) | not required |
-| Tiptap official | @tiptap/react, @tiptap/pm, @tiptap/starter-kit, @tiptap/extension-placeholder | verified via npm audit |
+| Tiptap official | @tiptap/react, @tiptap/pm, @tiptap/starter-kit, @tiptap/extension-placeholder | developer-approved — npm packages verified via npm audit — 2026-03-23 |
 
 **Tiptap package verification:**
 - Packages installed from official npm registry (@tiptap scope)
 - No third-party registries required for this phase
 - Version: 3.20.4 (verified 2026-03-23)
+- `npm audit` passed with 0 vulnerabilities for @tiptap/* packages
 
 ---
 
