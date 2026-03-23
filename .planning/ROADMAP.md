@@ -103,11 +103,11 @@ Plans:
 Plans:
 - [x] 04-01: Habits domain module with CRUD, daily check-in, streak calculation
 - [x] 04-02: Habit cron scheduling ("every Mon,Wed,Fri", "every 2 weeks") and scheduled day filtering
-- [ ] 04-03: RPG gamification (XP, levels, achievements) and dashboard display
+- [x] 04-03: RPG gamification (XP, levels, achievements) and dashboard display
 - [x] 04-04: Tasks domain module with CRUD, subtasks, and overdue highlighting
 - [x] 04-05: Natural language task parsing (title, due date, tags extraction)
 - [x] 04-06: Task filtering by status and sorting by due date/priority/creation date
-- [ ] 04-07: Habit calendar with completion history visualization
+- [x] 04-07: Habit calendar with completion history visualization
 
 ### Phase 5: Health Module
 **Goal**: Health tracking with weight, vitals, sleep, workouts, charts, and AI-generated weekly digest
@@ -122,7 +122,7 @@ Plans:
 **Plans**: 7 plans
 
 Plans:
-- [ ] 05-01: Health domain module with weight tracking and trend charts (30/90/365 day views)
+- [x] 05-01: Health domain module with weight tracking and trend charts (30/90/365 day views)
 - [ ] 05-02: Vitals logging (blood pressure, heart rate) as JSONB
 - [ ] 05-03: Sleep tracking (duration, quality) and workout logging (type, duration, intensity as JSONB)
 - [ ] 05-04: AI weekly health digest generation (correlations, trends, insights)
