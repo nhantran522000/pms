@@ -12,67 +12,75 @@ import { HealthLogService } from '../../application/services/health-log.service'
 import { ZodValidationPipe } from '@pms/shared-kernel';
 import {
   CreateHealthLogSchema,
-  CreateHealthLogDto
-  UpdateHealthLogSchema
-  UpdateHealthLogDto
+  CreateHealthLogDto,
+  UpdateHealthLogSchema,
+  UpdateHealthLogDto,
+  HealthLogTypeSchema,
 } from '@pms/shared-types';
+import { z } from 'zod';
+
+const ListQuerySchema = z.object({
+  type: HealthLogTypeSchema.optional(),
+  startDate: z.string().date().optional(),
+  endDate: z.string().date().optional(),
+});
 
 @Controller('health')
 export class HealthLogController {
-  constructor(
-    private readonly healthLogService: HealthLogService,
-  ) {}
+  constructor(private readonly healthLogService: HealthLogService) {}
 
   @Post('logs')
   async create(
     @Body(new ZodValidationPipe(CreateHealthLogSchema)) dto: CreateHealthLogDto,
-  const healthLog = await this.healthLogService.create(dto);
+  ) {
+    const healthLog = await this.healthLogService.create(dto);
     return {
       success: true,
       data: healthLog.toJSON(),
     };
   }
 
-  @Get()
-  async findAll(@Query() query: TrendQuery) {
-    const transactions = await this.healthLogService.findAll({
+  @Get('logs')
+  async findAll(@Query() query: z.infer<typeof ListQuerySchema>) {
+    const healthLogs = await this.healthLogService.findAll({
       type: query.type,
-      startDate: query.startDate ? new Date(query.startDate) : undefined
-      endDate: query.endDate ? new Date(query.endDate) : undefined
-      limit: query.limit ?? 50,
-      offset: query.offset ?? 0,
-      orderBy: { loggedAt: 'desc' },
+      startDate: query.startDate ? new Date(query.startDate) : undefined,
+      endDate: query.endDate ? new Date(query.endDate) : undefined,
     });
 
     return {
       success: true,
-      data: transactions,
+      data: healthLogs.map((log) => log.toJSON()),
     };
   }
 
-  @Get(':id')
+  @Get('logs/:id')
   async findById(@Param('id') id: string) {
-    const transaction = await this.healthLogService.findById(id);
+    const healthLog = await this.healthLogService.findById(id);
     return {
       success: true,
-      data: transaction.toJSON(),
+      data: healthLog.toJSON(),
     };
   }
 
-  @Get('trends')
-  async getTrends(@Query() query: TrendQuery) {
-    const trendData = await this.healthTrendsService.getTrendData(query);
+  @Put('logs/:id')
+  async update(
+    @Param('id') id: string,
+    @Body(new ZodValidationPipe(UpdateHealthLogSchema)) dto: UpdateHealthLogDto,
+  ) {
+    const healthLog = await this.healthLogService.update(id, dto);
     return {
       success: true,
-      data: trendData,
+      data: healthLog.toJSON(),
     };
   }
 
-  @Delete(':id')
+  @Delete('logs/:id')
   async softDelete(@Param('id') id: string) {
     await this.healthLogService.softDelete(id);
     return {
       success: true,
-      data: { message: 'HealthLog deleted successfully' },
+      data: { message: 'Health log deleted successfully' },
     };
   }
+}
