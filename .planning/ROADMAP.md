@@ -127,7 +127,7 @@ Plans:
 - [x] 05-03: Sleep tracking (duration, quality) and workout logging (type, duration, intensity as JSONB)
 - [x] 05-04: AI weekly health digest generation (correlations, trends, insights)
 - [x] 05-05: Resend email integration for Sunday digest delivery
-- [ ] 05-06: Health dashboard with metrics summary and trend visualization
+- [x] 05-06: Health dashboard with metrics summary and trend visualization
 
 ### Phase 6: Notes & Journal
 **Goal**: Note-taking with Tiptap rich text editor, search, organization, journaling, mood tracking, and auto-save

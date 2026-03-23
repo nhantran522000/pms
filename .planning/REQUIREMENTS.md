@@ -84,7 +84,7 @@
 - [x] **HLTH-05**: User can log workouts with type, duration, intensity (JSONB)
 - [x] **HLTH-06**: System generates weekly health digest via AI
 - [x] **HLTH-07**: Health digest sent via email (Resend) every Sunday
-- [ ] **HLTH-08**: Dashboard shows health metrics summary with trends
+- [x] **HLTH-08**: Dashboard shows health metrics summary with trends
 
 ### Notes & Journal Module
 
@@ -246,7 +246,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | HLTH-05 | Phase 5 | Complete |
 | HLTH-06 | Phase 5 | Complete |
 | HLTH-07 | Phase 5 | Complete |
-| HLTH-08 | Phase 5 | Pending |
+| HLTH-08 | Phase 5 | Complete |
 | NOTE-01 | Phase 6 | Pending |
 | NOTE-02 | Phase 6 | Pending |
 | NOTE-03 | Phase 6 | Pending |
