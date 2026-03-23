@@ -302,6 +302,42 @@ exports.Prisma.HabitCompletionScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.UserStatsScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  totalXP: 'totalXP',
+  currentLevel: 'currentLevel',
+  habitsCompleted: 'habitsCompleted',
+  longestStreak: 'longestStreak',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AchievementScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  userStatsId: 'userStatsId',
+  type: 'type',
+  name: 'name',
+  description: 'description',
+  icon: 'icon',
+  unlockedAt: 'unlockedAt',
+  habitId: 'habitId'
+};
+
+exports.Prisma.HealthLogScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  type: 'type',
+  loggedAt: 'loggedAt',
+  data: 'data',
+  notes: 'notes',
+  source: 'source',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -445,6 +481,35 @@ exports.Prisma.HabitCompletionOrderByRelevanceFieldEnum = {
   notes: 'notes'
 };
 
+exports.Prisma.UserStatsOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId'
+};
+
+exports.Prisma.AchievementOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  userStatsId: 'userStatsId',
+  type: 'type',
+  name: 'name',
+  description: 'description',
+  icon: 'icon',
+  habitId: 'habitId'
+};
+
+exports.Prisma.HealthLogOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  notes: 'notes',
+  source: 'source'
+};
+exports.HealthLogType = exports.$Enums.HealthLogType = {
+  WEIGHT: 'WEIGHT',
+  BLOOD_PRESSURE: 'BLOOD_PRESSURE',
+  HEART_RATE: 'HEART_RATE',
+  SLEEP: 'SLEEP',
+  WORKOUT: 'WORKOUT'
+};
 
 exports.Prisma.ModelName = {
   Tenant: 'Tenant',
@@ -459,7 +524,10 @@ exports.Prisma.ModelName = {
   RecurringRule: 'RecurringRule',
   Task: 'Task',
   Habit: 'Habit',
-  HabitCompletion: 'HabitCompletion'
+  HabitCompletion: 'HabitCompletion',
+  UserStats: 'UserStats',
+  Achievement: 'Achievement',
+  HealthLog: 'HealthLog'
 };
 
 /**

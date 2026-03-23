@@ -9,6 +9,15 @@ datasource db {
   provider = "postgresql"
 }
 
+/// HealthLogType - Types of health metrics tracked
+enum HealthLogType {
+  WEIGHT
+  BLOOD_PRESSURE
+  HEART_RATE
+  SLEEP
+  WORKOUT
+}
+
 /// Tenant - Root entity for multi-tenancy
 model Tenant {
   id                String             @id @default(cuid())
@@ -27,6 +36,9 @@ model Tenant {
   tasks             Task[]
   habits            Habit[]
   habitCompletions  HabitCompletion[]
+  userStats         UserStats?
+  achievements      Achievement[]
+  healthLogs        HealthLog[]
 
   @@index([name])
   @@map("tenants")
@@ -313,4 +325,60 @@ model HabitCompletion {
   @@index([habitId])
   @@index([date])
   @@map("habit_completions")
+}
+
+/// UserStats - Gamification stats per tenant
+model UserStats {
+  id              String        @id @default(cuid())
+  tenantId        String        @unique @map("tenantId")
+  totalXP         Int           @default(0) @map("totalXP")
+  currentLevel    Int           @default(1) @map("currentLevel")
+  habitsCompleted Int           @default(0) @map("habitsCompleted")
+  longestStreak   Int           @default(0) @map("longestStreak")
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  tenant          Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  achievements    Achievement[]
+
+  @@index([tenantId])
+  @@map("user_stats")
+}
+
+/// Achievement - Unlocked achievements for gamification
+model Achievement {
+  id          String    @id @default(cuid())
+  tenantId    String    @map("tenantId")
+  userStatsId String    @map("userStatsId")
+  type        String // "STREAK_7", "STREAK_30", "STREAK_100", "LEVEL_5", etc.
+  name        String
+  description String
+  icon        String?
+  unlockedAt  DateTime  @default(now()) @map("unlockedAt")
+  habitId     String?   @map("habitId") // For streak achievements
+  userStats   UserStats @relation(fields: [userStatsId], references: [id], onDelete: Cascade)
+  tenant      Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, type, habitId])
+  @@index([tenantId])
+  @@index([userStatsId])
+  @@map("achievements")
+}
+
+/// HealthLog - Health tracking entries with flexible JSONB data
+model HealthLog {
+  id        String        @id @default(cuid())
+  tenantId  String        @map("tenantId")
+  type      HealthLogType
+  loggedAt  DateTime      @map("loggedAt") @db.Timestamp
+  data      Json
+  notes     String?       @db.VarChar(1000)
+  source    String        @default("manual") @db.VarChar(50)
+  deletedAt DateTime?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  tenant    Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId, type, loggedAt])
+  @@index([tenantId, loggedAt])
+  @@map("health_logs")
 }

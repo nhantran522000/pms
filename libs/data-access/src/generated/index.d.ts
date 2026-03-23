@@ -78,6 +78,41 @@ export type Habit = $Result.DefaultSelection<Prisma.$HabitPayload>
  * HabitCompletion - Daily check-ins for habits
  */
 export type HabitCompletion = $Result.DefaultSelection<Prisma.$HabitCompletionPayload>
+/**
+ * Model UserStats
+ * UserStats - Gamification stats per tenant
+ */
+export type UserStats = $Result.DefaultSelection<Prisma.$UserStatsPayload>
+/**
+ * Model Achievement
+ * Achievement - Unlocked achievements for gamification
+ */
+export type Achievement = $Result.DefaultSelection<Prisma.$AchievementPayload>
+/**
+ * Model HealthLog
+ * HealthLog - Health tracking entries with flexible JSONB data
+ */
+export type HealthLog = $Result.DefaultSelection<Prisma.$HealthLogPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const HealthLogType: {
+  WEIGHT: 'WEIGHT',
+  BLOOD_PRESSURE: 'BLOOD_PRESSURE',
+  HEART_RATE: 'HEART_RATE',
+  SLEEP: 'SLEEP',
+  WORKOUT: 'WORKOUT'
+};
+
+export type HealthLogType = (typeof HealthLogType)[keyof typeof HealthLogType]
+
+}
+
+export type HealthLogType = $Enums.HealthLogType
+
+export const HealthLogType: typeof $Enums.HealthLogType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -329,6 +364,36 @@ export class PrismaClient<
     * ```
     */
   get habitCompletion(): Prisma.HabitCompletionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userStats`: Exposes CRUD operations for the **UserStats** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserStats
+    * const userStats = await prisma.userStats.findMany()
+    * ```
+    */
+  get userStats(): Prisma.UserStatsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.achievement`: Exposes CRUD operations for the **Achievement** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Achievements
+    * const achievements = await prisma.achievement.findMany()
+    * ```
+    */
+  get achievement(): Prisma.AchievementDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.healthLog`: Exposes CRUD operations for the **HealthLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more HealthLogs
+    * const healthLogs = await prisma.healthLog.findMany()
+    * ```
+    */
+  get healthLog(): Prisma.HealthLogDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -775,7 +840,10 @@ export namespace Prisma {
     RecurringRule: 'RecurringRule',
     Task: 'Task',
     Habit: 'Habit',
-    HabitCompletion: 'HabitCompletion'
+    HabitCompletion: 'HabitCompletion',
+    UserStats: 'UserStats',
+    Achievement: 'Achievement',
+    HealthLog: 'HealthLog'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -791,7 +859,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "tenant" | "user" | "aiProviderConfig" | "aiPromptCache" | "aiUsageLog" | "category" | "account" | "transaction" | "budgetEnvelope" | "recurringRule" | "task" | "habit" | "habitCompletion"
+      modelProps: "tenant" | "user" | "aiProviderConfig" | "aiPromptCache" | "aiUsageLog" | "category" | "account" | "transaction" | "budgetEnvelope" | "recurringRule" | "task" | "habit" | "habitCompletion" | "userStats" | "achievement" | "healthLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1757,6 +1825,228 @@ export namespace Prisma {
           }
         }
       }
+      UserStats: {
+        payload: Prisma.$UserStatsPayload<ExtArgs>
+        fields: Prisma.UserStatsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserStatsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserStatsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload>
+          }
+          findFirst: {
+            args: Prisma.UserStatsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserStatsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload>
+          }
+          findMany: {
+            args: Prisma.UserStatsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload>[]
+          }
+          create: {
+            args: Prisma.UserStatsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload>
+          }
+          createMany: {
+            args: Prisma.UserStatsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserStatsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload>[]
+          }
+          delete: {
+            args: Prisma.UserStatsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload>
+          }
+          update: {
+            args: Prisma.UserStatsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserStatsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserStatsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserStatsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload>[]
+          }
+          upsert: {
+            args: Prisma.UserStatsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload>
+          }
+          aggregate: {
+            args: Prisma.UserStatsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserStats>
+          }
+          groupBy: {
+            args: Prisma.UserStatsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserStatsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserStatsCountArgs<ExtArgs>
+            result: $Utils.Optional<UserStatsCountAggregateOutputType> | number
+          }
+        }
+      }
+      Achievement: {
+        payload: Prisma.$AchievementPayload<ExtArgs>
+        fields: Prisma.AchievementFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AchievementFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AchievementPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AchievementFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AchievementPayload>
+          }
+          findFirst: {
+            args: Prisma.AchievementFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AchievementPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AchievementFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AchievementPayload>
+          }
+          findMany: {
+            args: Prisma.AchievementFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AchievementPayload>[]
+          }
+          create: {
+            args: Prisma.AchievementCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AchievementPayload>
+          }
+          createMany: {
+            args: Prisma.AchievementCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AchievementCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AchievementPayload>[]
+          }
+          delete: {
+            args: Prisma.AchievementDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AchievementPayload>
+          }
+          update: {
+            args: Prisma.AchievementUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AchievementPayload>
+          }
+          deleteMany: {
+            args: Prisma.AchievementDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AchievementUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AchievementUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AchievementPayload>[]
+          }
+          upsert: {
+            args: Prisma.AchievementUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AchievementPayload>
+          }
+          aggregate: {
+            args: Prisma.AchievementAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAchievement>
+          }
+          groupBy: {
+            args: Prisma.AchievementGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AchievementGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AchievementCountArgs<ExtArgs>
+            result: $Utils.Optional<AchievementCountAggregateOutputType> | number
+          }
+        }
+      }
+      HealthLog: {
+        payload: Prisma.$HealthLogPayload<ExtArgs>
+        fields: Prisma.HealthLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HealthLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HealthLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HealthLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HealthLogPayload>
+          }
+          findFirst: {
+            args: Prisma.HealthLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HealthLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HealthLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HealthLogPayload>
+          }
+          findMany: {
+            args: Prisma.HealthLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HealthLogPayload>[]
+          }
+          create: {
+            args: Prisma.HealthLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HealthLogPayload>
+          }
+          createMany: {
+            args: Prisma.HealthLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.HealthLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HealthLogPayload>[]
+          }
+          delete: {
+            args: Prisma.HealthLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HealthLogPayload>
+          }
+          update: {
+            args: Prisma.HealthLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HealthLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.HealthLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HealthLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.HealthLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HealthLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.HealthLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HealthLogPayload>
+          }
+          aggregate: {
+            args: Prisma.HealthLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHealthLog>
+          }
+          groupBy: {
+            args: Prisma.HealthLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HealthLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HealthLogCountArgs<ExtArgs>
+            result: $Utils.Optional<HealthLogCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1878,6 +2168,9 @@ export namespace Prisma {
     task?: TaskOmit
     habit?: HabitOmit
     habitCompletion?: HabitCompletionOmit
+    userStats?: UserStatsOmit
+    achievement?: AchievementOmit
+    healthLog?: HealthLogOmit
   }
 
   /* Types for Logging */
@@ -1970,6 +2263,8 @@ export namespace Prisma {
     tasks: number
     habits: number
     habitCompletions: number
+    achievements: number
+    healthLogs: number
   }
 
   export type TenantCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1985,6 +2280,8 @@ export namespace Prisma {
     tasks?: boolean | TenantCountOutputTypeCountTasksArgs
     habits?: boolean | TenantCountOutputTypeCountHabitsArgs
     habitCompletions?: boolean | TenantCountOutputTypeCountHabitCompletionsArgs
+    achievements?: boolean | TenantCountOutputTypeCountAchievementsArgs
+    healthLogs?: boolean | TenantCountOutputTypeCountHealthLogsArgs
   }
 
   // Custom InputTypes
@@ -2080,6 +2377,20 @@ export namespace Prisma {
    */
   export type TenantCountOutputTypeCountHabitCompletionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: HabitCompletionWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountAchievementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AchievementWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountHealthLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HealthLogWhereInput
   }
 
 
@@ -2284,6 +2595,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type UserStatsCountOutputType
+   */
+
+  export type UserStatsCountOutputType = {
+    achievements: number
+  }
+
+  export type UserStatsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    achievements?: boolean | UserStatsCountOutputTypeCountAchievementsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserStatsCountOutputType without action
+   */
+  export type UserStatsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStatsCountOutputType
+     */
+    select?: UserStatsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserStatsCountOutputType without action
+   */
+  export type UserStatsCountOutputTypeCountAchievementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AchievementWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -2455,6 +2797,9 @@ export namespace Prisma {
     tasks?: boolean | Tenant$tasksArgs<ExtArgs>
     habits?: boolean | Tenant$habitsArgs<ExtArgs>
     habitCompletions?: boolean | Tenant$habitCompletionsArgs<ExtArgs>
+    userStats?: boolean | Tenant$userStatsArgs<ExtArgs>
+    achievements?: boolean | Tenant$achievementsArgs<ExtArgs>
+    healthLogs?: boolean | Tenant$healthLogsArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tenant"]>
 
@@ -2493,6 +2838,9 @@ export namespace Prisma {
     tasks?: boolean | Tenant$tasksArgs<ExtArgs>
     habits?: boolean | Tenant$habitsArgs<ExtArgs>
     habitCompletions?: boolean | Tenant$habitCompletionsArgs<ExtArgs>
+    userStats?: boolean | Tenant$userStatsArgs<ExtArgs>
+    achievements?: boolean | Tenant$achievementsArgs<ExtArgs>
+    healthLogs?: boolean | Tenant$healthLogsArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TenantIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2513,6 +2861,9 @@ export namespace Prisma {
       tasks: Prisma.$TaskPayload<ExtArgs>[]
       habits: Prisma.$HabitPayload<ExtArgs>[]
       habitCompletions: Prisma.$HabitCompletionPayload<ExtArgs>[]
+      userStats: Prisma.$UserStatsPayload<ExtArgs> | null
+      achievements: Prisma.$AchievementPayload<ExtArgs>[]
+      healthLogs: Prisma.$HealthLogPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2925,6 +3276,9 @@ export namespace Prisma {
     tasks<T extends Tenant$tasksArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     habits<T extends Tenant$habitsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$habitsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HabitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     habitCompletions<T extends Tenant$habitCompletionsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$habitCompletionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HabitCompletionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    userStats<T extends Tenant$userStatsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$userStatsArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    achievements<T extends Tenant$achievementsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$achievementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AchievementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    healthLogs<T extends Tenant$healthLogsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$healthLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HealthLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3636,6 +3990,73 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: HabitCompletionScalarFieldEnum | HabitCompletionScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.userStats
+   */
+  export type Tenant$userStatsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    where?: UserStatsWhereInput
+  }
+
+  /**
+   * Tenant.achievements
+   */
+  export type Tenant$achievementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Achievement
+     */
+    select?: AchievementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Achievement
+     */
+    omit?: AchievementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AchievementInclude<ExtArgs> | null
+    where?: AchievementWhereInput
+    orderBy?: AchievementOrderByWithRelationInput | AchievementOrderByWithRelationInput[]
+    cursor?: AchievementWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AchievementScalarFieldEnum | AchievementScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.healthLogs
+   */
+  export type Tenant$healthLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HealthLog
+     */
+    select?: HealthLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HealthLog
+     */
+    omit?: HealthLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HealthLogInclude<ExtArgs> | null
+    where?: HealthLogWhereInput
+    orderBy?: HealthLogOrderByWithRelationInput | HealthLogOrderByWithRelationInput[]
+    cursor?: HealthLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HealthLogScalarFieldEnum | HealthLogScalarFieldEnum[]
   }
 
   /**
@@ -18240,6 +18661,3431 @@ export namespace Prisma {
 
 
   /**
+   * Model UserStats
+   */
+
+  export type AggregateUserStats = {
+    _count: UserStatsCountAggregateOutputType | null
+    _avg: UserStatsAvgAggregateOutputType | null
+    _sum: UserStatsSumAggregateOutputType | null
+    _min: UserStatsMinAggregateOutputType | null
+    _max: UserStatsMaxAggregateOutputType | null
+  }
+
+  export type UserStatsAvgAggregateOutputType = {
+    totalXP: number | null
+    currentLevel: number | null
+    habitsCompleted: number | null
+    longestStreak: number | null
+  }
+
+  export type UserStatsSumAggregateOutputType = {
+    totalXP: number | null
+    currentLevel: number | null
+    habitsCompleted: number | null
+    longestStreak: number | null
+  }
+
+  export type UserStatsMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    totalXP: number | null
+    currentLevel: number | null
+    habitsCompleted: number | null
+    longestStreak: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserStatsMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    totalXP: number | null
+    currentLevel: number | null
+    habitsCompleted: number | null
+    longestStreak: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserStatsCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    totalXP: number
+    currentLevel: number
+    habitsCompleted: number
+    longestStreak: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UserStatsAvgAggregateInputType = {
+    totalXP?: true
+    currentLevel?: true
+    habitsCompleted?: true
+    longestStreak?: true
+  }
+
+  export type UserStatsSumAggregateInputType = {
+    totalXP?: true
+    currentLevel?: true
+    habitsCompleted?: true
+    longestStreak?: true
+  }
+
+  export type UserStatsMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    totalXP?: true
+    currentLevel?: true
+    habitsCompleted?: true
+    longestStreak?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserStatsMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    totalXP?: true
+    currentLevel?: true
+    habitsCompleted?: true
+    longestStreak?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserStatsCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    totalXP?: true
+    currentLevel?: true
+    habitsCompleted?: true
+    longestStreak?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UserStatsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserStats to aggregate.
+     */
+    where?: UserStatsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserStats to fetch.
+     */
+    orderBy?: UserStatsOrderByWithRelationInput | UserStatsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserStatsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserStats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserStats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserStats
+    **/
+    _count?: true | UserStatsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UserStatsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserStatsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserStatsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserStatsMaxAggregateInputType
+  }
+
+  export type GetUserStatsAggregateType<T extends UserStatsAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserStats]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserStats[P]>
+      : GetScalarType<T[P], AggregateUserStats[P]>
+  }
+
+
+
+
+  export type UserStatsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserStatsWhereInput
+    orderBy?: UserStatsOrderByWithAggregationInput | UserStatsOrderByWithAggregationInput[]
+    by: UserStatsScalarFieldEnum[] | UserStatsScalarFieldEnum
+    having?: UserStatsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserStatsCountAggregateInputType | true
+    _avg?: UserStatsAvgAggregateInputType
+    _sum?: UserStatsSumAggregateInputType
+    _min?: UserStatsMinAggregateInputType
+    _max?: UserStatsMaxAggregateInputType
+  }
+
+  export type UserStatsGroupByOutputType = {
+    id: string
+    tenantId: string
+    totalXP: number
+    currentLevel: number
+    habitsCompleted: number
+    longestStreak: number
+    createdAt: Date
+    updatedAt: Date
+    _count: UserStatsCountAggregateOutputType | null
+    _avg: UserStatsAvgAggregateOutputType | null
+    _sum: UserStatsSumAggregateOutputType | null
+    _min: UserStatsMinAggregateOutputType | null
+    _max: UserStatsMaxAggregateOutputType | null
+  }
+
+  type GetUserStatsGroupByPayload<T extends UserStatsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserStatsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserStatsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserStatsGroupByOutputType[P]>
+            : GetScalarType<T[P], UserStatsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserStatsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    totalXP?: boolean
+    currentLevel?: boolean
+    habitsCompleted?: boolean
+    longestStreak?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    achievements?: boolean | UserStats$achievementsArgs<ExtArgs>
+    _count?: boolean | UserStatsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userStats"]>
+
+  export type UserStatsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    totalXP?: boolean
+    currentLevel?: boolean
+    habitsCompleted?: boolean
+    longestStreak?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userStats"]>
+
+  export type UserStatsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    totalXP?: boolean
+    currentLevel?: boolean
+    habitsCompleted?: boolean
+    longestStreak?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userStats"]>
+
+  export type UserStatsSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    totalXP?: boolean
+    currentLevel?: boolean
+    habitsCompleted?: boolean
+    longestStreak?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type UserStatsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "totalXP" | "currentLevel" | "habitsCompleted" | "longestStreak" | "createdAt" | "updatedAt", ExtArgs["result"]["userStats"]>
+  export type UserStatsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    achievements?: boolean | UserStats$achievementsArgs<ExtArgs>
+    _count?: boolean | UserStatsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserStatsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type UserStatsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $UserStatsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserStats"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+      achievements: Prisma.$AchievementPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      totalXP: number
+      currentLevel: number
+      habitsCompleted: number
+      longestStreak: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["userStats"]>
+    composites: {}
+  }
+
+  type UserStatsGetPayload<S extends boolean | null | undefined | UserStatsDefaultArgs> = $Result.GetResult<Prisma.$UserStatsPayload, S>
+
+  type UserStatsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserStatsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserStatsCountAggregateInputType | true
+    }
+
+  export interface UserStatsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserStats'], meta: { name: 'UserStats' } }
+    /**
+     * Find zero or one UserStats that matches the filter.
+     * @param {UserStatsFindUniqueArgs} args - Arguments to find a UserStats
+     * @example
+     * // Get one UserStats
+     * const userStats = await prisma.userStats.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserStatsFindUniqueArgs>(args: SelectSubset<T, UserStatsFindUniqueArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserStats that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserStatsFindUniqueOrThrowArgs} args - Arguments to find a UserStats
+     * @example
+     * // Get one UserStats
+     * const userStats = await prisma.userStats.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserStatsFindUniqueOrThrowArgs>(args: SelectSubset<T, UserStatsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserStats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserStatsFindFirstArgs} args - Arguments to find a UserStats
+     * @example
+     * // Get one UserStats
+     * const userStats = await prisma.userStats.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserStatsFindFirstArgs>(args?: SelectSubset<T, UserStatsFindFirstArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserStats that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserStatsFindFirstOrThrowArgs} args - Arguments to find a UserStats
+     * @example
+     * // Get one UserStats
+     * const userStats = await prisma.userStats.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserStatsFindFirstOrThrowArgs>(args?: SelectSubset<T, UserStatsFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserStats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserStatsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserStats
+     * const userStats = await prisma.userStats.findMany()
+     * 
+     * // Get first 10 UserStats
+     * const userStats = await prisma.userStats.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userStatsWithIdOnly = await prisma.userStats.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserStatsFindManyArgs>(args?: SelectSubset<T, UserStatsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserStats.
+     * @param {UserStatsCreateArgs} args - Arguments to create a UserStats.
+     * @example
+     * // Create one UserStats
+     * const UserStats = await prisma.userStats.create({
+     *   data: {
+     *     // ... data to create a UserStats
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserStatsCreateArgs>(args: SelectSubset<T, UserStatsCreateArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserStats.
+     * @param {UserStatsCreateManyArgs} args - Arguments to create many UserStats.
+     * @example
+     * // Create many UserStats
+     * const userStats = await prisma.userStats.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserStatsCreateManyArgs>(args?: SelectSubset<T, UserStatsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserStats and returns the data saved in the database.
+     * @param {UserStatsCreateManyAndReturnArgs} args - Arguments to create many UserStats.
+     * @example
+     * // Create many UserStats
+     * const userStats = await prisma.userStats.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserStats and only return the `id`
+     * const userStatsWithIdOnly = await prisma.userStats.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserStatsCreateManyAndReturnArgs>(args?: SelectSubset<T, UserStatsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserStats.
+     * @param {UserStatsDeleteArgs} args - Arguments to delete one UserStats.
+     * @example
+     * // Delete one UserStats
+     * const UserStats = await prisma.userStats.delete({
+     *   where: {
+     *     // ... filter to delete one UserStats
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserStatsDeleteArgs>(args: SelectSubset<T, UserStatsDeleteArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserStats.
+     * @param {UserStatsUpdateArgs} args - Arguments to update one UserStats.
+     * @example
+     * // Update one UserStats
+     * const userStats = await prisma.userStats.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserStatsUpdateArgs>(args: SelectSubset<T, UserStatsUpdateArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserStats.
+     * @param {UserStatsDeleteManyArgs} args - Arguments to filter UserStats to delete.
+     * @example
+     * // Delete a few UserStats
+     * const { count } = await prisma.userStats.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserStatsDeleteManyArgs>(args?: SelectSubset<T, UserStatsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserStats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserStatsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserStats
+     * const userStats = await prisma.userStats.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserStatsUpdateManyArgs>(args: SelectSubset<T, UserStatsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserStats and returns the data updated in the database.
+     * @param {UserStatsUpdateManyAndReturnArgs} args - Arguments to update many UserStats.
+     * @example
+     * // Update many UserStats
+     * const userStats = await prisma.userStats.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserStats and only return the `id`
+     * const userStatsWithIdOnly = await prisma.userStats.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserStatsUpdateManyAndReturnArgs>(args: SelectSubset<T, UserStatsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserStats.
+     * @param {UserStatsUpsertArgs} args - Arguments to update or create a UserStats.
+     * @example
+     * // Update or create a UserStats
+     * const userStats = await prisma.userStats.upsert({
+     *   create: {
+     *     // ... data to create a UserStats
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserStats we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserStatsUpsertArgs>(args: SelectSubset<T, UserStatsUpsertArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserStats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserStatsCountArgs} args - Arguments to filter UserStats to count.
+     * @example
+     * // Count the number of UserStats
+     * const count = await prisma.userStats.count({
+     *   where: {
+     *     // ... the filter for the UserStats we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserStatsCountArgs>(
+      args?: Subset<T, UserStatsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserStatsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserStats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserStatsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserStatsAggregateArgs>(args: Subset<T, UserStatsAggregateArgs>): Prisma.PrismaPromise<GetUserStatsAggregateType<T>>
+
+    /**
+     * Group by UserStats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserStatsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserStatsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserStatsGroupByArgs['orderBy'] }
+        : { orderBy?: UserStatsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserStatsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserStatsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserStats model
+   */
+  readonly fields: UserStatsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserStats.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserStatsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    achievements<T extends UserStats$achievementsArgs<ExtArgs> = {}>(args?: Subset<T, UserStats$achievementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AchievementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserStats model
+   */
+  interface UserStatsFieldRefs {
+    readonly id: FieldRef<"UserStats", 'String'>
+    readonly tenantId: FieldRef<"UserStats", 'String'>
+    readonly totalXP: FieldRef<"UserStats", 'Int'>
+    readonly currentLevel: FieldRef<"UserStats", 'Int'>
+    readonly habitsCompleted: FieldRef<"UserStats", 'Int'>
+    readonly longestStreak: FieldRef<"UserStats", 'Int'>
+    readonly createdAt: FieldRef<"UserStats", 'DateTime'>
+    readonly updatedAt: FieldRef<"UserStats", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserStats findUnique
+   */
+  export type UserStatsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * Filter, which UserStats to fetch.
+     */
+    where: UserStatsWhereUniqueInput
+  }
+
+  /**
+   * UserStats findUniqueOrThrow
+   */
+  export type UserStatsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * Filter, which UserStats to fetch.
+     */
+    where: UserStatsWhereUniqueInput
+  }
+
+  /**
+   * UserStats findFirst
+   */
+  export type UserStatsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * Filter, which UserStats to fetch.
+     */
+    where?: UserStatsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserStats to fetch.
+     */
+    orderBy?: UserStatsOrderByWithRelationInput | UserStatsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserStats.
+     */
+    cursor?: UserStatsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserStats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserStats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserStats.
+     */
+    distinct?: UserStatsScalarFieldEnum | UserStatsScalarFieldEnum[]
+  }
+
+  /**
+   * UserStats findFirstOrThrow
+   */
+  export type UserStatsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * Filter, which UserStats to fetch.
+     */
+    where?: UserStatsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserStats to fetch.
+     */
+    orderBy?: UserStatsOrderByWithRelationInput | UserStatsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserStats.
+     */
+    cursor?: UserStatsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserStats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserStats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserStats.
+     */
+    distinct?: UserStatsScalarFieldEnum | UserStatsScalarFieldEnum[]
+  }
+
+  /**
+   * UserStats findMany
+   */
+  export type UserStatsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * Filter, which UserStats to fetch.
+     */
+    where?: UserStatsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserStats to fetch.
+     */
+    orderBy?: UserStatsOrderByWithRelationInput | UserStatsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserStats.
+     */
+    cursor?: UserStatsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserStats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserStats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserStats.
+     */
+    distinct?: UserStatsScalarFieldEnum | UserStatsScalarFieldEnum[]
+  }
+
+  /**
+   * UserStats create
+   */
+  export type UserStatsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserStats.
+     */
+    data: XOR<UserStatsCreateInput, UserStatsUncheckedCreateInput>
+  }
+
+  /**
+   * UserStats createMany
+   */
+  export type UserStatsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserStats.
+     */
+    data: UserStatsCreateManyInput | UserStatsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserStats createManyAndReturn
+   */
+  export type UserStatsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserStats.
+     */
+    data: UserStatsCreateManyInput | UserStatsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserStats update
+   */
+  export type UserStatsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserStats.
+     */
+    data: XOR<UserStatsUpdateInput, UserStatsUncheckedUpdateInput>
+    /**
+     * Choose, which UserStats to update.
+     */
+    where: UserStatsWhereUniqueInput
+  }
+
+  /**
+   * UserStats updateMany
+   */
+  export type UserStatsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserStats.
+     */
+    data: XOR<UserStatsUpdateManyMutationInput, UserStatsUncheckedUpdateManyInput>
+    /**
+     * Filter which UserStats to update
+     */
+    where?: UserStatsWhereInput
+    /**
+     * Limit how many UserStats to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserStats updateManyAndReturn
+   */
+  export type UserStatsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * The data used to update UserStats.
+     */
+    data: XOR<UserStatsUpdateManyMutationInput, UserStatsUncheckedUpdateManyInput>
+    /**
+     * Filter which UserStats to update
+     */
+    where?: UserStatsWhereInput
+    /**
+     * Limit how many UserStats to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserStats upsert
+   */
+  export type UserStatsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserStats to update in case it exists.
+     */
+    where: UserStatsWhereUniqueInput
+    /**
+     * In case the UserStats found by the `where` argument doesn't exist, create a new UserStats with this data.
+     */
+    create: XOR<UserStatsCreateInput, UserStatsUncheckedCreateInput>
+    /**
+     * In case the UserStats was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserStatsUpdateInput, UserStatsUncheckedUpdateInput>
+  }
+
+  /**
+   * UserStats delete
+   */
+  export type UserStatsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * Filter which UserStats to delete.
+     */
+    where: UserStatsWhereUniqueInput
+  }
+
+  /**
+   * UserStats deleteMany
+   */
+  export type UserStatsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserStats to delete
+     */
+    where?: UserStatsWhereInput
+    /**
+     * Limit how many UserStats to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserStats.achievements
+   */
+  export type UserStats$achievementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Achievement
+     */
+    select?: AchievementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Achievement
+     */
+    omit?: AchievementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AchievementInclude<ExtArgs> | null
+    where?: AchievementWhereInput
+    orderBy?: AchievementOrderByWithRelationInput | AchievementOrderByWithRelationInput[]
+    cursor?: AchievementWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AchievementScalarFieldEnum | AchievementScalarFieldEnum[]
+  }
+
+  /**
+   * UserStats without action
+   */
+  export type UserStatsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Achievement
+   */
+
+  export type AggregateAchievement = {
+    _count: AchievementCountAggregateOutputType | null
+    _min: AchievementMinAggregateOutputType | null
+    _max: AchievementMaxAggregateOutputType | null
+  }
+
+  export type AchievementMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    userStatsId: string | null
+    type: string | null
+    name: string | null
+    description: string | null
+    icon: string | null
+    unlockedAt: Date | null
+    habitId: string | null
+  }
+
+  export type AchievementMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    userStatsId: string | null
+    type: string | null
+    name: string | null
+    description: string | null
+    icon: string | null
+    unlockedAt: Date | null
+    habitId: string | null
+  }
+
+  export type AchievementCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    userStatsId: number
+    type: number
+    name: number
+    description: number
+    icon: number
+    unlockedAt: number
+    habitId: number
+    _all: number
+  }
+
+
+  export type AchievementMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    userStatsId?: true
+    type?: true
+    name?: true
+    description?: true
+    icon?: true
+    unlockedAt?: true
+    habitId?: true
+  }
+
+  export type AchievementMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    userStatsId?: true
+    type?: true
+    name?: true
+    description?: true
+    icon?: true
+    unlockedAt?: true
+    habitId?: true
+  }
+
+  export type AchievementCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    userStatsId?: true
+    type?: true
+    name?: true
+    description?: true
+    icon?: true
+    unlockedAt?: true
+    habitId?: true
+    _all?: true
+  }
+
+  export type AchievementAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Achievement to aggregate.
+     */
+    where?: AchievementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Achievements to fetch.
+     */
+    orderBy?: AchievementOrderByWithRelationInput | AchievementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AchievementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Achievements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Achievements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Achievements
+    **/
+    _count?: true | AchievementCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AchievementMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AchievementMaxAggregateInputType
+  }
+
+  export type GetAchievementAggregateType<T extends AchievementAggregateArgs> = {
+        [P in keyof T & keyof AggregateAchievement]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAchievement[P]>
+      : GetScalarType<T[P], AggregateAchievement[P]>
+  }
+
+
+
+
+  export type AchievementGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AchievementWhereInput
+    orderBy?: AchievementOrderByWithAggregationInput | AchievementOrderByWithAggregationInput[]
+    by: AchievementScalarFieldEnum[] | AchievementScalarFieldEnum
+    having?: AchievementScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AchievementCountAggregateInputType | true
+    _min?: AchievementMinAggregateInputType
+    _max?: AchievementMaxAggregateInputType
+  }
+
+  export type AchievementGroupByOutputType = {
+    id: string
+    tenantId: string
+    userStatsId: string
+    type: string
+    name: string
+    description: string
+    icon: string | null
+    unlockedAt: Date
+    habitId: string | null
+    _count: AchievementCountAggregateOutputType | null
+    _min: AchievementMinAggregateOutputType | null
+    _max: AchievementMaxAggregateOutputType | null
+  }
+
+  type GetAchievementGroupByPayload<T extends AchievementGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AchievementGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AchievementGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AchievementGroupByOutputType[P]>
+            : GetScalarType<T[P], AchievementGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AchievementSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    userStatsId?: boolean
+    type?: boolean
+    name?: boolean
+    description?: boolean
+    icon?: boolean
+    unlockedAt?: boolean
+    habitId?: boolean
+    userStats?: boolean | UserStatsDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["achievement"]>
+
+  export type AchievementSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    userStatsId?: boolean
+    type?: boolean
+    name?: boolean
+    description?: boolean
+    icon?: boolean
+    unlockedAt?: boolean
+    habitId?: boolean
+    userStats?: boolean | UserStatsDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["achievement"]>
+
+  export type AchievementSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    userStatsId?: boolean
+    type?: boolean
+    name?: boolean
+    description?: boolean
+    icon?: boolean
+    unlockedAt?: boolean
+    habitId?: boolean
+    userStats?: boolean | UserStatsDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["achievement"]>
+
+  export type AchievementSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    userStatsId?: boolean
+    type?: boolean
+    name?: boolean
+    description?: boolean
+    icon?: boolean
+    unlockedAt?: boolean
+    habitId?: boolean
+  }
+
+  export type AchievementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "userStatsId" | "type" | "name" | "description" | "icon" | "unlockedAt" | "habitId", ExtArgs["result"]["achievement"]>
+  export type AchievementInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    userStats?: boolean | UserStatsDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type AchievementIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    userStats?: boolean | UserStatsDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type AchievementIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    userStats?: boolean | UserStatsDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $AchievementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Achievement"
+    objects: {
+      userStats: Prisma.$UserStatsPayload<ExtArgs>
+      tenant: Prisma.$TenantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      userStatsId: string
+      type: string
+      name: string
+      description: string
+      icon: string | null
+      unlockedAt: Date
+      habitId: string | null
+    }, ExtArgs["result"]["achievement"]>
+    composites: {}
+  }
+
+  type AchievementGetPayload<S extends boolean | null | undefined | AchievementDefaultArgs> = $Result.GetResult<Prisma.$AchievementPayload, S>
+
+  type AchievementCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AchievementFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AchievementCountAggregateInputType | true
+    }
+
+  export interface AchievementDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Achievement'], meta: { name: 'Achievement' } }
+    /**
+     * Find zero or one Achievement that matches the filter.
+     * @param {AchievementFindUniqueArgs} args - Arguments to find a Achievement
+     * @example
+     * // Get one Achievement
+     * const achievement = await prisma.achievement.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AchievementFindUniqueArgs>(args: SelectSubset<T, AchievementFindUniqueArgs<ExtArgs>>): Prisma__AchievementClient<$Result.GetResult<Prisma.$AchievementPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Achievement that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AchievementFindUniqueOrThrowArgs} args - Arguments to find a Achievement
+     * @example
+     * // Get one Achievement
+     * const achievement = await prisma.achievement.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AchievementFindUniqueOrThrowArgs>(args: SelectSubset<T, AchievementFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AchievementClient<$Result.GetResult<Prisma.$AchievementPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Achievement that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AchievementFindFirstArgs} args - Arguments to find a Achievement
+     * @example
+     * // Get one Achievement
+     * const achievement = await prisma.achievement.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AchievementFindFirstArgs>(args?: SelectSubset<T, AchievementFindFirstArgs<ExtArgs>>): Prisma__AchievementClient<$Result.GetResult<Prisma.$AchievementPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Achievement that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AchievementFindFirstOrThrowArgs} args - Arguments to find a Achievement
+     * @example
+     * // Get one Achievement
+     * const achievement = await prisma.achievement.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AchievementFindFirstOrThrowArgs>(args?: SelectSubset<T, AchievementFindFirstOrThrowArgs<ExtArgs>>): Prisma__AchievementClient<$Result.GetResult<Prisma.$AchievementPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Achievements that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AchievementFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Achievements
+     * const achievements = await prisma.achievement.findMany()
+     * 
+     * // Get first 10 Achievements
+     * const achievements = await prisma.achievement.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const achievementWithIdOnly = await prisma.achievement.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AchievementFindManyArgs>(args?: SelectSubset<T, AchievementFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AchievementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Achievement.
+     * @param {AchievementCreateArgs} args - Arguments to create a Achievement.
+     * @example
+     * // Create one Achievement
+     * const Achievement = await prisma.achievement.create({
+     *   data: {
+     *     // ... data to create a Achievement
+     *   }
+     * })
+     * 
+     */
+    create<T extends AchievementCreateArgs>(args: SelectSubset<T, AchievementCreateArgs<ExtArgs>>): Prisma__AchievementClient<$Result.GetResult<Prisma.$AchievementPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Achievements.
+     * @param {AchievementCreateManyArgs} args - Arguments to create many Achievements.
+     * @example
+     * // Create many Achievements
+     * const achievement = await prisma.achievement.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AchievementCreateManyArgs>(args?: SelectSubset<T, AchievementCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Achievements and returns the data saved in the database.
+     * @param {AchievementCreateManyAndReturnArgs} args - Arguments to create many Achievements.
+     * @example
+     * // Create many Achievements
+     * const achievement = await prisma.achievement.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Achievements and only return the `id`
+     * const achievementWithIdOnly = await prisma.achievement.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AchievementCreateManyAndReturnArgs>(args?: SelectSubset<T, AchievementCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AchievementPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Achievement.
+     * @param {AchievementDeleteArgs} args - Arguments to delete one Achievement.
+     * @example
+     * // Delete one Achievement
+     * const Achievement = await prisma.achievement.delete({
+     *   where: {
+     *     // ... filter to delete one Achievement
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AchievementDeleteArgs>(args: SelectSubset<T, AchievementDeleteArgs<ExtArgs>>): Prisma__AchievementClient<$Result.GetResult<Prisma.$AchievementPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Achievement.
+     * @param {AchievementUpdateArgs} args - Arguments to update one Achievement.
+     * @example
+     * // Update one Achievement
+     * const achievement = await prisma.achievement.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AchievementUpdateArgs>(args: SelectSubset<T, AchievementUpdateArgs<ExtArgs>>): Prisma__AchievementClient<$Result.GetResult<Prisma.$AchievementPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Achievements.
+     * @param {AchievementDeleteManyArgs} args - Arguments to filter Achievements to delete.
+     * @example
+     * // Delete a few Achievements
+     * const { count } = await prisma.achievement.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AchievementDeleteManyArgs>(args?: SelectSubset<T, AchievementDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Achievements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AchievementUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Achievements
+     * const achievement = await prisma.achievement.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AchievementUpdateManyArgs>(args: SelectSubset<T, AchievementUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Achievements and returns the data updated in the database.
+     * @param {AchievementUpdateManyAndReturnArgs} args - Arguments to update many Achievements.
+     * @example
+     * // Update many Achievements
+     * const achievement = await prisma.achievement.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Achievements and only return the `id`
+     * const achievementWithIdOnly = await prisma.achievement.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AchievementUpdateManyAndReturnArgs>(args: SelectSubset<T, AchievementUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AchievementPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Achievement.
+     * @param {AchievementUpsertArgs} args - Arguments to update or create a Achievement.
+     * @example
+     * // Update or create a Achievement
+     * const achievement = await prisma.achievement.upsert({
+     *   create: {
+     *     // ... data to create a Achievement
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Achievement we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AchievementUpsertArgs>(args: SelectSubset<T, AchievementUpsertArgs<ExtArgs>>): Prisma__AchievementClient<$Result.GetResult<Prisma.$AchievementPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Achievements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AchievementCountArgs} args - Arguments to filter Achievements to count.
+     * @example
+     * // Count the number of Achievements
+     * const count = await prisma.achievement.count({
+     *   where: {
+     *     // ... the filter for the Achievements we want to count
+     *   }
+     * })
+    **/
+    count<T extends AchievementCountArgs>(
+      args?: Subset<T, AchievementCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AchievementCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Achievement.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AchievementAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AchievementAggregateArgs>(args: Subset<T, AchievementAggregateArgs>): Prisma.PrismaPromise<GetAchievementAggregateType<T>>
+
+    /**
+     * Group by Achievement.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AchievementGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AchievementGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AchievementGroupByArgs['orderBy'] }
+        : { orderBy?: AchievementGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AchievementGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAchievementGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Achievement model
+   */
+  readonly fields: AchievementFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Achievement.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AchievementClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    userStats<T extends UserStatsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserStatsDefaultArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Achievement model
+   */
+  interface AchievementFieldRefs {
+    readonly id: FieldRef<"Achievement", 'String'>
+    readonly tenantId: FieldRef<"Achievement", 'String'>
+    readonly userStatsId: FieldRef<"Achievement", 'String'>
+    readonly type: FieldRef<"Achievement", 'String'>
+    readonly name: FieldRef<"Achievement", 'String'>
+    readonly description: FieldRef<"Achievement", 'String'>
+    readonly icon: FieldRef<"Achievement", 'String'>
+    readonly unlockedAt: FieldRef<"Achievement", 'DateTime'>
+    readonly habitId: FieldRef<"Achievement", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Achievement findUnique
+   */
+  export type AchievementFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Achievement
+     */
+    select?: AchievementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Achievement
+     */
+    omit?: AchievementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AchievementInclude<ExtArgs> | null
+    /**
+     * Filter, which Achievement to fetch.
+     */
+    where: AchievementWhereUniqueInput
+  }
+
+  /**
+   * Achievement findUniqueOrThrow
+   */
+  export type AchievementFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Achievement
+     */
+    select?: AchievementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Achievement
+     */
+    omit?: AchievementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AchievementInclude<ExtArgs> | null
+    /**
+     * Filter, which Achievement to fetch.
+     */
+    where: AchievementWhereUniqueInput
+  }
+
+  /**
+   * Achievement findFirst
+   */
+  export type AchievementFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Achievement
+     */
+    select?: AchievementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Achievement
+     */
+    omit?: AchievementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AchievementInclude<ExtArgs> | null
+    /**
+     * Filter, which Achievement to fetch.
+     */
+    where?: AchievementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Achievements to fetch.
+     */
+    orderBy?: AchievementOrderByWithRelationInput | AchievementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Achievements.
+     */
+    cursor?: AchievementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Achievements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Achievements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Achievements.
+     */
+    distinct?: AchievementScalarFieldEnum | AchievementScalarFieldEnum[]
+  }
+
+  /**
+   * Achievement findFirstOrThrow
+   */
+  export type AchievementFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Achievement
+     */
+    select?: AchievementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Achievement
+     */
+    omit?: AchievementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AchievementInclude<ExtArgs> | null
+    /**
+     * Filter, which Achievement to fetch.
+     */
+    where?: AchievementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Achievements to fetch.
+     */
+    orderBy?: AchievementOrderByWithRelationInput | AchievementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Achievements.
+     */
+    cursor?: AchievementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Achievements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Achievements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Achievements.
+     */
+    distinct?: AchievementScalarFieldEnum | AchievementScalarFieldEnum[]
+  }
+
+  /**
+   * Achievement findMany
+   */
+  export type AchievementFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Achievement
+     */
+    select?: AchievementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Achievement
+     */
+    omit?: AchievementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AchievementInclude<ExtArgs> | null
+    /**
+     * Filter, which Achievements to fetch.
+     */
+    where?: AchievementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Achievements to fetch.
+     */
+    orderBy?: AchievementOrderByWithRelationInput | AchievementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Achievements.
+     */
+    cursor?: AchievementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Achievements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Achievements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Achievements.
+     */
+    distinct?: AchievementScalarFieldEnum | AchievementScalarFieldEnum[]
+  }
+
+  /**
+   * Achievement create
+   */
+  export type AchievementCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Achievement
+     */
+    select?: AchievementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Achievement
+     */
+    omit?: AchievementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AchievementInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Achievement.
+     */
+    data: XOR<AchievementCreateInput, AchievementUncheckedCreateInput>
+  }
+
+  /**
+   * Achievement createMany
+   */
+  export type AchievementCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Achievements.
+     */
+    data: AchievementCreateManyInput | AchievementCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Achievement createManyAndReturn
+   */
+  export type AchievementCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Achievement
+     */
+    select?: AchievementSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Achievement
+     */
+    omit?: AchievementOmit<ExtArgs> | null
+    /**
+     * The data used to create many Achievements.
+     */
+    data: AchievementCreateManyInput | AchievementCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AchievementIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Achievement update
+   */
+  export type AchievementUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Achievement
+     */
+    select?: AchievementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Achievement
+     */
+    omit?: AchievementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AchievementInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Achievement.
+     */
+    data: XOR<AchievementUpdateInput, AchievementUncheckedUpdateInput>
+    /**
+     * Choose, which Achievement to update.
+     */
+    where: AchievementWhereUniqueInput
+  }
+
+  /**
+   * Achievement updateMany
+   */
+  export type AchievementUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Achievements.
+     */
+    data: XOR<AchievementUpdateManyMutationInput, AchievementUncheckedUpdateManyInput>
+    /**
+     * Filter which Achievements to update
+     */
+    where?: AchievementWhereInput
+    /**
+     * Limit how many Achievements to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Achievement updateManyAndReturn
+   */
+  export type AchievementUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Achievement
+     */
+    select?: AchievementSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Achievement
+     */
+    omit?: AchievementOmit<ExtArgs> | null
+    /**
+     * The data used to update Achievements.
+     */
+    data: XOR<AchievementUpdateManyMutationInput, AchievementUncheckedUpdateManyInput>
+    /**
+     * Filter which Achievements to update
+     */
+    where?: AchievementWhereInput
+    /**
+     * Limit how many Achievements to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AchievementIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Achievement upsert
+   */
+  export type AchievementUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Achievement
+     */
+    select?: AchievementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Achievement
+     */
+    omit?: AchievementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AchievementInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Achievement to update in case it exists.
+     */
+    where: AchievementWhereUniqueInput
+    /**
+     * In case the Achievement found by the `where` argument doesn't exist, create a new Achievement with this data.
+     */
+    create: XOR<AchievementCreateInput, AchievementUncheckedCreateInput>
+    /**
+     * In case the Achievement was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AchievementUpdateInput, AchievementUncheckedUpdateInput>
+  }
+
+  /**
+   * Achievement delete
+   */
+  export type AchievementDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Achievement
+     */
+    select?: AchievementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Achievement
+     */
+    omit?: AchievementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AchievementInclude<ExtArgs> | null
+    /**
+     * Filter which Achievement to delete.
+     */
+    where: AchievementWhereUniqueInput
+  }
+
+  /**
+   * Achievement deleteMany
+   */
+  export type AchievementDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Achievements to delete
+     */
+    where?: AchievementWhereInput
+    /**
+     * Limit how many Achievements to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Achievement without action
+   */
+  export type AchievementDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Achievement
+     */
+    select?: AchievementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Achievement
+     */
+    omit?: AchievementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AchievementInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model HealthLog
+   */
+
+  export type AggregateHealthLog = {
+    _count: HealthLogCountAggregateOutputType | null
+    _min: HealthLogMinAggregateOutputType | null
+    _max: HealthLogMaxAggregateOutputType | null
+  }
+
+  export type HealthLogMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    type: $Enums.HealthLogType | null
+    loggedAt: Date | null
+    notes: string | null
+    source: string | null
+    deletedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HealthLogMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    type: $Enums.HealthLogType | null
+    loggedAt: Date | null
+    notes: string | null
+    source: string | null
+    deletedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HealthLogCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    type: number
+    loggedAt: number
+    data: number
+    notes: number
+    source: number
+    deletedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type HealthLogMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    type?: true
+    loggedAt?: true
+    notes?: true
+    source?: true
+    deletedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HealthLogMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    type?: true
+    loggedAt?: true
+    notes?: true
+    source?: true
+    deletedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HealthLogCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    type?: true
+    loggedAt?: true
+    data?: true
+    notes?: true
+    source?: true
+    deletedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type HealthLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HealthLog to aggregate.
+     */
+    where?: HealthLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HealthLogs to fetch.
+     */
+    orderBy?: HealthLogOrderByWithRelationInput | HealthLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HealthLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HealthLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HealthLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned HealthLogs
+    **/
+    _count?: true | HealthLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HealthLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HealthLogMaxAggregateInputType
+  }
+
+  export type GetHealthLogAggregateType<T extends HealthLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateHealthLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHealthLog[P]>
+      : GetScalarType<T[P], AggregateHealthLog[P]>
+  }
+
+
+
+
+  export type HealthLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HealthLogWhereInput
+    orderBy?: HealthLogOrderByWithAggregationInput | HealthLogOrderByWithAggregationInput[]
+    by: HealthLogScalarFieldEnum[] | HealthLogScalarFieldEnum
+    having?: HealthLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HealthLogCountAggregateInputType | true
+    _min?: HealthLogMinAggregateInputType
+    _max?: HealthLogMaxAggregateInputType
+  }
+
+  export type HealthLogGroupByOutputType = {
+    id: string
+    tenantId: string
+    type: $Enums.HealthLogType
+    loggedAt: Date
+    data: JsonValue
+    notes: string | null
+    source: string
+    deletedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: HealthLogCountAggregateOutputType | null
+    _min: HealthLogMinAggregateOutputType | null
+    _max: HealthLogMaxAggregateOutputType | null
+  }
+
+  type GetHealthLogGroupByPayload<T extends HealthLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HealthLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HealthLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HealthLogGroupByOutputType[P]>
+            : GetScalarType<T[P], HealthLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HealthLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    type?: boolean
+    loggedAt?: boolean
+    data?: boolean
+    notes?: boolean
+    source?: boolean
+    deletedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["healthLog"]>
+
+  export type HealthLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    type?: boolean
+    loggedAt?: boolean
+    data?: boolean
+    notes?: boolean
+    source?: boolean
+    deletedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["healthLog"]>
+
+  export type HealthLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    type?: boolean
+    loggedAt?: boolean
+    data?: boolean
+    notes?: boolean
+    source?: boolean
+    deletedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["healthLog"]>
+
+  export type HealthLogSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    type?: boolean
+    loggedAt?: boolean
+    data?: boolean
+    notes?: boolean
+    source?: boolean
+    deletedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type HealthLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "type" | "loggedAt" | "data" | "notes" | "source" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["healthLog"]>
+  export type HealthLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type HealthLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type HealthLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $HealthLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "HealthLog"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      type: $Enums.HealthLogType
+      loggedAt: Date
+      data: Prisma.JsonValue
+      notes: string | null
+      source: string
+      deletedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["healthLog"]>
+    composites: {}
+  }
+
+  type HealthLogGetPayload<S extends boolean | null | undefined | HealthLogDefaultArgs> = $Result.GetResult<Prisma.$HealthLogPayload, S>
+
+  type HealthLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HealthLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HealthLogCountAggregateInputType | true
+    }
+
+  export interface HealthLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['HealthLog'], meta: { name: 'HealthLog' } }
+    /**
+     * Find zero or one HealthLog that matches the filter.
+     * @param {HealthLogFindUniqueArgs} args - Arguments to find a HealthLog
+     * @example
+     * // Get one HealthLog
+     * const healthLog = await prisma.healthLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HealthLogFindUniqueArgs>(args: SelectSubset<T, HealthLogFindUniqueArgs<ExtArgs>>): Prisma__HealthLogClient<$Result.GetResult<Prisma.$HealthLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one HealthLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {HealthLogFindUniqueOrThrowArgs} args - Arguments to find a HealthLog
+     * @example
+     * // Get one HealthLog
+     * const healthLog = await prisma.healthLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HealthLogFindUniqueOrThrowArgs>(args: SelectSubset<T, HealthLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HealthLogClient<$Result.GetResult<Prisma.$HealthLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HealthLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HealthLogFindFirstArgs} args - Arguments to find a HealthLog
+     * @example
+     * // Get one HealthLog
+     * const healthLog = await prisma.healthLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HealthLogFindFirstArgs>(args?: SelectSubset<T, HealthLogFindFirstArgs<ExtArgs>>): Prisma__HealthLogClient<$Result.GetResult<Prisma.$HealthLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HealthLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HealthLogFindFirstOrThrowArgs} args - Arguments to find a HealthLog
+     * @example
+     * // Get one HealthLog
+     * const healthLog = await prisma.healthLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HealthLogFindFirstOrThrowArgs>(args?: SelectSubset<T, HealthLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__HealthLogClient<$Result.GetResult<Prisma.$HealthLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more HealthLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HealthLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all HealthLogs
+     * const healthLogs = await prisma.healthLog.findMany()
+     * 
+     * // Get first 10 HealthLogs
+     * const healthLogs = await prisma.healthLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const healthLogWithIdOnly = await prisma.healthLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HealthLogFindManyArgs>(args?: SelectSubset<T, HealthLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HealthLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a HealthLog.
+     * @param {HealthLogCreateArgs} args - Arguments to create a HealthLog.
+     * @example
+     * // Create one HealthLog
+     * const HealthLog = await prisma.healthLog.create({
+     *   data: {
+     *     // ... data to create a HealthLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends HealthLogCreateArgs>(args: SelectSubset<T, HealthLogCreateArgs<ExtArgs>>): Prisma__HealthLogClient<$Result.GetResult<Prisma.$HealthLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many HealthLogs.
+     * @param {HealthLogCreateManyArgs} args - Arguments to create many HealthLogs.
+     * @example
+     * // Create many HealthLogs
+     * const healthLog = await prisma.healthLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HealthLogCreateManyArgs>(args?: SelectSubset<T, HealthLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many HealthLogs and returns the data saved in the database.
+     * @param {HealthLogCreateManyAndReturnArgs} args - Arguments to create many HealthLogs.
+     * @example
+     * // Create many HealthLogs
+     * const healthLog = await prisma.healthLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many HealthLogs and only return the `id`
+     * const healthLogWithIdOnly = await prisma.healthLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends HealthLogCreateManyAndReturnArgs>(args?: SelectSubset<T, HealthLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HealthLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a HealthLog.
+     * @param {HealthLogDeleteArgs} args - Arguments to delete one HealthLog.
+     * @example
+     * // Delete one HealthLog
+     * const HealthLog = await prisma.healthLog.delete({
+     *   where: {
+     *     // ... filter to delete one HealthLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HealthLogDeleteArgs>(args: SelectSubset<T, HealthLogDeleteArgs<ExtArgs>>): Prisma__HealthLogClient<$Result.GetResult<Prisma.$HealthLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one HealthLog.
+     * @param {HealthLogUpdateArgs} args - Arguments to update one HealthLog.
+     * @example
+     * // Update one HealthLog
+     * const healthLog = await prisma.healthLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HealthLogUpdateArgs>(args: SelectSubset<T, HealthLogUpdateArgs<ExtArgs>>): Prisma__HealthLogClient<$Result.GetResult<Prisma.$HealthLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more HealthLogs.
+     * @param {HealthLogDeleteManyArgs} args - Arguments to filter HealthLogs to delete.
+     * @example
+     * // Delete a few HealthLogs
+     * const { count } = await prisma.healthLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HealthLogDeleteManyArgs>(args?: SelectSubset<T, HealthLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HealthLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HealthLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many HealthLogs
+     * const healthLog = await prisma.healthLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HealthLogUpdateManyArgs>(args: SelectSubset<T, HealthLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HealthLogs and returns the data updated in the database.
+     * @param {HealthLogUpdateManyAndReturnArgs} args - Arguments to update many HealthLogs.
+     * @example
+     * // Update many HealthLogs
+     * const healthLog = await prisma.healthLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more HealthLogs and only return the `id`
+     * const healthLogWithIdOnly = await prisma.healthLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends HealthLogUpdateManyAndReturnArgs>(args: SelectSubset<T, HealthLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HealthLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one HealthLog.
+     * @param {HealthLogUpsertArgs} args - Arguments to update or create a HealthLog.
+     * @example
+     * // Update or create a HealthLog
+     * const healthLog = await prisma.healthLog.upsert({
+     *   create: {
+     *     // ... data to create a HealthLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the HealthLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HealthLogUpsertArgs>(args: SelectSubset<T, HealthLogUpsertArgs<ExtArgs>>): Prisma__HealthLogClient<$Result.GetResult<Prisma.$HealthLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of HealthLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HealthLogCountArgs} args - Arguments to filter HealthLogs to count.
+     * @example
+     * // Count the number of HealthLogs
+     * const count = await prisma.healthLog.count({
+     *   where: {
+     *     // ... the filter for the HealthLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends HealthLogCountArgs>(
+      args?: Subset<T, HealthLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HealthLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a HealthLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HealthLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HealthLogAggregateArgs>(args: Subset<T, HealthLogAggregateArgs>): Prisma.PrismaPromise<GetHealthLogAggregateType<T>>
+
+    /**
+     * Group by HealthLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HealthLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HealthLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HealthLogGroupByArgs['orderBy'] }
+        : { orderBy?: HealthLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HealthLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHealthLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the HealthLog model
+   */
+  readonly fields: HealthLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for HealthLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HealthLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the HealthLog model
+   */
+  interface HealthLogFieldRefs {
+    readonly id: FieldRef<"HealthLog", 'String'>
+    readonly tenantId: FieldRef<"HealthLog", 'String'>
+    readonly type: FieldRef<"HealthLog", 'HealthLogType'>
+    readonly loggedAt: FieldRef<"HealthLog", 'DateTime'>
+    readonly data: FieldRef<"HealthLog", 'Json'>
+    readonly notes: FieldRef<"HealthLog", 'String'>
+    readonly source: FieldRef<"HealthLog", 'String'>
+    readonly deletedAt: FieldRef<"HealthLog", 'DateTime'>
+    readonly createdAt: FieldRef<"HealthLog", 'DateTime'>
+    readonly updatedAt: FieldRef<"HealthLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * HealthLog findUnique
+   */
+  export type HealthLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HealthLog
+     */
+    select?: HealthLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HealthLog
+     */
+    omit?: HealthLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HealthLogInclude<ExtArgs> | null
+    /**
+     * Filter, which HealthLog to fetch.
+     */
+    where: HealthLogWhereUniqueInput
+  }
+
+  /**
+   * HealthLog findUniqueOrThrow
+   */
+  export type HealthLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HealthLog
+     */
+    select?: HealthLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HealthLog
+     */
+    omit?: HealthLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HealthLogInclude<ExtArgs> | null
+    /**
+     * Filter, which HealthLog to fetch.
+     */
+    where: HealthLogWhereUniqueInput
+  }
+
+  /**
+   * HealthLog findFirst
+   */
+  export type HealthLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HealthLog
+     */
+    select?: HealthLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HealthLog
+     */
+    omit?: HealthLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HealthLogInclude<ExtArgs> | null
+    /**
+     * Filter, which HealthLog to fetch.
+     */
+    where?: HealthLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HealthLogs to fetch.
+     */
+    orderBy?: HealthLogOrderByWithRelationInput | HealthLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HealthLogs.
+     */
+    cursor?: HealthLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HealthLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HealthLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HealthLogs.
+     */
+    distinct?: HealthLogScalarFieldEnum | HealthLogScalarFieldEnum[]
+  }
+
+  /**
+   * HealthLog findFirstOrThrow
+   */
+  export type HealthLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HealthLog
+     */
+    select?: HealthLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HealthLog
+     */
+    omit?: HealthLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HealthLogInclude<ExtArgs> | null
+    /**
+     * Filter, which HealthLog to fetch.
+     */
+    where?: HealthLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HealthLogs to fetch.
+     */
+    orderBy?: HealthLogOrderByWithRelationInput | HealthLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HealthLogs.
+     */
+    cursor?: HealthLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HealthLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HealthLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HealthLogs.
+     */
+    distinct?: HealthLogScalarFieldEnum | HealthLogScalarFieldEnum[]
+  }
+
+  /**
+   * HealthLog findMany
+   */
+  export type HealthLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HealthLog
+     */
+    select?: HealthLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HealthLog
+     */
+    omit?: HealthLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HealthLogInclude<ExtArgs> | null
+    /**
+     * Filter, which HealthLogs to fetch.
+     */
+    where?: HealthLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HealthLogs to fetch.
+     */
+    orderBy?: HealthLogOrderByWithRelationInput | HealthLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing HealthLogs.
+     */
+    cursor?: HealthLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HealthLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HealthLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HealthLogs.
+     */
+    distinct?: HealthLogScalarFieldEnum | HealthLogScalarFieldEnum[]
+  }
+
+  /**
+   * HealthLog create
+   */
+  export type HealthLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HealthLog
+     */
+    select?: HealthLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HealthLog
+     */
+    omit?: HealthLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HealthLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a HealthLog.
+     */
+    data: XOR<HealthLogCreateInput, HealthLogUncheckedCreateInput>
+  }
+
+  /**
+   * HealthLog createMany
+   */
+  export type HealthLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many HealthLogs.
+     */
+    data: HealthLogCreateManyInput | HealthLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * HealthLog createManyAndReturn
+   */
+  export type HealthLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HealthLog
+     */
+    select?: HealthLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HealthLog
+     */
+    omit?: HealthLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many HealthLogs.
+     */
+    data: HealthLogCreateManyInput | HealthLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HealthLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * HealthLog update
+   */
+  export type HealthLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HealthLog
+     */
+    select?: HealthLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HealthLog
+     */
+    omit?: HealthLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HealthLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a HealthLog.
+     */
+    data: XOR<HealthLogUpdateInput, HealthLogUncheckedUpdateInput>
+    /**
+     * Choose, which HealthLog to update.
+     */
+    where: HealthLogWhereUniqueInput
+  }
+
+  /**
+   * HealthLog updateMany
+   */
+  export type HealthLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update HealthLogs.
+     */
+    data: XOR<HealthLogUpdateManyMutationInput, HealthLogUncheckedUpdateManyInput>
+    /**
+     * Filter which HealthLogs to update
+     */
+    where?: HealthLogWhereInput
+    /**
+     * Limit how many HealthLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * HealthLog updateManyAndReturn
+   */
+  export type HealthLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HealthLog
+     */
+    select?: HealthLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HealthLog
+     */
+    omit?: HealthLogOmit<ExtArgs> | null
+    /**
+     * The data used to update HealthLogs.
+     */
+    data: XOR<HealthLogUpdateManyMutationInput, HealthLogUncheckedUpdateManyInput>
+    /**
+     * Filter which HealthLogs to update
+     */
+    where?: HealthLogWhereInput
+    /**
+     * Limit how many HealthLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HealthLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * HealthLog upsert
+   */
+  export type HealthLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HealthLog
+     */
+    select?: HealthLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HealthLog
+     */
+    omit?: HealthLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HealthLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the HealthLog to update in case it exists.
+     */
+    where: HealthLogWhereUniqueInput
+    /**
+     * In case the HealthLog found by the `where` argument doesn't exist, create a new HealthLog with this data.
+     */
+    create: XOR<HealthLogCreateInput, HealthLogUncheckedCreateInput>
+    /**
+     * In case the HealthLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HealthLogUpdateInput, HealthLogUncheckedUpdateInput>
+  }
+
+  /**
+   * HealthLog delete
+   */
+  export type HealthLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HealthLog
+     */
+    select?: HealthLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HealthLog
+     */
+    omit?: HealthLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HealthLogInclude<ExtArgs> | null
+    /**
+     * Filter which HealthLog to delete.
+     */
+    where: HealthLogWhereUniqueInput
+  }
+
+  /**
+   * HealthLog deleteMany
+   */
+  export type HealthLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HealthLogs to delete
+     */
+    where?: HealthLogWhereInput
+    /**
+     * Limit how many HealthLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * HealthLog without action
+   */
+  export type HealthLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HealthLog
+     */
+    select?: HealthLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HealthLog
+     */
+    omit?: HealthLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HealthLogInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -18474,6 +22320,51 @@ export namespace Prisma {
   export type HabitCompletionScalarFieldEnum = (typeof HabitCompletionScalarFieldEnum)[keyof typeof HabitCompletionScalarFieldEnum]
 
 
+  export const UserStatsScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    totalXP: 'totalXP',
+    currentLevel: 'currentLevel',
+    habitsCompleted: 'habitsCompleted',
+    longestStreak: 'longestStreak',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UserStatsScalarFieldEnum = (typeof UserStatsScalarFieldEnum)[keyof typeof UserStatsScalarFieldEnum]
+
+
+  export const AchievementScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    userStatsId: 'userStatsId',
+    type: 'type',
+    name: 'name',
+    description: 'description',
+    icon: 'icon',
+    unlockedAt: 'unlockedAt',
+    habitId: 'habitId'
+  };
+
+  export type AchievementScalarFieldEnum = (typeof AchievementScalarFieldEnum)[keyof typeof AchievementScalarFieldEnum]
+
+
+  export const HealthLogScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    type: 'type',
+    loggedAt: 'loggedAt',
+    data: 'data',
+    notes: 'notes',
+    source: 'source',
+    deletedAt: 'deletedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type HealthLogScalarFieldEnum = (typeof HealthLogScalarFieldEnum)[keyof typeof HealthLogScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -18674,6 +22565,38 @@ export namespace Prisma {
   export type HabitCompletionOrderByRelevanceFieldEnum = (typeof HabitCompletionOrderByRelevanceFieldEnum)[keyof typeof HabitCompletionOrderByRelevanceFieldEnum]
 
 
+  export const UserStatsOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId'
+  };
+
+  export type UserStatsOrderByRelevanceFieldEnum = (typeof UserStatsOrderByRelevanceFieldEnum)[keyof typeof UserStatsOrderByRelevanceFieldEnum]
+
+
+  export const AchievementOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    userStatsId: 'userStatsId',
+    type: 'type',
+    name: 'name',
+    description: 'description',
+    icon: 'icon',
+    habitId: 'habitId'
+  };
+
+  export type AchievementOrderByRelevanceFieldEnum = (typeof AchievementOrderByRelevanceFieldEnum)[keyof typeof AchievementOrderByRelevanceFieldEnum]
+
+
+  export const HealthLogOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    notes: 'notes',
+    source: 'source'
+  };
+
+  export type HealthLogOrderByRelevanceFieldEnum = (typeof HealthLogOrderByRelevanceFieldEnum)[keyof typeof HealthLogOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references
    */
@@ -18757,6 +22680,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'HealthLogType'
+   */
+  export type EnumHealthLogTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HealthLogType'>
+    
+
+
+  /**
+   * Reference to a field of type 'HealthLogType[]'
+   */
+  export type ListEnumHealthLogTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HealthLogType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -18793,6 +22730,9 @@ export namespace Prisma {
     tasks?: TaskListRelationFilter
     habits?: HabitListRelationFilter
     habitCompletions?: HabitCompletionListRelationFilter
+    userStats?: XOR<UserStatsNullableScalarRelationFilter, UserStatsWhereInput> | null
+    achievements?: AchievementListRelationFilter
+    healthLogs?: HealthLogListRelationFilter
   }
 
   export type TenantOrderByWithRelationInput = {
@@ -18812,6 +22752,9 @@ export namespace Prisma {
     tasks?: TaskOrderByRelationAggregateInput
     habits?: HabitOrderByRelationAggregateInput
     habitCompletions?: HabitCompletionOrderByRelationAggregateInput
+    userStats?: UserStatsOrderByWithRelationInput
+    achievements?: AchievementOrderByRelationAggregateInput
+    healthLogs?: HealthLogOrderByRelationAggregateInput
     _relevance?: TenantOrderByRelevanceInput
   }
 
@@ -18835,6 +22778,9 @@ export namespace Prisma {
     tasks?: TaskListRelationFilter
     habits?: HabitListRelationFilter
     habitCompletions?: HabitCompletionListRelationFilter
+    userStats?: XOR<UserStatsNullableScalarRelationFilter, UserStatsWhereInput> | null
+    achievements?: AchievementListRelationFilter
+    healthLogs?: HealthLogListRelationFilter
   }, "id">
 
   export type TenantOrderByWithAggregationInput = {
@@ -20007,6 +23953,243 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"HabitCompletion"> | Date | string
   }
 
+  export type UserStatsWhereInput = {
+    AND?: UserStatsWhereInput | UserStatsWhereInput[]
+    OR?: UserStatsWhereInput[]
+    NOT?: UserStatsWhereInput | UserStatsWhereInput[]
+    id?: StringFilter<"UserStats"> | string
+    tenantId?: StringFilter<"UserStats"> | string
+    totalXP?: IntFilter<"UserStats"> | number
+    currentLevel?: IntFilter<"UserStats"> | number
+    habitsCompleted?: IntFilter<"UserStats"> | number
+    longestStreak?: IntFilter<"UserStats"> | number
+    createdAt?: DateTimeFilter<"UserStats"> | Date | string
+    updatedAt?: DateTimeFilter<"UserStats"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    achievements?: AchievementListRelationFilter
+  }
+
+  export type UserStatsOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    totalXP?: SortOrder
+    currentLevel?: SortOrder
+    habitsCompleted?: SortOrder
+    longestStreak?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    achievements?: AchievementOrderByRelationAggregateInput
+    _relevance?: UserStatsOrderByRelevanceInput
+  }
+
+  export type UserStatsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tenantId?: string
+    AND?: UserStatsWhereInput | UserStatsWhereInput[]
+    OR?: UserStatsWhereInput[]
+    NOT?: UserStatsWhereInput | UserStatsWhereInput[]
+    totalXP?: IntFilter<"UserStats"> | number
+    currentLevel?: IntFilter<"UserStats"> | number
+    habitsCompleted?: IntFilter<"UserStats"> | number
+    longestStreak?: IntFilter<"UserStats"> | number
+    createdAt?: DateTimeFilter<"UserStats"> | Date | string
+    updatedAt?: DateTimeFilter<"UserStats"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    achievements?: AchievementListRelationFilter
+  }, "id" | "tenantId">
+
+  export type UserStatsOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    totalXP?: SortOrder
+    currentLevel?: SortOrder
+    habitsCompleted?: SortOrder
+    longestStreak?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UserStatsCountOrderByAggregateInput
+    _avg?: UserStatsAvgOrderByAggregateInput
+    _max?: UserStatsMaxOrderByAggregateInput
+    _min?: UserStatsMinOrderByAggregateInput
+    _sum?: UserStatsSumOrderByAggregateInput
+  }
+
+  export type UserStatsScalarWhereWithAggregatesInput = {
+    AND?: UserStatsScalarWhereWithAggregatesInput | UserStatsScalarWhereWithAggregatesInput[]
+    OR?: UserStatsScalarWhereWithAggregatesInput[]
+    NOT?: UserStatsScalarWhereWithAggregatesInput | UserStatsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserStats"> | string
+    tenantId?: StringWithAggregatesFilter<"UserStats"> | string
+    totalXP?: IntWithAggregatesFilter<"UserStats"> | number
+    currentLevel?: IntWithAggregatesFilter<"UserStats"> | number
+    habitsCompleted?: IntWithAggregatesFilter<"UserStats"> | number
+    longestStreak?: IntWithAggregatesFilter<"UserStats"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"UserStats"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"UserStats"> | Date | string
+  }
+
+  export type AchievementWhereInput = {
+    AND?: AchievementWhereInput | AchievementWhereInput[]
+    OR?: AchievementWhereInput[]
+    NOT?: AchievementWhereInput | AchievementWhereInput[]
+    id?: StringFilter<"Achievement"> | string
+    tenantId?: StringFilter<"Achievement"> | string
+    userStatsId?: StringFilter<"Achievement"> | string
+    type?: StringFilter<"Achievement"> | string
+    name?: StringFilter<"Achievement"> | string
+    description?: StringFilter<"Achievement"> | string
+    icon?: StringNullableFilter<"Achievement"> | string | null
+    unlockedAt?: DateTimeFilter<"Achievement"> | Date | string
+    habitId?: StringNullableFilter<"Achievement"> | string | null
+    userStats?: XOR<UserStatsScalarRelationFilter, UserStatsWhereInput>
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }
+
+  export type AchievementOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    userStatsId?: SortOrder
+    type?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    icon?: SortOrderInput | SortOrder
+    unlockedAt?: SortOrder
+    habitId?: SortOrderInput | SortOrder
+    userStats?: UserStatsOrderByWithRelationInput
+    tenant?: TenantOrderByWithRelationInput
+    _relevance?: AchievementOrderByRelevanceInput
+  }
+
+  export type AchievementWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tenantId_type_habitId?: AchievementTenantIdTypeHabitIdCompoundUniqueInput
+    AND?: AchievementWhereInput | AchievementWhereInput[]
+    OR?: AchievementWhereInput[]
+    NOT?: AchievementWhereInput | AchievementWhereInput[]
+    tenantId?: StringFilter<"Achievement"> | string
+    userStatsId?: StringFilter<"Achievement"> | string
+    type?: StringFilter<"Achievement"> | string
+    name?: StringFilter<"Achievement"> | string
+    description?: StringFilter<"Achievement"> | string
+    icon?: StringNullableFilter<"Achievement"> | string | null
+    unlockedAt?: DateTimeFilter<"Achievement"> | Date | string
+    habitId?: StringNullableFilter<"Achievement"> | string | null
+    userStats?: XOR<UserStatsScalarRelationFilter, UserStatsWhereInput>
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }, "id" | "tenantId_type_habitId">
+
+  export type AchievementOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    userStatsId?: SortOrder
+    type?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    icon?: SortOrderInput | SortOrder
+    unlockedAt?: SortOrder
+    habitId?: SortOrderInput | SortOrder
+    _count?: AchievementCountOrderByAggregateInput
+    _max?: AchievementMaxOrderByAggregateInput
+    _min?: AchievementMinOrderByAggregateInput
+  }
+
+  export type AchievementScalarWhereWithAggregatesInput = {
+    AND?: AchievementScalarWhereWithAggregatesInput | AchievementScalarWhereWithAggregatesInput[]
+    OR?: AchievementScalarWhereWithAggregatesInput[]
+    NOT?: AchievementScalarWhereWithAggregatesInput | AchievementScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Achievement"> | string
+    tenantId?: StringWithAggregatesFilter<"Achievement"> | string
+    userStatsId?: StringWithAggregatesFilter<"Achievement"> | string
+    type?: StringWithAggregatesFilter<"Achievement"> | string
+    name?: StringWithAggregatesFilter<"Achievement"> | string
+    description?: StringWithAggregatesFilter<"Achievement"> | string
+    icon?: StringNullableWithAggregatesFilter<"Achievement"> | string | null
+    unlockedAt?: DateTimeWithAggregatesFilter<"Achievement"> | Date | string
+    habitId?: StringNullableWithAggregatesFilter<"Achievement"> | string | null
+  }
+
+  export type HealthLogWhereInput = {
+    AND?: HealthLogWhereInput | HealthLogWhereInput[]
+    OR?: HealthLogWhereInput[]
+    NOT?: HealthLogWhereInput | HealthLogWhereInput[]
+    id?: StringFilter<"HealthLog"> | string
+    tenantId?: StringFilter<"HealthLog"> | string
+    type?: EnumHealthLogTypeFilter<"HealthLog"> | $Enums.HealthLogType
+    loggedAt?: DateTimeFilter<"HealthLog"> | Date | string
+    data?: JsonFilter<"HealthLog">
+    notes?: StringNullableFilter<"HealthLog"> | string | null
+    source?: StringFilter<"HealthLog"> | string
+    deletedAt?: DateTimeNullableFilter<"HealthLog"> | Date | string | null
+    createdAt?: DateTimeFilter<"HealthLog"> | Date | string
+    updatedAt?: DateTimeFilter<"HealthLog"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }
+
+  export type HealthLogOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    type?: SortOrder
+    loggedAt?: SortOrder
+    data?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    source?: SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    _relevance?: HealthLogOrderByRelevanceInput
+  }
+
+  export type HealthLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: HealthLogWhereInput | HealthLogWhereInput[]
+    OR?: HealthLogWhereInput[]
+    NOT?: HealthLogWhereInput | HealthLogWhereInput[]
+    tenantId?: StringFilter<"HealthLog"> | string
+    type?: EnumHealthLogTypeFilter<"HealthLog"> | $Enums.HealthLogType
+    loggedAt?: DateTimeFilter<"HealthLog"> | Date | string
+    data?: JsonFilter<"HealthLog">
+    notes?: StringNullableFilter<"HealthLog"> | string | null
+    source?: StringFilter<"HealthLog"> | string
+    deletedAt?: DateTimeNullableFilter<"HealthLog"> | Date | string | null
+    createdAt?: DateTimeFilter<"HealthLog"> | Date | string
+    updatedAt?: DateTimeFilter<"HealthLog"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }, "id">
+
+  export type HealthLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    type?: SortOrder
+    loggedAt?: SortOrder
+    data?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    source?: SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: HealthLogCountOrderByAggregateInput
+    _max?: HealthLogMaxOrderByAggregateInput
+    _min?: HealthLogMinOrderByAggregateInput
+  }
+
+  export type HealthLogScalarWhereWithAggregatesInput = {
+    AND?: HealthLogScalarWhereWithAggregatesInput | HealthLogScalarWhereWithAggregatesInput[]
+    OR?: HealthLogScalarWhereWithAggregatesInput[]
+    NOT?: HealthLogScalarWhereWithAggregatesInput | HealthLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"HealthLog"> | string
+    tenantId?: StringWithAggregatesFilter<"HealthLog"> | string
+    type?: EnumHealthLogTypeWithAggregatesFilter<"HealthLog"> | $Enums.HealthLogType
+    loggedAt?: DateTimeWithAggregatesFilter<"HealthLog"> | Date | string
+    data?: JsonWithAggregatesFilter<"HealthLog">
+    notes?: StringNullableWithAggregatesFilter<"HealthLog"> | string | null
+    source?: StringWithAggregatesFilter<"HealthLog"> | string
+    deletedAt?: DateTimeNullableWithAggregatesFilter<"HealthLog"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"HealthLog"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"HealthLog"> | Date | string
+  }
+
   export type TenantCreateInput = {
     id?: string
     name: string
@@ -20024,6 +24207,9 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutTenantInput
     habits?: HabitCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateInput = {
@@ -20043,6 +24229,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
     habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUpdateInput = {
@@ -20062,6 +24251,9 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutTenantNestedInput
     habits?: HabitUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateInput = {
@@ -20081,6 +24273,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
     habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateManyInput = {
@@ -21347,6 +25542,258 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type UserStatsCreateInput = {
+    id?: string
+    totalXP?: number
+    currentLevel?: number
+    habitsCompleted?: number
+    longestStreak?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutUserStatsInput
+    achievements?: AchievementCreateNestedManyWithoutUserStatsInput
+  }
+
+  export type UserStatsUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    totalXP?: number
+    currentLevel?: number
+    habitsCompleted?: number
+    longestStreak?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    achievements?: AchievementUncheckedCreateNestedManyWithoutUserStatsInput
+  }
+
+  export type UserStatsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    totalXP?: IntFieldUpdateOperationsInput | number
+    currentLevel?: IntFieldUpdateOperationsInput | number
+    habitsCompleted?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutUserStatsNestedInput
+    achievements?: AchievementUpdateManyWithoutUserStatsNestedInput
+  }
+
+  export type UserStatsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    totalXP?: IntFieldUpdateOperationsInput | number
+    currentLevel?: IntFieldUpdateOperationsInput | number
+    habitsCompleted?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    achievements?: AchievementUncheckedUpdateManyWithoutUserStatsNestedInput
+  }
+
+  export type UserStatsCreateManyInput = {
+    id?: string
+    tenantId: string
+    totalXP?: number
+    currentLevel?: number
+    habitsCompleted?: number
+    longestStreak?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserStatsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    totalXP?: IntFieldUpdateOperationsInput | number
+    currentLevel?: IntFieldUpdateOperationsInput | number
+    habitsCompleted?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserStatsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    totalXP?: IntFieldUpdateOperationsInput | number
+    currentLevel?: IntFieldUpdateOperationsInput | number
+    habitsCompleted?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AchievementCreateInput = {
+    id?: string
+    type: string
+    name: string
+    description: string
+    icon?: string | null
+    unlockedAt?: Date | string
+    habitId?: string | null
+    userStats: UserStatsCreateNestedOneWithoutAchievementsInput
+    tenant: TenantCreateNestedOneWithoutAchievementsInput
+  }
+
+  export type AchievementUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    userStatsId: string
+    type: string
+    name: string
+    description: string
+    icon?: string | null
+    unlockedAt?: Date | string
+    habitId?: string | null
+  }
+
+  export type AchievementUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    unlockedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    habitId?: NullableStringFieldUpdateOperationsInput | string | null
+    userStats?: UserStatsUpdateOneRequiredWithoutAchievementsNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutAchievementsNestedInput
+  }
+
+  export type AchievementUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    userStatsId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    unlockedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    habitId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AchievementCreateManyInput = {
+    id?: string
+    tenantId: string
+    userStatsId: string
+    type: string
+    name: string
+    description: string
+    icon?: string | null
+    unlockedAt?: Date | string
+    habitId?: string | null
+  }
+
+  export type AchievementUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    unlockedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    habitId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AchievementUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    userStatsId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    unlockedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    habitId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type HealthLogCreateInput = {
+    id?: string
+    type: $Enums.HealthLogType
+    loggedAt: Date | string
+    data: JsonNullValueInput | InputJsonValue
+    notes?: string | null
+    source?: string
+    deletedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutHealthLogsInput
+  }
+
+  export type HealthLogUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    type: $Enums.HealthLogType
+    loggedAt: Date | string
+    data: JsonNullValueInput | InputJsonValue
+    notes?: string | null
+    source?: string
+    deletedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HealthLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumHealthLogTypeFieldUpdateOperationsInput | $Enums.HealthLogType
+    loggedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    data?: JsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutHealthLogsNestedInput
+  }
+
+  export type HealthLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    type?: EnumHealthLogTypeFieldUpdateOperationsInput | $Enums.HealthLogType
+    loggedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    data?: JsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HealthLogCreateManyInput = {
+    id?: string
+    tenantId: string
+    type: $Enums.HealthLogType
+    loggedAt: Date | string
+    data: JsonNullValueInput | InputJsonValue
+    notes?: string | null
+    source?: string
+    deletedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HealthLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumHealthLogTypeFieldUpdateOperationsInput | $Enums.HealthLogType
+    loggedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    data?: JsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HealthLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    type?: EnumHealthLogTypeFieldUpdateOperationsInput | $Enums.HealthLogType
+    loggedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    data?: JsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -21446,6 +25893,23 @@ export namespace Prisma {
     none?: HabitCompletionWhereInput
   }
 
+  export type UserStatsNullableScalarRelationFilter = {
+    is?: UserStatsWhereInput | null
+    isNot?: UserStatsWhereInput | null
+  }
+
+  export type AchievementListRelationFilter = {
+    every?: AchievementWhereInput
+    some?: AchievementWhereInput
+    none?: AchievementWhereInput
+  }
+
+  export type HealthLogListRelationFilter = {
+    every?: HealthLogWhereInput
+    some?: HealthLogWhereInput
+    none?: HealthLogWhereInput
+  }
+
   export type UserOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -21491,6 +25955,14 @@ export namespace Prisma {
   }
 
   export type HabitCompletionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AchievementOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type HealthLogOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -22565,6 +27037,172 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type UserStatsOrderByRelevanceInput = {
+    fields: UserStatsOrderByRelevanceFieldEnum | UserStatsOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type UserStatsCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    totalXP?: SortOrder
+    currentLevel?: SortOrder
+    habitsCompleted?: SortOrder
+    longestStreak?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserStatsAvgOrderByAggregateInput = {
+    totalXP?: SortOrder
+    currentLevel?: SortOrder
+    habitsCompleted?: SortOrder
+    longestStreak?: SortOrder
+  }
+
+  export type UserStatsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    totalXP?: SortOrder
+    currentLevel?: SortOrder
+    habitsCompleted?: SortOrder
+    longestStreak?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserStatsMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    totalXP?: SortOrder
+    currentLevel?: SortOrder
+    habitsCompleted?: SortOrder
+    longestStreak?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserStatsSumOrderByAggregateInput = {
+    totalXP?: SortOrder
+    currentLevel?: SortOrder
+    habitsCompleted?: SortOrder
+    longestStreak?: SortOrder
+  }
+
+  export type UserStatsScalarRelationFilter = {
+    is?: UserStatsWhereInput
+    isNot?: UserStatsWhereInput
+  }
+
+  export type AchievementOrderByRelevanceInput = {
+    fields: AchievementOrderByRelevanceFieldEnum | AchievementOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type AchievementTenantIdTypeHabitIdCompoundUniqueInput = {
+    tenantId: string
+    type: string
+    habitId: string
+  }
+
+  export type AchievementCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    userStatsId?: SortOrder
+    type?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    unlockedAt?: SortOrder
+    habitId?: SortOrder
+  }
+
+  export type AchievementMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    userStatsId?: SortOrder
+    type?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    unlockedAt?: SortOrder
+    habitId?: SortOrder
+  }
+
+  export type AchievementMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    userStatsId?: SortOrder
+    type?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    icon?: SortOrder
+    unlockedAt?: SortOrder
+    habitId?: SortOrder
+  }
+
+  export type EnumHealthLogTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.HealthLogType | EnumHealthLogTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.HealthLogType[] | ListEnumHealthLogTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HealthLogType[] | ListEnumHealthLogTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumHealthLogTypeFilter<$PrismaModel> | $Enums.HealthLogType
+  }
+
+  export type HealthLogOrderByRelevanceInput = {
+    fields: HealthLogOrderByRelevanceFieldEnum | HealthLogOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type HealthLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    type?: SortOrder
+    loggedAt?: SortOrder
+    data?: SortOrder
+    notes?: SortOrder
+    source?: SortOrder
+    deletedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HealthLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    type?: SortOrder
+    loggedAt?: SortOrder
+    notes?: SortOrder
+    source?: SortOrder
+    deletedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HealthLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    type?: SortOrder
+    loggedAt?: SortOrder
+    notes?: SortOrder
+    source?: SortOrder
+    deletedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumHealthLogTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.HealthLogType | EnumHealthLogTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.HealthLogType[] | ListEnumHealthLogTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HealthLogType[] | ListEnumHealthLogTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumHealthLogTypeWithAggregatesFilter<$PrismaModel> | $Enums.HealthLogType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumHealthLogTypeFilter<$PrismaModel>
+    _max?: NestedEnumHealthLogTypeFilter<$PrismaModel>
+  }
+
   export type UserCreateNestedManyWithoutTenantInput = {
     create?: XOR<UserCreateWithoutTenantInput, UserUncheckedCreateWithoutTenantInput> | UserCreateWithoutTenantInput[] | UserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: UserCreateOrConnectWithoutTenantInput | UserCreateOrConnectWithoutTenantInput[]
@@ -22649,6 +27287,26 @@ export namespace Prisma {
     connect?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
   }
 
+  export type UserStatsCreateNestedOneWithoutTenantInput = {
+    create?: XOR<UserStatsCreateWithoutTenantInput, UserStatsUncheckedCreateWithoutTenantInput>
+    connectOrCreate?: UserStatsCreateOrConnectWithoutTenantInput
+    connect?: UserStatsWhereUniqueInput
+  }
+
+  export type AchievementCreateNestedManyWithoutTenantInput = {
+    create?: XOR<AchievementCreateWithoutTenantInput, AchievementUncheckedCreateWithoutTenantInput> | AchievementCreateWithoutTenantInput[] | AchievementUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AchievementCreateOrConnectWithoutTenantInput | AchievementCreateOrConnectWithoutTenantInput[]
+    createMany?: AchievementCreateManyTenantInputEnvelope
+    connect?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+  }
+
+  export type HealthLogCreateNestedManyWithoutTenantInput = {
+    create?: XOR<HealthLogCreateWithoutTenantInput, HealthLogUncheckedCreateWithoutTenantInput> | HealthLogCreateWithoutTenantInput[] | HealthLogUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HealthLogCreateOrConnectWithoutTenantInput | HealthLogCreateOrConnectWithoutTenantInput[]
+    createMany?: HealthLogCreateManyTenantInputEnvelope
+    connect?: HealthLogWhereUniqueInput | HealthLogWhereUniqueInput[]
+  }
+
   export type UserUncheckedCreateNestedManyWithoutTenantInput = {
     create?: XOR<UserCreateWithoutTenantInput, UserUncheckedCreateWithoutTenantInput> | UserCreateWithoutTenantInput[] | UserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: UserCreateOrConnectWithoutTenantInput | UserCreateOrConnectWithoutTenantInput[]
@@ -22731,6 +27389,26 @@ export namespace Prisma {
     connectOrCreate?: HabitCompletionCreateOrConnectWithoutTenantInput | HabitCompletionCreateOrConnectWithoutTenantInput[]
     createMany?: HabitCompletionCreateManyTenantInputEnvelope
     connect?: HabitCompletionWhereUniqueInput | HabitCompletionWhereUniqueInput[]
+  }
+
+  export type UserStatsUncheckedCreateNestedOneWithoutTenantInput = {
+    create?: XOR<UserStatsCreateWithoutTenantInput, UserStatsUncheckedCreateWithoutTenantInput>
+    connectOrCreate?: UserStatsCreateOrConnectWithoutTenantInput
+    connect?: UserStatsWhereUniqueInput
+  }
+
+  export type AchievementUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<AchievementCreateWithoutTenantInput, AchievementUncheckedCreateWithoutTenantInput> | AchievementCreateWithoutTenantInput[] | AchievementUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AchievementCreateOrConnectWithoutTenantInput | AchievementCreateOrConnectWithoutTenantInput[]
+    createMany?: AchievementCreateManyTenantInputEnvelope
+    connect?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+  }
+
+  export type HealthLogUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<HealthLogCreateWithoutTenantInput, HealthLogUncheckedCreateWithoutTenantInput> | HealthLogCreateWithoutTenantInput[] | HealthLogUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HealthLogCreateOrConnectWithoutTenantInput | HealthLogCreateOrConnectWithoutTenantInput[]
+    createMany?: HealthLogCreateManyTenantInputEnvelope
+    connect?: HealthLogWhereUniqueInput | HealthLogWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -22909,6 +27587,44 @@ export namespace Prisma {
     deleteMany?: HabitCompletionScalarWhereInput | HabitCompletionScalarWhereInput[]
   }
 
+  export type UserStatsUpdateOneWithoutTenantNestedInput = {
+    create?: XOR<UserStatsCreateWithoutTenantInput, UserStatsUncheckedCreateWithoutTenantInput>
+    connectOrCreate?: UserStatsCreateOrConnectWithoutTenantInput
+    upsert?: UserStatsUpsertWithoutTenantInput
+    disconnect?: UserStatsWhereInput | boolean
+    delete?: UserStatsWhereInput | boolean
+    connect?: UserStatsWhereUniqueInput
+    update?: XOR<XOR<UserStatsUpdateToOneWithWhereWithoutTenantInput, UserStatsUpdateWithoutTenantInput>, UserStatsUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type AchievementUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<AchievementCreateWithoutTenantInput, AchievementUncheckedCreateWithoutTenantInput> | AchievementCreateWithoutTenantInput[] | AchievementUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AchievementCreateOrConnectWithoutTenantInput | AchievementCreateOrConnectWithoutTenantInput[]
+    upsert?: AchievementUpsertWithWhereUniqueWithoutTenantInput | AchievementUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: AchievementCreateManyTenantInputEnvelope
+    set?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+    disconnect?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+    delete?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+    connect?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+    update?: AchievementUpdateWithWhereUniqueWithoutTenantInput | AchievementUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: AchievementUpdateManyWithWhereWithoutTenantInput | AchievementUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: AchievementScalarWhereInput | AchievementScalarWhereInput[]
+  }
+
+  export type HealthLogUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<HealthLogCreateWithoutTenantInput, HealthLogUncheckedCreateWithoutTenantInput> | HealthLogCreateWithoutTenantInput[] | HealthLogUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HealthLogCreateOrConnectWithoutTenantInput | HealthLogCreateOrConnectWithoutTenantInput[]
+    upsert?: HealthLogUpsertWithWhereUniqueWithoutTenantInput | HealthLogUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: HealthLogCreateManyTenantInputEnvelope
+    set?: HealthLogWhereUniqueInput | HealthLogWhereUniqueInput[]
+    disconnect?: HealthLogWhereUniqueInput | HealthLogWhereUniqueInput[]
+    delete?: HealthLogWhereUniqueInput | HealthLogWhereUniqueInput[]
+    connect?: HealthLogWhereUniqueInput | HealthLogWhereUniqueInput[]
+    update?: HealthLogUpdateWithWhereUniqueWithoutTenantInput | HealthLogUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: HealthLogUpdateManyWithWhereWithoutTenantInput | HealthLogUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: HealthLogScalarWhereInput | HealthLogScalarWhereInput[]
+  }
+
   export type UserUncheckedUpdateManyWithoutTenantNestedInput = {
     create?: XOR<UserCreateWithoutTenantInput, UserUncheckedCreateWithoutTenantInput> | UserCreateWithoutTenantInput[] | UserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: UserCreateOrConnectWithoutTenantInput | UserCreateOrConnectWithoutTenantInput[]
@@ -23075,6 +27791,44 @@ export namespace Prisma {
     update?: HabitCompletionUpdateWithWhereUniqueWithoutTenantInput | HabitCompletionUpdateWithWhereUniqueWithoutTenantInput[]
     updateMany?: HabitCompletionUpdateManyWithWhereWithoutTenantInput | HabitCompletionUpdateManyWithWhereWithoutTenantInput[]
     deleteMany?: HabitCompletionScalarWhereInput | HabitCompletionScalarWhereInput[]
+  }
+
+  export type UserStatsUncheckedUpdateOneWithoutTenantNestedInput = {
+    create?: XOR<UserStatsCreateWithoutTenantInput, UserStatsUncheckedCreateWithoutTenantInput>
+    connectOrCreate?: UserStatsCreateOrConnectWithoutTenantInput
+    upsert?: UserStatsUpsertWithoutTenantInput
+    disconnect?: UserStatsWhereInput | boolean
+    delete?: UserStatsWhereInput | boolean
+    connect?: UserStatsWhereUniqueInput
+    update?: XOR<XOR<UserStatsUpdateToOneWithWhereWithoutTenantInput, UserStatsUpdateWithoutTenantInput>, UserStatsUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type AchievementUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<AchievementCreateWithoutTenantInput, AchievementUncheckedCreateWithoutTenantInput> | AchievementCreateWithoutTenantInput[] | AchievementUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: AchievementCreateOrConnectWithoutTenantInput | AchievementCreateOrConnectWithoutTenantInput[]
+    upsert?: AchievementUpsertWithWhereUniqueWithoutTenantInput | AchievementUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: AchievementCreateManyTenantInputEnvelope
+    set?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+    disconnect?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+    delete?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+    connect?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+    update?: AchievementUpdateWithWhereUniqueWithoutTenantInput | AchievementUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: AchievementUpdateManyWithWhereWithoutTenantInput | AchievementUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: AchievementScalarWhereInput | AchievementScalarWhereInput[]
+  }
+
+  export type HealthLogUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<HealthLogCreateWithoutTenantInput, HealthLogUncheckedCreateWithoutTenantInput> | HealthLogCreateWithoutTenantInput[] | HealthLogUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HealthLogCreateOrConnectWithoutTenantInput | HealthLogCreateOrConnectWithoutTenantInput[]
+    upsert?: HealthLogUpsertWithWhereUniqueWithoutTenantInput | HealthLogUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: HealthLogCreateManyTenantInputEnvelope
+    set?: HealthLogWhereUniqueInput | HealthLogWhereUniqueInput[]
+    disconnect?: HealthLogWhereUniqueInput | HealthLogWhereUniqueInput[]
+    delete?: HealthLogWhereUniqueInput | HealthLogWhereUniqueInput[]
+    connect?: HealthLogWhereUniqueInput | HealthLogWhereUniqueInput[]
+    update?: HealthLogUpdateWithWhereUniqueWithoutTenantInput | HealthLogUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: HealthLogUpdateManyWithWhereWithoutTenantInput | HealthLogUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: HealthLogScalarWhereInput | HealthLogScalarWhereInput[]
   }
 
   export type TenantCreateNestedOneWithoutUsersInput = {
@@ -23860,6 +28614,108 @@ export namespace Prisma {
     update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutHabitCompletionsInput, TenantUpdateWithoutHabitCompletionsInput>, TenantUncheckedUpdateWithoutHabitCompletionsInput>
   }
 
+  export type TenantCreateNestedOneWithoutUserStatsInput = {
+    create?: XOR<TenantCreateWithoutUserStatsInput, TenantUncheckedCreateWithoutUserStatsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutUserStatsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type AchievementCreateNestedManyWithoutUserStatsInput = {
+    create?: XOR<AchievementCreateWithoutUserStatsInput, AchievementUncheckedCreateWithoutUserStatsInput> | AchievementCreateWithoutUserStatsInput[] | AchievementUncheckedCreateWithoutUserStatsInput[]
+    connectOrCreate?: AchievementCreateOrConnectWithoutUserStatsInput | AchievementCreateOrConnectWithoutUserStatsInput[]
+    createMany?: AchievementCreateManyUserStatsInputEnvelope
+    connect?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+  }
+
+  export type AchievementUncheckedCreateNestedManyWithoutUserStatsInput = {
+    create?: XOR<AchievementCreateWithoutUserStatsInput, AchievementUncheckedCreateWithoutUserStatsInput> | AchievementCreateWithoutUserStatsInput[] | AchievementUncheckedCreateWithoutUserStatsInput[]
+    connectOrCreate?: AchievementCreateOrConnectWithoutUserStatsInput | AchievementCreateOrConnectWithoutUserStatsInput[]
+    createMany?: AchievementCreateManyUserStatsInputEnvelope
+    connect?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+  }
+
+  export type TenantUpdateOneRequiredWithoutUserStatsNestedInput = {
+    create?: XOR<TenantCreateWithoutUserStatsInput, TenantUncheckedCreateWithoutUserStatsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutUserStatsInput
+    upsert?: TenantUpsertWithoutUserStatsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutUserStatsInput, TenantUpdateWithoutUserStatsInput>, TenantUncheckedUpdateWithoutUserStatsInput>
+  }
+
+  export type AchievementUpdateManyWithoutUserStatsNestedInput = {
+    create?: XOR<AchievementCreateWithoutUserStatsInput, AchievementUncheckedCreateWithoutUserStatsInput> | AchievementCreateWithoutUserStatsInput[] | AchievementUncheckedCreateWithoutUserStatsInput[]
+    connectOrCreate?: AchievementCreateOrConnectWithoutUserStatsInput | AchievementCreateOrConnectWithoutUserStatsInput[]
+    upsert?: AchievementUpsertWithWhereUniqueWithoutUserStatsInput | AchievementUpsertWithWhereUniqueWithoutUserStatsInput[]
+    createMany?: AchievementCreateManyUserStatsInputEnvelope
+    set?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+    disconnect?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+    delete?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+    connect?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+    update?: AchievementUpdateWithWhereUniqueWithoutUserStatsInput | AchievementUpdateWithWhereUniqueWithoutUserStatsInput[]
+    updateMany?: AchievementUpdateManyWithWhereWithoutUserStatsInput | AchievementUpdateManyWithWhereWithoutUserStatsInput[]
+    deleteMany?: AchievementScalarWhereInput | AchievementScalarWhereInput[]
+  }
+
+  export type AchievementUncheckedUpdateManyWithoutUserStatsNestedInput = {
+    create?: XOR<AchievementCreateWithoutUserStatsInput, AchievementUncheckedCreateWithoutUserStatsInput> | AchievementCreateWithoutUserStatsInput[] | AchievementUncheckedCreateWithoutUserStatsInput[]
+    connectOrCreate?: AchievementCreateOrConnectWithoutUserStatsInput | AchievementCreateOrConnectWithoutUserStatsInput[]
+    upsert?: AchievementUpsertWithWhereUniqueWithoutUserStatsInput | AchievementUpsertWithWhereUniqueWithoutUserStatsInput[]
+    createMany?: AchievementCreateManyUserStatsInputEnvelope
+    set?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+    disconnect?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+    delete?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+    connect?: AchievementWhereUniqueInput | AchievementWhereUniqueInput[]
+    update?: AchievementUpdateWithWhereUniqueWithoutUserStatsInput | AchievementUpdateWithWhereUniqueWithoutUserStatsInput[]
+    updateMany?: AchievementUpdateManyWithWhereWithoutUserStatsInput | AchievementUpdateManyWithWhereWithoutUserStatsInput[]
+    deleteMany?: AchievementScalarWhereInput | AchievementScalarWhereInput[]
+  }
+
+  export type UserStatsCreateNestedOneWithoutAchievementsInput = {
+    create?: XOR<UserStatsCreateWithoutAchievementsInput, UserStatsUncheckedCreateWithoutAchievementsInput>
+    connectOrCreate?: UserStatsCreateOrConnectWithoutAchievementsInput
+    connect?: UserStatsWhereUniqueInput
+  }
+
+  export type TenantCreateNestedOneWithoutAchievementsInput = {
+    create?: XOR<TenantCreateWithoutAchievementsInput, TenantUncheckedCreateWithoutAchievementsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutAchievementsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type UserStatsUpdateOneRequiredWithoutAchievementsNestedInput = {
+    create?: XOR<UserStatsCreateWithoutAchievementsInput, UserStatsUncheckedCreateWithoutAchievementsInput>
+    connectOrCreate?: UserStatsCreateOrConnectWithoutAchievementsInput
+    upsert?: UserStatsUpsertWithoutAchievementsInput
+    connect?: UserStatsWhereUniqueInput
+    update?: XOR<XOR<UserStatsUpdateToOneWithWhereWithoutAchievementsInput, UserStatsUpdateWithoutAchievementsInput>, UserStatsUncheckedUpdateWithoutAchievementsInput>
+  }
+
+  export type TenantUpdateOneRequiredWithoutAchievementsNestedInput = {
+    create?: XOR<TenantCreateWithoutAchievementsInput, TenantUncheckedCreateWithoutAchievementsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutAchievementsInput
+    upsert?: TenantUpsertWithoutAchievementsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutAchievementsInput, TenantUpdateWithoutAchievementsInput>, TenantUncheckedUpdateWithoutAchievementsInput>
+  }
+
+  export type TenantCreateNestedOneWithoutHealthLogsInput = {
+    create?: XOR<TenantCreateWithoutHealthLogsInput, TenantUncheckedCreateWithoutHealthLogsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutHealthLogsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type EnumHealthLogTypeFieldUpdateOperationsInput = {
+    set?: $Enums.HealthLogType
+  }
+
+  export type TenantUpdateOneRequiredWithoutHealthLogsNestedInput = {
+    create?: XOR<TenantCreateWithoutHealthLogsInput, TenantUncheckedCreateWithoutHealthLogsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutHealthLogsInput
+    upsert?: TenantUpsertWithoutHealthLogsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutHealthLogsInput, TenantUpdateWithoutHealthLogsInput>, TenantUncheckedUpdateWithoutHealthLogsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -24136,6 +28992,23 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedEnumHealthLogTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.HealthLogType | EnumHealthLogTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.HealthLogType[] | ListEnumHealthLogTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HealthLogType[] | ListEnumHealthLogTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumHealthLogTypeFilter<$PrismaModel> | $Enums.HealthLogType
+  }
+
+  export type NestedEnumHealthLogTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.HealthLogType | EnumHealthLogTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.HealthLogType[] | ListEnumHealthLogTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HealthLogType[] | ListEnumHealthLogTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumHealthLogTypeWithAggregatesFilter<$PrismaModel> | $Enums.HealthLogType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumHealthLogTypeFilter<$PrismaModel>
+    _max?: NestedEnumHealthLogTypeFilter<$PrismaModel>
   }
 
   export type UserCreateWithoutTenantInput = {
@@ -24604,6 +29477,99 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type UserStatsCreateWithoutTenantInput = {
+    id?: string
+    totalXP?: number
+    currentLevel?: number
+    habitsCompleted?: number
+    longestStreak?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    achievements?: AchievementCreateNestedManyWithoutUserStatsInput
+  }
+
+  export type UserStatsUncheckedCreateWithoutTenantInput = {
+    id?: string
+    totalXP?: number
+    currentLevel?: number
+    habitsCompleted?: number
+    longestStreak?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    achievements?: AchievementUncheckedCreateNestedManyWithoutUserStatsInput
+  }
+
+  export type UserStatsCreateOrConnectWithoutTenantInput = {
+    where: UserStatsWhereUniqueInput
+    create: XOR<UserStatsCreateWithoutTenantInput, UserStatsUncheckedCreateWithoutTenantInput>
+  }
+
+  export type AchievementCreateWithoutTenantInput = {
+    id?: string
+    type: string
+    name: string
+    description: string
+    icon?: string | null
+    unlockedAt?: Date | string
+    habitId?: string | null
+    userStats: UserStatsCreateNestedOneWithoutAchievementsInput
+  }
+
+  export type AchievementUncheckedCreateWithoutTenantInput = {
+    id?: string
+    userStatsId: string
+    type: string
+    name: string
+    description: string
+    icon?: string | null
+    unlockedAt?: Date | string
+    habitId?: string | null
+  }
+
+  export type AchievementCreateOrConnectWithoutTenantInput = {
+    where: AchievementWhereUniqueInput
+    create: XOR<AchievementCreateWithoutTenantInput, AchievementUncheckedCreateWithoutTenantInput>
+  }
+
+  export type AchievementCreateManyTenantInputEnvelope = {
+    data: AchievementCreateManyTenantInput | AchievementCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type HealthLogCreateWithoutTenantInput = {
+    id?: string
+    type: $Enums.HealthLogType
+    loggedAt: Date | string
+    data: JsonNullValueInput | InputJsonValue
+    notes?: string | null
+    source?: string
+    deletedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HealthLogUncheckedCreateWithoutTenantInput = {
+    id?: string
+    type: $Enums.HealthLogType
+    loggedAt: Date | string
+    data: JsonNullValueInput | InputJsonValue
+    notes?: string | null
+    source?: string
+    deletedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HealthLogCreateOrConnectWithoutTenantInput = {
+    where: HealthLogWhereUniqueInput
+    create: XOR<HealthLogCreateWithoutTenantInput, HealthLogUncheckedCreateWithoutTenantInput>
+  }
+
+  export type HealthLogCreateManyTenantInputEnvelope = {
+    data: HealthLogCreateManyTenantInput | HealthLogCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithWhereUniqueWithoutTenantInput = {
     where: UserWhereUniqueInput
     update: XOR<UserUpdateWithoutTenantInput, UserUncheckedUpdateWithoutTenantInput>
@@ -25007,6 +29973,102 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"HabitCompletion"> | Date | string
   }
 
+  export type UserStatsUpsertWithoutTenantInput = {
+    update: XOR<UserStatsUpdateWithoutTenantInput, UserStatsUncheckedUpdateWithoutTenantInput>
+    create: XOR<UserStatsCreateWithoutTenantInput, UserStatsUncheckedCreateWithoutTenantInput>
+    where?: UserStatsWhereInput
+  }
+
+  export type UserStatsUpdateToOneWithWhereWithoutTenantInput = {
+    where?: UserStatsWhereInput
+    data: XOR<UserStatsUpdateWithoutTenantInput, UserStatsUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type UserStatsUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    totalXP?: IntFieldUpdateOperationsInput | number
+    currentLevel?: IntFieldUpdateOperationsInput | number
+    habitsCompleted?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    achievements?: AchievementUpdateManyWithoutUserStatsNestedInput
+  }
+
+  export type UserStatsUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    totalXP?: IntFieldUpdateOperationsInput | number
+    currentLevel?: IntFieldUpdateOperationsInput | number
+    habitsCompleted?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    achievements?: AchievementUncheckedUpdateManyWithoutUserStatsNestedInput
+  }
+
+  export type AchievementUpsertWithWhereUniqueWithoutTenantInput = {
+    where: AchievementWhereUniqueInput
+    update: XOR<AchievementUpdateWithoutTenantInput, AchievementUncheckedUpdateWithoutTenantInput>
+    create: XOR<AchievementCreateWithoutTenantInput, AchievementUncheckedCreateWithoutTenantInput>
+  }
+
+  export type AchievementUpdateWithWhereUniqueWithoutTenantInput = {
+    where: AchievementWhereUniqueInput
+    data: XOR<AchievementUpdateWithoutTenantInput, AchievementUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type AchievementUpdateManyWithWhereWithoutTenantInput = {
+    where: AchievementScalarWhereInput
+    data: XOR<AchievementUpdateManyMutationInput, AchievementUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type AchievementScalarWhereInput = {
+    AND?: AchievementScalarWhereInput | AchievementScalarWhereInput[]
+    OR?: AchievementScalarWhereInput[]
+    NOT?: AchievementScalarWhereInput | AchievementScalarWhereInput[]
+    id?: StringFilter<"Achievement"> | string
+    tenantId?: StringFilter<"Achievement"> | string
+    userStatsId?: StringFilter<"Achievement"> | string
+    type?: StringFilter<"Achievement"> | string
+    name?: StringFilter<"Achievement"> | string
+    description?: StringFilter<"Achievement"> | string
+    icon?: StringNullableFilter<"Achievement"> | string | null
+    unlockedAt?: DateTimeFilter<"Achievement"> | Date | string
+    habitId?: StringNullableFilter<"Achievement"> | string | null
+  }
+
+  export type HealthLogUpsertWithWhereUniqueWithoutTenantInput = {
+    where: HealthLogWhereUniqueInput
+    update: XOR<HealthLogUpdateWithoutTenantInput, HealthLogUncheckedUpdateWithoutTenantInput>
+    create: XOR<HealthLogCreateWithoutTenantInput, HealthLogUncheckedCreateWithoutTenantInput>
+  }
+
+  export type HealthLogUpdateWithWhereUniqueWithoutTenantInput = {
+    where: HealthLogWhereUniqueInput
+    data: XOR<HealthLogUpdateWithoutTenantInput, HealthLogUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type HealthLogUpdateManyWithWhereWithoutTenantInput = {
+    where: HealthLogScalarWhereInput
+    data: XOR<HealthLogUpdateManyMutationInput, HealthLogUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type HealthLogScalarWhereInput = {
+    AND?: HealthLogScalarWhereInput | HealthLogScalarWhereInput[]
+    OR?: HealthLogScalarWhereInput[]
+    NOT?: HealthLogScalarWhereInput | HealthLogScalarWhereInput[]
+    id?: StringFilter<"HealthLog"> | string
+    tenantId?: StringFilter<"HealthLog"> | string
+    type?: EnumHealthLogTypeFilter<"HealthLog"> | $Enums.HealthLogType
+    loggedAt?: DateTimeFilter<"HealthLog"> | Date | string
+    data?: JsonFilter<"HealthLog">
+    notes?: StringNullableFilter<"HealthLog"> | string | null
+    source?: StringFilter<"HealthLog"> | string
+    deletedAt?: DateTimeNullableFilter<"HealthLog"> | Date | string | null
+    createdAt?: DateTimeFilter<"HealthLog"> | Date | string
+    updatedAt?: DateTimeFilter<"HealthLog"> | Date | string
+  }
+
   export type TenantCreateWithoutUsersInput = {
     id?: string
     name: string
@@ -25023,6 +30085,9 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutTenantInput
     habits?: HabitCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutUsersInput = {
@@ -25041,6 +30106,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
     habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutUsersInput = {
@@ -25075,6 +30143,9 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutTenantNestedInput
     habits?: HabitUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutUsersInput = {
@@ -25093,6 +30164,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
     habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAiProviderConfigsInput = {
@@ -25111,6 +30185,9 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutTenantInput
     habits?: HabitCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAiProviderConfigsInput = {
@@ -25129,6 +30206,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
     habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAiProviderConfigsInput = {
@@ -25163,6 +30243,9 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutTenantNestedInput
     habits?: HabitUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAiProviderConfigsInput = {
@@ -25181,6 +30264,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
     habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAiPromptCacheInput = {
@@ -25199,6 +30285,9 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutTenantInput
     habits?: HabitCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAiPromptCacheInput = {
@@ -25217,6 +30306,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
     habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAiPromptCacheInput = {
@@ -25251,6 +30343,9 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutTenantNestedInput
     habits?: HabitUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAiPromptCacheInput = {
@@ -25269,6 +30364,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
     habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAiUsageLogsInput = {
@@ -25287,6 +30385,9 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutTenantInput
     habits?: HabitCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAiUsageLogsInput = {
@@ -25305,6 +30406,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
     habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAiUsageLogsInput = {
@@ -25339,6 +30443,9 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutTenantNestedInput
     habits?: HabitUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAiUsageLogsInput = {
@@ -25357,6 +30464,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
     habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CategoryCreateWithoutChildrenInput = {
@@ -25454,6 +30564,9 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutTenantInput
     habits?: HabitCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutCategoriesInput = {
@@ -25472,6 +30585,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
     habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutCategoriesInput = {
@@ -25697,6 +30813,9 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutTenantNestedInput
     habits?: HabitUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutCategoriesInput = {
@@ -25715,6 +30834,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
     habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TransactionUpsertWithWhereUniqueWithoutCategoryInput = {
@@ -25781,6 +30903,9 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutTenantInput
     habits?: HabitCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAccountsInput = {
@@ -25799,6 +30924,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
     habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAccountsInput = {
@@ -25965,6 +31093,9 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutTenantNestedInput
     habits?: HabitUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAccountsInput = {
@@ -25983,6 +31114,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
     habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TransactionUpsertWithWhereUniqueWithoutAccountInput = {
@@ -26174,6 +31308,9 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutTenantInput
     habits?: HabitCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutTransactionsInput = {
@@ -26192,6 +31329,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
     habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutTransactionsInput = {
@@ -26369,6 +31509,9 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutTenantNestedInput
     habits?: HabitUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutTransactionsInput = {
@@ -26387,6 +31530,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
     habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CategoryCreateWithoutBudgetEnvelopesInput = {
@@ -26479,6 +31625,9 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutTenantInput
     habits?: HabitCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutBudgetEnvelopesInput = {
@@ -26497,6 +31646,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
     habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutBudgetEnvelopesInput = {
@@ -26617,6 +31769,9 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutTenantNestedInput
     habits?: HabitUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutBudgetEnvelopesInput = {
@@ -26635,6 +31790,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
     habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type AccountCreateWithoutRecurringRulesInput = {
@@ -26727,6 +31885,9 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutTenantInput
     habits?: HabitCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutRecurringRulesInput = {
@@ -26745,6 +31906,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
     habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutRecurringRulesInput = {
@@ -26907,6 +32071,9 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutTenantNestedInput
     habits?: HabitUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutRecurringRulesInput = {
@@ -26925,6 +32092,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
     habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TransactionUpsertWithWhereUniqueWithoutRecurringRuleInput = {
@@ -27038,6 +32208,9 @@ export namespace Prisma {
     recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
     habits?: HabitCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutTasksInput = {
@@ -27056,6 +32229,9 @@ export namespace Prisma {
     recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
     habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutTasksInput = {
@@ -27149,6 +32325,9 @@ export namespace Prisma {
     recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
     habits?: HabitUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutTasksInput = {
@@ -27167,6 +32346,9 @@ export namespace Prisma {
     recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
     habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutHabitsInput = {
@@ -27185,6 +32367,9 @@ export namespace Prisma {
     recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
     tasks?: TaskCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutHabitsInput = {
@@ -27203,6 +32388,9 @@ export namespace Prisma {
     recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
     tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
     habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutHabitsInput = {
@@ -27267,6 +32455,9 @@ export namespace Prisma {
     recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
     tasks?: TaskUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutHabitsInput = {
@@ -27285,6 +32476,9 @@ export namespace Prisma {
     recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
     tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
     habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type HabitCompletionUpsertWithWhereUniqueWithoutHabitInput = {
@@ -27356,6 +32550,9 @@ export namespace Prisma {
     recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
     tasks?: TaskCreateNestedManyWithoutTenantInput
     habits?: HabitCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutHabitCompletionsInput = {
@@ -27374,6 +32571,9 @@ export namespace Prisma {
     recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
     tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
     habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutHabitCompletionsInput = {
@@ -27451,6 +32651,9 @@ export namespace Prisma {
     recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
     tasks?: TaskUpdateManyWithoutTenantNestedInput
     habits?: HabitUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutHabitCompletionsInput = {
@@ -27469,6 +32672,417 @@ export namespace Prisma {
     recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
     tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
     habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantCreateWithoutUserStatsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutUserStatsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutUserStatsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutUserStatsInput, TenantUncheckedCreateWithoutUserStatsInput>
+  }
+
+  export type AchievementCreateWithoutUserStatsInput = {
+    id?: string
+    type: string
+    name: string
+    description: string
+    icon?: string | null
+    unlockedAt?: Date | string
+    habitId?: string | null
+    tenant: TenantCreateNestedOneWithoutAchievementsInput
+  }
+
+  export type AchievementUncheckedCreateWithoutUserStatsInput = {
+    id?: string
+    tenantId: string
+    type: string
+    name: string
+    description: string
+    icon?: string | null
+    unlockedAt?: Date | string
+    habitId?: string | null
+  }
+
+  export type AchievementCreateOrConnectWithoutUserStatsInput = {
+    where: AchievementWhereUniqueInput
+    create: XOR<AchievementCreateWithoutUserStatsInput, AchievementUncheckedCreateWithoutUserStatsInput>
+  }
+
+  export type AchievementCreateManyUserStatsInputEnvelope = {
+    data: AchievementCreateManyUserStatsInput | AchievementCreateManyUserStatsInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TenantUpsertWithoutUserStatsInput = {
+    update: XOR<TenantUpdateWithoutUserStatsInput, TenantUncheckedUpdateWithoutUserStatsInput>
+    create: XOR<TenantCreateWithoutUserStatsInput, TenantUncheckedCreateWithoutUserStatsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutUserStatsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutUserStatsInput, TenantUncheckedUpdateWithoutUserStatsInput>
+  }
+
+  export type TenantUpdateWithoutUserStatsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutUserStatsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type AchievementUpsertWithWhereUniqueWithoutUserStatsInput = {
+    where: AchievementWhereUniqueInput
+    update: XOR<AchievementUpdateWithoutUserStatsInput, AchievementUncheckedUpdateWithoutUserStatsInput>
+    create: XOR<AchievementCreateWithoutUserStatsInput, AchievementUncheckedCreateWithoutUserStatsInput>
+  }
+
+  export type AchievementUpdateWithWhereUniqueWithoutUserStatsInput = {
+    where: AchievementWhereUniqueInput
+    data: XOR<AchievementUpdateWithoutUserStatsInput, AchievementUncheckedUpdateWithoutUserStatsInput>
+  }
+
+  export type AchievementUpdateManyWithWhereWithoutUserStatsInput = {
+    where: AchievementScalarWhereInput
+    data: XOR<AchievementUpdateManyMutationInput, AchievementUncheckedUpdateManyWithoutUserStatsInput>
+  }
+
+  export type UserStatsCreateWithoutAchievementsInput = {
+    id?: string
+    totalXP?: number
+    currentLevel?: number
+    habitsCompleted?: number
+    longestStreak?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutUserStatsInput
+  }
+
+  export type UserStatsUncheckedCreateWithoutAchievementsInput = {
+    id?: string
+    tenantId: string
+    totalXP?: number
+    currentLevel?: number
+    habitsCompleted?: number
+    longestStreak?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserStatsCreateOrConnectWithoutAchievementsInput = {
+    where: UserStatsWhereUniqueInput
+    create: XOR<UserStatsCreateWithoutAchievementsInput, UserStatsUncheckedCreateWithoutAchievementsInput>
+  }
+
+  export type TenantCreateWithoutAchievementsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutAchievementsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutAchievementsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutAchievementsInput, TenantUncheckedCreateWithoutAchievementsInput>
+  }
+
+  export type UserStatsUpsertWithoutAchievementsInput = {
+    update: XOR<UserStatsUpdateWithoutAchievementsInput, UserStatsUncheckedUpdateWithoutAchievementsInput>
+    create: XOR<UserStatsCreateWithoutAchievementsInput, UserStatsUncheckedCreateWithoutAchievementsInput>
+    where?: UserStatsWhereInput
+  }
+
+  export type UserStatsUpdateToOneWithWhereWithoutAchievementsInput = {
+    where?: UserStatsWhereInput
+    data: XOR<UserStatsUpdateWithoutAchievementsInput, UserStatsUncheckedUpdateWithoutAchievementsInput>
+  }
+
+  export type UserStatsUpdateWithoutAchievementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    totalXP?: IntFieldUpdateOperationsInput | number
+    currentLevel?: IntFieldUpdateOperationsInput | number
+    habitsCompleted?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutUserStatsNestedInput
+  }
+
+  export type UserStatsUncheckedUpdateWithoutAchievementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    totalXP?: IntFieldUpdateOperationsInput | number
+    currentLevel?: IntFieldUpdateOperationsInput | number
+    habitsCompleted?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TenantUpsertWithoutAchievementsInput = {
+    update: XOR<TenantUpdateWithoutAchievementsInput, TenantUncheckedUpdateWithoutAchievementsInput>
+    create: XOR<TenantCreateWithoutAchievementsInput, TenantUncheckedCreateWithoutAchievementsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutAchievementsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutAchievementsInput, TenantUncheckedUpdateWithoutAchievementsInput>
+  }
+
+  export type TenantUpdateWithoutAchievementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutAchievementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantCreateWithoutHealthLogsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutHealthLogsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutHealthLogsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutHealthLogsInput, TenantUncheckedCreateWithoutHealthLogsInput>
+  }
+
+  export type TenantUpsertWithoutHealthLogsInput = {
+    update: XOR<TenantUpdateWithoutHealthLogsInput, TenantUncheckedUpdateWithoutHealthLogsInput>
+    create: XOR<TenantCreateWithoutHealthLogsInput, TenantUncheckedCreateWithoutHealthLogsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutHealthLogsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutHealthLogsInput, TenantUncheckedUpdateWithoutHealthLogsInput>
+  }
+
+  export type TenantUpdateWithoutHealthLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutHealthLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UserCreateManyTenantInput = {
@@ -27630,6 +33244,29 @@ export namespace Prisma {
     date: Date | string
     completed?: boolean
     notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AchievementCreateManyTenantInput = {
+    id?: string
+    userStatsId: string
+    type: string
+    name: string
+    description: string
+    icon?: string | null
+    unlockedAt?: Date | string
+    habitId?: string | null
+  }
+
+  export type HealthLogCreateManyTenantInput = {
+    id?: string
+    type: $Enums.HealthLogType
+    loggedAt: Date | string
+    data: JsonNullValueInput | InputJsonValue
+    notes?: string | null
+    source?: string
+    deletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -28139,6 +33776,75 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     completed?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AchievementUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    unlockedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    habitId?: NullableStringFieldUpdateOperationsInput | string | null
+    userStats?: UserStatsUpdateOneRequiredWithoutAchievementsNestedInput
+  }
+
+  export type AchievementUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userStatsId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    unlockedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    habitId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AchievementUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userStatsId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    unlockedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    habitId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type HealthLogUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumHealthLogTypeFieldUpdateOperationsInput | $Enums.HealthLogType
+    loggedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    data?: JsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HealthLogUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumHealthLogTypeFieldUpdateOperationsInput | $Enums.HealthLogType
+    loggedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    data?: JsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HealthLogUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumHealthLogTypeFieldUpdateOperationsInput | $Enums.HealthLogType
+    loggedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    data?: JsonNullValueInput | InputJsonValue
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -28767,6 +34473,50 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AchievementCreateManyUserStatsInput = {
+    id?: string
+    tenantId: string
+    type: string
+    name: string
+    description: string
+    icon?: string | null
+    unlockedAt?: Date | string
+    habitId?: string | null
+  }
+
+  export type AchievementUpdateWithoutUserStatsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    unlockedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    habitId?: NullableStringFieldUpdateOperationsInput | string | null
+    tenant?: TenantUpdateOneRequiredWithoutAchievementsNestedInput
+  }
+
+  export type AchievementUncheckedUpdateWithoutUserStatsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    unlockedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    habitId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AchievementUncheckedUpdateManyWithoutUserStatsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    unlockedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    habitId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 
