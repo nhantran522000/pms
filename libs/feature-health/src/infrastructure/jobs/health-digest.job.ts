@@ -1,8 +1,10 @@
 import { Injectable, Logger, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PgBoss, Job } from 'pg-boss';
+import { PrismaService } from '@pms/data-access';
 import { HealthDigestService } from '../../application/services/health-digest.service';
 import { HealthLogRepository } from '../repositories/health-log.repository';
+import { EmailService, HealthDigest as EmailHealthDigest } from '../email/email.service';
 
 export const HEALTH_DIGEST_JOB = 'health-digest-generate';
 const SUNDAY_CRON = '0 9 * * 0'; // Every Sunday at 9 AM
@@ -19,6 +21,7 @@ export interface DigestResult {
   tenantId: string;
   success: boolean;
   digestId?: string;
+  emailSent?: boolean;
   error?: string;
 }
 
@@ -31,6 +34,8 @@ export class HealthDigestJob implements OnModuleInit, OnModuleDestroy {
     private readonly configService: ConfigService,
     private readonly healthDigestService: HealthDigestService,
     private readonly healthLogRepository: HealthLogRepository,
+    private readonly emailService: EmailService,
+    private readonly prisma: PrismaService,
   ) {}
 
   async onModuleInit() {
@@ -137,7 +142,7 @@ export class HealthDigestJob implements OnModuleInit, OnModuleDestroy {
   }
 
   /**
-   * Generate a digest for a specific tenant
+   * Generate a digest for a specific tenant and send via email
    */
   private async generateDigestForTenant(
     tenantId: string,
@@ -152,16 +157,53 @@ export class HealthDigestJob implements OnModuleInit, OnModuleDestroy {
         `Digest generated for tenant ${tenantId} (data-only: ${digest.isDataOnly})`,
       );
 
-      // TODO: Send digest via email (will be implemented in a future plan)
-      // For now, just log the digest summary
-      this.logger.debug(
-        `Digest for ${userName}: ${digest.summary.slice(0, 100)}...`,
+      // Get user email for sending
+      const userEmail = await this.getUserEmail(tenantId);
+      if (!userEmail) {
+        this.logger.warn(`No email found for tenant ${tenantId}, skipping email send`);
+        return {
+          tenantId,
+          success: true,
+          digestId: `${tenantId}-${Date.now()}`,
+          emailSent: false,
+        };
+      }
+
+      // Generate unsubscribe URL
+      const unsubscribeUrl = this.generateUnsubscribeUrl(tenantId);
+
+      // Prepare email digest data
+      const emailDigest: EmailHealthDigest = {
+        userName,
+        weekEnd: this.getWeekBounds().weekEnd.toLocaleDateString(),
+        insights: [...digest.trends, ...digest.correlations],
+        recommendations: digest.recommendations,
+        weekSummary: {
+          weightEntries: 0,
+          workoutCount: 0,
+          avgSleepHours: 0,
+          loggingStreak: 0,
+        },
+      };
+
+      // Send email via EmailService
+      const sendResult = await this.emailService.sendHealthDigest(
+        userEmail,
+        emailDigest,
+        unsubscribeUrl,
       );
+
+      if (!sendResult.success) {
+        this.logger.warn(`Failed to send digest email to ${userEmail}: ${sendResult.error}`);
+      } else {
+        this.logger.log(`Digest email sent to ${userEmail} (messageId: ${sendResult.messageId})`);
+      }
 
       return {
         tenantId,
         success: true,
         digestId: `${tenantId}-${Date.now()}`,
+        emailSent: sendResult.success,
       };
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
@@ -184,17 +226,73 @@ export class HealthDigestJob implements OnModuleInit, OnModuleDestroy {
     // Get week bounds
     const { weekStart, weekEnd } = this.getWeekBounds();
 
-    // Query distinct tenants with health logs in the current week
-    // Note: This requires access to tenant/user data
-    // For now, we'll return an empty array as the actual tenant service
-    // integration will be done when email sending is implemented
     this.logger.debug(
       `Looking for tenants with health data between ${weekStart.toISOString()} and ${weekEnd.toISOString()}`,
     );
 
-    // TODO: Implement tenant lookup with user names when email service is integrated
-    // This is a placeholder that will be updated in a future plan
-    return [];
+    // Query distinct tenants with health logs in the current week
+    // Join with users to get the user name for personalization
+    const tenantsWithHealthData = await this.prisma.healthLog.findMany({
+      where: {
+        loggedAt: {
+          gte: weekStart,
+          lte: weekEnd,
+        },
+        deletedAt: null,
+      },
+      select: {
+        tenantId: true,
+        tenant: {
+          select: {
+            users: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        },
+      },
+      distinct: ['tenantId'],
+    });
+
+    // Map to tenant info with user names
+    return tenantsWithHealthData
+      .map((log) => {
+        const user = log.tenant.users[0]; // Assume single user per tenant for v1
+        return {
+          tenantId: log.tenantId,
+          userName: user?.name || 'User',
+        };
+      })
+      .filter((item, index, self) =>
+        // Ensure unique tenantIds
+        index === self.findIndex((t) => t.tenantId === item.tenantId)
+      );
+  }
+
+  /**
+   * Get user email from tenant ID
+   * Assumes single user per tenant for v1
+   */
+  private async getUserEmail(tenantId: string): Promise<string | null> {
+    const user = await this.prisma.user.findFirst({
+      where: { tenantId },
+      select: { email: true },
+    });
+
+    return user?.email ?? null;
+  }
+
+  /**
+   * Generate unsubscribe URL for the tenant
+   * In production, this would include a signed token for verification
+   */
+  private generateUnsubscribeUrl(tenantId: string): string {
+    const frontendUrl = this.configService.get<string>('FRONTEND_URL') || 'http://localhost:3001';
+    // In production, this should include a signed JWT token for verification
+    // For now, we use a simple token format
+    return `${frontendUrl}/settings/notifications/unsubscribe?token=${Buffer.from(tenantId).toString('base64')}&type=health-digest`;
   }
 
   /**

@@ -1,6 +1,15 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from '@pms/data-access';
+import {
+  AiGatewayService,
+  UsageLoggingService,
+  PromptCacheService,
+  TokenBudgetService,
+  CircuitBreakerService,
+  GroqProvider,
+  GeminiProvider,
+} from '@pms/shared-kernel';
 import { HealthLogController } from './presentation/controllers/health-log.controller';
 import { HealthTrendsController } from './presentation/controllers/health-trends.controller';
 import { VitalsController } from './presentation/controllers/vitals.controller';
@@ -14,6 +23,7 @@ import { WorkoutService } from './application/services/workout.service';
 import { HealthDigestService } from './application/services/health-digest.service';
 import { HealthLogRepository } from './infrastructure/repositories/health-log.repository';
 import { HealthDigestJob } from './infrastructure/jobs/health-digest.job';
+import { EmailService } from './infrastructure/email/email.service';
 
 @Module({
   imports: [PrismaModule, ConfigModule],
@@ -25,13 +35,24 @@ import { HealthDigestJob } from './infrastructure/jobs/health-digest.job';
     WorkoutController,
   ],
   providers: [
+    // AI providers for health digest
+    GroqProvider,
+    GeminiProvider,
+    CircuitBreakerService,
+    PromptCacheService,
+    TokenBudgetService,
+    UsageLoggingService,
+    AiGatewayService,
+    // Health services
     HealthLogService,
     HealthTrendsService,
     VitalsService,
     SleepService,
     WorkoutService,
     HealthDigestService,
+    // Infrastructure
     HealthLogRepository,
+    EmailService,
     HealthDigestJob,
   ],
   exports: [
@@ -41,6 +62,7 @@ import { HealthDigestJob } from './infrastructure/jobs/health-digest.job';
     SleepService,
     WorkoutService,
     HealthDigestService,
+    EmailService,
   ],
 })
 export class HealthModule {}
