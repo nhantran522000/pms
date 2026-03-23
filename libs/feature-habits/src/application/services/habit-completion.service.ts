@@ -8,6 +8,7 @@ import { HabitRepository } from '../../infrastructure/repositories/habit.reposit
 import { HabitCompletionRepository } from '../../infrastructure/repositories/habit-completion.repository';
 import { HabitEntity } from '../../domain/entities/habit.entity';
 import { HabitCompletionEntity } from '../../domain/entities/habit-completion.entity';
+import { GamificationService } from './gamification.service';
 import { CheckInHabitDto } from '@pms/shared-types';
 import { getTenantId } from '@pms/data-access';
 
@@ -18,12 +19,18 @@ export class HabitCompletionService {
   constructor(
     private readonly habitRepository: HabitRepository,
     private readonly completionRepository: HabitCompletionRepository,
+    private readonly gamificationService: GamificationService,
   ) {}
 
   async checkIn(
     habitId: string,
     dto: CheckInHabitDto,
-  ): Promise<HabitCompletionEntity> {
+  ): Promise<{
+    completion: HabitCompletionEntity;
+    gamification: ReturnType<GamificationService['awardCompletionXP']> extends Promise<infer T>
+      ? T
+      : never;
+  }> {
     const tenantId = this.getTenantId();
 
     // Verify habit exists
@@ -77,7 +84,30 @@ export class HabitCompletionService {
       `Check-in created for habit ${habitId} on ${checkInDate.toDateString()}, streak: ${currentStreak}`,
     );
 
-    return completion;
+    // Award XP and check for achievements (only if completed)
+    let gamificationResult = null;
+    if (dto.completed ?? true) {
+      gamificationResult = await this.gamificationService.awardCompletionXP(
+        habitId,
+        currentStreak,
+        longestStreak,
+      );
+
+      if (gamificationResult.levelUp) {
+        this.logger.log(`User leveled up to ${gamificationResult.currentLevel}!`);
+      }
+
+      if (gamificationResult.newAchievements.length > 0) {
+        this.logger.log(
+          `Unlocked ${gamificationResult.newAchievements.length} achievement(s)`,
+        );
+      }
+    }
+
+    return {
+      completion,
+      gamification: gamificationResult,
+    };
   }
 
   async getCompletions(

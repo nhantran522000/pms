@@ -12,6 +12,7 @@ import {
 import { HabitService } from '../../application/services/habit.service';
 import { HabitCompletionService } from '../../application/services/habit-completion.service';
 import { HabitScheduleService } from '../../application/services/habit-schedule.service';
+import { HabitCalendarService } from '../../application/services/habit-calendar.service';
 import { ZodValidationPipe } from '@pms/shared-kernel';
 import {
   CreateHabitSchema,
@@ -20,6 +21,7 @@ import {
   UpdateHabitDto,
   CheckInHabitSchema,
   CheckInHabitDto,
+  CalendarQuerySchema,
 } from '@pms/shared-types';
 import { z } from 'zod';
 
@@ -41,6 +43,7 @@ export class HabitController {
     private readonly habitService: HabitService,
     private readonly completionService: HabitCompletionService,
     private readonly habitScheduleService: HabitScheduleService,
+    private readonly habitCalendarService: HabitCalendarService,
   ) {}
 
   @Post()
@@ -92,6 +95,18 @@ export class HabitController {
         completedToday: h.completedToday,
         completionId: h.completionId,
       })),
+    };
+  }
+
+  @Get(':id/calendar')
+  async getCalendar(
+    @Param('id') id: string,
+    @Query() query: z.infer<typeof CalendarQuerySchema>,
+  ) {
+    const calendar = await this.habitCalendarService.getCalendar(id, query.month);
+    return {
+      success: true,
+      data: calendar,
     };
   }
 

@@ -182,4 +182,37 @@ export class HabitCompletionRepository {
 
     return completions.map((c) => HabitCompletionEntity.fromPrisma(c));
   }
+
+  /**
+   * Get completions for a specific month, returned as a Map keyed by date string
+   */
+  async getCompletionsByMonth(
+    habitId: string,
+    tenantId: string,
+    year: number,
+    month: number,
+  ): Promise<Map<string, HabitCompletionEntity>> {
+    const startDate = new Date(year, month - 1, 1);
+    const endDate = new Date(year, month, 0); // Last day of month
+    endDate.setHours(23, 59, 59, 999);
+
+    const completions = await this.prisma.habitCompletion.findMany({
+      where: {
+        habitId,
+        tenantId,
+        date: {
+          gte: startDate,
+          lte: endDate,
+        },
+      },
+    });
+
+    const map = new Map<string, HabitCompletionEntity>();
+    for (const completion of completions) {
+      const dateKey = completion.date.toISOString().split('T')[0];
+      map.set(dateKey, HabitCompletionEntity.fromPrisma(completion));
+    }
+
+    return map;
+  }
 }

@@ -87,3 +87,48 @@ export const TodayHabitsResponseSchema = z.object({
   completed: z.number(),
 });
 export type TodayHabitsResponse = z.infer<typeof TodayHabitsResponseSchema>;
+
+// Calendar day data
+export const CalendarDaySchema = z.object({
+  date: z.string(), // ISO date string "2024-01-15"
+  dayOfWeek: z.number(), // 0-6 (Sunday-Saturday)
+  isScheduled: z.boolean(), // Is habit scheduled for this day?
+  isCompleted: z.boolean(), // Was it completed?
+  isToday: z.boolean(), // Is this today?
+  isPast: z.boolean(), // Is this in the past?
+  isFuture: z.boolean(), // Is this in the future?
+  completionId: z.string().nullable().optional(),
+  notes: z.string().nullable().optional(),
+});
+export type CalendarDay = z.infer<typeof CalendarDaySchema>;
+
+// Calendar stats
+export const CalendarStatsSchema = z.object({
+  totalDays: z.number(),
+  scheduledDays: z.number(),
+  completedDays: z.number(),
+  missedDays: z.number(),
+  completionRate: z.number(), // 0-100 percentage
+  currentStreak: z.number(),
+  longestStreak: z.number(),
+});
+export type CalendarStats = z.infer<typeof CalendarStatsSchema>;
+
+// Habit calendar response
+export const HabitCalendarResponseSchema = z.object({
+  habitId: z.string(),
+  habitName: z.string(),
+  frequency: HabitFrequencySchema,
+  month: z.string(), // "2024-01"
+  year: z.number(),
+  monthNumber: z.number(), // 1-12
+  days: z.array(CalendarDaySchema),
+  stats: CalendarStatsSchema,
+});
+export type HabitCalendarResponse = z.infer<typeof HabitCalendarResponseSchema>;
+
+// Calendar query params
+export const CalendarQuerySchema = z.object({
+  month: z.string().regex(/^\d{4}-\d{2}$/).optional(), // "2024-01"
+});
+export type CalendarQuery = z.infer<typeof CalendarQuerySchema>;
