@@ -93,7 +93,7 @@
 - [ ] **NOTE-03**: Notes content uses Tiptap rich text editor
 - [x] **NOTE-04**: User can search notes by title and content (full-text search)
 - [x] **NOTE-05**: User can organize notes with folders and tags
-- [ ] **NOTE-06**: User can create journal entries with mood indicator
+- [x] **NOTE-06**: User can create journal entries with mood indicator
 - [ ] **NOTE-07**: System tracks mood trends over time
 - [ ] **NOTE-08**: Notes auto-save with debounce (500ms)
 
@@ -252,7 +252,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | NOTE-03 | Phase 6 | Pending |
 | NOTE-04 | Phase 6 | Complete |
 | NOTE-05 | Phase 6 | Complete |
-| NOTE-06 | Phase 6 | Pending |
+| NOTE-06 | Phase 6 | Complete |
 | NOTE-07 | Phase 6 | Pending |
 | NOTE-08 | Phase 6 | Pending |
 | HOBB-01 | Phase 7 | Pending |
