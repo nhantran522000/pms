@@ -125,7 +125,7 @@ Plans:
 - [x] 05-01: Health domain module with weight tracking and trend charts (30/90/365 day views)
 - [x] 05-02: Vitals logging (blood pressure, heart rate) as JSONB
 - [x] 05-03: Sleep tracking (duration, quality) and workout logging (type, duration, intensity as JSONB)
-- [ ] 05-04: AI weekly health digest generation (correlations, trends, insights)
+- [x] 05-04: AI weekly health digest generation (correlations, trends, insights)
 - [ ] 05-05: Resend email integration for Sunday digest delivery
 - [ ] 05-06: Health dashboard with metrics summary and trend visualization
 
