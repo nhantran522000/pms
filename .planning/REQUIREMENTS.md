@@ -88,11 +88,11 @@
 
 ### Notes & Journal Module
 
-- [ ] **NOTE-01**: User can create notes with title and content
-- [ ] **NOTE-02**: User can edit and delete their own notes
+- [x] **NOTE-01**: User can create notes with title and content
+- [x] **NOTE-02**: User can edit and delete their own notes
 - [ ] **NOTE-03**: Notes content uses Tiptap rich text editor
-- [ ] **NOTE-04**: User can search notes by title and content (full-text search)
-- [ ] **NOTE-05**: User can organize notes with folders and tags
+- [x] **NOTE-04**: User can search notes by title and content (full-text search)
+- [x] **NOTE-05**: User can organize notes with folders and tags
 - [ ] **NOTE-06**: User can create journal entries with mood indicator
 - [ ] **NOTE-07**: System tracks mood trends over time
 - [ ] **NOTE-08**: Notes auto-save with debounce (500ms)
@@ -247,11 +247,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | HLTH-06 | Phase 5 | Complete |
 | HLTH-07 | Phase 5 | Complete |
 | HLTH-08 | Phase 5 | Complete |
-| NOTE-01 | Phase 6 | Pending |
-| NOTE-02 | Phase 6 | Pending |
+| NOTE-01 | Phase 6 | Complete |
+| NOTE-02 | Phase 6 | Complete |
 | NOTE-03 | Phase 6 | Pending |
-| NOTE-04 | Phase 6 | Pending |
-| NOTE-05 | Phase 6 | Pending |
+| NOTE-04 | Phase 6 | Complete |
+| NOTE-05 | Phase 6 | Complete |
 | NOTE-06 | Phase 6 | Pending |
 | NOTE-07 | Phase 6 | Pending |
 | NOTE-08 | Phase 6 | Pending |
