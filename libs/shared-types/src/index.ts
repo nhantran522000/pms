@@ -6,3 +6,4 @@ export * from './financial';
 export * from './habits';
 export * from './tasks';
 export * from './health';
+export * from './notes';

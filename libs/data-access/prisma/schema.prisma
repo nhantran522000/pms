@@ -15,7 +15,11 @@ enum HealthLogType {
   BLOOD_PRESSURE
   HEART_RATE
   SLEEP
+  STEPS
   WORKOUT
+  NUTRITION
+  MOOD
+  CUSTOM
 }
 
 /// Tenant - Root entity for multi-tenancy
@@ -38,7 +42,11 @@ model Tenant {
   habitCompletions  HabitCompletion[]
   userStats         UserStats?
   achievements      Achievement[]
-  healthLogs         HealthLog[]
+  healthLogs        HealthLog[]
+  folders           Folder[]
+  tags              Tag[]
+  notes             Note[]
+  journalEntries    JournalEntry[]
 
   @@index([name])
   @@map("tenants")
@@ -381,4 +389,160 @@ model HealthLog {
   @@index([tenantId, type, loggedAt])
   @@index([tenantId, loggedAt])
   @@map("health_logs")
+}
+
+/// Folder - Single-level folders for note organization
+model Folder {
+  id        String   @id @default(cuid())
+  tenantId  String   @map("tenantId")
+  name      String   @db.VarChar(100)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  notes     Note[]
+
+  @@unique([tenantId, name])
+  @@index([tenantId])
+  @@map("folders")
+}
+
+/// Tag - Tags for flexible note categorization
+model Tag {
+  id        String    @id @default(cuid())
+  tenantId  String    @map("tenantId")
+  name      String    @db.VarChar(50)
+  createdAt DateTime  @default(now())
+  tenant    Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  noteTags  NoteTag[]
+
+  @@unique([tenantId, name])
+  @@index([tenantId])
+  @@map("tags")
+}
+
+/// Note - Rich text notes with Tiptap content
+model Note {
+  id            String    @id @default(cuid())
+  tenantId      String    @map("tenantId")
+  title         String    @db.VarChar(200)
+  content       Json      // Tiptap JSON document (max 100KB enforced in app)
+  folderId      String?   @map("folderId")
+  search_vector Unsupported("tsvector") // Full-text search vector
+  deletedAt     DateTime? @map("deletedAt") // Soft delete
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  tenant        Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  folder        Folder?   @relation(fields: [folderId], references: [id], onDelete: SetNull)
+  noteTags      NoteTag[]
+
+  @@index([tenantId])
+  @@index([folderId])
+  @@index([deletedAt])
+  @@map("notes")
+}
+
+/// NoteTag - Junction table for note-tag relationships
+model NoteTag {
+  noteId    String
+  tagId     String
+  note      Note     @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([noteId, tagId])
+  @@map("note_tags")
+}
+
+/// JournalEntry - Daily journal entries with mood tracking
+model JournalEntry {
+  id        String   @id @default(cuid())
+  tenantId  String   @map("tenantId")
+  entryDate DateTime @map("entryDate") @db.Date // Date only
+  content   Json     // Tiptap JSON document
+  mood      Int      // 1-5 scale: 1=terrible, 2=bad, 3=neutral, 4=good, 5=excellent
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, entryDate]) // One entry per day per tenant
+  @@index([tenantId])
+  @@index([entryDate])
+  @@map("journal_entries")
+}
+
+/// Folder - Single-level folders for note organization
+model Folder {
+  id        String   @id @default(cuid())
+  tenantId  String   @map("tenantId")
+  name      String   @db.VarChar(100)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  notes     Note[]
+
+  @@unique([tenantId, name])
+  @@index([tenantId])
+  @@map("folders")
+}
+
+/// Tag - Tags for flexible note categorization
+model Tag {
+  id        String    @id @default(cuid())
+  tenantId  String    @map("tenantId")
+  name      String    @db.VarChar(50)
+  createdAt DateTime  @default(now())
+  tenant    Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  noteTags  NoteTag[]
+
+  @@unique([tenantId, name])
+  @@index([tenantId])
+  @@map("tags")
+}
+
+/// Note - Rich text notes with Tiptap content
+model Note {
+  id            String    @id @default(cuid())
+  tenantId      String    @map("tenantId")
+  title         String    @db.VarChar(200)
+  content       Json      // Tiptap JSON document (max 100KB enforced in app)
+  folderId      String?   @map("folderId")
+  search_vector Unsupported("tsvector") // Full-text search vector
+  deletedAt     DateTime? @map("deletedAt") // Soft delete
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  tenant        Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  folder        Folder?   @relation(fields: [folderId], references: [id], onDelete: SetNull)
+  noteTags      NoteTag[]
+
+  @@index([tenantId])
+  @@index([folderId])
+  @@index([deletedAt])
+  @@map("notes")
+}
+
+/// NoteTag - Junction table for note-tag relationships
+model NoteTag {
+  noteId    String
+  tagId     String
+  note      Note     @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([noteId, tagId])
+  @@map("note_tags")
+}
+
+/// JournalEntry - Daily journal entries with mood tracking
+model JournalEntry {
+  id        String   @id @default(cuid())
+  tenantId  String   @map("tenantId")
+  entryDate DateTime @map("entryDate") @db.Date // Date only
+  content   Json     // Tiptap JSON document
+  mood      Int      // 1-5 scale: 1=terrible, 2=bad, 3=neutral, 4=good, 5=excellent
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, entryDate]) // One entry per day per tenant
+  @@index([tenantId])
+  @@index([entryDate])
+  @@map("journal_entries")
 }
