@@ -79,7 +79,7 @@
 
 - [x] **HLTH-01**: User can log weight with date and optional notes
 - [x] **HLTH-02**: User can view weight trend chart (line chart, 30/90/365 day views)
-- [ ] **HLTH-03**: User can log vitals (blood pressure, heart rate) as JSONB
+- [x] **HLTH-03**: User can log vitals (blood pressure, heart rate) as JSONB
 - [ ] **HLTH-04**: User can log sleep duration and quality
 - [ ] **HLTH-05**: User can log workouts with type, duration, intensity (JSONB)
 - [ ] **HLTH-06**: System generates weekly health digest via AI
@@ -241,7 +241,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | TASK-08 | Phase 4 | Complete |
 | HLTH-01 | Phase 5 | Complete |
 | HLTH-02 | Phase 5 | Complete |
-| HLTH-03 | Phase 5 | Pending |
+| HLTH-03 | Phase 5 | Complete |
 | HLTH-04 | Phase 5 | Pending |
 | HLTH-05 | Phase 5 | Pending |
 | HLTH-06 | Phase 5 | Pending |
