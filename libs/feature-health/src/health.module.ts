@@ -11,7 +11,9 @@ import { HealthTrendsService } from './application/services/health-trends.servic
 import { VitalsService } from './application/services/vitals.service';
 import { SleepService } from './application/services/sleep.service';
 import { WorkoutService } from './application/services/workout.service';
+import { HealthDigestService } from './application/services/health-digest.service';
 import { HealthLogRepository } from './infrastructure/repositories/health-log.repository';
+import { HealthDigestJob } from './infrastructure/jobs/health-digest.job';
 
 @Module({
   imports: [PrismaModule, ConfigModule],
@@ -28,8 +30,17 @@ import { HealthLogRepository } from './infrastructure/repositories/health-log.re
     VitalsService,
     SleepService,
     WorkoutService,
+    HealthDigestService,
     HealthLogRepository,
+    HealthDigestJob,
   ],
-  exports: [HealthLogService, HealthTrendsService, VitalsService, SleepService, WorkoutService],
+  exports: [
+    HealthLogService,
+    HealthTrendsService,
+    VitalsService,
+    SleepService,
+    WorkoutService,
+    HealthDigestService,
+  ],
 })
 export class HealthModule {}
