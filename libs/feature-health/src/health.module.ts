@@ -4,15 +4,32 @@ import { PrismaModule } from '@pms/data-access';
 import { HealthLogController } from './presentation/controllers/health-log.controller';
 import { HealthTrendsController } from './presentation/controllers/health-trends.controller';
 import { VitalsController } from './presentation/controllers/vitals.controller';
+import { SleepController } from './presentation/controllers/sleep.controller';
+import { WorkoutController } from './presentation/controllers/workout.controller';
 import { HealthLogService } from './application/services/health-log.service';
 import { HealthTrendsService } from './application/services/health-trends.service';
 import { VitalsService } from './application/services/vitals.service';
+import { SleepService } from './application/services/sleep.service';
+import { WorkoutService } from './application/services/workout.service';
 import { HealthLogRepository } from './infrastructure/repositories/health-log.repository';
 
 @Module({
   imports: [PrismaModule, ConfigModule],
-  controllers: [HealthLogController, HealthTrendsController, VitalsController],
-  providers: [HealthLogService, HealthTrendsService, VitalsService, HealthLogRepository],
-  exports: [HealthLogService, HealthTrendsService, VitalsService],
+  controllers: [
+    HealthLogController,
+    HealthTrendsController,
+    VitalsController,
+    SleepController,
+    WorkoutController,
+  ],
+  providers: [
+    HealthLogService,
+    HealthTrendsService,
+    VitalsService,
+    SleepService,
+    WorkoutService,
+    HealthLogRepository,
+  ],
+  exports: [HealthLogService, HealthTrendsService, VitalsService, SleepService, WorkoutService],
 })
 export class HealthModule {}
