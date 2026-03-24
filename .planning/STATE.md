@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 06-notes-journal-03 full-text search
-last_updated: "2026-03-23T16:17:39.327Z"
+stopped_at: Completed 06-notes-journal-01 database schema and dtos
+last_updated: "2026-03-24T00:22:43.081Z"
 progress:
   total_phases: 12
   completed_phases: 4
   total_plans: 30
-  completed_plans: 34
+  completed_plans: 35
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** A unified personal data platform with AI-powered insights that costs ~$5/month to run and can scale to a SaaS business when ready.
-**Current focus:** Phase 6 — notes-journal
+**Current focus:** Phase 06 — notes-journal
 
 ## Current Position
 
-Phase: 6 (notes-journal) — EXECUTING
-Plan: 5 of 5
+Phase: 06 (notes-journal) — EXECUTING
+Plan: 2 of 5
 
 ## Performance Metrics
 
@@ -81,6 +81,7 @@ Plan: 5 of 5
 | Phase 06-notes-journal P02 | 1774282174s | 5 tasks | 18 files |
 | Phase 06-notes-journal P06-03 | 25313 | 4 tasks | 9 files |
 | Phase 06-notes-journal P04 | 3min | 4 tasks | 11 files |
+| Phase 06-notes-journal P06-01 | 105 | 3 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -156,6 +157,10 @@ Recent decisions affecting current work:
 - [Phase 05-health]: Achievement badges for streaks at 7, 14, 30, 100 consecutive logging days
 - [Phase 06-notes-journal]: PostgreSQL tsvector with GIN index for full-text search - built-in, fast, linguistic support, no extra infrastructure
 - [Phase 06-notes-journal]: Trigger-based search_vector auto-update on INSERT/UPDATE - automatic synchronization, no stale data
+- [Phase 06-notes-journal]: Single-level folders - simpler than nested, no recursion needed
+- [Phase 06-notes-journal]: Max 20 tags per note - prevents abuse, enforced in Zod schema
+- [Phase 06-notes-journal]: Soft delete for notes - deletedAt allows recovery and maintains search history
+- [Phase 06-notes-journal]: Mood as integer 1-5 - database-friendly, easy to aggregate, simple validation
 
 ### Pending Todos
 
@@ -167,6 +172,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-23T16:13:17.369Z
-Stopped at: Completed 06-notes-journal-03 full-text search
+Last session: 2026-03-24T00:22:43.078Z
+Stopped at: Completed 06-notes-journal-01 database schema and dtos
 Resume file: None

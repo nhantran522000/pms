@@ -90,7 +90,7 @@
 
 - [x] **NOTE-01**: User can create notes with title and content
 - [x] **NOTE-02**: User can edit and delete their own notes
-- [ ] **NOTE-03**: Notes content uses Tiptap rich text editor
+- [x] **NOTE-03**: Notes content uses Tiptap rich text editor
 - [x] **NOTE-04**: User can search notes by title and content (full-text search)
 - [x] **NOTE-05**: User can organize notes with folders and tags
 - [x] **NOTE-06**: User can create journal entries with mood indicator
@@ -249,7 +249,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | HLTH-08 | Phase 5 | Complete |
 | NOTE-01 | Phase 6 | Complete |
 | NOTE-02 | Phase 6 | Complete |
-| NOTE-03 | Phase 6 | Pending |
+| NOTE-03 | Phase 6 | Complete |
 | NOTE-04 | Phase 6 | Complete |
 | NOTE-05 | Phase 6 | Complete |
 | NOTE-06 | Phase 6 | Complete |

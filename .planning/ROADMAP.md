@@ -142,7 +142,7 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 06-01: Prisma schema and Zod DTOs for Notes & Journal
+- [x] 06-01: Prisma schema and Zod DTOs for Notes & Journal
 - [ ] 06-02: Notes CRUD with folders and tags organization
 - [x] 06-03: Full-text search with PostgreSQL tsvector
 - [x] 06-04: Journal entries with mood tracking
