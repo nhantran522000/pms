@@ -23,9 +23,7 @@ export interface HabitStreakDataPoint {
   streakLength: number;
 }
 
-export interface HabitStreakChartProps extends BaseChartProps {
-  data: HabitStreakDataPoint[];
-  days?: number;
+export interface HabitStreakChartProps extends BaseChartProps<HabitStreakDataPoint> {
   showArea?: boolean;
 }
 

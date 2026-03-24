@@ -23,9 +23,7 @@ export interface FinancialDataPoint {
   expense?: number;
 }
 
-export interface FinancialChartProps extends BaseChartProps {
-  data: FinancialDataPoint[];
-  days?: number;
+export interface FinancialChartProps extends BaseChartProps<FinancialDataPoint> {
   currency?: string;
 }
 

@@ -21,9 +21,7 @@ export interface WeightDataPoint {
   weight: number;
 }
 
-export interface WeightChartProps extends BaseChartProps {
-  data: WeightDataPoint[];
-  days?: number;
+export interface WeightChartProps extends BaseChartProps<WeightDataPoint> {
   unit?: 'kg' | 'lbs';
 }
 

@@ -17,7 +17,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { formatChartDate, formatChartPercentage, CHART_COLORS, CHART_DIMENSIONS, type BaseChartProps } from '@/lib/chart-utils';
+import { formatChartDate, formatChartPercentage, CHART_COLORS, CHART_DIMENSIONS, type BaseChartProps } from '@/lib/chart-utils.ts';
 
 export type HobbyTrackingType = 'COUNTER' | 'PERCENTAGE' | 'LIST';
 
@@ -27,10 +27,8 @@ export interface HobbyProgressDataPoint {
   cumulative?: number;
 }
 
-export interface HobbyProgressChartProps extends BaseChartProps {
-  data: HobbyProgressDataPoint[];
+export interface HobbyProgressChartProps extends BaseChartProps<HobbyProgressDataPoint> {
   trackingType: HobbyTrackingType;
-  days?: number;
   goalTarget?: number;
 }
 
@@ -44,7 +42,7 @@ function HobbyProgressTooltip({
   goalTarget,
 }: {
   active?: boolean;
-  payload?: Array<{ name: string; value: number; color: string }>>;
+  payload?: Array<{ name: string; value: number; color: string }>;
   trackingType: HobbyTrackingType;
   goalTarget?: number;
 }) {
