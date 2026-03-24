@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    // Service worker registration
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
         .register('/sw.js')

@@ -30,14 +30,14 @@ export interface FinancialChartProps extends BaseChartProps<FinancialDataPoint> 
 /**
  * Custom tooltip for financial chart
  */
-function FinancialTooltip({ active, payload }: { active?: boolean; payload?: Array<{ name: string; value: number; color: string }> }) {
+function FinancialTooltip({ active, payload }: { active?: boolean; payload?: Array<{ name: string; value: number; color: string; payload?: FinancialDataPoint }> }) {
   if (!active || !payload || !payload.length) {
     return null;
   }
 
   const income = payload.find((p) => p.name === 'income')?.value ?? 0;
   const expense = payload.find((p) => p.name === 'expense')?.value ?? 0;
-  const date = payload[0].payload?.date as string;
+  const date = payload[0].payload?.date;
 
   return (
     <div className="bg-white dark:bg-zinc-800 p-3 rounded-lg shadow-lg border border-zinc-200 dark:border-zinc-700">

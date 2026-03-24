@@ -30,12 +30,13 @@ export interface HabitStreakChartProps extends BaseChartProps<HabitStreakDataPoi
 /**
  * Custom tooltip for habit streak chart
  */
-function HabitStreakTooltip({ active, payload }: { active?: boolean; payload?: Array<{ value: number; payload: HabitStreakDataPoint }> }) {
+function HabitStreakTooltip({ active, payload }: { active?: boolean; payload?: Array<{ value: number; payload?: HabitStreakDataPoint }> }) {
   if (!active || !payload || !payload[0]) {
     return null;
   }
 
   const data = payload[0].payload;
+  if (!data) return null;
   const streak = payload[0].value;
 
   return (
@@ -70,7 +71,7 @@ export function HabitStreakChart({ data, days = 30, showArea = false, className 
             tick={{ fill: '#71717a' }}
           />
           <YAxis
-            tickFormatter={(value) => Math.round(value)}
+            tickFormatter={(value) => Math.round(value).toString()}
             stroke="#71717a"
             className="text-xs"
             tick={{ fill: '#71717a' }}

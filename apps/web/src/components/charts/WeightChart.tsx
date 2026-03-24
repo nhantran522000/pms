@@ -28,19 +28,20 @@ export interface WeightChartProps extends BaseChartProps<WeightDataPoint> {
 /**
  * Custom tooltip for weight chart
  */
-function WeightTooltip({ active, payload }: { active?: boolean; payload?: Array<{ value: number; payload: WeightDataPoint }> }) {
+function WeightTooltip({ active, payload, unit }: { active?: boolean; payload?: Array<{ value: number; payload?: WeightDataPoint }>; unit?: 'kg' | 'lbs' }) {
   if (!active || !payload || !payload[0]) {
     return null;
   }
 
   const data = payload[0].payload;
+  if (!data) return null;
   const weight = payload[0].value;
 
   return (
     <div className="bg-white dark:bg-zinc-800 p-3 rounded-lg shadow-lg border border-zinc-200 dark:border-zinc-700">
       <p className="text-sm font-medium text-zinc-600 dark:text-zinc-400">{formatChartDate(data.date, 'long')}</p>
       <p className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-        {weight.toFixed(1)} {data.unit || 'lbs'}
+        {weight.toFixed(1)} {unit || 'lbs'}
       </p>
     </div>
   );
@@ -72,7 +73,7 @@ export function WeightChart({ data, days = 30, unit = 'lbs', className = '' }: W
             className="text-xs"
             tick={{ fill: '#71717a' }}
           />
-          <Tooltip content={<WeightTooltip />} />
+          <Tooltip content={<WeightTooltip unit={unit} />} />
           <Line
             type="monotone"
             dataKey="weight"

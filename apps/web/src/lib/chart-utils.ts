@@ -81,7 +81,7 @@ export function formatChartNumber(value: number, decimals = 1): string {
  * Common chart props interface
  * Generic type parameter T allows chart components to specify their data point type
  */
-export interface BaseChartProps<T extends Record<string, unknown> = Record<string, unknown>> {
+export interface BaseChartProps<T extends object = object> {
   data: T[];
   days?: number;
   className?: string;
