@@ -205,9 +205,9 @@ Plans:
 - [x] 09-02: Responsive dashboard layout with module navigation
 - [x] 09-03: TanStack Query integration with shared data-access hooks
 - [x] 09-04: shadcn/ui components and Tailwind styling
-- [ ] 09-05: Recharts integration for data visualization
+- [x] 09-05: Recharts integration for data visualization
 - [x] 09-06: Dark/light theme toggle with persistence
-- [ ] 09-07: PWA manifest for installable web app
+- [x] 09-07: PWA manifest for installable web app
 
 ### Phase 10: Mobile Client
 **Goal**: Expo mobile app with NativeWind, offline queue, push notifications, and shared hooks
