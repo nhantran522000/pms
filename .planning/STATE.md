@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 08-saas-subscription-03 trial warning and expiry
-last_updated: "2026-03-24T11:19:26.785Z"
+stopped_at: Completed 08-saas-subscription-04 PlanFeatureGuard decorator and guard
+last_updated: "2026-03-24T11:22:01.456Z"
 progress:
   total_phases: 12
   completed_phases: 6
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-21)
 ## Current Position
 
 Phase: 08 (saas-subscription) — EXECUTING
-Plan: 4 of 5
+Plan: 5 of 5
 
 ## Performance Metrics
 
@@ -93,6 +93,7 @@ Plan: 4 of 5
 | Phase 08-saas-subscription P01 | 7m | 6 tasks | 12 files |
 | Phase 08-saas-subscription P02 | 2min | 5 tasks | 8 files |
 | Phase 08-saas-subscription P03 | 88 | 4 tasks | 5 files |
+| Phase 08-saas-subscription P04 | 84 | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -203,6 +204,8 @@ Recent decisions affecting current work:
 - [Phase 08-saas-subscription]: Public webhook endpoint with @Public() decorator allows LemonSqueezy callbacks without authentication
 - [Phase 08-saas-subscription]: Trial warning email scheduled via pg-boss for Day 27 at 9 AM UTC
 - [Phase 08-saas-subscription]: Soft degradation on trial expiry: checkAndHandleExpiry downgrades to FREE tier with banner state
+- [Phase 08-saas-subscription]: Opt-in guard pattern: No @RequirePlan decorator means endpoint is accessible to all
+- [Phase 08-saas-subscription]: ForbiddenException includes upgradeUrl for frontend upgrade prompt UX
 
 ### Pending Todos
 
@@ -214,6 +217,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-24T11:19:26.780Z
-Stopped at: Completed 08-saas-subscription-03 trial warning and expiry
+Last session: 2026-03-24T11:22:01.453Z
+Stopped at: Completed 08-saas-subscription-04 PlanFeatureGuard decorator and guard
 Resume file: None
