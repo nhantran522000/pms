@@ -108,8 +108,8 @@
 
 ### SaaS & Subscription
 
-- [ ] **SAAS-01**: New users get 30-day free trial automatically
-- [ ] **SAAS-02**: System tracks trial end date per tenant
+- [x] **SAAS-01**: New users get 30-day free trial automatically
+- [x] **SAAS-02**: System tracks trial end date per tenant
 - [ ] **SAAS-03**: Day 27: System sends trial expiry warning email
 - [ ] **SAAS-04**: Day 30: System restricts access to free tier
 - [ ] **SAAS-05**: LemonSqueezy webhook handles subscription events
@@ -261,8 +261,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | HOBB-04 | Phase 7 | Complete |
 | HOBB-05 | Phase 7 | Complete |
 | HOBB-06 | Phase 7 | Complete |
-| SAAS-01 | Phase 8 | Pending |
-| SAAS-02 | Phase 8 | Pending |
+| SAAS-01 | Phase 8 | Complete |
+| SAAS-02 | Phase 8 | Complete |
 | SAAS-03 | Phase 8 | Pending |
 | SAAS-04 | Phase 8 | Pending |
 | SAAS-05 | Phase 8 | Pending |
