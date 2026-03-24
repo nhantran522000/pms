@@ -5,7 +5,9 @@ import { cn } from '@/lib/utils';
 export interface Metric {
   label: string;
   value: string;
-  trend?: 'up' | 'down' | 'neutral';
+  trend?: 'up' | 'down' | 'neutral' | 'positive' | 'negative' | 'improving' | 'stable' | 'declining';
+  isLoading?: boolean;
+  error?: Error | unknown;
 }
 
 export interface ModuleCardProps {
@@ -65,18 +67,27 @@ export function ModuleCard({ name, description, href, icon: Icon, metrics }: Mod
                 {metric.label}
               </p>
               <div className="flex items-center space-x-1">
-                <p className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-                  {metric.value}
-                </p>
-                {metric.trend && (
-                  <span className={cn(
-                    'text-xs',
-                    metric.trend === 'up' && 'text-green-600 dark:text-green-400',
-                    metric.trend === 'down' && 'text-red-600 dark:text-red-400',
-                    metric.trend === 'neutral' && 'text-zinc-500 dark:text-zinc-500'
-                  )}>
-                    {metric.trend === 'up' ? '↑' : metric.trend === 'down' ? '↓' : '→'}
-                  </span>
+                {metric.isLoading ? (
+                  <div className="h-5 w-16 bg-zinc-200 dark:bg-zinc-800 animate-pulse rounded" />
+                ) : metric.error ? (
+                  <p className="text-sm text-red-600 dark:text-red-400">Error</p>
+                ) : (
+                  <>
+                    <p className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                      {metric.value}
+                    </p>
+                    {metric.trend && (
+                      <span className={cn(
+                        'text-xs',
+                        (metric.trend === 'up' || metric.trend === 'positive' || metric.trend === 'improving') && 'text-green-600 dark:text-green-400',
+                        (metric.trend === 'down' || metric.trend === 'negative' || metric.trend === 'declining') && 'text-red-600 dark:text-red-400',
+                        (metric.trend === 'neutral' || metric.trend === 'stable') && 'text-zinc-500 dark:text-zinc-500'
+                      )}>
+                        {metric.trend === 'up' || metric.trend === 'positive' || metric.trend === 'improving' ? '↑' :
+                         metric.trend === 'down' || metric.trend === 'negative' || metric.trend === 'declining' ? '↓' : '→'}
+                      </span>
+                    )}
+                  </>
                 )}
               </div>
             </div>
