@@ -185,7 +185,7 @@ Plans:
 - [x] 08-02: LemonSqueezy webhook handlers with idempotency (duplicate handling, event ordering)
 - [x] 08-03: Trial expiry warning email (Day 27) and free tier restriction (Day 30)
 - [ ] 08-04: PlanFeatureGuard decorator for restricting gated endpoints
-- [ ] 08-05: Tenant branding as JSONB (primaryColor, appName, logoUrl)
+- [x] 08-05: Tenant branding as JSONB (primaryColor, appName, logoUrl)
 
 ### Phase 9: Web Client
 **Goal**: Next.js static web client with dashboard, TanStack Query, shadcn/ui, charts, theme toggle, and PWA

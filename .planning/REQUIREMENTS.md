@@ -115,7 +115,7 @@
 - [x] **SAAS-05**: LemonSqueezy webhook handles subscription events
 - [x] **SAAS-06**: Webhook handlers are idempotent (handle duplicates)
 - [x] **SAAS-07**: PlanFeatureGuard restricts gated endpoints
-- [ ] **SAAS-08**: Tenant branding stored as JSONB (primaryColor, appName, logoUrl)
+- [x] **SAAS-08**: Tenant branding stored as JSONB (primaryColor, appName, logoUrl)
 
 ### Web Client (Next.js)
 
@@ -268,7 +268,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SAAS-05 | Phase 8 | Complete |
 | SAAS-06 | Phase 8 | Complete |
 | SAAS-07 | Phase 8 | Complete |
-| SAAS-08 | Phase 8 | Pending |
+| SAAS-08 | Phase 8 | Complete |
 | WEB-01 | Phase 9 | Pending |
 | WEB-02 | Phase 9 | Pending |
 | WEB-03 | Phase 9 | Pending |
