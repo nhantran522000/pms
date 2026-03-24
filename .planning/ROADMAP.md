@@ -2,7 +2,7 @@
 
 ## Overview
 
-The PMS Ecosystem roadmap builds a unified personal data platform with AI-powered insights, starting from foundational infrastructure (multi-tenancy, auth, Nx monorepo) and progressing through domain modules (financial, habits, tasks, health, notes, hobbies), AI integration, cross-platform clients (web, mobile, desktop), SaaS subscription system, and operations. Each phase delivers complete, verifiable capabilities while maintaining architectural correctness—RLS from day one, hexagonal patterns proven in Financial module, AI Gateway before AI-dependent features, and web client before mobile/desktop to establish shared components.
+The PMS Ecosystem roadmap builds a unified personal data platform with AI-powered insights, starting from foundational infrastructure (multi-tenancy, auth, Nx monorepo) and progressing through domain modules (financial, habits, tasks, health, notes, hobbies), AI integration, cross-platform clients (web, mobile, desktop), SaaS subscription system, and operations. Each phase delivers complete, verifiable capabilities while maintaining architectural correctness-RLS from day one, hexagonal patterns proven in Financial module, AI Gateway before AI-dependent features, and web client before mobile/desktop to establish shared components.
 
 ## Phases
 
@@ -198,7 +198,7 @@ Plans:
   3. TanStack Query for server state management with caching and invalidation
   4. shadcn/ui components with Tailwind styling and dark/light theme toggle
   5. Recharts for data visualization (financial charts, health trends, habit streaks, hobby progress)
-**Plans**: 7 plans
+**Plans**: 8 plans (7 original + 1 gap closure)
 
 Plans:
 - [x] 09-01: Next.js 16.2 app with static export configuration
@@ -208,6 +208,7 @@ Plans:
 - [x] 09-05: Recharts integration for data visualization
 - [x] 09-06: Dark/light theme toggle with persistence
 - [x] 09-07: PWA manifest for installable web app
+- [ ] 09-08: Gap closure - Fix TypeScript build error in chart components
 
 ### Phase 10: Mobile Client
 **Goal**: Expo mobile app with NativeWind, offline queue, push notifications, and shared hooks
@@ -283,7 +284,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 6. Notes & Journal | 5/5 | Complete | 2026-03-24 |
 | 7. Hobbies | 6/6 | Complete | 2026-03-24 |
 | 8. SaaS Subscription | 5/5 | Complete | 2026-03-24 |
-| 9. Web Client | 5/7 | In Progress|  |
+| 9. Web Client | 7/8 | In Progress (gap closure) | |
 | 10. Mobile Client | 0/6 | Not started | - |
 | 11. Desktop Client | 0/5 | Not started | - |
 | 12. Backup & Operations | 0/6 | Not started | - |
