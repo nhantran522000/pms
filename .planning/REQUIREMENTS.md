@@ -104,7 +104,7 @@
 - [x] **HOBB-03**: User can view hobby progress over time
 - [x] **HOBB-04**: System generates hobby progress insights
 - [x] **HOBB-05**: User can set hobby goals (target counter, target percentage)
-- [ ] **HOBB-06**: Dashboard shows hobby completion percentage
+- [x] **HOBB-06**: Dashboard shows hobby completion percentage
 
 ### SaaS & Subscription
 
@@ -260,7 +260,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | HOBB-03 | Phase 7 | Complete |
 | HOBB-04 | Phase 7 | Complete |
 | HOBB-05 | Phase 7 | Complete |
-| HOBB-06 | Phase 7 | Pending |
+| HOBB-06 | Phase 7 | Complete |
 | SAAS-01 | Phase 8 | Pending |
 | SAAS-02 | Phase 8 | Pending |
 | SAAS-03 | Phase 8 | Pending |

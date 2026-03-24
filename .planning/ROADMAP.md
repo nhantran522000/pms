@@ -166,7 +166,7 @@ Plans:
 - [x] 07-03-PLAN.md — Progress visualization (counter bars+line, percentage line, list activity count)
 - [x] 07-04-PLAN.md — AI-generated insights using ANALYZE task type with data-only fallback
 - [x] 07-05-PLAN.md — Dashboard aggregation with completion percentage calculation
-- [ ] 07-06-PLAN.md — Wire HobbiesModule into API app (gap closure)
+- [x] 07-06-PLAN.md — Wire HobbiesModule into API app (gap closure)
 
 ### Phase 8: SaaS Subscription
 **Goal**: LemonSqueezy integration with 30-day trial, webhook handlers, plan guards, and tenant branding
