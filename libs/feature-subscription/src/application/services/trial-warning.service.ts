@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PgBoss } from 'pg-boss';
 import { PrismaClient } from '@pms/data-access';
@@ -12,7 +12,7 @@ export interface TrialWarningJobData {
 }
 
 @Injectable()
-export class TrialWarningService {
+export class TrialWarningService implements OnModuleInit {
   private readonly logger = new Logger(TrialWarningService.name);
   private readonly frontendUrl: string;
   private boss: PgBoss | null = null;
@@ -23,6 +23,10 @@ export class TrialWarningService {
     private readonly emailService: EmailService,
   ) {
     this.frontendUrl = this.configService.get<string>('FRONTEND_URL', 'http://localhost:3000');
+  }
+
+  async onModuleInit(): Promise<void> {
+    await this.initializePgBoss();
   }
 
   /**
