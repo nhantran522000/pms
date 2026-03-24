@@ -1,7 +1,7 @@
 import { Inter } from 'next/font/google';
 import './global.css';
 import type { Viewport } from 'next';
-import { ProvidersWrapper } from '@/components/ProvidersWrapper';
+import { Providers } from '@/components/Providers';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable} suppressHydrationWarning>
       <body className="font-sans antialiased">
-        <ProvidersWrapper>{children}</ProvidersWrapper>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
