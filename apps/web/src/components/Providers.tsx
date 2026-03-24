@@ -7,11 +7,12 @@ import { Toaster } from '@/components/ui/toaster';
 import { OfflineBanner } from '@/components/OfflineBanner';
 import { ThemeProvider } from 'next-themes';
 import { useEffect } from 'react';
+import { isBrowser } from '@/lib/browser';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    // Service worker registration
-    if ('serviceWorker' in navigator) {
+    // Service worker registration only on client
+    if (isBrowser && 'serviceWorker' in navigator) {
       navigator.serviceWorker
         .register('/sw.js')
         .then((reg) => console.log('SW registered:', reg))
