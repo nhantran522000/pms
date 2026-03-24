@@ -54,6 +54,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white dark:bg-zinc-950;
+    @apply text-zinc-950 dark:text-zinc-50;
   }
 }
