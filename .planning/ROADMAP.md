@@ -76,7 +76,7 @@ Plans:
   3. User can create envelope budgets allocating income to categories with rollover to next month
   4. System auto-categorizes transactions using AI from payee/description
   5. System auto-creates transactions from recurring rules (daily/weekly/monthly/yearly) via pg-boss, flagged for exclusion from anomaly detection
-**Plans**: 5 plans
+**Plans**: 7 plans
 
 Plans:
 - [x] 03-01: Financial domain module with hexagonal architecture - Prisma schema, domain entities, Money value object
@@ -98,7 +98,7 @@ Plans:
   4. User can create tasks with title, description, due date, priority, subtasks, mark complete/incomplete
   5. User can create tasks via natural language ("Buy milk tomorrow 5pm #errands") with system parsing title, due date, tags
   6. System highlights overdue tasks and enables filtering by status (pending/completed/overdue) and sorting by due date/priority/creation date
-**Plans**: 5 plans
+**Plans**: 7 plans
 
 Plans:
 - [x] 04-01: Habits domain module with CRUD, daily check-in, streak calculation
@@ -119,7 +119,7 @@ Plans:
   3. System generates weekly health digest via AI (correlations, trends, insights)
   4. Health digest sent via email (Resend) every Sunday
   5. Dashboard shows health metrics summary with trends (weight, vitals, sleep, workouts)
-**Plans**: 5 plans
+**Plans**: 6 plans
 
 Plans:
 - [x] 05-01: Health domain module with weight tracking and trend charts (30/90/365 day views)
@@ -148,8 +148,6 @@ Plans:
 - [x] 06-04: Journal entries with mood tracking
 - [x] 06-05: Mood trends analysis and visualization
 
-
-
 ### Phase 7: Hobbies
 **Goal**: Flexible hobby tracking with multiple tracking types, goals, insights, and progress visualization
 **Depends on**: Phase 1
@@ -160,15 +158,14 @@ Plans:
   3. User can view hobby progress over time with charts
   4. System generates hobby progress insights
   5. User can set hobby goals (target counter, target percentage) and view completion percentage on dashboard
-**Plans**: 5 plans
+**Plans:** 5 plans
 
 Plans:
-- [ ] 07-01: Hobbies domain module with flexible tracking types (counter, percentage, list)
-- [ ] 07-02: Progress logging per tracking type
-- [ ] 07-03: Progress visualization over time
-- [ ] 07-04: Hobby goals (target counter, target percentage)
-- [ ] 07-05: AI-generated hobby progress insights
-- [ ] 07-06: Dashboard hobby completion percentage display
+- [ ] 07-01-PLAN.md — Prisma schema, Zod DTOs for Hobby/HobbyLog with tracking types and goals
+- [ ] 07-02-PLAN.md — Feature module with DDD layers, CRUD, progress logging with type validation
+- [ ] 07-03-PLAN.md — Progress visualization (counter bars+line, percentage line, list activity count)
+- [ ] 07-04-PLAN.md — AI-generated insights using ANALYZE task type with data-only fallback
+- [ ] 07-05-PLAN.md — Dashboard aggregation with completion percentage calculation
 
 ### Phase 8: SaaS Subscription
 **Goal**: LemonSqueezy integration with 30-day trial, webhook handlers, plan guards, and tenant branding
@@ -199,7 +196,7 @@ Plans:
   3. TanStack Query for server state management with caching and invalidation
   4. shadcn/ui components with Tailwind styling and dark/light theme toggle
   5. Recharts for data visualization (financial charts, health trends, habit streaks, hobby progress)
-**Plans**: 5 plans
+**Plans**: 7 plans
 
 Plans:
 - [ ] 09-01: Next.js 16.2 app with static export configuration
@@ -220,7 +217,7 @@ Plans:
   3. Expo Push notifications integration
   4. Shared data-access hooks with web client (TanStack Query)
   5. Offline queue for actions without connectivity
-**Plans**: 5 plans
+**Plans**: 6 plans
 
 Plans:
 - [ ] 10-01: Expo SDK 55 project with React Native 0.83
@@ -259,7 +256,7 @@ Plans:
   3. Docker container logs capped at 30 MB per service
   4. Nightly API restart at 3 AM (memory leak prevention)
   5. ntfy.sh push notifications for 500 errors
-**Plans**: 5 plans
+**Plans**: 6 plans
 
 Plans:
 - [ ] 12-01: rclone configuration for Google Drive backups
@@ -278,11 +275,11 @@ Phases execute in numeric order: 2 -> 2.1 -> 2.2 -> 3 -> 3.1 -> 4
 |-------|----------------|--------|-----------|
 | 1. Foundation | 6/6 | Complete | 2026-03-22 |
 | 2. AI Gateway | 5/5 | Complete | 2026-03-22 |
-| 3. Financial Module | 0/7 | Not started | - |
-| 4. Habits & Tasks | 0/7 | Not started | - |
-| 5. Health Module | 0/6 | Not started | - |
-| 6. Notes & Journal | 0/7 | Not started | - |
-| 7. Hobbies | 0/6 | Not started | - |
+| 3. Financial Module | 7/7 | Complete | 2026-03-23 |
+| 4. Habits & Tasks | 7/7 | Complete | 2026-03-23 |
+| 5. Health Module | 6/6 | Complete | 2026-03-23 |
+| 6. Notes & Journal | 5/5 | Complete | 2026-03-24 |
+| 7. Hobbies | 0/5 | Not started | - |
 | 8. SaaS Subscription | 0/5 | Not started | - |
 | 9. Web Client | 0/7 | Not started | - |
 | 10. Mobile Client | 0/6 | Not started | - |
