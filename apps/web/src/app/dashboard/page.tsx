@@ -15,15 +15,46 @@ import { useTasks, useOverdueTasks } from '@/hooks/useTasksData';
 import { useHealthDashboard } from '@/hooks/useHealthData';
 import { useNotes } from '@/hooks/useNotesData';
 import { useHobbyDashboard } from '@/hooks/useHobbiesData';
+import { Card, CardHeader, CardContent } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 
 /**
  * Dashboard page with cross-module summary
  * Shows key metrics from all 6 modules in one view
  *
  * Per CONTEXT.md: "Home screen: Cross-module summary dashboard — Key metrics from all modules in one view"
- * Per CONTEXT.md: "Loading states: Skeleton screens"
+ * Per CONTEXT.md: "Loading states: Skeleton screens — Better perceived performance than spinners"
  * Per CONTEXT.md: "Error handling: Toast notification + inline error message"
  */
+
+function SkeletonCard() {
+  return (
+    <Card>
+      <CardHeader>
+        <div className="flex items-start space-x-3">
+          <Skeleton className="h-10 w-10 rounded-lg" />
+          <div className="space-y-2 flex-1">
+            <Skeleton className="h-5 w-24" />
+            <Skeleton className="h-4 w-32" />
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <div className="grid grid-cols-2 gap-3">
+          <div className="space-y-2">
+            <Skeleton className="h-3 w-16" />
+            <Skeleton className="h-5 w-20" />
+          </div>
+          <div className="space-y-2">
+            <Skeleton className="h-3 w-16" />
+            <Skeleton className="h-5 w-20" />
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
 export default function DashboardPage() {
   // Fetch real data from all modules using TanStack Query hooks
   const { data: balanceData, isLoading: balanceLoading, error: balanceError } = useTotalBalance();
@@ -151,25 +182,18 @@ export default function DashboardPage() {
     <DashboardLayout>
       {/* Page Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50">
+        <h1 className="text-3xl font-bold">
           Dashboard
         </h1>
-        <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+        <p className="mt-2 text-muted-foreground">
           Welcome to PMS — your personal management system
         </p>
       </div>
 
-      {/* Loading State */}
-      {isLoading && (
-        <div className="mb-6 p-4 bg-zinc-100 dark:bg-zinc-800 rounded-lg text-center text-zinc-600 dark:text-zinc-400">
-          Loading dashboard data...
-        </div>
-      )}
-
       {/* Error State */}
       {errors.length > 0 && (
-        <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
-          <p className="text-sm text-red-800 dark:text-red-200">
+        <div className="mb-6 p-4 bg-destructive/10 border border-destructive/20 rounded-lg">
+          <p className="text-sm text-destructive">
             Some data failed to load. Please refresh the page.
           </p>
         </div>
@@ -178,22 +202,28 @@ export default function DashboardPage() {
       {/* Module Cards Grid */}
       {/* Responsive: 1 col mobile, 2 col tablet, 3 col desktop */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {navItems.map((item) => {
-          const Icon = iconMap[item.icon.name as keyof typeof iconMap];
-          const metricsKey = item.href.replace('/', '') as keyof typeof moduleMetrics;
-          const metrics = moduleMetrics[metricsKey] || [];
+        {isLoading ? (
+          // Show 6 skeleton cards while loading
+          Array.from({ length: 6 }).map((_, index) => <SkeletonCard key={index} />)
+        ) : (
+          // Show actual cards when data is loaded
+          navItems.map((item) => {
+            const Icon = iconMap[item.icon.name as keyof typeof iconMap];
+            const metricsKey = item.href.replace('/', '') as keyof typeof moduleMetrics;
+            const metrics = moduleMetrics[metricsKey] || [];
 
-          return (
-            <ModuleCard
-              key={item.name}
-              name={item.name}
-              description={item.description}
-              href={item.href}
-              icon={Icon}
-              metrics={metrics}
-            />
-          );
-        })}
+            return (
+              <ModuleCard
+                key={item.name}
+                name={item.name}
+                description={item.description}
+                href={item.href}
+                icon={Icon}
+                metrics={metrics}
+              />
+            );
+          })
+        )}
       </div>
     </DashboardLayout>
   );
