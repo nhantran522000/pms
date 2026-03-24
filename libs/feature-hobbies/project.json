@@ -1,0 +1,19 @@
+{
+  "name": "feature-hobbies",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "tags": ["type:lib", "domain:hobbies", "layer:domain", "layer:application", "layer:infrastructure", "layer:presentation"],
+  "sourceRoot": "libs/feature-hobbies/src",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/feature-hobbies",
+        "main": "libs/feature-hobbies/src/index.ts",
+        "tsConfig": "libs/feature-hobbies/tsconfig.lib.json",
+        "assets": [],
+        "skipTypeCheck": true
+      }
+    }
+  }
+}
