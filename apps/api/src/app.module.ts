@@ -5,6 +5,7 @@ import { PrismaModule, TenantContextModule, TenantContextMiddleware } from '@pms
 import { AllExceptionsFilter, TransformInterceptor } from '@pms/shared-kernel';
 import { AuthModule } from '@pms/feature-auth';
 import { FinancialModule } from '@pms/feature-financial';
+import { HobbiesModule } from '@pms/feature-hobbies';
 import { AiModule } from './ai/ai.module';
 import configuration from './config/configuration';
 import { validationSchema } from './config/validation.schema';
@@ -24,6 +25,7 @@ import { LoggingModule } from './logging/logging.module';
     HealthModule,
     AuthModule,
     FinancialModule,
+    HobbiesModule,
     AiModule,
   ],
   controllers: [],
