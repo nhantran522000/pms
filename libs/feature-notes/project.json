@@ -1,0 +1,18 @@
+{
+  "name": "feature-notes",
+  "tags": ["type:lib", "domain:notes", "layer:domain", "layer:application", "layer:infrastructure", "layer:presentation"],
+  "sourceRoot": "libs/feature-notes/src",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/feature-notes",
+        "main": "libs/feature-notes/src/index.ts",
+        "tsConfig": "libs/feature-notes/tsconfig.lib.json",
+        "assets": [],
+        "skipTypeCheck": true
+      }
+    }
+  }
+}
