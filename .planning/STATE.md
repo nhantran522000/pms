@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Phase complete — ready for verification
-stopped_at: Completed 09-web-client-08 Chart TypeScript Error Fixes
-last_updated: "2026-03-24T12:45:51.382Z"
+status: Phase blocked — framework limitation
+stopped_at: Completed 09-web-client-09 PWA Client Component Static Export Build Failure (BLOCKED)
+last_updated: "2026-03-24T13:37:00.000Z"
 progress:
   total_phases: 12
   completed_phases: 8
@@ -230,10 +230,25 @@ None yet.
 
 ### Blockers/Concerns
 
-None yet.
+**CRITICAL: Phase 09-09 BLOCKED - Next.js 16 Framework Limitation**
+
+- **Issue**: Static export build fails with `TypeError: Cannot read properties of null (reading 'useContext')` during prerendering of `_global-error` page
+- **Root Cause**: Next.js 16 incompatibility with client components using React hooks in root layout
+- **Impact**: Both WEB-01 (Static Export) and WEB-07 (PWA Features) requirements unmet
+- **Attempted Solutions**: 7 different approaches all failed (dynamic import, client wrapper, mounted state, browser check, custom error page, etc.)
+- **Resolution Options**:
+  1. Remove client component from root layout (major refactor)
+  2. Downgrade Next.js version
+  3. Remove PWA service worker (abandon WEB-07)
+  4. Use third-party PWA library
+  5. Wait for Next.js fix
+- **Documentation**: See `.planning/phases/09-web-client/09-09-BLOCKER.md` for full details
+- **User Action Required**: Choose resolution path before proceeding
+- **Date Identified**: 2026-03-24
 
 ## Session Continuity
 
-Last session: 2026-03-24T12:45:51.378Z
-Stopped at: Completed 09-web-client-08 Chart TypeScript Error Fixes
-Resume file: None
+Last session: 2026-03-24T13:37:00.000Z
+Stopped at: Completed 09-web-client-09 PWA Client Component Static Export Build Failure (BLOCKED)
+Resume file: .planning/phases/09-web-client/09-09-BLOCKER.md
+Next action: User decision required on resolution path (5 options documented in BLOCKER.md)
