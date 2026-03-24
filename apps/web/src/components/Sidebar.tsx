@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { getModuleNavItems } from '@/lib/navigation';
 import { cn } from '@/lib/utils';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 /**
  * Sidebar component for desktop navigation
@@ -17,12 +18,13 @@ export function Sidebar() {
   return (
     <aside className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 bg-white dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-800">
       {/* Logo/Header */}
-      <div className="flex h-16 items-center px-6 border-b border-zinc-200 dark:border-zinc-800">
+      <div className="flex h-16 items-center justify-between px-6 border-b border-zinc-200 dark:border-zinc-800">
         <Link href="/dashboard" className="flex items-center space-x-2">
           <span className="text-xl font-bold text-zinc-900 dark:text-zinc-50">
             PMS
           </span>
         </Link>
+        <ThemeToggle />
       </div>
 
       {/* Navigation */}
