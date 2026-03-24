@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 08-saas-subscription-02 webhook handlers with idempotent processing
-last_updated: "2026-03-24T11:16:29.869Z"
+stopped_at: Completed 08-saas-subscription-03 trial warning and expiry
+last_updated: "2026-03-24T11:19:26.785Z"
 progress:
   total_phases: 12
   completed_phases: 6
   total_plans: 41
-  completed_plans: 44
+  completed_plans: 45
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-21)
 ## Current Position
 
 Phase: 08 (saas-subscription) — EXECUTING
-Plan: 3 of 5
+Plan: 4 of 5
 
 ## Performance Metrics
 
@@ -92,6 +92,7 @@ Plan: 3 of 5
 | Phase 07-hobbies P06 | 54s | 3 tasks | 1 files |
 | Phase 08-saas-subscription P01 | 7m | 6 tasks | 12 files |
 | Phase 08-saas-subscription P02 | 2min | 5 tasks | 8 files |
+| Phase 08-saas-subscription P03 | 88 | 4 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -200,6 +201,8 @@ Recent decisions affecting current work:
 - [Phase 08-saas-subscription]: Unique constraint on idempotencyKey provides database-level deduplication guarantee
 - [Phase 08-saas-subscription]: 24h TTL on webhook events balances audit trail with storage efficiency
 - [Phase 08-saas-subscription]: Public webhook endpoint with @Public() decorator allows LemonSqueezy callbacks without authentication
+- [Phase 08-saas-subscription]: Trial warning email scheduled via pg-boss for Day 27 at 9 AM UTC
+- [Phase 08-saas-subscription]: Soft degradation on trial expiry: checkAndHandleExpiry downgrades to FREE tier with banner state
 
 ### Pending Todos
 
@@ -211,6 +214,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-24T11:16:29.866Z
-Stopped at: Completed 08-saas-subscription-02 webhook handlers with idempotent processing
+Last session: 2026-03-24T11:19:26.780Z
+Stopped at: Completed 08-saas-subscription-03 trial warning and expiry
 Resume file: None
