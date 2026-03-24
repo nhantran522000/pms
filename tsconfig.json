@@ -20,6 +20,12 @@
     },
     {
       "path": "./libs/feature-hobbies"
+    },
+    {
+      "path": "./apps/web-e2e"
+    },
+    {
+      "path": "./apps/web"
     }
   ]
 }
