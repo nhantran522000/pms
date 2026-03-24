@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Phase blocked — framework limitation
-stopped_at: Completed 09-web-client-09 PWA Client Component Static Export Build Failure (BLOCKED)
-last_updated: "2026-03-24T13:37:00.000Z"
+stopped_at: Completed 09-web-client-10 Remove PWA Features (BLOCKED - Framework limitation persists)
+last_updated: "2026-03-24T13:48:00.000Z"
 progress:
   total_phases: 12
   completed_phases: 8
@@ -230,25 +230,36 @@ None yet.
 
 ### Blockers/Concerns
 
-**CRITICAL: Phase 09-09 BLOCKED - Next.js 16 Framework Limitation**
+**CRITICAL: Phase 09-10 BLOCKED - Next.js Static Export Framework Limitation**
 
 - **Issue**: Static export build fails with `TypeError: Cannot read properties of null (reading 'useContext')` during prerendering of `_global-error` page
-- **Root Cause**: Next.js 16 incompatibility with client components using React hooks in root layout
-- **Impact**: Both WEB-01 (Static Export) and WEB-07 (PWA Features) requirements unmet
-- **Attempted Solutions**: 7 different approaches all failed (dynamic import, client wrapper, mounted state, browser check, custom error page, etc.)
+- **Root Cause**: Next.js (both 16.1.6 and 15.1.0) cannot prerender pages with client components using React Context in static export mode
+- **Impact**: WEB-01 (Static Export) requirement remains unmet despite removing all PWA features
+- **Attempted Solutions (all failed)**:
+  1. Removed service worker registration from Providers
+  2. Deleted sw.js file
+  3. Deleted OfflineBanner component
+  4. Deleted browser utility file
+  5. Removed ThemeProvider from Providers
+  6. Removed ThemeToggle from Sidebar
+  7. Removed usePathname from navigation components
+  8. Created custom global-error.tsx page
+  9. Downgraded Next.js from 16.1.6 to 15.1.0
+  10. Removed Providers wrapper entirely from layout
 - **Resolution Options**:
-  1. Remove client component from root layout (major refactor)
-  2. Downgrade Next.js version
-  3. Remove PWA service worker (abandon WEB-07)
-  4. Use third-party PWA library
-  5. Wait for Next.js fix
-- **Documentation**: See `.planning/phases/09-web-client/09-09-BLOCKER.md` for full details
+  1. Wait for Next.js fix (monitor issues for static export + client component fix)
+  2. Switch to Next.js server deployment (use `output: 'standalone'` instead of static export)
+  3. Remove all client components (build static-only version without TanStack Query, theme switching)
+  4. Use alternative static site generator (migrate to Astro, Remix, or Vite-plugin-SSG)
+  5. Accept build-time-only rendering (use getStaticProps instead of client-side fetching)
+- **Documentation**: See `.planning/phases/09-web-client/09-10-SUMMARY.md` for full details
 - **User Action Required**: Choose resolution path before proceeding
 - **Date Identified**: 2026-03-24
+- **Date Updated**: 2026-03-24 (Phase 09-10 completed with deviation)
 
 ## Session Continuity
 
-Last session: 2026-03-24T13:37:00.000Z
-Stopped at: Completed 09-web-client-09 PWA Client Component Static Export Build Failure (BLOCKED)
-Resume file: .planning/phases/09-web-client/09-09-BLOCKER.md
-Next action: User decision required on resolution path (5 options documented in BLOCKER.md)
+Last session: 2026-03-24T13:48:00.000Z
+Stopped at: Completed 09-web-client-10 Remove PWA Features (BLOCKED - Framework limitation persists)
+Resume file: .planning/phases/09-web-client/09-10-SUMMARY.md
+Next action: User decision required on resolution path (5 options documented in SUMMARY.md)
