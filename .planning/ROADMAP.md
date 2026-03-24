@@ -20,7 +20,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 6: Notes & Journal** - Tiptap editor, search, tags, journal, mood tracking, auto-save (completed 2026-03-24)
 - [x] **Phase 7: Hobbies** - Flexible tracking, goals, insights, progress visualization (completed 2026-03-24)
 - [x] **Phase 8: SaaS Subscription** - LemonSqueezy, trial management, plan guards, branding (completed 2026-03-24)
-- [ ] **Phase 9: Web Client** - Next.js static, dashboard, TanStack Query, shadcn/ui, PWA
+- [x] **Phase 9: Web Client** - Next.js static, dashboard, TanStack Query, shadcn/ui, PWA (completed 2026-03-24)
 - [ ] **Phase 10: Mobile Client** - Expo, NativeWind, offline queue, shared hooks
 - [ ] **Phase 11: Desktop Client** - Tauri wrapping Next.js, native menus, auto-update
 - [ ] **Phase 12: Backup & Operations** - rclone backups, log rotation, monitoring, alerts
@@ -208,7 +208,7 @@ Plans:
 - [x] 09-05: Recharts integration for data visualization
 - [x] 09-06: Dark/light theme toggle with persistence
 - [x] 09-07: PWA manifest for installable web app
-- [ ] 09-08: Gap closure - Fix TypeScript build error in chart components
+- [x] 09-08: Gap closure - Fix TypeScript build error in chart components
 
 ### Phase 10: Mobile Client
 **Goal**: Expo mobile app with NativeWind, offline queue, push notifications, and shared hooks
@@ -284,7 +284,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 6. Notes & Journal | 5/5 | Complete | 2026-03-24 |
 | 7. Hobbies | 6/6 | Complete | 2026-03-24 |
 | 8. SaaS Subscription | 5/5 | Complete | 2026-03-24 |
-| 9. Web Client | 7/8 | In Progress (gap closure) | |
+| 9. Web Client | 8/8 | Complete   | 2026-03-24 |
 | 10. Mobile Client | 0/6 | Not started | - |
 | 11. Desktop Client | 0/5 | Not started | - |
 | 12. Backup & Operations | 0/6 | Not started | - |
