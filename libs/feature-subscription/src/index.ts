@@ -1,5 +1,6 @@
 export * from './subscription.module';
 export * from './application/services/trial.service';
+export * from './application/services/trial-warning.service';
 export * from './application/services/webhook.service';
 export * from './infrastructure/services/lemonsqueezy.service';
 export * from './presentation/controllers/trial.controller';
