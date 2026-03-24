@@ -1,0 +1,18 @@
+{
+  "name": "feature-subscription",
+  "tags": ["type:lib", "domain:subscription", "layer:domain", "layer:application", "layer:infrastructure", "layer:presentation"],
+  "sourceRoot": "libs/feature-subscription/src",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/feature-subscription",
+        "main": "libs/feature-subscription/src/index.ts",
+        "tsConfig": "libs/feature-subscription/tsconfig.lib.json",
+        "assets": [],
+        "skipTypeCheck": true
+      }
+    }
+  }
+}
