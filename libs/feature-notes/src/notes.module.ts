@@ -1,20 +1,60 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from '@pms/data-access';
-import { SearchController, JournalController } from './presentation/controllers';
-import { SearchService, JournalService } from './application/services';
+import {
+  NoteController,
+  FolderController,
+  TagController,
+  SearchController,
+  JournalController,
+  MoodTrendsController,
+} from './presentation/controllers';
+import {
+  NoteService,
+  FolderService,
+  TagService,
+  SearchService,
+  JournalService,
+  MoodTrendsService,
+} from './application/services';
 import { FullTextSearchService } from './infrastructure/services';
-import { JournalEntryRepository } from './infrastructure/repositories';
+import {
+  NoteRepository,
+  FolderRepository,
+  TagRepository,
+  JournalEntryRepository,
+} from './infrastructure/repositories';
 
 @Module({
   imports: [PrismaModule, ConfigModule],
-  controllers: [SearchController, JournalController],
+  controllers: [
+    NoteController,
+    FolderController,
+    TagController,
+    SearchController,
+    JournalController,
+    MoodTrendsController,
+  ],
   providers: [
+    NoteService,
+    FolderService,
+    TagService,
     SearchService,
     JournalService,
-    FullTextSearchService,
+    MoodTrendsService,
+    NoteRepository,
+    FolderRepository,
+    TagRepository,
     JournalEntryRepository,
+    FullTextSearchService,
   ],
-  exports: [SearchService, JournalService],
+  exports: [
+    NoteService,
+    FolderService,
+    TagService,
+    SearchService,
+    JournalService,
+    MoodTrendsService,
+  ],
 })
 export class NotesModule {}
