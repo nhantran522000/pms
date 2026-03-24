@@ -94,6 +94,16 @@ export type Achievement = $Result.DefaultSelection<Prisma.$AchievementPayload>
  */
 export type HealthLog = $Result.DefaultSelection<Prisma.$HealthLogPayload>
 /**
+ * Model Hobby
+ * Hobby - User hobbies for flexible tracking
+ */
+export type Hobby = $Result.DefaultSelection<Prisma.$HobbyPayload>
+/**
+ * Model HobbyLog
+ * HobbyLog - Progress entries for hobbies with flexible JSONB data
+ */
+export type HobbyLog = $Result.DefaultSelection<Prisma.$HobbyLogPayload>
+/**
  * Model Folder
  * Folder - Single-level folders for note organization
  */
@@ -137,11 +147,24 @@ export namespace $Enums {
 
 export type HealthLogType = (typeof HealthLogType)[keyof typeof HealthLogType]
 
+
+export const HobbyTrackingType: {
+  COUNTER: 'COUNTER',
+  PERCENTAGE: 'PERCENTAGE',
+  LIST: 'LIST'
+};
+
+export type HobbyTrackingType = (typeof HobbyTrackingType)[keyof typeof HobbyTrackingType]
+
 }
 
 export type HealthLogType = $Enums.HealthLogType
 
 export const HealthLogType: typeof $Enums.HealthLogType
+
+export type HobbyTrackingType = $Enums.HobbyTrackingType
+
+export const HobbyTrackingType: typeof $Enums.HobbyTrackingType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -423,6 +446,26 @@ export class PrismaClient<
     * ```
     */
   get healthLog(): Prisma.HealthLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hobby`: Exposes CRUD operations for the **Hobby** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Hobbies
+    * const hobbies = await prisma.hobby.findMany()
+    * ```
+    */
+  get hobby(): Prisma.HobbyDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hobbyLog`: Exposes CRUD operations for the **HobbyLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more HobbyLogs
+    * const hobbyLogs = await prisma.hobbyLog.findMany()
+    * ```
+    */
+  get hobbyLog(): Prisma.HobbyLogDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.folder`: Exposes CRUD operations for the **Folder** model.
@@ -923,6 +966,8 @@ export namespace Prisma {
     UserStats: 'UserStats',
     Achievement: 'Achievement',
     HealthLog: 'HealthLog',
+    Hobby: 'Hobby',
+    HobbyLog: 'HobbyLog',
     Folder: 'Folder',
     Tag: 'Tag',
     Note: 'Note',
@@ -943,7 +988,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "tenant" | "user" | "aiProviderConfig" | "aiPromptCache" | "aiUsageLog" | "category" | "account" | "transaction" | "budgetEnvelope" | "recurringRule" | "task" | "habit" | "habitCompletion" | "userStats" | "achievement" | "healthLog" | "folder" | "tag" | "note" | "noteTag" | "journalEntry"
+      modelProps: "tenant" | "user" | "aiProviderConfig" | "aiPromptCache" | "aiUsageLog" | "category" | "account" | "transaction" | "budgetEnvelope" | "recurringRule" | "task" | "habit" | "habitCompletion" | "userStats" | "achievement" | "healthLog" | "hobby" | "hobbyLog" | "folder" | "tag" | "note" | "noteTag" | "journalEntry"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2131,6 +2176,154 @@ export namespace Prisma {
           }
         }
       }
+      Hobby: {
+        payload: Prisma.$HobbyPayload<ExtArgs>
+        fields: Prisma.HobbyFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HobbyFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HobbyFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyPayload>
+          }
+          findFirst: {
+            args: Prisma.HobbyFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HobbyFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyPayload>
+          }
+          findMany: {
+            args: Prisma.HobbyFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyPayload>[]
+          }
+          create: {
+            args: Prisma.HobbyCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyPayload>
+          }
+          createMany: {
+            args: Prisma.HobbyCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.HobbyCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyPayload>[]
+          }
+          delete: {
+            args: Prisma.HobbyDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyPayload>
+          }
+          update: {
+            args: Prisma.HobbyUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyPayload>
+          }
+          deleteMany: {
+            args: Prisma.HobbyDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HobbyUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.HobbyUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyPayload>[]
+          }
+          upsert: {
+            args: Prisma.HobbyUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyPayload>
+          }
+          aggregate: {
+            args: Prisma.HobbyAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHobby>
+          }
+          groupBy: {
+            args: Prisma.HobbyGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HobbyGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HobbyCountArgs<ExtArgs>
+            result: $Utils.Optional<HobbyCountAggregateOutputType> | number
+          }
+        }
+      }
+      HobbyLog: {
+        payload: Prisma.$HobbyLogPayload<ExtArgs>
+        fields: Prisma.HobbyLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HobbyLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HobbyLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyLogPayload>
+          }
+          findFirst: {
+            args: Prisma.HobbyLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HobbyLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyLogPayload>
+          }
+          findMany: {
+            args: Prisma.HobbyLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyLogPayload>[]
+          }
+          create: {
+            args: Prisma.HobbyLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyLogPayload>
+          }
+          createMany: {
+            args: Prisma.HobbyLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.HobbyLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyLogPayload>[]
+          }
+          delete: {
+            args: Prisma.HobbyLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyLogPayload>
+          }
+          update: {
+            args: Prisma.HobbyLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.HobbyLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HobbyLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.HobbyLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.HobbyLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HobbyLogPayload>
+          }
+          aggregate: {
+            args: Prisma.HobbyLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHobbyLog>
+          }
+          groupBy: {
+            args: Prisma.HobbyLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HobbyLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HobbyLogCountArgs<ExtArgs>
+            result: $Utils.Optional<HobbyLogCountAggregateOutputType> | number
+          }
+        }
+      }
       Folder: {
         payload: Prisma.$FolderPayload<ExtArgs>
         fields: Prisma.FolderFieldRefs
@@ -2609,6 +2802,8 @@ export namespace Prisma {
     userStats?: UserStatsOmit
     achievement?: AchievementOmit
     healthLog?: HealthLogOmit
+    hobby?: HobbyOmit
+    hobbyLog?: HobbyLogOmit
     folder?: FolderOmit
     tag?: TagOmit
     note?: NoteOmit
@@ -2712,6 +2907,8 @@ export namespace Prisma {
     tags: number
     notes: number
     journalEntries: number
+    hobbies: number
+    hobbyLogs: number
   }
 
   export type TenantCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2733,6 +2930,8 @@ export namespace Prisma {
     tags?: boolean | TenantCountOutputTypeCountTagsArgs
     notes?: boolean | TenantCountOutputTypeCountNotesArgs
     journalEntries?: boolean | TenantCountOutputTypeCountJournalEntriesArgs
+    hobbies?: boolean | TenantCountOutputTypeCountHobbiesArgs
+    hobbyLogs?: boolean | TenantCountOutputTypeCountHobbyLogsArgs
   }
 
   // Custom InputTypes
@@ -2870,6 +3069,20 @@ export namespace Prisma {
    */
   export type TenantCountOutputTypeCountJournalEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: JournalEntryWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountHobbiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HobbyWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountHobbyLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HobbyLogWhereInput
   }
 
 
@@ -3101,6 +3314,37 @@ export namespace Prisma {
    */
   export type UserStatsCountOutputTypeCountAchievementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AchievementWhereInput
+  }
+
+
+  /**
+   * Count Type HobbyCountOutputType
+   */
+
+  export type HobbyCountOutputType = {
+    logs: number
+  }
+
+  export type HobbyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    logs?: boolean | HobbyCountOutputTypeCountLogsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * HobbyCountOutputType without action
+   */
+  export type HobbyCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HobbyCountOutputType
+     */
+    select?: HobbyCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * HobbyCountOutputType without action
+   */
+  export type HobbyCountOutputTypeCountLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HobbyLogWhereInput
   }
 
 
@@ -3376,6 +3620,8 @@ export namespace Prisma {
     tags?: boolean | Tenant$tagsArgs<ExtArgs>
     notes?: boolean | Tenant$notesArgs<ExtArgs>
     journalEntries?: boolean | Tenant$journalEntriesArgs<ExtArgs>
+    hobbies?: boolean | Tenant$hobbiesArgs<ExtArgs>
+    hobbyLogs?: boolean | Tenant$hobbyLogsArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tenant"]>
 
@@ -3421,6 +3667,8 @@ export namespace Prisma {
     tags?: boolean | Tenant$tagsArgs<ExtArgs>
     notes?: boolean | Tenant$notesArgs<ExtArgs>
     journalEntries?: boolean | Tenant$journalEntriesArgs<ExtArgs>
+    hobbies?: boolean | Tenant$hobbiesArgs<ExtArgs>
+    hobbyLogs?: boolean | Tenant$hobbyLogsArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TenantIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3448,6 +3696,8 @@ export namespace Prisma {
       tags: Prisma.$TagPayload<ExtArgs>[]
       notes: Prisma.$NotePayload<ExtArgs>[]
       journalEntries: Prisma.$JournalEntryPayload<ExtArgs>[]
+      hobbies: Prisma.$HobbyPayload<ExtArgs>[]
+      hobbyLogs: Prisma.$HobbyLogPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3867,6 +4117,8 @@ export namespace Prisma {
     tags<T extends Tenant$tagsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$tagsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     notes<T extends Tenant$notesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$notesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     journalEntries<T extends Tenant$journalEntriesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$journalEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hobbies<T extends Tenant$hobbiesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$hobbiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HobbyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hobbyLogs<T extends Tenant$hobbyLogsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$hobbyLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HobbyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4741,6 +4993,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: JournalEntryScalarFieldEnum | JournalEntryScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.hobbies
+   */
+  export type Tenant$hobbiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hobby
+     */
+    select?: HobbySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hobby
+     */
+    omit?: HobbyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyInclude<ExtArgs> | null
+    where?: HobbyWhereInput
+    orderBy?: HobbyOrderByWithRelationInput | HobbyOrderByWithRelationInput[]
+    cursor?: HobbyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HobbyScalarFieldEnum | HobbyScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.hobbyLogs
+   */
+  export type Tenant$hobbyLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HobbyLog
+     */
+    select?: HobbyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HobbyLog
+     */
+    omit?: HobbyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyLogInclude<ExtArgs> | null
+    where?: HobbyLogWhereInput
+    orderBy?: HobbyLogOrderByWithRelationInput | HobbyLogOrderByWithRelationInput[]
+    cursor?: HobbyLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HobbyLogScalarFieldEnum | HobbyLogScalarFieldEnum[]
   }
 
   /**
@@ -22770,6 +23070,2317 @@ export namespace Prisma {
 
 
   /**
+   * Model Hobby
+   */
+
+  export type AggregateHobby = {
+    _count: HobbyCountAggregateOutputType | null
+    _avg: HobbyAvgAggregateOutputType | null
+    _sum: HobbySumAggregateOutputType | null
+    _min: HobbyMinAggregateOutputType | null
+    _max: HobbyMaxAggregateOutputType | null
+  }
+
+  export type HobbyAvgAggregateOutputType = {
+    goalTarget: Decimal | null
+  }
+
+  export type HobbySumAggregateOutputType = {
+    goalTarget: Decimal | null
+  }
+
+  export type HobbyMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    name: string | null
+    description: string | null
+    trackingType: $Enums.HobbyTrackingType | null
+    goalTarget: Decimal | null
+    goalDeadline: Date | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HobbyMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    name: string | null
+    description: string | null
+    trackingType: $Enums.HobbyTrackingType | null
+    goalTarget: Decimal | null
+    goalDeadline: Date | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HobbyCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    name: number
+    description: number
+    trackingType: number
+    goalTarget: number
+    goalDeadline: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type HobbyAvgAggregateInputType = {
+    goalTarget?: true
+  }
+
+  export type HobbySumAggregateInputType = {
+    goalTarget?: true
+  }
+
+  export type HobbyMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    name?: true
+    description?: true
+    trackingType?: true
+    goalTarget?: true
+    goalDeadline?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HobbyMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    name?: true
+    description?: true
+    trackingType?: true
+    goalTarget?: true
+    goalDeadline?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HobbyCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    name?: true
+    description?: true
+    trackingType?: true
+    goalTarget?: true
+    goalDeadline?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type HobbyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Hobby to aggregate.
+     */
+    where?: HobbyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Hobbies to fetch.
+     */
+    orderBy?: HobbyOrderByWithRelationInput | HobbyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HobbyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Hobbies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Hobbies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Hobbies
+    **/
+    _count?: true | HobbyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HobbyAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HobbySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HobbyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HobbyMaxAggregateInputType
+  }
+
+  export type GetHobbyAggregateType<T extends HobbyAggregateArgs> = {
+        [P in keyof T & keyof AggregateHobby]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHobby[P]>
+      : GetScalarType<T[P], AggregateHobby[P]>
+  }
+
+
+
+
+  export type HobbyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HobbyWhereInput
+    orderBy?: HobbyOrderByWithAggregationInput | HobbyOrderByWithAggregationInput[]
+    by: HobbyScalarFieldEnum[] | HobbyScalarFieldEnum
+    having?: HobbyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HobbyCountAggregateInputType | true
+    _avg?: HobbyAvgAggregateInputType
+    _sum?: HobbySumAggregateInputType
+    _min?: HobbyMinAggregateInputType
+    _max?: HobbyMaxAggregateInputType
+  }
+
+  export type HobbyGroupByOutputType = {
+    id: string
+    tenantId: string
+    name: string
+    description: string | null
+    trackingType: $Enums.HobbyTrackingType
+    goalTarget: Decimal | null
+    goalDeadline: Date | null
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: HobbyCountAggregateOutputType | null
+    _avg: HobbyAvgAggregateOutputType | null
+    _sum: HobbySumAggregateOutputType | null
+    _min: HobbyMinAggregateOutputType | null
+    _max: HobbyMaxAggregateOutputType | null
+  }
+
+  type GetHobbyGroupByPayload<T extends HobbyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HobbyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HobbyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HobbyGroupByOutputType[P]>
+            : GetScalarType<T[P], HobbyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HobbySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    description?: boolean
+    trackingType?: boolean
+    goalTarget?: boolean
+    goalDeadline?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    logs?: boolean | Hobby$logsArgs<ExtArgs>
+    _count?: boolean | HobbyCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hobby"]>
+
+  export type HobbySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    description?: boolean
+    trackingType?: boolean
+    goalTarget?: boolean
+    goalDeadline?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hobby"]>
+
+  export type HobbySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    description?: boolean
+    trackingType?: boolean
+    goalTarget?: boolean
+    goalDeadline?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hobby"]>
+
+  export type HobbySelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    name?: boolean
+    description?: boolean
+    trackingType?: boolean
+    goalTarget?: boolean
+    goalDeadline?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type HobbyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "name" | "description" | "trackingType" | "goalTarget" | "goalDeadline" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["hobby"]>
+  export type HobbyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+    logs?: boolean | Hobby$logsArgs<ExtArgs>
+    _count?: boolean | HobbyCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type HobbyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type HobbyIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $HobbyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Hobby"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+      logs: Prisma.$HobbyLogPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      name: string
+      description: string | null
+      trackingType: $Enums.HobbyTrackingType
+      goalTarget: Prisma.Decimal | null
+      goalDeadline: Date | null
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["hobby"]>
+    composites: {}
+  }
+
+  type HobbyGetPayload<S extends boolean | null | undefined | HobbyDefaultArgs> = $Result.GetResult<Prisma.$HobbyPayload, S>
+
+  type HobbyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HobbyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HobbyCountAggregateInputType | true
+    }
+
+  export interface HobbyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Hobby'], meta: { name: 'Hobby' } }
+    /**
+     * Find zero or one Hobby that matches the filter.
+     * @param {HobbyFindUniqueArgs} args - Arguments to find a Hobby
+     * @example
+     * // Get one Hobby
+     * const hobby = await prisma.hobby.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HobbyFindUniqueArgs>(args: SelectSubset<T, HobbyFindUniqueArgs<ExtArgs>>): Prisma__HobbyClient<$Result.GetResult<Prisma.$HobbyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Hobby that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {HobbyFindUniqueOrThrowArgs} args - Arguments to find a Hobby
+     * @example
+     * // Get one Hobby
+     * const hobby = await prisma.hobby.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HobbyFindUniqueOrThrowArgs>(args: SelectSubset<T, HobbyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HobbyClient<$Result.GetResult<Prisma.$HobbyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hobby that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HobbyFindFirstArgs} args - Arguments to find a Hobby
+     * @example
+     * // Get one Hobby
+     * const hobby = await prisma.hobby.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HobbyFindFirstArgs>(args?: SelectSubset<T, HobbyFindFirstArgs<ExtArgs>>): Prisma__HobbyClient<$Result.GetResult<Prisma.$HobbyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hobby that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HobbyFindFirstOrThrowArgs} args - Arguments to find a Hobby
+     * @example
+     * // Get one Hobby
+     * const hobby = await prisma.hobby.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HobbyFindFirstOrThrowArgs>(args?: SelectSubset<T, HobbyFindFirstOrThrowArgs<ExtArgs>>): Prisma__HobbyClient<$Result.GetResult<Prisma.$HobbyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Hobbies that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HobbyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Hobbies
+     * const hobbies = await prisma.hobby.findMany()
+     * 
+     * // Get first 10 Hobbies
+     * const hobbies = await prisma.hobby.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const hobbyWithIdOnly = await prisma.hobby.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HobbyFindManyArgs>(args?: SelectSubset<T, HobbyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HobbyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Hobby.
+     * @param {HobbyCreateArgs} args - Arguments to create a Hobby.
+     * @example
+     * // Create one Hobby
+     * const Hobby = await prisma.hobby.create({
+     *   data: {
+     *     // ... data to create a Hobby
+     *   }
+     * })
+     * 
+     */
+    create<T extends HobbyCreateArgs>(args: SelectSubset<T, HobbyCreateArgs<ExtArgs>>): Prisma__HobbyClient<$Result.GetResult<Prisma.$HobbyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Hobbies.
+     * @param {HobbyCreateManyArgs} args - Arguments to create many Hobbies.
+     * @example
+     * // Create many Hobbies
+     * const hobby = await prisma.hobby.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HobbyCreateManyArgs>(args?: SelectSubset<T, HobbyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Hobbies and returns the data saved in the database.
+     * @param {HobbyCreateManyAndReturnArgs} args - Arguments to create many Hobbies.
+     * @example
+     * // Create many Hobbies
+     * const hobby = await prisma.hobby.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Hobbies and only return the `id`
+     * const hobbyWithIdOnly = await prisma.hobby.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends HobbyCreateManyAndReturnArgs>(args?: SelectSubset<T, HobbyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HobbyPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Hobby.
+     * @param {HobbyDeleteArgs} args - Arguments to delete one Hobby.
+     * @example
+     * // Delete one Hobby
+     * const Hobby = await prisma.hobby.delete({
+     *   where: {
+     *     // ... filter to delete one Hobby
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HobbyDeleteArgs>(args: SelectSubset<T, HobbyDeleteArgs<ExtArgs>>): Prisma__HobbyClient<$Result.GetResult<Prisma.$HobbyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Hobby.
+     * @param {HobbyUpdateArgs} args - Arguments to update one Hobby.
+     * @example
+     * // Update one Hobby
+     * const hobby = await prisma.hobby.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HobbyUpdateArgs>(args: SelectSubset<T, HobbyUpdateArgs<ExtArgs>>): Prisma__HobbyClient<$Result.GetResult<Prisma.$HobbyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Hobbies.
+     * @param {HobbyDeleteManyArgs} args - Arguments to filter Hobbies to delete.
+     * @example
+     * // Delete a few Hobbies
+     * const { count } = await prisma.hobby.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HobbyDeleteManyArgs>(args?: SelectSubset<T, HobbyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hobbies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HobbyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Hobbies
+     * const hobby = await prisma.hobby.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HobbyUpdateManyArgs>(args: SelectSubset<T, HobbyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hobbies and returns the data updated in the database.
+     * @param {HobbyUpdateManyAndReturnArgs} args - Arguments to update many Hobbies.
+     * @example
+     * // Update many Hobbies
+     * const hobby = await prisma.hobby.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Hobbies and only return the `id`
+     * const hobbyWithIdOnly = await prisma.hobby.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends HobbyUpdateManyAndReturnArgs>(args: SelectSubset<T, HobbyUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HobbyPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Hobby.
+     * @param {HobbyUpsertArgs} args - Arguments to update or create a Hobby.
+     * @example
+     * // Update or create a Hobby
+     * const hobby = await prisma.hobby.upsert({
+     *   create: {
+     *     // ... data to create a Hobby
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Hobby we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HobbyUpsertArgs>(args: SelectSubset<T, HobbyUpsertArgs<ExtArgs>>): Prisma__HobbyClient<$Result.GetResult<Prisma.$HobbyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Hobbies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HobbyCountArgs} args - Arguments to filter Hobbies to count.
+     * @example
+     * // Count the number of Hobbies
+     * const count = await prisma.hobby.count({
+     *   where: {
+     *     // ... the filter for the Hobbies we want to count
+     *   }
+     * })
+    **/
+    count<T extends HobbyCountArgs>(
+      args?: Subset<T, HobbyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HobbyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Hobby.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HobbyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HobbyAggregateArgs>(args: Subset<T, HobbyAggregateArgs>): Prisma.PrismaPromise<GetHobbyAggregateType<T>>
+
+    /**
+     * Group by Hobby.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HobbyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HobbyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HobbyGroupByArgs['orderBy'] }
+        : { orderBy?: HobbyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HobbyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHobbyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Hobby model
+   */
+  readonly fields: HobbyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Hobby.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HobbyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    logs<T extends Hobby$logsArgs<ExtArgs> = {}>(args?: Subset<T, Hobby$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HobbyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Hobby model
+   */
+  interface HobbyFieldRefs {
+    readonly id: FieldRef<"Hobby", 'String'>
+    readonly tenantId: FieldRef<"Hobby", 'String'>
+    readonly name: FieldRef<"Hobby", 'String'>
+    readonly description: FieldRef<"Hobby", 'String'>
+    readonly trackingType: FieldRef<"Hobby", 'HobbyTrackingType'>
+    readonly goalTarget: FieldRef<"Hobby", 'Decimal'>
+    readonly goalDeadline: FieldRef<"Hobby", 'DateTime'>
+    readonly isActive: FieldRef<"Hobby", 'Boolean'>
+    readonly createdAt: FieldRef<"Hobby", 'DateTime'>
+    readonly updatedAt: FieldRef<"Hobby", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Hobby findUnique
+   */
+  export type HobbyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hobby
+     */
+    select?: HobbySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hobby
+     */
+    omit?: HobbyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyInclude<ExtArgs> | null
+    /**
+     * Filter, which Hobby to fetch.
+     */
+    where: HobbyWhereUniqueInput
+  }
+
+  /**
+   * Hobby findUniqueOrThrow
+   */
+  export type HobbyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hobby
+     */
+    select?: HobbySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hobby
+     */
+    omit?: HobbyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyInclude<ExtArgs> | null
+    /**
+     * Filter, which Hobby to fetch.
+     */
+    where: HobbyWhereUniqueInput
+  }
+
+  /**
+   * Hobby findFirst
+   */
+  export type HobbyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hobby
+     */
+    select?: HobbySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hobby
+     */
+    omit?: HobbyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyInclude<ExtArgs> | null
+    /**
+     * Filter, which Hobby to fetch.
+     */
+    where?: HobbyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Hobbies to fetch.
+     */
+    orderBy?: HobbyOrderByWithRelationInput | HobbyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Hobbies.
+     */
+    cursor?: HobbyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Hobbies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Hobbies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Hobbies.
+     */
+    distinct?: HobbyScalarFieldEnum | HobbyScalarFieldEnum[]
+  }
+
+  /**
+   * Hobby findFirstOrThrow
+   */
+  export type HobbyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hobby
+     */
+    select?: HobbySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hobby
+     */
+    omit?: HobbyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyInclude<ExtArgs> | null
+    /**
+     * Filter, which Hobby to fetch.
+     */
+    where?: HobbyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Hobbies to fetch.
+     */
+    orderBy?: HobbyOrderByWithRelationInput | HobbyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Hobbies.
+     */
+    cursor?: HobbyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Hobbies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Hobbies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Hobbies.
+     */
+    distinct?: HobbyScalarFieldEnum | HobbyScalarFieldEnum[]
+  }
+
+  /**
+   * Hobby findMany
+   */
+  export type HobbyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hobby
+     */
+    select?: HobbySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hobby
+     */
+    omit?: HobbyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyInclude<ExtArgs> | null
+    /**
+     * Filter, which Hobbies to fetch.
+     */
+    where?: HobbyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Hobbies to fetch.
+     */
+    orderBy?: HobbyOrderByWithRelationInput | HobbyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Hobbies.
+     */
+    cursor?: HobbyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Hobbies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Hobbies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Hobbies.
+     */
+    distinct?: HobbyScalarFieldEnum | HobbyScalarFieldEnum[]
+  }
+
+  /**
+   * Hobby create
+   */
+  export type HobbyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hobby
+     */
+    select?: HobbySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hobby
+     */
+    omit?: HobbyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Hobby.
+     */
+    data: XOR<HobbyCreateInput, HobbyUncheckedCreateInput>
+  }
+
+  /**
+   * Hobby createMany
+   */
+  export type HobbyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Hobbies.
+     */
+    data: HobbyCreateManyInput | HobbyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Hobby createManyAndReturn
+   */
+  export type HobbyCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hobby
+     */
+    select?: HobbySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hobby
+     */
+    omit?: HobbyOmit<ExtArgs> | null
+    /**
+     * The data used to create many Hobbies.
+     */
+    data: HobbyCreateManyInput | HobbyCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Hobby update
+   */
+  export type HobbyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hobby
+     */
+    select?: HobbySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hobby
+     */
+    omit?: HobbyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Hobby.
+     */
+    data: XOR<HobbyUpdateInput, HobbyUncheckedUpdateInput>
+    /**
+     * Choose, which Hobby to update.
+     */
+    where: HobbyWhereUniqueInput
+  }
+
+  /**
+   * Hobby updateMany
+   */
+  export type HobbyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Hobbies.
+     */
+    data: XOR<HobbyUpdateManyMutationInput, HobbyUncheckedUpdateManyInput>
+    /**
+     * Filter which Hobbies to update
+     */
+    where?: HobbyWhereInput
+    /**
+     * Limit how many Hobbies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Hobby updateManyAndReturn
+   */
+  export type HobbyUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hobby
+     */
+    select?: HobbySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hobby
+     */
+    omit?: HobbyOmit<ExtArgs> | null
+    /**
+     * The data used to update Hobbies.
+     */
+    data: XOR<HobbyUpdateManyMutationInput, HobbyUncheckedUpdateManyInput>
+    /**
+     * Filter which Hobbies to update
+     */
+    where?: HobbyWhereInput
+    /**
+     * Limit how many Hobbies to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Hobby upsert
+   */
+  export type HobbyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hobby
+     */
+    select?: HobbySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hobby
+     */
+    omit?: HobbyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Hobby to update in case it exists.
+     */
+    where: HobbyWhereUniqueInput
+    /**
+     * In case the Hobby found by the `where` argument doesn't exist, create a new Hobby with this data.
+     */
+    create: XOR<HobbyCreateInput, HobbyUncheckedCreateInput>
+    /**
+     * In case the Hobby was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HobbyUpdateInput, HobbyUncheckedUpdateInput>
+  }
+
+  /**
+   * Hobby delete
+   */
+  export type HobbyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hobby
+     */
+    select?: HobbySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hobby
+     */
+    omit?: HobbyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyInclude<ExtArgs> | null
+    /**
+     * Filter which Hobby to delete.
+     */
+    where: HobbyWhereUniqueInput
+  }
+
+  /**
+   * Hobby deleteMany
+   */
+  export type HobbyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Hobbies to delete
+     */
+    where?: HobbyWhereInput
+    /**
+     * Limit how many Hobbies to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Hobby.logs
+   */
+  export type Hobby$logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HobbyLog
+     */
+    select?: HobbyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HobbyLog
+     */
+    omit?: HobbyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyLogInclude<ExtArgs> | null
+    where?: HobbyLogWhereInput
+    orderBy?: HobbyLogOrderByWithRelationInput | HobbyLogOrderByWithRelationInput[]
+    cursor?: HobbyLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HobbyLogScalarFieldEnum | HobbyLogScalarFieldEnum[]
+  }
+
+  /**
+   * Hobby without action
+   */
+  export type HobbyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hobby
+     */
+    select?: HobbySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hobby
+     */
+    omit?: HobbyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model HobbyLog
+   */
+
+  export type AggregateHobbyLog = {
+    _count: HobbyLogCountAggregateOutputType | null
+    _min: HobbyLogMinAggregateOutputType | null
+    _max: HobbyLogMaxAggregateOutputType | null
+  }
+
+  export type HobbyLogMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    hobbyId: string | null
+    trackingType: $Enums.HobbyTrackingType | null
+    loggedAt: Date | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HobbyLogMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    hobbyId: string | null
+    trackingType: $Enums.HobbyTrackingType | null
+    loggedAt: Date | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HobbyLogCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    hobbyId: number
+    trackingType: number
+    logValue: number
+    loggedAt: number
+    notes: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type HobbyLogMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    hobbyId?: true
+    trackingType?: true
+    loggedAt?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HobbyLogMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    hobbyId?: true
+    trackingType?: true
+    loggedAt?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HobbyLogCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    hobbyId?: true
+    trackingType?: true
+    logValue?: true
+    loggedAt?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type HobbyLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HobbyLog to aggregate.
+     */
+    where?: HobbyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HobbyLogs to fetch.
+     */
+    orderBy?: HobbyLogOrderByWithRelationInput | HobbyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HobbyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HobbyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HobbyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned HobbyLogs
+    **/
+    _count?: true | HobbyLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HobbyLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HobbyLogMaxAggregateInputType
+  }
+
+  export type GetHobbyLogAggregateType<T extends HobbyLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateHobbyLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHobbyLog[P]>
+      : GetScalarType<T[P], AggregateHobbyLog[P]>
+  }
+
+
+
+
+  export type HobbyLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HobbyLogWhereInput
+    orderBy?: HobbyLogOrderByWithAggregationInput | HobbyLogOrderByWithAggregationInput[]
+    by: HobbyLogScalarFieldEnum[] | HobbyLogScalarFieldEnum
+    having?: HobbyLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HobbyLogCountAggregateInputType | true
+    _min?: HobbyLogMinAggregateInputType
+    _max?: HobbyLogMaxAggregateInputType
+  }
+
+  export type HobbyLogGroupByOutputType = {
+    id: string
+    tenantId: string
+    hobbyId: string
+    trackingType: $Enums.HobbyTrackingType
+    logValue: JsonValue
+    loggedAt: Date
+    notes: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: HobbyLogCountAggregateOutputType | null
+    _min: HobbyLogMinAggregateOutputType | null
+    _max: HobbyLogMaxAggregateOutputType | null
+  }
+
+  type GetHobbyLogGroupByPayload<T extends HobbyLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HobbyLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HobbyLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HobbyLogGroupByOutputType[P]>
+            : GetScalarType<T[P], HobbyLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HobbyLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    hobbyId?: boolean
+    trackingType?: boolean
+    logValue?: boolean
+    loggedAt?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    hobby?: boolean | HobbyDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hobbyLog"]>
+
+  export type HobbyLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    hobbyId?: boolean
+    trackingType?: boolean
+    logValue?: boolean
+    loggedAt?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    hobby?: boolean | HobbyDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hobbyLog"]>
+
+  export type HobbyLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    hobbyId?: boolean
+    trackingType?: boolean
+    logValue?: boolean
+    loggedAt?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    hobby?: boolean | HobbyDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hobbyLog"]>
+
+  export type HobbyLogSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    hobbyId?: boolean
+    trackingType?: boolean
+    logValue?: boolean
+    loggedAt?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type HobbyLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "hobbyId" | "trackingType" | "logValue" | "loggedAt" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["hobbyLog"]>
+  export type HobbyLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hobby?: boolean | HobbyDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type HobbyLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hobby?: boolean | HobbyDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type HobbyLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hobby?: boolean | HobbyDefaultArgs<ExtArgs>
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $HobbyLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "HobbyLog"
+    objects: {
+      hobby: Prisma.$HobbyPayload<ExtArgs>
+      tenant: Prisma.$TenantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      hobbyId: string
+      trackingType: $Enums.HobbyTrackingType
+      logValue: Prisma.JsonValue
+      loggedAt: Date
+      notes: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["hobbyLog"]>
+    composites: {}
+  }
+
+  type HobbyLogGetPayload<S extends boolean | null | undefined | HobbyLogDefaultArgs> = $Result.GetResult<Prisma.$HobbyLogPayload, S>
+
+  type HobbyLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HobbyLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HobbyLogCountAggregateInputType | true
+    }
+
+  export interface HobbyLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['HobbyLog'], meta: { name: 'HobbyLog' } }
+    /**
+     * Find zero or one HobbyLog that matches the filter.
+     * @param {HobbyLogFindUniqueArgs} args - Arguments to find a HobbyLog
+     * @example
+     * // Get one HobbyLog
+     * const hobbyLog = await prisma.hobbyLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HobbyLogFindUniqueArgs>(args: SelectSubset<T, HobbyLogFindUniqueArgs<ExtArgs>>): Prisma__HobbyLogClient<$Result.GetResult<Prisma.$HobbyLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one HobbyLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {HobbyLogFindUniqueOrThrowArgs} args - Arguments to find a HobbyLog
+     * @example
+     * // Get one HobbyLog
+     * const hobbyLog = await prisma.hobbyLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HobbyLogFindUniqueOrThrowArgs>(args: SelectSubset<T, HobbyLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HobbyLogClient<$Result.GetResult<Prisma.$HobbyLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HobbyLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HobbyLogFindFirstArgs} args - Arguments to find a HobbyLog
+     * @example
+     * // Get one HobbyLog
+     * const hobbyLog = await prisma.hobbyLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HobbyLogFindFirstArgs>(args?: SelectSubset<T, HobbyLogFindFirstArgs<ExtArgs>>): Prisma__HobbyLogClient<$Result.GetResult<Prisma.$HobbyLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HobbyLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HobbyLogFindFirstOrThrowArgs} args - Arguments to find a HobbyLog
+     * @example
+     * // Get one HobbyLog
+     * const hobbyLog = await prisma.hobbyLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HobbyLogFindFirstOrThrowArgs>(args?: SelectSubset<T, HobbyLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__HobbyLogClient<$Result.GetResult<Prisma.$HobbyLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more HobbyLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HobbyLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all HobbyLogs
+     * const hobbyLogs = await prisma.hobbyLog.findMany()
+     * 
+     * // Get first 10 HobbyLogs
+     * const hobbyLogs = await prisma.hobbyLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const hobbyLogWithIdOnly = await prisma.hobbyLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HobbyLogFindManyArgs>(args?: SelectSubset<T, HobbyLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HobbyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a HobbyLog.
+     * @param {HobbyLogCreateArgs} args - Arguments to create a HobbyLog.
+     * @example
+     * // Create one HobbyLog
+     * const HobbyLog = await prisma.hobbyLog.create({
+     *   data: {
+     *     // ... data to create a HobbyLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends HobbyLogCreateArgs>(args: SelectSubset<T, HobbyLogCreateArgs<ExtArgs>>): Prisma__HobbyLogClient<$Result.GetResult<Prisma.$HobbyLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many HobbyLogs.
+     * @param {HobbyLogCreateManyArgs} args - Arguments to create many HobbyLogs.
+     * @example
+     * // Create many HobbyLogs
+     * const hobbyLog = await prisma.hobbyLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HobbyLogCreateManyArgs>(args?: SelectSubset<T, HobbyLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many HobbyLogs and returns the data saved in the database.
+     * @param {HobbyLogCreateManyAndReturnArgs} args - Arguments to create many HobbyLogs.
+     * @example
+     * // Create many HobbyLogs
+     * const hobbyLog = await prisma.hobbyLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many HobbyLogs and only return the `id`
+     * const hobbyLogWithIdOnly = await prisma.hobbyLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends HobbyLogCreateManyAndReturnArgs>(args?: SelectSubset<T, HobbyLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HobbyLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a HobbyLog.
+     * @param {HobbyLogDeleteArgs} args - Arguments to delete one HobbyLog.
+     * @example
+     * // Delete one HobbyLog
+     * const HobbyLog = await prisma.hobbyLog.delete({
+     *   where: {
+     *     // ... filter to delete one HobbyLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HobbyLogDeleteArgs>(args: SelectSubset<T, HobbyLogDeleteArgs<ExtArgs>>): Prisma__HobbyLogClient<$Result.GetResult<Prisma.$HobbyLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one HobbyLog.
+     * @param {HobbyLogUpdateArgs} args - Arguments to update one HobbyLog.
+     * @example
+     * // Update one HobbyLog
+     * const hobbyLog = await prisma.hobbyLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HobbyLogUpdateArgs>(args: SelectSubset<T, HobbyLogUpdateArgs<ExtArgs>>): Prisma__HobbyLogClient<$Result.GetResult<Prisma.$HobbyLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more HobbyLogs.
+     * @param {HobbyLogDeleteManyArgs} args - Arguments to filter HobbyLogs to delete.
+     * @example
+     * // Delete a few HobbyLogs
+     * const { count } = await prisma.hobbyLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HobbyLogDeleteManyArgs>(args?: SelectSubset<T, HobbyLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HobbyLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HobbyLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many HobbyLogs
+     * const hobbyLog = await prisma.hobbyLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HobbyLogUpdateManyArgs>(args: SelectSubset<T, HobbyLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HobbyLogs and returns the data updated in the database.
+     * @param {HobbyLogUpdateManyAndReturnArgs} args - Arguments to update many HobbyLogs.
+     * @example
+     * // Update many HobbyLogs
+     * const hobbyLog = await prisma.hobbyLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more HobbyLogs and only return the `id`
+     * const hobbyLogWithIdOnly = await prisma.hobbyLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends HobbyLogUpdateManyAndReturnArgs>(args: SelectSubset<T, HobbyLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HobbyLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one HobbyLog.
+     * @param {HobbyLogUpsertArgs} args - Arguments to update or create a HobbyLog.
+     * @example
+     * // Update or create a HobbyLog
+     * const hobbyLog = await prisma.hobbyLog.upsert({
+     *   create: {
+     *     // ... data to create a HobbyLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the HobbyLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HobbyLogUpsertArgs>(args: SelectSubset<T, HobbyLogUpsertArgs<ExtArgs>>): Prisma__HobbyLogClient<$Result.GetResult<Prisma.$HobbyLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of HobbyLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HobbyLogCountArgs} args - Arguments to filter HobbyLogs to count.
+     * @example
+     * // Count the number of HobbyLogs
+     * const count = await prisma.hobbyLog.count({
+     *   where: {
+     *     // ... the filter for the HobbyLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends HobbyLogCountArgs>(
+      args?: Subset<T, HobbyLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HobbyLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a HobbyLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HobbyLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HobbyLogAggregateArgs>(args: Subset<T, HobbyLogAggregateArgs>): Prisma.PrismaPromise<GetHobbyLogAggregateType<T>>
+
+    /**
+     * Group by HobbyLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HobbyLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HobbyLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HobbyLogGroupByArgs['orderBy'] }
+        : { orderBy?: HobbyLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HobbyLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHobbyLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the HobbyLog model
+   */
+  readonly fields: HobbyLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for HobbyLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HobbyLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    hobby<T extends HobbyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, HobbyDefaultArgs<ExtArgs>>): Prisma__HobbyClient<$Result.GetResult<Prisma.$HobbyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the HobbyLog model
+   */
+  interface HobbyLogFieldRefs {
+    readonly id: FieldRef<"HobbyLog", 'String'>
+    readonly tenantId: FieldRef<"HobbyLog", 'String'>
+    readonly hobbyId: FieldRef<"HobbyLog", 'String'>
+    readonly trackingType: FieldRef<"HobbyLog", 'HobbyTrackingType'>
+    readonly logValue: FieldRef<"HobbyLog", 'Json'>
+    readonly loggedAt: FieldRef<"HobbyLog", 'DateTime'>
+    readonly notes: FieldRef<"HobbyLog", 'String'>
+    readonly createdAt: FieldRef<"HobbyLog", 'DateTime'>
+    readonly updatedAt: FieldRef<"HobbyLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * HobbyLog findUnique
+   */
+  export type HobbyLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HobbyLog
+     */
+    select?: HobbyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HobbyLog
+     */
+    omit?: HobbyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which HobbyLog to fetch.
+     */
+    where: HobbyLogWhereUniqueInput
+  }
+
+  /**
+   * HobbyLog findUniqueOrThrow
+   */
+  export type HobbyLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HobbyLog
+     */
+    select?: HobbyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HobbyLog
+     */
+    omit?: HobbyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which HobbyLog to fetch.
+     */
+    where: HobbyLogWhereUniqueInput
+  }
+
+  /**
+   * HobbyLog findFirst
+   */
+  export type HobbyLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HobbyLog
+     */
+    select?: HobbyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HobbyLog
+     */
+    omit?: HobbyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which HobbyLog to fetch.
+     */
+    where?: HobbyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HobbyLogs to fetch.
+     */
+    orderBy?: HobbyLogOrderByWithRelationInput | HobbyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HobbyLogs.
+     */
+    cursor?: HobbyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HobbyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HobbyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HobbyLogs.
+     */
+    distinct?: HobbyLogScalarFieldEnum | HobbyLogScalarFieldEnum[]
+  }
+
+  /**
+   * HobbyLog findFirstOrThrow
+   */
+  export type HobbyLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HobbyLog
+     */
+    select?: HobbyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HobbyLog
+     */
+    omit?: HobbyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which HobbyLog to fetch.
+     */
+    where?: HobbyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HobbyLogs to fetch.
+     */
+    orderBy?: HobbyLogOrderByWithRelationInput | HobbyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HobbyLogs.
+     */
+    cursor?: HobbyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HobbyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HobbyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HobbyLogs.
+     */
+    distinct?: HobbyLogScalarFieldEnum | HobbyLogScalarFieldEnum[]
+  }
+
+  /**
+   * HobbyLog findMany
+   */
+  export type HobbyLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HobbyLog
+     */
+    select?: HobbyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HobbyLog
+     */
+    omit?: HobbyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which HobbyLogs to fetch.
+     */
+    where?: HobbyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HobbyLogs to fetch.
+     */
+    orderBy?: HobbyLogOrderByWithRelationInput | HobbyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing HobbyLogs.
+     */
+    cursor?: HobbyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HobbyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HobbyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HobbyLogs.
+     */
+    distinct?: HobbyLogScalarFieldEnum | HobbyLogScalarFieldEnum[]
+  }
+
+  /**
+   * HobbyLog create
+   */
+  export type HobbyLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HobbyLog
+     */
+    select?: HobbyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HobbyLog
+     */
+    omit?: HobbyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a HobbyLog.
+     */
+    data: XOR<HobbyLogCreateInput, HobbyLogUncheckedCreateInput>
+  }
+
+  /**
+   * HobbyLog createMany
+   */
+  export type HobbyLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many HobbyLogs.
+     */
+    data: HobbyLogCreateManyInput | HobbyLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * HobbyLog createManyAndReturn
+   */
+  export type HobbyLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HobbyLog
+     */
+    select?: HobbyLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HobbyLog
+     */
+    omit?: HobbyLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many HobbyLogs.
+     */
+    data: HobbyLogCreateManyInput | HobbyLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * HobbyLog update
+   */
+  export type HobbyLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HobbyLog
+     */
+    select?: HobbyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HobbyLog
+     */
+    omit?: HobbyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a HobbyLog.
+     */
+    data: XOR<HobbyLogUpdateInput, HobbyLogUncheckedUpdateInput>
+    /**
+     * Choose, which HobbyLog to update.
+     */
+    where: HobbyLogWhereUniqueInput
+  }
+
+  /**
+   * HobbyLog updateMany
+   */
+  export type HobbyLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update HobbyLogs.
+     */
+    data: XOR<HobbyLogUpdateManyMutationInput, HobbyLogUncheckedUpdateManyInput>
+    /**
+     * Filter which HobbyLogs to update
+     */
+    where?: HobbyLogWhereInput
+    /**
+     * Limit how many HobbyLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * HobbyLog updateManyAndReturn
+   */
+  export type HobbyLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HobbyLog
+     */
+    select?: HobbyLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HobbyLog
+     */
+    omit?: HobbyLogOmit<ExtArgs> | null
+    /**
+     * The data used to update HobbyLogs.
+     */
+    data: XOR<HobbyLogUpdateManyMutationInput, HobbyLogUncheckedUpdateManyInput>
+    /**
+     * Filter which HobbyLogs to update
+     */
+    where?: HobbyLogWhereInput
+    /**
+     * Limit how many HobbyLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * HobbyLog upsert
+   */
+  export type HobbyLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HobbyLog
+     */
+    select?: HobbyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HobbyLog
+     */
+    omit?: HobbyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the HobbyLog to update in case it exists.
+     */
+    where: HobbyLogWhereUniqueInput
+    /**
+     * In case the HobbyLog found by the `where` argument doesn't exist, create a new HobbyLog with this data.
+     */
+    create: XOR<HobbyLogCreateInput, HobbyLogUncheckedCreateInput>
+    /**
+     * In case the HobbyLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HobbyLogUpdateInput, HobbyLogUncheckedUpdateInput>
+  }
+
+  /**
+   * HobbyLog delete
+   */
+  export type HobbyLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HobbyLog
+     */
+    select?: HobbyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HobbyLog
+     */
+    omit?: HobbyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyLogInclude<ExtArgs> | null
+    /**
+     * Filter which HobbyLog to delete.
+     */
+    where: HobbyLogWhereUniqueInput
+  }
+
+  /**
+   * HobbyLog deleteMany
+   */
+  export type HobbyLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HobbyLogs to delete
+     */
+    where?: HobbyLogWhereInput
+    /**
+     * Limit how many HobbyLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * HobbyLog without action
+   */
+  export type HobbyLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HobbyLog
+     */
+    select?: HobbyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HobbyLog
+     */
+    omit?: HobbyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HobbyLogInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Folder
    */
 
@@ -28355,6 +30966,37 @@ export namespace Prisma {
   export type HealthLogScalarFieldEnum = (typeof HealthLogScalarFieldEnum)[keyof typeof HealthLogScalarFieldEnum]
 
 
+  export const HobbyScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    name: 'name',
+    description: 'description',
+    trackingType: 'trackingType',
+    goalTarget: 'goalTarget',
+    goalDeadline: 'goalDeadline',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type HobbyScalarFieldEnum = (typeof HobbyScalarFieldEnum)[keyof typeof HobbyScalarFieldEnum]
+
+
+  export const HobbyLogScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    hobbyId: 'hobbyId',
+    trackingType: 'trackingType',
+    logValue: 'logValue',
+    loggedAt: 'loggedAt',
+    notes: 'notes',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type HobbyLogScalarFieldEnum = (typeof HobbyLogScalarFieldEnum)[keyof typeof HobbyLogScalarFieldEnum]
+
+
   export const FolderScalarFieldEnum: {
     id: 'id',
     tenantId: 'tenantId',
@@ -28643,6 +31285,26 @@ export namespace Prisma {
   export type HealthLogOrderByRelevanceFieldEnum = (typeof HealthLogOrderByRelevanceFieldEnum)[keyof typeof HealthLogOrderByRelevanceFieldEnum]
 
 
+  export const HobbyOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    name: 'name',
+    description: 'description'
+  };
+
+  export type HobbyOrderByRelevanceFieldEnum = (typeof HobbyOrderByRelevanceFieldEnum)[keyof typeof HobbyOrderByRelevanceFieldEnum]
+
+
+  export const HobbyLogOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    hobbyId: 'hobbyId',
+    notes: 'notes'
+  };
+
+  export type HobbyLogOrderByRelevanceFieldEnum = (typeof HobbyLogOrderByRelevanceFieldEnum)[keyof typeof HobbyLogOrderByRelevanceFieldEnum]
+
+
   export const FolderOrderByRelevanceFieldEnum: {
     id: 'id',
     tenantId: 'tenantId',
@@ -28784,6 +31446,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'HobbyTrackingType'
+   */
+  export type EnumHobbyTrackingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HobbyTrackingType'>
+    
+
+
+  /**
+   * Reference to a field of type 'HobbyTrackingType[]'
+   */
+  export type ListEnumHobbyTrackingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HobbyTrackingType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -28827,6 +31503,8 @@ export namespace Prisma {
     tags?: TagListRelationFilter
     notes?: NoteListRelationFilter
     journalEntries?: JournalEntryListRelationFilter
+    hobbies?: HobbyListRelationFilter
+    hobbyLogs?: HobbyLogListRelationFilter
   }
 
   export type TenantOrderByWithRelationInput = {
@@ -28853,6 +31531,8 @@ export namespace Prisma {
     tags?: TagOrderByRelationAggregateInput
     notes?: NoteOrderByRelationAggregateInput
     journalEntries?: JournalEntryOrderByRelationAggregateInput
+    hobbies?: HobbyOrderByRelationAggregateInput
+    hobbyLogs?: HobbyLogOrderByRelationAggregateInput
     _relevance?: TenantOrderByRelevanceInput
   }
 
@@ -28883,6 +31563,8 @@ export namespace Prisma {
     tags?: TagListRelationFilter
     notes?: NoteListRelationFilter
     journalEntries?: JournalEntryListRelationFilter
+    hobbies?: HobbyListRelationFilter
+    hobbyLogs?: HobbyLogListRelationFilter
   }, "id">
 
   export type TenantOrderByWithAggregationInput = {
@@ -30292,6 +32974,171 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"HealthLog"> | Date | string
   }
 
+  export type HobbyWhereInput = {
+    AND?: HobbyWhereInput | HobbyWhereInput[]
+    OR?: HobbyWhereInput[]
+    NOT?: HobbyWhereInput | HobbyWhereInput[]
+    id?: StringFilter<"Hobby"> | string
+    tenantId?: StringFilter<"Hobby"> | string
+    name?: StringFilter<"Hobby"> | string
+    description?: StringNullableFilter<"Hobby"> | string | null
+    trackingType?: EnumHobbyTrackingTypeFilter<"Hobby"> | $Enums.HobbyTrackingType
+    goalTarget?: DecimalNullableFilter<"Hobby"> | Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: DateTimeNullableFilter<"Hobby"> | Date | string | null
+    isActive?: BoolFilter<"Hobby"> | boolean
+    createdAt?: DateTimeFilter<"Hobby"> | Date | string
+    updatedAt?: DateTimeFilter<"Hobby"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    logs?: HobbyLogListRelationFilter
+  }
+
+  export type HobbyOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    trackingType?: SortOrder
+    goalTarget?: SortOrderInput | SortOrder
+    goalDeadline?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    logs?: HobbyLogOrderByRelationAggregateInput
+    _relevance?: HobbyOrderByRelevanceInput
+  }
+
+  export type HobbyWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: HobbyWhereInput | HobbyWhereInput[]
+    OR?: HobbyWhereInput[]
+    NOT?: HobbyWhereInput | HobbyWhereInput[]
+    tenantId?: StringFilter<"Hobby"> | string
+    name?: StringFilter<"Hobby"> | string
+    description?: StringNullableFilter<"Hobby"> | string | null
+    trackingType?: EnumHobbyTrackingTypeFilter<"Hobby"> | $Enums.HobbyTrackingType
+    goalTarget?: DecimalNullableFilter<"Hobby"> | Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: DateTimeNullableFilter<"Hobby"> | Date | string | null
+    isActive?: BoolFilter<"Hobby"> | boolean
+    createdAt?: DateTimeFilter<"Hobby"> | Date | string
+    updatedAt?: DateTimeFilter<"Hobby"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+    logs?: HobbyLogListRelationFilter
+  }, "id">
+
+  export type HobbyOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    trackingType?: SortOrder
+    goalTarget?: SortOrderInput | SortOrder
+    goalDeadline?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: HobbyCountOrderByAggregateInput
+    _avg?: HobbyAvgOrderByAggregateInput
+    _max?: HobbyMaxOrderByAggregateInput
+    _min?: HobbyMinOrderByAggregateInput
+    _sum?: HobbySumOrderByAggregateInput
+  }
+
+  export type HobbyScalarWhereWithAggregatesInput = {
+    AND?: HobbyScalarWhereWithAggregatesInput | HobbyScalarWhereWithAggregatesInput[]
+    OR?: HobbyScalarWhereWithAggregatesInput[]
+    NOT?: HobbyScalarWhereWithAggregatesInput | HobbyScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Hobby"> | string
+    tenantId?: StringWithAggregatesFilter<"Hobby"> | string
+    name?: StringWithAggregatesFilter<"Hobby"> | string
+    description?: StringNullableWithAggregatesFilter<"Hobby"> | string | null
+    trackingType?: EnumHobbyTrackingTypeWithAggregatesFilter<"Hobby"> | $Enums.HobbyTrackingType
+    goalTarget?: DecimalNullableWithAggregatesFilter<"Hobby"> | Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: DateTimeNullableWithAggregatesFilter<"Hobby"> | Date | string | null
+    isActive?: BoolWithAggregatesFilter<"Hobby"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Hobby"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Hobby"> | Date | string
+  }
+
+  export type HobbyLogWhereInput = {
+    AND?: HobbyLogWhereInput | HobbyLogWhereInput[]
+    OR?: HobbyLogWhereInput[]
+    NOT?: HobbyLogWhereInput | HobbyLogWhereInput[]
+    id?: StringFilter<"HobbyLog"> | string
+    tenantId?: StringFilter<"HobbyLog"> | string
+    hobbyId?: StringFilter<"HobbyLog"> | string
+    trackingType?: EnumHobbyTrackingTypeFilter<"HobbyLog"> | $Enums.HobbyTrackingType
+    logValue?: JsonFilter<"HobbyLog">
+    loggedAt?: DateTimeFilter<"HobbyLog"> | Date | string
+    notes?: StringNullableFilter<"HobbyLog"> | string | null
+    createdAt?: DateTimeFilter<"HobbyLog"> | Date | string
+    updatedAt?: DateTimeFilter<"HobbyLog"> | Date | string
+    hobby?: XOR<HobbyScalarRelationFilter, HobbyWhereInput>
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }
+
+  export type HobbyLogOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    hobbyId?: SortOrder
+    trackingType?: SortOrder
+    logValue?: SortOrder
+    loggedAt?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    hobby?: HobbyOrderByWithRelationInput
+    tenant?: TenantOrderByWithRelationInput
+    _relevance?: HobbyLogOrderByRelevanceInput
+  }
+
+  export type HobbyLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: HobbyLogWhereInput | HobbyLogWhereInput[]
+    OR?: HobbyLogWhereInput[]
+    NOT?: HobbyLogWhereInput | HobbyLogWhereInput[]
+    tenantId?: StringFilter<"HobbyLog"> | string
+    hobbyId?: StringFilter<"HobbyLog"> | string
+    trackingType?: EnumHobbyTrackingTypeFilter<"HobbyLog"> | $Enums.HobbyTrackingType
+    logValue?: JsonFilter<"HobbyLog">
+    loggedAt?: DateTimeFilter<"HobbyLog"> | Date | string
+    notes?: StringNullableFilter<"HobbyLog"> | string | null
+    createdAt?: DateTimeFilter<"HobbyLog"> | Date | string
+    updatedAt?: DateTimeFilter<"HobbyLog"> | Date | string
+    hobby?: XOR<HobbyScalarRelationFilter, HobbyWhereInput>
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }, "id">
+
+  export type HobbyLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    hobbyId?: SortOrder
+    trackingType?: SortOrder
+    logValue?: SortOrder
+    loggedAt?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: HobbyLogCountOrderByAggregateInput
+    _max?: HobbyLogMaxOrderByAggregateInput
+    _min?: HobbyLogMinOrderByAggregateInput
+  }
+
+  export type HobbyLogScalarWhereWithAggregatesInput = {
+    AND?: HobbyLogScalarWhereWithAggregatesInput | HobbyLogScalarWhereWithAggregatesInput[]
+    OR?: HobbyLogScalarWhereWithAggregatesInput[]
+    NOT?: HobbyLogScalarWhereWithAggregatesInput | HobbyLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"HobbyLog"> | string
+    tenantId?: StringWithAggregatesFilter<"HobbyLog"> | string
+    hobbyId?: StringWithAggregatesFilter<"HobbyLog"> | string
+    trackingType?: EnumHobbyTrackingTypeWithAggregatesFilter<"HobbyLog"> | $Enums.HobbyTrackingType
+    logValue?: JsonWithAggregatesFilter<"HobbyLog">
+    loggedAt?: DateTimeWithAggregatesFilter<"HobbyLog"> | Date | string
+    notes?: StringNullableWithAggregatesFilter<"HobbyLog"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"HobbyLog"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"HobbyLog"> | Date | string
+  }
+
   export type FolderWhereInput = {
     AND?: FolderWhereInput | FolderWhereInput[]
     OR?: FolderWhereInput[]
@@ -30622,6 +33469,8 @@ export namespace Prisma {
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateInput = {
@@ -30648,6 +33497,8 @@ export namespace Prisma {
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUpdateInput = {
@@ -30674,6 +33525,8 @@ export namespace Prisma {
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateInput = {
@@ -30700,6 +33553,8 @@ export namespace Prisma {
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateManyInput = {
@@ -32218,6 +35073,182 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type HobbyCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    trackingType: $Enums.HobbyTrackingType
+    goalTarget?: Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutHobbiesInput
+    logs?: HobbyLogCreateNestedManyWithoutHobbyInput
+  }
+
+  export type HobbyUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    name: string
+    description?: string | null
+    trackingType: $Enums.HobbyTrackingType
+    goalTarget?: Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    logs?: HobbyLogUncheckedCreateNestedManyWithoutHobbyInput
+  }
+
+  export type HobbyUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    goalTarget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutHobbiesNestedInput
+    logs?: HobbyLogUpdateManyWithoutHobbyNestedInput
+  }
+
+  export type HobbyUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    goalTarget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    logs?: HobbyLogUncheckedUpdateManyWithoutHobbyNestedInput
+  }
+
+  export type HobbyCreateManyInput = {
+    id?: string
+    tenantId: string
+    name: string
+    description?: string | null
+    trackingType: $Enums.HobbyTrackingType
+    goalTarget?: Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HobbyUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    goalTarget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HobbyUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    goalTarget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HobbyLogCreateInput = {
+    id?: string
+    trackingType: $Enums.HobbyTrackingType
+    logValue: JsonNullValueInput | InputJsonValue
+    loggedAt: Date | string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    hobby: HobbyCreateNestedOneWithoutLogsInput
+    tenant: TenantCreateNestedOneWithoutHobbyLogsInput
+  }
+
+  export type HobbyLogUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    hobbyId: string
+    trackingType: $Enums.HobbyTrackingType
+    logValue: JsonNullValueInput | InputJsonValue
+    loggedAt: Date | string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HobbyLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    logValue?: JsonNullValueInput | InputJsonValue
+    loggedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    hobby?: HobbyUpdateOneRequiredWithoutLogsNestedInput
+    tenant?: TenantUpdateOneRequiredWithoutHobbyLogsNestedInput
+  }
+
+  export type HobbyLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    hobbyId?: StringFieldUpdateOperationsInput | string
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    logValue?: JsonNullValueInput | InputJsonValue
+    loggedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HobbyLogCreateManyInput = {
+    id?: string
+    tenantId: string
+    hobbyId: string
+    trackingType: $Enums.HobbyTrackingType
+    logValue: JsonNullValueInput | InputJsonValue
+    loggedAt: Date | string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HobbyLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    logValue?: JsonNullValueInput | InputJsonValue
+    loggedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HobbyLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    hobbyId?: StringFieldUpdateOperationsInput | string
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    logValue?: JsonNullValueInput | InputJsonValue
+    loggedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type FolderCreateInput = {
     id?: string
     name: string
@@ -32616,6 +35647,18 @@ export namespace Prisma {
     none?: JournalEntryWhereInput
   }
 
+  export type HobbyListRelationFilter = {
+    every?: HobbyWhereInput
+    some?: HobbyWhereInput
+    none?: HobbyWhereInput
+  }
+
+  export type HobbyLogListRelationFilter = {
+    every?: HobbyLogWhereInput
+    some?: HobbyLogWhereInput
+    none?: HobbyLogWhereInput
+  }
+
   export type UserOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -32685,6 +35728,14 @@ export namespace Prisma {
   }
 
   export type JournalEntryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type HobbyOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type HobbyLogOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -33925,6 +36976,148 @@ export namespace Prisma {
     _max?: NestedEnumHealthLogTypeFilter<$PrismaModel>
   }
 
+  export type EnumHobbyTrackingTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.HobbyTrackingType | EnumHobbyTrackingTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.HobbyTrackingType[] | ListEnumHobbyTrackingTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HobbyTrackingType[] | ListEnumHobbyTrackingTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumHobbyTrackingTypeFilter<$PrismaModel> | $Enums.HobbyTrackingType
+  }
+
+  export type DecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type HobbyOrderByRelevanceInput = {
+    fields: HobbyOrderByRelevanceFieldEnum | HobbyOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type HobbyCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    trackingType?: SortOrder
+    goalTarget?: SortOrder
+    goalDeadline?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HobbyAvgOrderByAggregateInput = {
+    goalTarget?: SortOrder
+  }
+
+  export type HobbyMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    trackingType?: SortOrder
+    goalTarget?: SortOrder
+    goalDeadline?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HobbyMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    trackingType?: SortOrder
+    goalTarget?: SortOrder
+    goalDeadline?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HobbySumOrderByAggregateInput = {
+    goalTarget?: SortOrder
+  }
+
+  export type EnumHobbyTrackingTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.HobbyTrackingType | EnumHobbyTrackingTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.HobbyTrackingType[] | ListEnumHobbyTrackingTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HobbyTrackingType[] | ListEnumHobbyTrackingTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumHobbyTrackingTypeWithAggregatesFilter<$PrismaModel> | $Enums.HobbyTrackingType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumHobbyTrackingTypeFilter<$PrismaModel>
+    _max?: NestedEnumHobbyTrackingTypeFilter<$PrismaModel>
+  }
+
+  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type HobbyScalarRelationFilter = {
+    is?: HobbyWhereInput
+    isNot?: HobbyWhereInput
+  }
+
+  export type HobbyLogOrderByRelevanceInput = {
+    fields: HobbyLogOrderByRelevanceFieldEnum | HobbyLogOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type HobbyLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    hobbyId?: SortOrder
+    trackingType?: SortOrder
+    logValue?: SortOrder
+    loggedAt?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HobbyLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    hobbyId?: SortOrder
+    trackingType?: SortOrder
+    loggedAt?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HobbyLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    hobbyId?: SortOrder
+    trackingType?: SortOrder
+    loggedAt?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type FolderOrderByRelevanceInput = {
     fields: FolderOrderByRelevanceFieldEnum | FolderOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -34256,6 +37449,20 @@ export namespace Prisma {
     connect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
   }
 
+  export type HobbyCreateNestedManyWithoutTenantInput = {
+    create?: XOR<HobbyCreateWithoutTenantInput, HobbyUncheckedCreateWithoutTenantInput> | HobbyCreateWithoutTenantInput[] | HobbyUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HobbyCreateOrConnectWithoutTenantInput | HobbyCreateOrConnectWithoutTenantInput[]
+    createMany?: HobbyCreateManyTenantInputEnvelope
+    connect?: HobbyWhereUniqueInput | HobbyWhereUniqueInput[]
+  }
+
+  export type HobbyLogCreateNestedManyWithoutTenantInput = {
+    create?: XOR<HobbyLogCreateWithoutTenantInput, HobbyLogUncheckedCreateWithoutTenantInput> | HobbyLogCreateWithoutTenantInput[] | HobbyLogUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HobbyLogCreateOrConnectWithoutTenantInput | HobbyLogCreateOrConnectWithoutTenantInput[]
+    createMany?: HobbyLogCreateManyTenantInputEnvelope
+    connect?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+  }
+
   export type UserUncheckedCreateNestedManyWithoutTenantInput = {
     create?: XOR<UserCreateWithoutTenantInput, UserUncheckedCreateWithoutTenantInput> | UserCreateWithoutTenantInput[] | UserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: UserCreateOrConnectWithoutTenantInput | UserCreateOrConnectWithoutTenantInput[]
@@ -34383,6 +37590,20 @@ export namespace Prisma {
     connectOrCreate?: JournalEntryCreateOrConnectWithoutTenantInput | JournalEntryCreateOrConnectWithoutTenantInput[]
     createMany?: JournalEntryCreateManyTenantInputEnvelope
     connect?: JournalEntryWhereUniqueInput | JournalEntryWhereUniqueInput[]
+  }
+
+  export type HobbyUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<HobbyCreateWithoutTenantInput, HobbyUncheckedCreateWithoutTenantInput> | HobbyCreateWithoutTenantInput[] | HobbyUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HobbyCreateOrConnectWithoutTenantInput | HobbyCreateOrConnectWithoutTenantInput[]
+    createMany?: HobbyCreateManyTenantInputEnvelope
+    connect?: HobbyWhereUniqueInput | HobbyWhereUniqueInput[]
+  }
+
+  export type HobbyLogUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<HobbyLogCreateWithoutTenantInput, HobbyLogUncheckedCreateWithoutTenantInput> | HobbyLogCreateWithoutTenantInput[] | HobbyLogUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HobbyLogCreateOrConnectWithoutTenantInput | HobbyLogCreateOrConnectWithoutTenantInput[]
+    createMany?: HobbyLogCreateManyTenantInputEnvelope
+    connect?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -34651,6 +37872,34 @@ export namespace Prisma {
     deleteMany?: JournalEntryScalarWhereInput | JournalEntryScalarWhereInput[]
   }
 
+  export type HobbyUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<HobbyCreateWithoutTenantInput, HobbyUncheckedCreateWithoutTenantInput> | HobbyCreateWithoutTenantInput[] | HobbyUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HobbyCreateOrConnectWithoutTenantInput | HobbyCreateOrConnectWithoutTenantInput[]
+    upsert?: HobbyUpsertWithWhereUniqueWithoutTenantInput | HobbyUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: HobbyCreateManyTenantInputEnvelope
+    set?: HobbyWhereUniqueInput | HobbyWhereUniqueInput[]
+    disconnect?: HobbyWhereUniqueInput | HobbyWhereUniqueInput[]
+    delete?: HobbyWhereUniqueInput | HobbyWhereUniqueInput[]
+    connect?: HobbyWhereUniqueInput | HobbyWhereUniqueInput[]
+    update?: HobbyUpdateWithWhereUniqueWithoutTenantInput | HobbyUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: HobbyUpdateManyWithWhereWithoutTenantInput | HobbyUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: HobbyScalarWhereInput | HobbyScalarWhereInput[]
+  }
+
+  export type HobbyLogUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<HobbyLogCreateWithoutTenantInput, HobbyLogUncheckedCreateWithoutTenantInput> | HobbyLogCreateWithoutTenantInput[] | HobbyLogUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HobbyLogCreateOrConnectWithoutTenantInput | HobbyLogCreateOrConnectWithoutTenantInput[]
+    upsert?: HobbyLogUpsertWithWhereUniqueWithoutTenantInput | HobbyLogUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: HobbyLogCreateManyTenantInputEnvelope
+    set?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+    disconnect?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+    delete?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+    connect?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+    update?: HobbyLogUpdateWithWhereUniqueWithoutTenantInput | HobbyLogUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: HobbyLogUpdateManyWithWhereWithoutTenantInput | HobbyLogUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: HobbyLogScalarWhereInput | HobbyLogScalarWhereInput[]
+  }
+
   export type UserUncheckedUpdateManyWithoutTenantNestedInput = {
     create?: XOR<UserCreateWithoutTenantInput, UserUncheckedCreateWithoutTenantInput> | UserCreateWithoutTenantInput[] | UserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: UserCreateOrConnectWithoutTenantInput | UserCreateOrConnectWithoutTenantInput[]
@@ -34907,6 +38156,34 @@ export namespace Prisma {
     update?: JournalEntryUpdateWithWhereUniqueWithoutTenantInput | JournalEntryUpdateWithWhereUniqueWithoutTenantInput[]
     updateMany?: JournalEntryUpdateManyWithWhereWithoutTenantInput | JournalEntryUpdateManyWithWhereWithoutTenantInput[]
     deleteMany?: JournalEntryScalarWhereInput | JournalEntryScalarWhereInput[]
+  }
+
+  export type HobbyUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<HobbyCreateWithoutTenantInput, HobbyUncheckedCreateWithoutTenantInput> | HobbyCreateWithoutTenantInput[] | HobbyUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HobbyCreateOrConnectWithoutTenantInput | HobbyCreateOrConnectWithoutTenantInput[]
+    upsert?: HobbyUpsertWithWhereUniqueWithoutTenantInput | HobbyUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: HobbyCreateManyTenantInputEnvelope
+    set?: HobbyWhereUniqueInput | HobbyWhereUniqueInput[]
+    disconnect?: HobbyWhereUniqueInput | HobbyWhereUniqueInput[]
+    delete?: HobbyWhereUniqueInput | HobbyWhereUniqueInput[]
+    connect?: HobbyWhereUniqueInput | HobbyWhereUniqueInput[]
+    update?: HobbyUpdateWithWhereUniqueWithoutTenantInput | HobbyUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: HobbyUpdateManyWithWhereWithoutTenantInput | HobbyUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: HobbyScalarWhereInput | HobbyScalarWhereInput[]
+  }
+
+  export type HobbyLogUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<HobbyLogCreateWithoutTenantInput, HobbyLogUncheckedCreateWithoutTenantInput> | HobbyLogCreateWithoutTenantInput[] | HobbyLogUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: HobbyLogCreateOrConnectWithoutTenantInput | HobbyLogCreateOrConnectWithoutTenantInput[]
+    upsert?: HobbyLogUpsertWithWhereUniqueWithoutTenantInput | HobbyLogUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: HobbyLogCreateManyTenantInputEnvelope
+    set?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+    disconnect?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+    delete?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+    connect?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+    update?: HobbyLogUpdateWithWhereUniqueWithoutTenantInput | HobbyLogUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: HobbyLogUpdateManyWithWhereWithoutTenantInput | HobbyLogUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: HobbyLogScalarWhereInput | HobbyLogScalarWhereInput[]
   }
 
   export type TenantCreateNestedOneWithoutUsersInput = {
@@ -35794,6 +39071,102 @@ export namespace Prisma {
     update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutHealthLogsInput, TenantUpdateWithoutHealthLogsInput>, TenantUncheckedUpdateWithoutHealthLogsInput>
   }
 
+  export type TenantCreateNestedOneWithoutHobbiesInput = {
+    create?: XOR<TenantCreateWithoutHobbiesInput, TenantUncheckedCreateWithoutHobbiesInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutHobbiesInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type HobbyLogCreateNestedManyWithoutHobbyInput = {
+    create?: XOR<HobbyLogCreateWithoutHobbyInput, HobbyLogUncheckedCreateWithoutHobbyInput> | HobbyLogCreateWithoutHobbyInput[] | HobbyLogUncheckedCreateWithoutHobbyInput[]
+    connectOrCreate?: HobbyLogCreateOrConnectWithoutHobbyInput | HobbyLogCreateOrConnectWithoutHobbyInput[]
+    createMany?: HobbyLogCreateManyHobbyInputEnvelope
+    connect?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+  }
+
+  export type HobbyLogUncheckedCreateNestedManyWithoutHobbyInput = {
+    create?: XOR<HobbyLogCreateWithoutHobbyInput, HobbyLogUncheckedCreateWithoutHobbyInput> | HobbyLogCreateWithoutHobbyInput[] | HobbyLogUncheckedCreateWithoutHobbyInput[]
+    connectOrCreate?: HobbyLogCreateOrConnectWithoutHobbyInput | HobbyLogCreateOrConnectWithoutHobbyInput[]
+    createMany?: HobbyLogCreateManyHobbyInputEnvelope
+    connect?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+  }
+
+  export type EnumHobbyTrackingTypeFieldUpdateOperationsInput = {
+    set?: $Enums.HobbyTrackingType
+  }
+
+  export type NullableDecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string | null
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type TenantUpdateOneRequiredWithoutHobbiesNestedInput = {
+    create?: XOR<TenantCreateWithoutHobbiesInput, TenantUncheckedCreateWithoutHobbiesInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutHobbiesInput
+    upsert?: TenantUpsertWithoutHobbiesInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutHobbiesInput, TenantUpdateWithoutHobbiesInput>, TenantUncheckedUpdateWithoutHobbiesInput>
+  }
+
+  export type HobbyLogUpdateManyWithoutHobbyNestedInput = {
+    create?: XOR<HobbyLogCreateWithoutHobbyInput, HobbyLogUncheckedCreateWithoutHobbyInput> | HobbyLogCreateWithoutHobbyInput[] | HobbyLogUncheckedCreateWithoutHobbyInput[]
+    connectOrCreate?: HobbyLogCreateOrConnectWithoutHobbyInput | HobbyLogCreateOrConnectWithoutHobbyInput[]
+    upsert?: HobbyLogUpsertWithWhereUniqueWithoutHobbyInput | HobbyLogUpsertWithWhereUniqueWithoutHobbyInput[]
+    createMany?: HobbyLogCreateManyHobbyInputEnvelope
+    set?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+    disconnect?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+    delete?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+    connect?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+    update?: HobbyLogUpdateWithWhereUniqueWithoutHobbyInput | HobbyLogUpdateWithWhereUniqueWithoutHobbyInput[]
+    updateMany?: HobbyLogUpdateManyWithWhereWithoutHobbyInput | HobbyLogUpdateManyWithWhereWithoutHobbyInput[]
+    deleteMany?: HobbyLogScalarWhereInput | HobbyLogScalarWhereInput[]
+  }
+
+  export type HobbyLogUncheckedUpdateManyWithoutHobbyNestedInput = {
+    create?: XOR<HobbyLogCreateWithoutHobbyInput, HobbyLogUncheckedCreateWithoutHobbyInput> | HobbyLogCreateWithoutHobbyInput[] | HobbyLogUncheckedCreateWithoutHobbyInput[]
+    connectOrCreate?: HobbyLogCreateOrConnectWithoutHobbyInput | HobbyLogCreateOrConnectWithoutHobbyInput[]
+    upsert?: HobbyLogUpsertWithWhereUniqueWithoutHobbyInput | HobbyLogUpsertWithWhereUniqueWithoutHobbyInput[]
+    createMany?: HobbyLogCreateManyHobbyInputEnvelope
+    set?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+    disconnect?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+    delete?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+    connect?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+    update?: HobbyLogUpdateWithWhereUniqueWithoutHobbyInput | HobbyLogUpdateWithWhereUniqueWithoutHobbyInput[]
+    updateMany?: HobbyLogUpdateManyWithWhereWithoutHobbyInput | HobbyLogUpdateManyWithWhereWithoutHobbyInput[]
+    deleteMany?: HobbyLogScalarWhereInput | HobbyLogScalarWhereInput[]
+  }
+
+  export type HobbyCreateNestedOneWithoutLogsInput = {
+    create?: XOR<HobbyCreateWithoutLogsInput, HobbyUncheckedCreateWithoutLogsInput>
+    connectOrCreate?: HobbyCreateOrConnectWithoutLogsInput
+    connect?: HobbyWhereUniqueInput
+  }
+
+  export type TenantCreateNestedOneWithoutHobbyLogsInput = {
+    create?: XOR<TenantCreateWithoutHobbyLogsInput, TenantUncheckedCreateWithoutHobbyLogsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutHobbyLogsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type HobbyUpdateOneRequiredWithoutLogsNestedInput = {
+    create?: XOR<HobbyCreateWithoutLogsInput, HobbyUncheckedCreateWithoutLogsInput>
+    connectOrCreate?: HobbyCreateOrConnectWithoutLogsInput
+    upsert?: HobbyUpsertWithoutLogsInput
+    connect?: HobbyWhereUniqueInput
+    update?: XOR<XOR<HobbyUpdateToOneWithWhereWithoutLogsInput, HobbyUpdateWithoutLogsInput>, HobbyUncheckedUpdateWithoutLogsInput>
+  }
+
+  export type TenantUpdateOneRequiredWithoutHobbyLogsNestedInput = {
+    create?: XOR<TenantCreateWithoutHobbyLogsInput, TenantUncheckedCreateWithoutHobbyLogsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutHobbyLogsInput
+    upsert?: TenantUpsertWithoutHobbyLogsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutHobbyLogsInput, TenantUpdateWithoutHobbyLogsInput>, TenantUncheckedUpdateWithoutHobbyLogsInput>
+  }
+
   export type TenantCreateNestedOneWithoutFoldersInput = {
     create?: XOR<TenantCreateWithoutFoldersInput, TenantUncheckedCreateWithoutFoldersInput>
     connectOrCreate?: TenantCreateOrConnectWithoutFoldersInput
@@ -36268,6 +39641,50 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumHealthLogTypeFilter<$PrismaModel>
     _max?: NestedEnumHealthLogTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumHobbyTrackingTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.HobbyTrackingType | EnumHobbyTrackingTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.HobbyTrackingType[] | ListEnumHobbyTrackingTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HobbyTrackingType[] | ListEnumHobbyTrackingTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumHobbyTrackingTypeFilter<$PrismaModel> | $Enums.HobbyTrackingType
+  }
+
+  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type NestedEnumHobbyTrackingTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.HobbyTrackingType | EnumHobbyTrackingTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.HobbyTrackingType[] | ListEnumHobbyTrackingTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.HobbyTrackingType[] | ListEnumHobbyTrackingTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumHobbyTrackingTypeWithAggregatesFilter<$PrismaModel> | $Enums.HobbyTrackingType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumHobbyTrackingTypeFilter<$PrismaModel>
+    _max?: NestedEnumHobbyTrackingTypeFilter<$PrismaModel>
+  }
+
+  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
   export type UserCreateWithoutTenantInput = {
@@ -36907,6 +40324,74 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type HobbyCreateWithoutTenantInput = {
+    id?: string
+    name: string
+    description?: string | null
+    trackingType: $Enums.HobbyTrackingType
+    goalTarget?: Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    logs?: HobbyLogCreateNestedManyWithoutHobbyInput
+  }
+
+  export type HobbyUncheckedCreateWithoutTenantInput = {
+    id?: string
+    name: string
+    description?: string | null
+    trackingType: $Enums.HobbyTrackingType
+    goalTarget?: Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    logs?: HobbyLogUncheckedCreateNestedManyWithoutHobbyInput
+  }
+
+  export type HobbyCreateOrConnectWithoutTenantInput = {
+    where: HobbyWhereUniqueInput
+    create: XOR<HobbyCreateWithoutTenantInput, HobbyUncheckedCreateWithoutTenantInput>
+  }
+
+  export type HobbyCreateManyTenantInputEnvelope = {
+    data: HobbyCreateManyTenantInput | HobbyCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type HobbyLogCreateWithoutTenantInput = {
+    id?: string
+    trackingType: $Enums.HobbyTrackingType
+    logValue: JsonNullValueInput | InputJsonValue
+    loggedAt: Date | string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    hobby: HobbyCreateNestedOneWithoutLogsInput
+  }
+
+  export type HobbyLogUncheckedCreateWithoutTenantInput = {
+    id?: string
+    hobbyId: string
+    trackingType: $Enums.HobbyTrackingType
+    logValue: JsonNullValueInput | InputJsonValue
+    loggedAt: Date | string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HobbyLogCreateOrConnectWithoutTenantInput = {
+    where: HobbyLogWhereUniqueInput
+    create: XOR<HobbyLogCreateWithoutTenantInput, HobbyLogUncheckedCreateWithoutTenantInput>
+  }
+
+  export type HobbyLogCreateManyTenantInputEnvelope = {
+    data: HobbyLogCreateManyTenantInput | HobbyLogCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithWhereUniqueWithoutTenantInput = {
     where: UserWhereUniqueInput
     update: XOR<UserUpdateWithoutTenantInput, UserUncheckedUpdateWithoutTenantInput>
@@ -37512,6 +40997,69 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"JournalEntry"> | Date | string
   }
 
+  export type HobbyUpsertWithWhereUniqueWithoutTenantInput = {
+    where: HobbyWhereUniqueInput
+    update: XOR<HobbyUpdateWithoutTenantInput, HobbyUncheckedUpdateWithoutTenantInput>
+    create: XOR<HobbyCreateWithoutTenantInput, HobbyUncheckedCreateWithoutTenantInput>
+  }
+
+  export type HobbyUpdateWithWhereUniqueWithoutTenantInput = {
+    where: HobbyWhereUniqueInput
+    data: XOR<HobbyUpdateWithoutTenantInput, HobbyUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type HobbyUpdateManyWithWhereWithoutTenantInput = {
+    where: HobbyScalarWhereInput
+    data: XOR<HobbyUpdateManyMutationInput, HobbyUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type HobbyScalarWhereInput = {
+    AND?: HobbyScalarWhereInput | HobbyScalarWhereInput[]
+    OR?: HobbyScalarWhereInput[]
+    NOT?: HobbyScalarWhereInput | HobbyScalarWhereInput[]
+    id?: StringFilter<"Hobby"> | string
+    tenantId?: StringFilter<"Hobby"> | string
+    name?: StringFilter<"Hobby"> | string
+    description?: StringNullableFilter<"Hobby"> | string | null
+    trackingType?: EnumHobbyTrackingTypeFilter<"Hobby"> | $Enums.HobbyTrackingType
+    goalTarget?: DecimalNullableFilter<"Hobby"> | Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: DateTimeNullableFilter<"Hobby"> | Date | string | null
+    isActive?: BoolFilter<"Hobby"> | boolean
+    createdAt?: DateTimeFilter<"Hobby"> | Date | string
+    updatedAt?: DateTimeFilter<"Hobby"> | Date | string
+  }
+
+  export type HobbyLogUpsertWithWhereUniqueWithoutTenantInput = {
+    where: HobbyLogWhereUniqueInput
+    update: XOR<HobbyLogUpdateWithoutTenantInput, HobbyLogUncheckedUpdateWithoutTenantInput>
+    create: XOR<HobbyLogCreateWithoutTenantInput, HobbyLogUncheckedCreateWithoutTenantInput>
+  }
+
+  export type HobbyLogUpdateWithWhereUniqueWithoutTenantInput = {
+    where: HobbyLogWhereUniqueInput
+    data: XOR<HobbyLogUpdateWithoutTenantInput, HobbyLogUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type HobbyLogUpdateManyWithWhereWithoutTenantInput = {
+    where: HobbyLogScalarWhereInput
+    data: XOR<HobbyLogUpdateManyMutationInput, HobbyLogUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type HobbyLogScalarWhereInput = {
+    AND?: HobbyLogScalarWhereInput | HobbyLogScalarWhereInput[]
+    OR?: HobbyLogScalarWhereInput[]
+    NOT?: HobbyLogScalarWhereInput | HobbyLogScalarWhereInput[]
+    id?: StringFilter<"HobbyLog"> | string
+    tenantId?: StringFilter<"HobbyLog"> | string
+    hobbyId?: StringFilter<"HobbyLog"> | string
+    trackingType?: EnumHobbyTrackingTypeFilter<"HobbyLog"> | $Enums.HobbyTrackingType
+    logValue?: JsonFilter<"HobbyLog">
+    loggedAt?: DateTimeFilter<"HobbyLog"> | Date | string
+    notes?: StringNullableFilter<"HobbyLog"> | string | null
+    createdAt?: DateTimeFilter<"HobbyLog"> | Date | string
+    updatedAt?: DateTimeFilter<"HobbyLog"> | Date | string
+  }
+
   export type TenantCreateWithoutUsersInput = {
     id?: string
     name: string
@@ -37535,6 +41083,8 @@ export namespace Prisma {
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutUsersInput = {
@@ -37560,6 +41110,8 @@ export namespace Prisma {
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutUsersInput = {
@@ -37601,6 +41153,8 @@ export namespace Prisma {
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutUsersInput = {
@@ -37626,6 +41180,8 @@ export namespace Prisma {
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAiProviderConfigsInput = {
@@ -37651,6 +41207,8 @@ export namespace Prisma {
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAiProviderConfigsInput = {
@@ -37676,6 +41234,8 @@ export namespace Prisma {
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAiProviderConfigsInput = {
@@ -37717,6 +41277,8 @@ export namespace Prisma {
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAiProviderConfigsInput = {
@@ -37742,6 +41304,8 @@ export namespace Prisma {
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAiPromptCacheInput = {
@@ -37767,6 +41331,8 @@ export namespace Prisma {
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAiPromptCacheInput = {
@@ -37792,6 +41358,8 @@ export namespace Prisma {
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAiPromptCacheInput = {
@@ -37833,6 +41401,8 @@ export namespace Prisma {
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAiPromptCacheInput = {
@@ -37858,6 +41428,8 @@ export namespace Prisma {
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAiUsageLogsInput = {
@@ -37883,6 +41455,8 @@ export namespace Prisma {
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAiUsageLogsInput = {
@@ -37908,6 +41482,8 @@ export namespace Prisma {
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAiUsageLogsInput = {
@@ -37949,6 +41525,8 @@ export namespace Prisma {
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAiUsageLogsInput = {
@@ -37974,6 +41552,8 @@ export namespace Prisma {
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CategoryCreateWithoutChildrenInput = {
@@ -38078,6 +41658,8 @@ export namespace Prisma {
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutCategoriesInput = {
@@ -38103,6 +41685,8 @@ export namespace Prisma {
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutCategoriesInput = {
@@ -38335,6 +41919,8 @@ export namespace Prisma {
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutCategoriesInput = {
@@ -38360,6 +41946,8 @@ export namespace Prisma {
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TransactionUpsertWithWhereUniqueWithoutCategoryInput = {
@@ -38433,6 +42021,8 @@ export namespace Prisma {
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAccountsInput = {
@@ -38458,6 +42048,8 @@ export namespace Prisma {
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAccountsInput = {
@@ -38631,6 +42223,8 @@ export namespace Prisma {
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAccountsInput = {
@@ -38656,6 +42250,8 @@ export namespace Prisma {
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TransactionUpsertWithWhereUniqueWithoutAccountInput = {
@@ -38854,6 +42450,8 @@ export namespace Prisma {
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutTransactionsInput = {
@@ -38879,6 +42477,8 @@ export namespace Prisma {
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutTransactionsInput = {
@@ -39063,6 +42663,8 @@ export namespace Prisma {
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutTransactionsInput = {
@@ -39088,6 +42690,8 @@ export namespace Prisma {
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CategoryCreateWithoutBudgetEnvelopesInput = {
@@ -39187,6 +42791,8 @@ export namespace Prisma {
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutBudgetEnvelopesInput = {
@@ -39212,6 +42818,8 @@ export namespace Prisma {
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutBudgetEnvelopesInput = {
@@ -39339,6 +42947,8 @@ export namespace Prisma {
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutBudgetEnvelopesInput = {
@@ -39364,6 +42974,8 @@ export namespace Prisma {
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type AccountCreateWithoutRecurringRulesInput = {
@@ -39463,6 +43075,8 @@ export namespace Prisma {
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutRecurringRulesInput = {
@@ -39488,6 +43102,8 @@ export namespace Prisma {
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutRecurringRulesInput = {
@@ -39657,6 +43273,8 @@ export namespace Prisma {
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutRecurringRulesInput = {
@@ -39682,6 +43300,8 @@ export namespace Prisma {
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TransactionUpsertWithWhereUniqueWithoutRecurringRuleInput = {
@@ -39802,6 +43422,8 @@ export namespace Prisma {
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutTasksInput = {
@@ -39827,6 +43449,8 @@ export namespace Prisma {
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutTasksInput = {
@@ -39927,6 +43551,8 @@ export namespace Prisma {
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutTasksInput = {
@@ -39952,6 +43578,8 @@ export namespace Prisma {
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutHabitsInput = {
@@ -39977,6 +43605,8 @@ export namespace Prisma {
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutHabitsInput = {
@@ -40002,6 +43632,8 @@ export namespace Prisma {
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutHabitsInput = {
@@ -40073,6 +43705,8 @@ export namespace Prisma {
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutHabitsInput = {
@@ -40098,6 +43732,8 @@ export namespace Prisma {
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type HabitCompletionUpsertWithWhereUniqueWithoutHabitInput = {
@@ -40176,6 +43812,8 @@ export namespace Prisma {
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutHabitCompletionsInput = {
@@ -40201,6 +43839,8 @@ export namespace Prisma {
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutHabitCompletionsInput = {
@@ -40285,6 +43925,8 @@ export namespace Prisma {
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutHabitCompletionsInput = {
@@ -40310,6 +43952,8 @@ export namespace Prisma {
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutUserStatsInput = {
@@ -40335,6 +43979,8 @@ export namespace Prisma {
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutUserStatsInput = {
@@ -40360,6 +44006,8 @@ export namespace Prisma {
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutUserStatsInput = {
@@ -40433,6 +44081,8 @@ export namespace Prisma {
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutUserStatsInput = {
@@ -40458,6 +44108,8 @@ export namespace Prisma {
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type AchievementUpsertWithWhereUniqueWithoutUserStatsInput = {
@@ -40526,6 +44178,8 @@ export namespace Prisma {
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAchievementsInput = {
@@ -40551,6 +44205,8 @@ export namespace Prisma {
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAchievementsInput = {
@@ -40625,6 +44281,8 @@ export namespace Prisma {
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAchievementsInput = {
@@ -40650,6 +44308,8 @@ export namespace Prisma {
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutHealthLogsInput = {
@@ -40675,6 +44335,8 @@ export namespace Prisma {
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutHealthLogsInput = {
@@ -40700,6 +44362,8 @@ export namespace Prisma {
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutHealthLogsInput = {
@@ -40741,6 +44405,8 @@ export namespace Prisma {
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutHealthLogsInput = {
@@ -40766,6 +44432,372 @@ export namespace Prisma {
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantCreateWithoutHobbiesInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
+    folders?: FolderCreateNestedManyWithoutTenantInput
+    tags?: TagCreateNestedManyWithoutTenantInput
+    notes?: NoteCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutHobbiesInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
+    folders?: FolderUncheckedCreateNestedManyWithoutTenantInput
+    tags?: TagUncheckedCreateNestedManyWithoutTenantInput
+    notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutHobbiesInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutHobbiesInput, TenantUncheckedCreateWithoutHobbiesInput>
+  }
+
+  export type HobbyLogCreateWithoutHobbyInput = {
+    id?: string
+    trackingType: $Enums.HobbyTrackingType
+    logValue: JsonNullValueInput | InputJsonValue
+    loggedAt: Date | string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutHobbyLogsInput
+  }
+
+  export type HobbyLogUncheckedCreateWithoutHobbyInput = {
+    id?: string
+    tenantId: string
+    trackingType: $Enums.HobbyTrackingType
+    logValue: JsonNullValueInput | InputJsonValue
+    loggedAt: Date | string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HobbyLogCreateOrConnectWithoutHobbyInput = {
+    where: HobbyLogWhereUniqueInput
+    create: XOR<HobbyLogCreateWithoutHobbyInput, HobbyLogUncheckedCreateWithoutHobbyInput>
+  }
+
+  export type HobbyLogCreateManyHobbyInputEnvelope = {
+    data: HobbyLogCreateManyHobbyInput | HobbyLogCreateManyHobbyInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TenantUpsertWithoutHobbiesInput = {
+    update: XOR<TenantUpdateWithoutHobbiesInput, TenantUncheckedUpdateWithoutHobbiesInput>
+    create: XOR<TenantCreateWithoutHobbiesInput, TenantUncheckedCreateWithoutHobbiesInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutHobbiesInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutHobbiesInput, TenantUncheckedUpdateWithoutHobbiesInput>
+  }
+
+  export type TenantUpdateWithoutHobbiesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
+    folders?: FolderUpdateManyWithoutTenantNestedInput
+    tags?: TagUpdateManyWithoutTenantNestedInput
+    notes?: NoteUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutHobbiesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
+    folders?: FolderUncheckedUpdateManyWithoutTenantNestedInput
+    tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
+    notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type HobbyLogUpsertWithWhereUniqueWithoutHobbyInput = {
+    where: HobbyLogWhereUniqueInput
+    update: XOR<HobbyLogUpdateWithoutHobbyInput, HobbyLogUncheckedUpdateWithoutHobbyInput>
+    create: XOR<HobbyLogCreateWithoutHobbyInput, HobbyLogUncheckedCreateWithoutHobbyInput>
+  }
+
+  export type HobbyLogUpdateWithWhereUniqueWithoutHobbyInput = {
+    where: HobbyLogWhereUniqueInput
+    data: XOR<HobbyLogUpdateWithoutHobbyInput, HobbyLogUncheckedUpdateWithoutHobbyInput>
+  }
+
+  export type HobbyLogUpdateManyWithWhereWithoutHobbyInput = {
+    where: HobbyLogScalarWhereInput
+    data: XOR<HobbyLogUpdateManyMutationInput, HobbyLogUncheckedUpdateManyWithoutHobbyInput>
+  }
+
+  export type HobbyCreateWithoutLogsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    trackingType: $Enums.HobbyTrackingType
+    goalTarget?: Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tenant: TenantCreateNestedOneWithoutHobbiesInput
+  }
+
+  export type HobbyUncheckedCreateWithoutLogsInput = {
+    id?: string
+    tenantId: string
+    name: string
+    description?: string | null
+    trackingType: $Enums.HobbyTrackingType
+    goalTarget?: Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HobbyCreateOrConnectWithoutLogsInput = {
+    where: HobbyWhereUniqueInput
+    create: XOR<HobbyCreateWithoutLogsInput, HobbyUncheckedCreateWithoutLogsInput>
+  }
+
+  export type TenantCreateWithoutHobbyLogsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
+    folders?: FolderCreateNestedManyWithoutTenantInput
+    tags?: TagCreateNestedManyWithoutTenantInput
+    notes?: NoteCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutHobbyLogsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
+    folders?: FolderUncheckedCreateNestedManyWithoutTenantInput
+    tags?: TagUncheckedCreateNestedManyWithoutTenantInput
+    notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutHobbyLogsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutHobbyLogsInput, TenantUncheckedCreateWithoutHobbyLogsInput>
+  }
+
+  export type HobbyUpsertWithoutLogsInput = {
+    update: XOR<HobbyUpdateWithoutLogsInput, HobbyUncheckedUpdateWithoutLogsInput>
+    create: XOR<HobbyCreateWithoutLogsInput, HobbyUncheckedCreateWithoutLogsInput>
+    where?: HobbyWhereInput
+  }
+
+  export type HobbyUpdateToOneWithWhereWithoutLogsInput = {
+    where?: HobbyWhereInput
+    data: XOR<HobbyUpdateWithoutLogsInput, HobbyUncheckedUpdateWithoutLogsInput>
+  }
+
+  export type HobbyUpdateWithoutLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    goalTarget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutHobbiesNestedInput
+  }
+
+  export type HobbyUncheckedUpdateWithoutLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    goalTarget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TenantUpsertWithoutHobbyLogsInput = {
+    update: XOR<TenantUpdateWithoutHobbyLogsInput, TenantUncheckedUpdateWithoutHobbyLogsInput>
+    create: XOR<TenantCreateWithoutHobbyLogsInput, TenantUncheckedCreateWithoutHobbyLogsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutHobbyLogsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutHobbyLogsInput, TenantUncheckedUpdateWithoutHobbyLogsInput>
+  }
+
+  export type TenantUpdateWithoutHobbyLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
+    folders?: FolderUpdateManyWithoutTenantNestedInput
+    tags?: TagUpdateManyWithoutTenantNestedInput
+    notes?: NoteUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutHobbyLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
+    folders?: FolderUncheckedUpdateManyWithoutTenantNestedInput
+    tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
+    notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutFoldersInput = {
@@ -40791,6 +44823,8 @@ export namespace Prisma {
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutFoldersInput = {
@@ -40816,6 +44850,8 @@ export namespace Prisma {
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutFoldersInput = {
@@ -40857,6 +44893,8 @@ export namespace Prisma {
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutFoldersInput = {
@@ -40882,6 +44920,8 @@ export namespace Prisma {
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type NoteUpdateWithWhereUniqueWithoutFolderInput = {
@@ -40917,6 +44957,8 @@ export namespace Prisma {
     folders?: FolderCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutTagsInput = {
@@ -40942,6 +44984,8 @@ export namespace Prisma {
     folders?: FolderUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutTagsInput = {
@@ -41001,6 +45045,8 @@ export namespace Prisma {
     folders?: FolderUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutTagsInput = {
@@ -41026,6 +45072,8 @@ export namespace Prisma {
     folders?: FolderUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type NoteTagUpsertWithWhereUniqueWithoutTagInput = {
@@ -41075,6 +45123,8 @@ export namespace Prisma {
     folders?: FolderCreateNestedManyWithoutTenantInput
     tags?: TagCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutNotesInput = {
@@ -41100,6 +45150,8 @@ export namespace Prisma {
     folders?: FolderUncheckedCreateNestedManyWithoutTenantInput
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutNotesInput = {
@@ -41141,6 +45193,8 @@ export namespace Prisma {
     folders?: FolderUpdateManyWithoutTenantNestedInput
     tags?: TagUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutNotesInput = {
@@ -41166,6 +45220,8 @@ export namespace Prisma {
     folders?: FolderUncheckedUpdateManyWithoutTenantNestedInput
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type FolderCreateWithoutNotesInput = {
@@ -41344,6 +45400,8 @@ export namespace Prisma {
     folders?: FolderCreateNestedManyWithoutTenantInput
     tags?: TagCreateNestedManyWithoutTenantInput
     notes?: NoteCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutJournalEntriesInput = {
@@ -41369,6 +45427,8 @@ export namespace Prisma {
     folders?: FolderUncheckedCreateNestedManyWithoutTenantInput
     tags?: TagUncheckedCreateNestedManyWithoutTenantInput
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutJournalEntriesInput = {
@@ -41410,6 +45470,8 @@ export namespace Prisma {
     folders?: FolderUpdateManyWithoutTenantNestedInput
     tags?: TagUpdateManyWithoutTenantNestedInput
     notes?: NoteUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutJournalEntriesInput = {
@@ -41435,6 +45497,8 @@ export namespace Prisma {
     folders?: FolderUncheckedUpdateManyWithoutTenantNestedInput
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type UserCreateManyTenantInput = {
@@ -41641,6 +45705,29 @@ export namespace Prisma {
     entryDate: Date | string
     content: JsonNullValueInput | InputJsonValue
     mood: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HobbyCreateManyTenantInput = {
+    id?: string
+    name: string
+    description?: string | null
+    trackingType: $Enums.HobbyTrackingType
+    goalTarget?: Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: Date | string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HobbyLogCreateManyTenantInput = {
+    id?: string
+    hobbyId: string
+    trackingType: $Enums.HobbyTrackingType
+    logValue: JsonNullValueInput | InputJsonValue
+    loggedAt: Date | string
+    notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -42325,6 +46412,77 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type HobbyUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    goalTarget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    logs?: HobbyLogUpdateManyWithoutHobbyNestedInput
+  }
+
+  export type HobbyUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    goalTarget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    logs?: HobbyLogUncheckedUpdateManyWithoutHobbyNestedInput
+  }
+
+  export type HobbyUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    goalTarget?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    goalDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HobbyLogUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    logValue?: JsonNullValueInput | InputJsonValue
+    loggedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    hobby?: HobbyUpdateOneRequiredWithoutLogsNestedInput
+  }
+
+  export type HobbyLogUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    hobbyId?: StringFieldUpdateOperationsInput | string
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    logValue?: JsonNullValueInput | InputJsonValue
+    loggedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HobbyLogUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    hobbyId?: StringFieldUpdateOperationsInput | string
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    logValue?: JsonNullValueInput | InputJsonValue
+    loggedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type CategoryCreateManyParentInput = {
     id?: string
     tenantId: string
@@ -42993,6 +47151,50 @@ export namespace Prisma {
     icon?: NullableStringFieldUpdateOperationsInput | string | null
     unlockedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     habitId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type HobbyLogCreateManyHobbyInput = {
+    id?: string
+    tenantId: string
+    trackingType: $Enums.HobbyTrackingType
+    logValue: JsonNullValueInput | InputJsonValue
+    loggedAt: Date | string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HobbyLogUpdateWithoutHobbyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    logValue?: JsonNullValueInput | InputJsonValue
+    loggedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutHobbyLogsNestedInput
+  }
+
+  export type HobbyLogUncheckedUpdateWithoutHobbyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    logValue?: JsonNullValueInput | InputJsonValue
+    loggedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HobbyLogUncheckedUpdateManyWithoutHobbyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    trackingType?: EnumHobbyTrackingTypeFieldUpdateOperationsInput | $Enums.HobbyTrackingType
+    logValue?: JsonNullValueInput | InputJsonValue
+    loggedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type NoteUpdateWithoutFolderInput = {

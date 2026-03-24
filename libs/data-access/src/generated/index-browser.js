@@ -338,6 +338,31 @@ exports.Prisma.HealthLogScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.HobbyScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  description: 'description',
+  trackingType: 'trackingType',
+  goalTarget: 'goalTarget',
+  goalDeadline: 'goalDeadline',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.HobbyLogScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  hobbyId: 'hobbyId',
+  trackingType: 'trackingType',
+  logValue: 'logValue',
+  loggedAt: 'loggedAt',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.FolderScalarFieldEnum = {
   id: 'id',
   tenantId: 'tenantId',
@@ -545,6 +570,20 @@ exports.Prisma.HealthLogOrderByRelevanceFieldEnum = {
   source: 'source'
 };
 
+exports.Prisma.HobbyOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  description: 'description'
+};
+
+exports.Prisma.HobbyLogOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  hobbyId: 'hobbyId',
+  notes: 'notes'
+};
+
 exports.Prisma.FolderOrderByRelevanceFieldEnum = {
   id: 'id',
   tenantId: 'tenantId',
@@ -585,6 +624,12 @@ exports.HealthLogType = exports.$Enums.HealthLogType = {
   CUSTOM: 'CUSTOM'
 };
 
+exports.HobbyTrackingType = exports.$Enums.HobbyTrackingType = {
+  COUNTER: 'COUNTER',
+  PERCENTAGE: 'PERCENTAGE',
+  LIST: 'LIST'
+};
+
 exports.Prisma.ModelName = {
   Tenant: 'Tenant',
   User: 'User',
@@ -602,6 +647,8 @@ exports.Prisma.ModelName = {
   UserStats: 'UserStats',
   Achievement: 'Achievement',
   HealthLog: 'HealthLog',
+  Hobby: 'Hobby',
+  HobbyLog: 'HobbyLog',
   Folder: 'Folder',
   Tag: 'Tag',
   Note: 'Note',

@@ -22,6 +22,13 @@ enum HealthLogType {
   CUSTOM
 }
 
+/// HobbyTrackingType - Types of hobby progress tracking
+enum HobbyTrackingType {
+  COUNTER
+  PERCENTAGE
+  LIST
+}
+
 /// Tenant - Root entity for multi-tenancy
 model Tenant {
   id                String             @id @default(cuid())
@@ -47,6 +54,8 @@ model Tenant {
   tags              Tag[]
   notes             Note[]
   journalEntries    JournalEntry[]
+  hobbies           Hobby[]
+  hobbyLogs         HobbyLog[]
 
   @@index([name])
   @@map("tenants")
@@ -389,6 +398,45 @@ model HealthLog {
   @@index([tenantId, type, loggedAt])
   @@index([tenantId, loggedAt])
   @@map("health_logs")
+}
+
+/// Hobby - User hobbies for flexible tracking
+model Hobby {
+  id           String            @id @default(cuid())
+  tenantId     String            @map("tenantId")
+  name         String            @db.VarChar(100)
+  description  String?           @db.VarChar(500)
+  trackingType HobbyTrackingType @map("trackingType")
+  goalTarget   Decimal?          @map("goalTarget") @db.Decimal(10, 2)
+  goalDeadline DateTime?         @map("goalDeadline")
+  isActive     Boolean           @default(true) @map("isActive")
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  tenant       Tenant            @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  logs         HobbyLog[]
+
+  @@index([tenantId])
+  @@index([isActive])
+  @@map("hobbies")
+}
+
+/// HobbyLog - Progress entries for hobbies with flexible JSONB data
+model HobbyLog {
+  id           String            @id @default(cuid())
+  tenantId     String            @map("tenantId")
+  hobbyId      String            @map("hobbyId")
+  trackingType HobbyTrackingType
+  logValue     Json              @map("logValue")
+  loggedAt     DateTime          @map("loggedAt") @db.Timestamp
+  notes        String?           @db.VarChar(500)
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  hobby        Hobby             @relation(fields: [hobbyId], references: [id], onDelete: Cascade)
+  tenant       Tenant            @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId, hobbyId, loggedAt])
+  @@index([trackingType])
+  @@map("hobby_logs")
 }
 
 /// Folder - Single-level folders for note organization
