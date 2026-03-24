@@ -128,6 +128,11 @@ export type NoteTag = $Result.DefaultSelection<Prisma.$NoteTagPayload>
  * JournalEntry - Daily journal entries with mood tracking
  */
 export type JournalEntry = $Result.DefaultSelection<Prisma.$JournalEntryPayload>
+/**
+ * Model WebhookEvent
+ * WebhookEvent - LemonSqueezy webhook events for idempotency
+ */
+export type WebhookEvent = $Result.DefaultSelection<Prisma.$WebhookEventPayload>
 
 /**
  * Enums
@@ -516,6 +521,16 @@ export class PrismaClient<
     * ```
     */
   get journalEntry(): Prisma.JournalEntryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.webhookEvent`: Exposes CRUD operations for the **WebhookEvent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more WebhookEvents
+    * const webhookEvents = await prisma.webhookEvent.findMany()
+    * ```
+    */
+  get webhookEvent(): Prisma.WebhookEventDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -972,7 +987,8 @@ export namespace Prisma {
     Tag: 'Tag',
     Note: 'Note',
     NoteTag: 'NoteTag',
-    JournalEntry: 'JournalEntry'
+    JournalEntry: 'JournalEntry',
+    WebhookEvent: 'WebhookEvent'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -988,7 +1004,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "tenant" | "user" | "aiProviderConfig" | "aiPromptCache" | "aiUsageLog" | "category" | "account" | "transaction" | "budgetEnvelope" | "recurringRule" | "task" | "habit" | "habitCompletion" | "userStats" | "achievement" | "healthLog" | "hobby" | "hobbyLog" | "folder" | "tag" | "note" | "noteTag" | "journalEntry"
+      modelProps: "tenant" | "user" | "aiProviderConfig" | "aiPromptCache" | "aiUsageLog" | "category" | "account" | "transaction" | "budgetEnvelope" | "recurringRule" | "task" | "habit" | "habitCompletion" | "userStats" | "achievement" | "healthLog" | "hobby" | "hobbyLog" | "folder" | "tag" | "note" | "noteTag" | "journalEntry" | "webhookEvent"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2678,6 +2694,80 @@ export namespace Prisma {
           }
         }
       }
+      WebhookEvent: {
+        payload: Prisma.$WebhookEventPayload<ExtArgs>
+        fields: Prisma.WebhookEventFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.WebhookEventFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookEventPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.WebhookEventFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookEventPayload>
+          }
+          findFirst: {
+            args: Prisma.WebhookEventFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookEventPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.WebhookEventFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookEventPayload>
+          }
+          findMany: {
+            args: Prisma.WebhookEventFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookEventPayload>[]
+          }
+          create: {
+            args: Prisma.WebhookEventCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookEventPayload>
+          }
+          createMany: {
+            args: Prisma.WebhookEventCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.WebhookEventCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookEventPayload>[]
+          }
+          delete: {
+            args: Prisma.WebhookEventDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookEventPayload>
+          }
+          update: {
+            args: Prisma.WebhookEventUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookEventPayload>
+          }
+          deleteMany: {
+            args: Prisma.WebhookEventDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.WebhookEventUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.WebhookEventUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookEventPayload>[]
+          }
+          upsert: {
+            args: Prisma.WebhookEventUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookEventPayload>
+          }
+          aggregate: {
+            args: Prisma.WebhookEventAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWebhookEvent>
+          }
+          groupBy: {
+            args: Prisma.WebhookEventGroupByArgs<ExtArgs>
+            result: $Utils.Optional<WebhookEventGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.WebhookEventCountArgs<ExtArgs>
+            result: $Utils.Optional<WebhookEventCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2809,6 +2899,7 @@ export namespace Prisma {
     note?: NoteOmit
     noteTag?: NoteTagOmit
     journalEntry?: JournalEntryOmit
+    webhookEvent?: WebhookEventOmit
   }
 
   /* Types for Logging */
@@ -2909,6 +3000,7 @@ export namespace Prisma {
     journalEntries: number
     hobbies: number
     hobbyLogs: number
+    webhookEvents: number
   }
 
   export type TenantCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2932,6 +3024,7 @@ export namespace Prisma {
     journalEntries?: boolean | TenantCountOutputTypeCountJournalEntriesArgs
     hobbies?: boolean | TenantCountOutputTypeCountHobbiesArgs
     hobbyLogs?: boolean | TenantCountOutputTypeCountHobbyLogsArgs
+    webhookEvents?: boolean | TenantCountOutputTypeCountWebhookEventsArgs
   }
 
   // Custom InputTypes
@@ -3083,6 +3176,13 @@ export namespace Prisma {
    */
   export type TenantCountOutputTypeCountHobbyLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: HobbyLogWhereInput
+  }
+
+  /**
+   * TenantCountOutputType without action
+   */
+  export type TenantCountOutputTypeCountWebhookEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WebhookEventWhereInput
   }
 
 
@@ -3658,6 +3758,7 @@ export namespace Prisma {
     journalEntries?: boolean | Tenant$journalEntriesArgs<ExtArgs>
     hobbies?: boolean | Tenant$hobbiesArgs<ExtArgs>
     hobbyLogs?: boolean | Tenant$hobbyLogsArgs<ExtArgs>
+    webhookEvents?: boolean | Tenant$webhookEventsArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tenant"]>
 
@@ -3720,6 +3821,7 @@ export namespace Prisma {
     journalEntries?: boolean | Tenant$journalEntriesArgs<ExtArgs>
     hobbies?: boolean | Tenant$hobbiesArgs<ExtArgs>
     hobbyLogs?: boolean | Tenant$hobbyLogsArgs<ExtArgs>
+    webhookEvents?: boolean | Tenant$webhookEventsArgs<ExtArgs>
     _count?: boolean | TenantCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TenantIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3749,6 +3851,7 @@ export namespace Prisma {
       journalEntries: Prisma.$JournalEntryPayload<ExtArgs>[]
       hobbies: Prisma.$HobbyPayload<ExtArgs>[]
       hobbyLogs: Prisma.$HobbyLogPayload<ExtArgs>[]
+      webhookEvents: Prisma.$WebhookEventPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4175,6 +4278,7 @@ export namespace Prisma {
     journalEntries<T extends Tenant$journalEntriesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$journalEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     hobbies<T extends Tenant$hobbiesArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$hobbiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HobbyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     hobbyLogs<T extends Tenant$hobbyLogsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$hobbyLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HobbyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    webhookEvents<T extends Tenant$webhookEventsArgs<ExtArgs> = {}>(args?: Subset<T, Tenant$webhookEventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WebhookEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5102,6 +5206,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: HobbyLogScalarFieldEnum | HobbyLogScalarFieldEnum[]
+  }
+
+  /**
+   * Tenant.webhookEvents
+   */
+  export type Tenant$webhookEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookEvent
+     */
+    select?: WebhookEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookEvent
+     */
+    omit?: WebhookEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookEventInclude<ExtArgs> | null
+    where?: WebhookEventWhereInput
+    orderBy?: WebhookEventOrderByWithRelationInput | WebhookEventOrderByWithRelationInput[]
+    cursor?: WebhookEventWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WebhookEventScalarFieldEnum | WebhookEventScalarFieldEnum[]
   }
 
   /**
@@ -30748,6 +30876,1117 @@ export namespace Prisma {
 
 
   /**
+   * Model WebhookEvent
+   */
+
+  export type AggregateWebhookEvent = {
+    _count: WebhookEventCountAggregateOutputType | null
+    _min: WebhookEventMinAggregateOutputType | null
+    _max: WebhookEventMaxAggregateOutputType | null
+  }
+
+  export type WebhookEventMinAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    eventId: string | null
+    eventType: string | null
+    idempotencyKey: string | null
+    processed: boolean | null
+    createdAt: Date | null
+    expiresAt: Date | null
+  }
+
+  export type WebhookEventMaxAggregateOutputType = {
+    id: string | null
+    tenantId: string | null
+    eventId: string | null
+    eventType: string | null
+    idempotencyKey: string | null
+    processed: boolean | null
+    createdAt: Date | null
+    expiresAt: Date | null
+  }
+
+  export type WebhookEventCountAggregateOutputType = {
+    id: number
+    tenantId: number
+    eventId: number
+    eventType: number
+    idempotencyKey: number
+    payload: number
+    processed: number
+    createdAt: number
+    expiresAt: number
+    _all: number
+  }
+
+
+  export type WebhookEventMinAggregateInputType = {
+    id?: true
+    tenantId?: true
+    eventId?: true
+    eventType?: true
+    idempotencyKey?: true
+    processed?: true
+    createdAt?: true
+    expiresAt?: true
+  }
+
+  export type WebhookEventMaxAggregateInputType = {
+    id?: true
+    tenantId?: true
+    eventId?: true
+    eventType?: true
+    idempotencyKey?: true
+    processed?: true
+    createdAt?: true
+    expiresAt?: true
+  }
+
+  export type WebhookEventCountAggregateInputType = {
+    id?: true
+    tenantId?: true
+    eventId?: true
+    eventType?: true
+    idempotencyKey?: true
+    payload?: true
+    processed?: true
+    createdAt?: true
+    expiresAt?: true
+    _all?: true
+  }
+
+  export type WebhookEventAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WebhookEvent to aggregate.
+     */
+    where?: WebhookEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WebhookEvents to fetch.
+     */
+    orderBy?: WebhookEventOrderByWithRelationInput | WebhookEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: WebhookEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WebhookEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WebhookEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned WebhookEvents
+    **/
+    _count?: true | WebhookEventCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: WebhookEventMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: WebhookEventMaxAggregateInputType
+  }
+
+  export type GetWebhookEventAggregateType<T extends WebhookEventAggregateArgs> = {
+        [P in keyof T & keyof AggregateWebhookEvent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWebhookEvent[P]>
+      : GetScalarType<T[P], AggregateWebhookEvent[P]>
+  }
+
+
+
+
+  export type WebhookEventGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WebhookEventWhereInput
+    orderBy?: WebhookEventOrderByWithAggregationInput | WebhookEventOrderByWithAggregationInput[]
+    by: WebhookEventScalarFieldEnum[] | WebhookEventScalarFieldEnum
+    having?: WebhookEventScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: WebhookEventCountAggregateInputType | true
+    _min?: WebhookEventMinAggregateInputType
+    _max?: WebhookEventMaxAggregateInputType
+  }
+
+  export type WebhookEventGroupByOutputType = {
+    id: string
+    tenantId: string
+    eventId: string
+    eventType: string
+    idempotencyKey: string
+    payload: JsonValue
+    processed: boolean
+    createdAt: Date
+    expiresAt: Date
+    _count: WebhookEventCountAggregateOutputType | null
+    _min: WebhookEventMinAggregateOutputType | null
+    _max: WebhookEventMaxAggregateOutputType | null
+  }
+
+  type GetWebhookEventGroupByPayload<T extends WebhookEventGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<WebhookEventGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof WebhookEventGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], WebhookEventGroupByOutputType[P]>
+            : GetScalarType<T[P], WebhookEventGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type WebhookEventSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    eventId?: boolean
+    eventType?: boolean
+    idempotencyKey?: boolean
+    payload?: boolean
+    processed?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["webhookEvent"]>
+
+  export type WebhookEventSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    eventId?: boolean
+    eventType?: boolean
+    idempotencyKey?: boolean
+    payload?: boolean
+    processed?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["webhookEvent"]>
+
+  export type WebhookEventSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tenantId?: boolean
+    eventId?: boolean
+    eventType?: boolean
+    idempotencyKey?: boolean
+    payload?: boolean
+    processed?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["webhookEvent"]>
+
+  export type WebhookEventSelectScalar = {
+    id?: boolean
+    tenantId?: boolean
+    eventId?: boolean
+    eventType?: boolean
+    idempotencyKey?: boolean
+    payload?: boolean
+    processed?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+  }
+
+  export type WebhookEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenantId" | "eventId" | "eventType" | "idempotencyKey" | "payload" | "processed" | "createdAt" | "expiresAt", ExtArgs["result"]["webhookEvent"]>
+  export type WebhookEventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type WebhookEventIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+  export type WebhookEventIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tenant?: boolean | TenantDefaultArgs<ExtArgs>
+  }
+
+  export type $WebhookEventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "WebhookEvent"
+    objects: {
+      tenant: Prisma.$TenantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tenantId: string
+      eventId: string
+      eventType: string
+      idempotencyKey: string
+      payload: Prisma.JsonValue
+      processed: boolean
+      createdAt: Date
+      expiresAt: Date
+    }, ExtArgs["result"]["webhookEvent"]>
+    composites: {}
+  }
+
+  type WebhookEventGetPayload<S extends boolean | null | undefined | WebhookEventDefaultArgs> = $Result.GetResult<Prisma.$WebhookEventPayload, S>
+
+  type WebhookEventCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<WebhookEventFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: WebhookEventCountAggregateInputType | true
+    }
+
+  export interface WebhookEventDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['WebhookEvent'], meta: { name: 'WebhookEvent' } }
+    /**
+     * Find zero or one WebhookEvent that matches the filter.
+     * @param {WebhookEventFindUniqueArgs} args - Arguments to find a WebhookEvent
+     * @example
+     * // Get one WebhookEvent
+     * const webhookEvent = await prisma.webhookEvent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends WebhookEventFindUniqueArgs>(args: SelectSubset<T, WebhookEventFindUniqueArgs<ExtArgs>>): Prisma__WebhookEventClient<$Result.GetResult<Prisma.$WebhookEventPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one WebhookEvent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {WebhookEventFindUniqueOrThrowArgs} args - Arguments to find a WebhookEvent
+     * @example
+     * // Get one WebhookEvent
+     * const webhookEvent = await prisma.webhookEvent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends WebhookEventFindUniqueOrThrowArgs>(args: SelectSubset<T, WebhookEventFindUniqueOrThrowArgs<ExtArgs>>): Prisma__WebhookEventClient<$Result.GetResult<Prisma.$WebhookEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WebhookEvent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WebhookEventFindFirstArgs} args - Arguments to find a WebhookEvent
+     * @example
+     * // Get one WebhookEvent
+     * const webhookEvent = await prisma.webhookEvent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends WebhookEventFindFirstArgs>(args?: SelectSubset<T, WebhookEventFindFirstArgs<ExtArgs>>): Prisma__WebhookEventClient<$Result.GetResult<Prisma.$WebhookEventPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WebhookEvent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WebhookEventFindFirstOrThrowArgs} args - Arguments to find a WebhookEvent
+     * @example
+     * // Get one WebhookEvent
+     * const webhookEvent = await prisma.webhookEvent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends WebhookEventFindFirstOrThrowArgs>(args?: SelectSubset<T, WebhookEventFindFirstOrThrowArgs<ExtArgs>>): Prisma__WebhookEventClient<$Result.GetResult<Prisma.$WebhookEventPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more WebhookEvents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WebhookEventFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all WebhookEvents
+     * const webhookEvents = await prisma.webhookEvent.findMany()
+     * 
+     * // Get first 10 WebhookEvents
+     * const webhookEvents = await prisma.webhookEvent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const webhookEventWithIdOnly = await prisma.webhookEvent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends WebhookEventFindManyArgs>(args?: SelectSubset<T, WebhookEventFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WebhookEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a WebhookEvent.
+     * @param {WebhookEventCreateArgs} args - Arguments to create a WebhookEvent.
+     * @example
+     * // Create one WebhookEvent
+     * const WebhookEvent = await prisma.webhookEvent.create({
+     *   data: {
+     *     // ... data to create a WebhookEvent
+     *   }
+     * })
+     * 
+     */
+    create<T extends WebhookEventCreateArgs>(args: SelectSubset<T, WebhookEventCreateArgs<ExtArgs>>): Prisma__WebhookEventClient<$Result.GetResult<Prisma.$WebhookEventPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many WebhookEvents.
+     * @param {WebhookEventCreateManyArgs} args - Arguments to create many WebhookEvents.
+     * @example
+     * // Create many WebhookEvents
+     * const webhookEvent = await prisma.webhookEvent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends WebhookEventCreateManyArgs>(args?: SelectSubset<T, WebhookEventCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many WebhookEvents and returns the data saved in the database.
+     * @param {WebhookEventCreateManyAndReturnArgs} args - Arguments to create many WebhookEvents.
+     * @example
+     * // Create many WebhookEvents
+     * const webhookEvent = await prisma.webhookEvent.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many WebhookEvents and only return the `id`
+     * const webhookEventWithIdOnly = await prisma.webhookEvent.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends WebhookEventCreateManyAndReturnArgs>(args?: SelectSubset<T, WebhookEventCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WebhookEventPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a WebhookEvent.
+     * @param {WebhookEventDeleteArgs} args - Arguments to delete one WebhookEvent.
+     * @example
+     * // Delete one WebhookEvent
+     * const WebhookEvent = await prisma.webhookEvent.delete({
+     *   where: {
+     *     // ... filter to delete one WebhookEvent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends WebhookEventDeleteArgs>(args: SelectSubset<T, WebhookEventDeleteArgs<ExtArgs>>): Prisma__WebhookEventClient<$Result.GetResult<Prisma.$WebhookEventPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one WebhookEvent.
+     * @param {WebhookEventUpdateArgs} args - Arguments to update one WebhookEvent.
+     * @example
+     * // Update one WebhookEvent
+     * const webhookEvent = await prisma.webhookEvent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends WebhookEventUpdateArgs>(args: SelectSubset<T, WebhookEventUpdateArgs<ExtArgs>>): Prisma__WebhookEventClient<$Result.GetResult<Prisma.$WebhookEventPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more WebhookEvents.
+     * @param {WebhookEventDeleteManyArgs} args - Arguments to filter WebhookEvents to delete.
+     * @example
+     * // Delete a few WebhookEvents
+     * const { count } = await prisma.webhookEvent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends WebhookEventDeleteManyArgs>(args?: SelectSubset<T, WebhookEventDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WebhookEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WebhookEventUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many WebhookEvents
+     * const webhookEvent = await prisma.webhookEvent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends WebhookEventUpdateManyArgs>(args: SelectSubset<T, WebhookEventUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WebhookEvents and returns the data updated in the database.
+     * @param {WebhookEventUpdateManyAndReturnArgs} args - Arguments to update many WebhookEvents.
+     * @example
+     * // Update many WebhookEvents
+     * const webhookEvent = await prisma.webhookEvent.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more WebhookEvents and only return the `id`
+     * const webhookEventWithIdOnly = await prisma.webhookEvent.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends WebhookEventUpdateManyAndReturnArgs>(args: SelectSubset<T, WebhookEventUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WebhookEventPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one WebhookEvent.
+     * @param {WebhookEventUpsertArgs} args - Arguments to update or create a WebhookEvent.
+     * @example
+     * // Update or create a WebhookEvent
+     * const webhookEvent = await prisma.webhookEvent.upsert({
+     *   create: {
+     *     // ... data to create a WebhookEvent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the WebhookEvent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends WebhookEventUpsertArgs>(args: SelectSubset<T, WebhookEventUpsertArgs<ExtArgs>>): Prisma__WebhookEventClient<$Result.GetResult<Prisma.$WebhookEventPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of WebhookEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WebhookEventCountArgs} args - Arguments to filter WebhookEvents to count.
+     * @example
+     * // Count the number of WebhookEvents
+     * const count = await prisma.webhookEvent.count({
+     *   where: {
+     *     // ... the filter for the WebhookEvents we want to count
+     *   }
+     * })
+    **/
+    count<T extends WebhookEventCountArgs>(
+      args?: Subset<T, WebhookEventCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], WebhookEventCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a WebhookEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WebhookEventAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends WebhookEventAggregateArgs>(args: Subset<T, WebhookEventAggregateArgs>): Prisma.PrismaPromise<GetWebhookEventAggregateType<T>>
+
+    /**
+     * Group by WebhookEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WebhookEventGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends WebhookEventGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: WebhookEventGroupByArgs['orderBy'] }
+        : { orderBy?: WebhookEventGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, WebhookEventGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWebhookEventGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the WebhookEvent model
+   */
+  readonly fields: WebhookEventFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for WebhookEvent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__WebhookEventClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tenant<T extends TenantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TenantDefaultArgs<ExtArgs>>): Prisma__TenantClient<$Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the WebhookEvent model
+   */
+  interface WebhookEventFieldRefs {
+    readonly id: FieldRef<"WebhookEvent", 'String'>
+    readonly tenantId: FieldRef<"WebhookEvent", 'String'>
+    readonly eventId: FieldRef<"WebhookEvent", 'String'>
+    readonly eventType: FieldRef<"WebhookEvent", 'String'>
+    readonly idempotencyKey: FieldRef<"WebhookEvent", 'String'>
+    readonly payload: FieldRef<"WebhookEvent", 'Json'>
+    readonly processed: FieldRef<"WebhookEvent", 'Boolean'>
+    readonly createdAt: FieldRef<"WebhookEvent", 'DateTime'>
+    readonly expiresAt: FieldRef<"WebhookEvent", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * WebhookEvent findUnique
+   */
+  export type WebhookEventFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookEvent
+     */
+    select?: WebhookEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookEvent
+     */
+    omit?: WebhookEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookEventInclude<ExtArgs> | null
+    /**
+     * Filter, which WebhookEvent to fetch.
+     */
+    where: WebhookEventWhereUniqueInput
+  }
+
+  /**
+   * WebhookEvent findUniqueOrThrow
+   */
+  export type WebhookEventFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookEvent
+     */
+    select?: WebhookEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookEvent
+     */
+    omit?: WebhookEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookEventInclude<ExtArgs> | null
+    /**
+     * Filter, which WebhookEvent to fetch.
+     */
+    where: WebhookEventWhereUniqueInput
+  }
+
+  /**
+   * WebhookEvent findFirst
+   */
+  export type WebhookEventFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookEvent
+     */
+    select?: WebhookEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookEvent
+     */
+    omit?: WebhookEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookEventInclude<ExtArgs> | null
+    /**
+     * Filter, which WebhookEvent to fetch.
+     */
+    where?: WebhookEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WebhookEvents to fetch.
+     */
+    orderBy?: WebhookEventOrderByWithRelationInput | WebhookEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WebhookEvents.
+     */
+    cursor?: WebhookEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WebhookEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WebhookEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WebhookEvents.
+     */
+    distinct?: WebhookEventScalarFieldEnum | WebhookEventScalarFieldEnum[]
+  }
+
+  /**
+   * WebhookEvent findFirstOrThrow
+   */
+  export type WebhookEventFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookEvent
+     */
+    select?: WebhookEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookEvent
+     */
+    omit?: WebhookEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookEventInclude<ExtArgs> | null
+    /**
+     * Filter, which WebhookEvent to fetch.
+     */
+    where?: WebhookEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WebhookEvents to fetch.
+     */
+    orderBy?: WebhookEventOrderByWithRelationInput | WebhookEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WebhookEvents.
+     */
+    cursor?: WebhookEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WebhookEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WebhookEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WebhookEvents.
+     */
+    distinct?: WebhookEventScalarFieldEnum | WebhookEventScalarFieldEnum[]
+  }
+
+  /**
+   * WebhookEvent findMany
+   */
+  export type WebhookEventFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookEvent
+     */
+    select?: WebhookEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookEvent
+     */
+    omit?: WebhookEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookEventInclude<ExtArgs> | null
+    /**
+     * Filter, which WebhookEvents to fetch.
+     */
+    where?: WebhookEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WebhookEvents to fetch.
+     */
+    orderBy?: WebhookEventOrderByWithRelationInput | WebhookEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing WebhookEvents.
+     */
+    cursor?: WebhookEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WebhookEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WebhookEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WebhookEvents.
+     */
+    distinct?: WebhookEventScalarFieldEnum | WebhookEventScalarFieldEnum[]
+  }
+
+  /**
+   * WebhookEvent create
+   */
+  export type WebhookEventCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookEvent
+     */
+    select?: WebhookEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookEvent
+     */
+    omit?: WebhookEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookEventInclude<ExtArgs> | null
+    /**
+     * The data needed to create a WebhookEvent.
+     */
+    data: XOR<WebhookEventCreateInput, WebhookEventUncheckedCreateInput>
+  }
+
+  /**
+   * WebhookEvent createMany
+   */
+  export type WebhookEventCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many WebhookEvents.
+     */
+    data: WebhookEventCreateManyInput | WebhookEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * WebhookEvent createManyAndReturn
+   */
+  export type WebhookEventCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookEvent
+     */
+    select?: WebhookEventSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookEvent
+     */
+    omit?: WebhookEventOmit<ExtArgs> | null
+    /**
+     * The data used to create many WebhookEvents.
+     */
+    data: WebhookEventCreateManyInput | WebhookEventCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookEventIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WebhookEvent update
+   */
+  export type WebhookEventUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookEvent
+     */
+    select?: WebhookEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookEvent
+     */
+    omit?: WebhookEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookEventInclude<ExtArgs> | null
+    /**
+     * The data needed to update a WebhookEvent.
+     */
+    data: XOR<WebhookEventUpdateInput, WebhookEventUncheckedUpdateInput>
+    /**
+     * Choose, which WebhookEvent to update.
+     */
+    where: WebhookEventWhereUniqueInput
+  }
+
+  /**
+   * WebhookEvent updateMany
+   */
+  export type WebhookEventUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update WebhookEvents.
+     */
+    data: XOR<WebhookEventUpdateManyMutationInput, WebhookEventUncheckedUpdateManyInput>
+    /**
+     * Filter which WebhookEvents to update
+     */
+    where?: WebhookEventWhereInput
+    /**
+     * Limit how many WebhookEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * WebhookEvent updateManyAndReturn
+   */
+  export type WebhookEventUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookEvent
+     */
+    select?: WebhookEventSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookEvent
+     */
+    omit?: WebhookEventOmit<ExtArgs> | null
+    /**
+     * The data used to update WebhookEvents.
+     */
+    data: XOR<WebhookEventUpdateManyMutationInput, WebhookEventUncheckedUpdateManyInput>
+    /**
+     * Filter which WebhookEvents to update
+     */
+    where?: WebhookEventWhereInput
+    /**
+     * Limit how many WebhookEvents to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookEventIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WebhookEvent upsert
+   */
+  export type WebhookEventUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookEvent
+     */
+    select?: WebhookEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookEvent
+     */
+    omit?: WebhookEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookEventInclude<ExtArgs> | null
+    /**
+     * The filter to search for the WebhookEvent to update in case it exists.
+     */
+    where: WebhookEventWhereUniqueInput
+    /**
+     * In case the WebhookEvent found by the `where` argument doesn't exist, create a new WebhookEvent with this data.
+     */
+    create: XOR<WebhookEventCreateInput, WebhookEventUncheckedCreateInput>
+    /**
+     * In case the WebhookEvent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<WebhookEventUpdateInput, WebhookEventUncheckedUpdateInput>
+  }
+
+  /**
+   * WebhookEvent delete
+   */
+  export type WebhookEventDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookEvent
+     */
+    select?: WebhookEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookEvent
+     */
+    omit?: WebhookEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookEventInclude<ExtArgs> | null
+    /**
+     * Filter which WebhookEvent to delete.
+     */
+    where: WebhookEventWhereUniqueInput
+  }
+
+  /**
+   * WebhookEvent deleteMany
+   */
+  export type WebhookEventDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WebhookEvents to delete
+     */
+    where?: WebhookEventWhereInput
+    /**
+     * Limit how many WebhookEvents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * WebhookEvent without action
+   */
+  export type WebhookEventDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookEvent
+     */
+    select?: WebhookEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookEvent
+     */
+    omit?: WebhookEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookEventInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -31119,6 +32358,21 @@ export namespace Prisma {
   export type JournalEntryScalarFieldEnum = (typeof JournalEntryScalarFieldEnum)[keyof typeof JournalEntryScalarFieldEnum]
 
 
+  export const WebhookEventScalarFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    eventId: 'eventId',
+    eventType: 'eventType',
+    idempotencyKey: 'idempotencyKey',
+    payload: 'payload',
+    processed: 'processed',
+    createdAt: 'createdAt',
+    expiresAt: 'expiresAt'
+  };
+
+  export type WebhookEventScalarFieldEnum = (typeof WebhookEventScalarFieldEnum)[keyof typeof WebhookEventScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -31418,6 +32672,17 @@ export namespace Prisma {
   export type JournalEntryOrderByRelevanceFieldEnum = (typeof JournalEntryOrderByRelevanceFieldEnum)[keyof typeof JournalEntryOrderByRelevanceFieldEnum]
 
 
+  export const WebhookEventOrderByRelevanceFieldEnum: {
+    id: 'id',
+    tenantId: 'tenantId',
+    eventId: 'eventId',
+    eventType: 'eventType',
+    idempotencyKey: 'idempotencyKey'
+  };
+
+  export type WebhookEventOrderByRelevanceFieldEnum = (typeof WebhookEventOrderByRelevanceFieldEnum)[keyof typeof WebhookEventOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references
    */
@@ -31579,6 +32844,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryListRelationFilter
     hobbies?: HobbyListRelationFilter
     hobbyLogs?: HobbyLogListRelationFilter
+    webhookEvents?: WebhookEventListRelationFilter
   }
 
   export type TenantOrderByWithRelationInput = {
@@ -31612,6 +32878,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryOrderByRelationAggregateInput
     hobbies?: HobbyOrderByRelationAggregateInput
     hobbyLogs?: HobbyLogOrderByRelationAggregateInput
+    webhookEvents?: WebhookEventOrderByRelationAggregateInput
     _relevance?: TenantOrderByRelevanceInput
   }
 
@@ -31649,6 +32916,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryListRelationFilter
     hobbies?: HobbyListRelationFilter
     hobbyLogs?: HobbyLogListRelationFilter
+    webhookEvents?: WebhookEventListRelationFilter
   }, "id">
 
   export type TenantOrderByWithAggregationInput = {
@@ -33539,6 +34807,82 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"JournalEntry"> | Date | string
   }
 
+  export type WebhookEventWhereInput = {
+    AND?: WebhookEventWhereInput | WebhookEventWhereInput[]
+    OR?: WebhookEventWhereInput[]
+    NOT?: WebhookEventWhereInput | WebhookEventWhereInput[]
+    id?: StringFilter<"WebhookEvent"> | string
+    tenantId?: StringFilter<"WebhookEvent"> | string
+    eventId?: StringFilter<"WebhookEvent"> | string
+    eventType?: StringFilter<"WebhookEvent"> | string
+    idempotencyKey?: StringFilter<"WebhookEvent"> | string
+    payload?: JsonFilter<"WebhookEvent">
+    processed?: BoolFilter<"WebhookEvent"> | boolean
+    createdAt?: DateTimeFilter<"WebhookEvent"> | Date | string
+    expiresAt?: DateTimeFilter<"WebhookEvent"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }
+
+  export type WebhookEventOrderByWithRelationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    eventId?: SortOrder
+    eventType?: SortOrder
+    idempotencyKey?: SortOrder
+    payload?: SortOrder
+    processed?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+    tenant?: TenantOrderByWithRelationInput
+    _relevance?: WebhookEventOrderByRelevanceInput
+  }
+
+  export type WebhookEventWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    idempotencyKey?: string
+    AND?: WebhookEventWhereInput | WebhookEventWhereInput[]
+    OR?: WebhookEventWhereInput[]
+    NOT?: WebhookEventWhereInput | WebhookEventWhereInput[]
+    tenantId?: StringFilter<"WebhookEvent"> | string
+    eventId?: StringFilter<"WebhookEvent"> | string
+    eventType?: StringFilter<"WebhookEvent"> | string
+    payload?: JsonFilter<"WebhookEvent">
+    processed?: BoolFilter<"WebhookEvent"> | boolean
+    createdAt?: DateTimeFilter<"WebhookEvent"> | Date | string
+    expiresAt?: DateTimeFilter<"WebhookEvent"> | Date | string
+    tenant?: XOR<TenantScalarRelationFilter, TenantWhereInput>
+  }, "id" | "idempotencyKey">
+
+  export type WebhookEventOrderByWithAggregationInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    eventId?: SortOrder
+    eventType?: SortOrder
+    idempotencyKey?: SortOrder
+    payload?: SortOrder
+    processed?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+    _count?: WebhookEventCountOrderByAggregateInput
+    _max?: WebhookEventMaxOrderByAggregateInput
+    _min?: WebhookEventMinOrderByAggregateInput
+  }
+
+  export type WebhookEventScalarWhereWithAggregatesInput = {
+    AND?: WebhookEventScalarWhereWithAggregatesInput | WebhookEventScalarWhereWithAggregatesInput[]
+    OR?: WebhookEventScalarWhereWithAggregatesInput[]
+    NOT?: WebhookEventScalarWhereWithAggregatesInput | WebhookEventScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"WebhookEvent"> | string
+    tenantId?: StringWithAggregatesFilter<"WebhookEvent"> | string
+    eventId?: StringWithAggregatesFilter<"WebhookEvent"> | string
+    eventType?: StringWithAggregatesFilter<"WebhookEvent"> | string
+    idempotencyKey?: StringWithAggregatesFilter<"WebhookEvent"> | string
+    payload?: JsonWithAggregatesFilter<"WebhookEvent">
+    processed?: BoolWithAggregatesFilter<"WebhookEvent"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"WebhookEvent"> | Date | string
+    expiresAt?: DateTimeWithAggregatesFilter<"WebhookEvent"> | Date | string
+  }
+
   export type TenantCreateInput = {
     id?: string
     name: string
@@ -33570,6 +34914,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateInput = {
@@ -33603,6 +34948,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUpdateInput = {
@@ -33636,6 +34982,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateInput = {
@@ -33669,6 +35016,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateManyInput = {
@@ -35636,6 +36984,89 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type WebhookEventCreateInput = {
+    id?: string
+    eventId: string
+    eventType: string
+    idempotencyKey: string
+    payload: JsonNullValueInput | InputJsonValue
+    processed?: boolean
+    createdAt?: Date | string
+    expiresAt: Date | string
+    tenant: TenantCreateNestedOneWithoutWebhookEventsInput
+  }
+
+  export type WebhookEventUncheckedCreateInput = {
+    id?: string
+    tenantId: string
+    eventId: string
+    eventType: string
+    idempotencyKey: string
+    payload: JsonNullValueInput | InputJsonValue
+    processed?: boolean
+    createdAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type WebhookEventUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    idempotencyKey?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    processed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tenant?: TenantUpdateOneRequiredWithoutWebhookEventsNestedInput
+  }
+
+  export type WebhookEventUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    idempotencyKey?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    processed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WebhookEventCreateManyInput = {
+    id?: string
+    tenantId: string
+    eventId: string
+    eventType: string
+    idempotencyKey: string
+    payload: JsonNullValueInput | InputJsonValue
+    processed?: boolean
+    createdAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type WebhookEventUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    idempotencyKey?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    processed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WebhookEventUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    idempotencyKey?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    processed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -35838,6 +37269,12 @@ export namespace Prisma {
     none?: HobbyLogWhereInput
   }
 
+  export type WebhookEventListRelationFilter = {
+    every?: WebhookEventWhereInput
+    some?: WebhookEventWhereInput
+    none?: WebhookEventWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -35920,6 +37357,10 @@ export namespace Prisma {
   }
 
   export type HobbyLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type WebhookEventOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -37462,6 +38903,46 @@ export namespace Prisma {
     mood?: SortOrder
   }
 
+  export type WebhookEventOrderByRelevanceInput = {
+    fields: WebhookEventOrderByRelevanceFieldEnum | WebhookEventOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type WebhookEventCountOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    eventId?: SortOrder
+    eventType?: SortOrder
+    idempotencyKey?: SortOrder
+    payload?: SortOrder
+    processed?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+  }
+
+  export type WebhookEventMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    eventId?: SortOrder
+    eventType?: SortOrder
+    idempotencyKey?: SortOrder
+    processed?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+  }
+
+  export type WebhookEventMinOrderByAggregateInput = {
+    id?: SortOrder
+    tenantId?: SortOrder
+    eventId?: SortOrder
+    eventType?: SortOrder
+    idempotencyKey?: SortOrder
+    processed?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+  }
+
   export type UserCreateNestedManyWithoutTenantInput = {
     create?: XOR<UserCreateWithoutTenantInput, UserUncheckedCreateWithoutTenantInput> | UserCreateWithoutTenantInput[] | UserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: UserCreateOrConnectWithoutTenantInput | UserCreateOrConnectWithoutTenantInput[]
@@ -37605,6 +39086,13 @@ export namespace Prisma {
     connect?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
   }
 
+  export type WebhookEventCreateNestedManyWithoutTenantInput = {
+    create?: XOR<WebhookEventCreateWithoutTenantInput, WebhookEventUncheckedCreateWithoutTenantInput> | WebhookEventCreateWithoutTenantInput[] | WebhookEventUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: WebhookEventCreateOrConnectWithoutTenantInput | WebhookEventCreateOrConnectWithoutTenantInput[]
+    createMany?: WebhookEventCreateManyTenantInputEnvelope
+    connect?: WebhookEventWhereUniqueInput | WebhookEventWhereUniqueInput[]
+  }
+
   export type UserUncheckedCreateNestedManyWithoutTenantInput = {
     create?: XOR<UserCreateWithoutTenantInput, UserUncheckedCreateWithoutTenantInput> | UserCreateWithoutTenantInput[] | UserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: UserCreateOrConnectWithoutTenantInput | UserCreateOrConnectWithoutTenantInput[]
@@ -37746,6 +39234,13 @@ export namespace Prisma {
     connectOrCreate?: HobbyLogCreateOrConnectWithoutTenantInput | HobbyLogCreateOrConnectWithoutTenantInput[]
     createMany?: HobbyLogCreateManyTenantInputEnvelope
     connect?: HobbyLogWhereUniqueInput | HobbyLogWhereUniqueInput[]
+  }
+
+  export type WebhookEventUncheckedCreateNestedManyWithoutTenantInput = {
+    create?: XOR<WebhookEventCreateWithoutTenantInput, WebhookEventUncheckedCreateWithoutTenantInput> | WebhookEventCreateWithoutTenantInput[] | WebhookEventUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: WebhookEventCreateOrConnectWithoutTenantInput | WebhookEventCreateOrConnectWithoutTenantInput[]
+    createMany?: WebhookEventCreateManyTenantInputEnvelope
+    connect?: WebhookEventWhereUniqueInput | WebhookEventWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -38050,6 +39545,20 @@ export namespace Prisma {
     deleteMany?: HobbyLogScalarWhereInput | HobbyLogScalarWhereInput[]
   }
 
+  export type WebhookEventUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<WebhookEventCreateWithoutTenantInput, WebhookEventUncheckedCreateWithoutTenantInput> | WebhookEventCreateWithoutTenantInput[] | WebhookEventUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: WebhookEventCreateOrConnectWithoutTenantInput | WebhookEventCreateOrConnectWithoutTenantInput[]
+    upsert?: WebhookEventUpsertWithWhereUniqueWithoutTenantInput | WebhookEventUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: WebhookEventCreateManyTenantInputEnvelope
+    set?: WebhookEventWhereUniqueInput | WebhookEventWhereUniqueInput[]
+    disconnect?: WebhookEventWhereUniqueInput | WebhookEventWhereUniqueInput[]
+    delete?: WebhookEventWhereUniqueInput | WebhookEventWhereUniqueInput[]
+    connect?: WebhookEventWhereUniqueInput | WebhookEventWhereUniqueInput[]
+    update?: WebhookEventUpdateWithWhereUniqueWithoutTenantInput | WebhookEventUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: WebhookEventUpdateManyWithWhereWithoutTenantInput | WebhookEventUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: WebhookEventScalarWhereInput | WebhookEventScalarWhereInput[]
+  }
+
   export type UserUncheckedUpdateManyWithoutTenantNestedInput = {
     create?: XOR<UserCreateWithoutTenantInput, UserUncheckedCreateWithoutTenantInput> | UserCreateWithoutTenantInput[] | UserUncheckedCreateWithoutTenantInput[]
     connectOrCreate?: UserCreateOrConnectWithoutTenantInput | UserCreateOrConnectWithoutTenantInput[]
@@ -38334,6 +39843,20 @@ export namespace Prisma {
     update?: HobbyLogUpdateWithWhereUniqueWithoutTenantInput | HobbyLogUpdateWithWhereUniqueWithoutTenantInput[]
     updateMany?: HobbyLogUpdateManyWithWhereWithoutTenantInput | HobbyLogUpdateManyWithWhereWithoutTenantInput[]
     deleteMany?: HobbyLogScalarWhereInput | HobbyLogScalarWhereInput[]
+  }
+
+  export type WebhookEventUncheckedUpdateManyWithoutTenantNestedInput = {
+    create?: XOR<WebhookEventCreateWithoutTenantInput, WebhookEventUncheckedCreateWithoutTenantInput> | WebhookEventCreateWithoutTenantInput[] | WebhookEventUncheckedCreateWithoutTenantInput[]
+    connectOrCreate?: WebhookEventCreateOrConnectWithoutTenantInput | WebhookEventCreateOrConnectWithoutTenantInput[]
+    upsert?: WebhookEventUpsertWithWhereUniqueWithoutTenantInput | WebhookEventUpsertWithWhereUniqueWithoutTenantInput[]
+    createMany?: WebhookEventCreateManyTenantInputEnvelope
+    set?: WebhookEventWhereUniqueInput | WebhookEventWhereUniqueInput[]
+    disconnect?: WebhookEventWhereUniqueInput | WebhookEventWhereUniqueInput[]
+    delete?: WebhookEventWhereUniqueInput | WebhookEventWhereUniqueInput[]
+    connect?: WebhookEventWhereUniqueInput | WebhookEventWhereUniqueInput[]
+    update?: WebhookEventUpdateWithWhereUniqueWithoutTenantInput | WebhookEventUpdateWithWhereUniqueWithoutTenantInput[]
+    updateMany?: WebhookEventUpdateManyWithWhereWithoutTenantInput | WebhookEventUpdateManyWithWhereWithoutTenantInput[]
+    deleteMany?: WebhookEventScalarWhereInput | WebhookEventScalarWhereInput[]
   }
 
   export type TenantCreateNestedOneWithoutUsersInput = {
@@ -39490,6 +41013,20 @@ export namespace Prisma {
     update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutJournalEntriesInput, TenantUpdateWithoutJournalEntriesInput>, TenantUncheckedUpdateWithoutJournalEntriesInput>
   }
 
+  export type TenantCreateNestedOneWithoutWebhookEventsInput = {
+    create?: XOR<TenantCreateWithoutWebhookEventsInput, TenantUncheckedCreateWithoutWebhookEventsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutWebhookEventsInput
+    connect?: TenantWhereUniqueInput
+  }
+
+  export type TenantUpdateOneRequiredWithoutWebhookEventsNestedInput = {
+    create?: XOR<TenantCreateWithoutWebhookEventsInput, TenantUncheckedCreateWithoutWebhookEventsInput>
+    connectOrCreate?: TenantCreateOrConnectWithoutWebhookEventsInput
+    upsert?: TenantUpsertWithoutWebhookEventsInput
+    connect?: TenantWhereUniqueInput
+    update?: XOR<XOR<TenantUpdateToOneWithWhereWithoutWebhookEventsInput, TenantUpdateWithoutWebhookEventsInput>, TenantUncheckedUpdateWithoutWebhookEventsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -40534,6 +42071,38 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type WebhookEventCreateWithoutTenantInput = {
+    id?: string
+    eventId: string
+    eventType: string
+    idempotencyKey: string
+    payload: JsonNullValueInput | InputJsonValue
+    processed?: boolean
+    createdAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type WebhookEventUncheckedCreateWithoutTenantInput = {
+    id?: string
+    eventId: string
+    eventType: string
+    idempotencyKey: string
+    payload: JsonNullValueInput | InputJsonValue
+    processed?: boolean
+    createdAt?: Date | string
+    expiresAt: Date | string
+  }
+
+  export type WebhookEventCreateOrConnectWithoutTenantInput = {
+    where: WebhookEventWhereUniqueInput
+    create: XOR<WebhookEventCreateWithoutTenantInput, WebhookEventUncheckedCreateWithoutTenantInput>
+  }
+
+  export type WebhookEventCreateManyTenantInputEnvelope = {
+    data: WebhookEventCreateManyTenantInput | WebhookEventCreateManyTenantInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithWhereUniqueWithoutTenantInput = {
     where: UserWhereUniqueInput
     update: XOR<UserUpdateWithoutTenantInput, UserUncheckedUpdateWithoutTenantInput>
@@ -41202,6 +42771,37 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"HobbyLog"> | Date | string
   }
 
+  export type WebhookEventUpsertWithWhereUniqueWithoutTenantInput = {
+    where: WebhookEventWhereUniqueInput
+    update: XOR<WebhookEventUpdateWithoutTenantInput, WebhookEventUncheckedUpdateWithoutTenantInput>
+    create: XOR<WebhookEventCreateWithoutTenantInput, WebhookEventUncheckedCreateWithoutTenantInput>
+  }
+
+  export type WebhookEventUpdateWithWhereUniqueWithoutTenantInput = {
+    where: WebhookEventWhereUniqueInput
+    data: XOR<WebhookEventUpdateWithoutTenantInput, WebhookEventUncheckedUpdateWithoutTenantInput>
+  }
+
+  export type WebhookEventUpdateManyWithWhereWithoutTenantInput = {
+    where: WebhookEventScalarWhereInput
+    data: XOR<WebhookEventUpdateManyMutationInput, WebhookEventUncheckedUpdateManyWithoutTenantInput>
+  }
+
+  export type WebhookEventScalarWhereInput = {
+    AND?: WebhookEventScalarWhereInput | WebhookEventScalarWhereInput[]
+    OR?: WebhookEventScalarWhereInput[]
+    NOT?: WebhookEventScalarWhereInput | WebhookEventScalarWhereInput[]
+    id?: StringFilter<"WebhookEvent"> | string
+    tenantId?: StringFilter<"WebhookEvent"> | string
+    eventId?: StringFilter<"WebhookEvent"> | string
+    eventType?: StringFilter<"WebhookEvent"> | string
+    idempotencyKey?: StringFilter<"WebhookEvent"> | string
+    payload?: JsonFilter<"WebhookEvent">
+    processed?: BoolFilter<"WebhookEvent"> | boolean
+    createdAt?: DateTimeFilter<"WebhookEvent"> | Date | string
+    expiresAt?: DateTimeFilter<"WebhookEvent"> | Date | string
+  }
+
   export type TenantCreateWithoutUsersInput = {
     id?: string
     name: string
@@ -41232,6 +42832,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutUsersInput = {
@@ -41264,6 +42865,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutUsersInput = {
@@ -41312,6 +42914,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutUsersInput = {
@@ -41344,6 +42947,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAiProviderConfigsInput = {
@@ -41376,6 +42980,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAiProviderConfigsInput = {
@@ -41408,6 +43013,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAiProviderConfigsInput = {
@@ -41456,6 +43062,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAiProviderConfigsInput = {
@@ -41488,6 +43095,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAiPromptCacheInput = {
@@ -41520,6 +43128,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAiPromptCacheInput = {
@@ -41552,6 +43161,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAiPromptCacheInput = {
@@ -41600,6 +43210,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAiPromptCacheInput = {
@@ -41632,6 +43243,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutAiUsageLogsInput = {
@@ -41664,6 +43276,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAiUsageLogsInput = {
@@ -41696,6 +43309,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAiUsageLogsInput = {
@@ -41744,6 +43358,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAiUsageLogsInput = {
@@ -41776,6 +43391,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CategoryCreateWithoutChildrenInput = {
@@ -41887,6 +43503,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutCategoriesInput = {
@@ -41919,6 +43536,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutCategoriesInput = {
@@ -42158,6 +43776,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutCategoriesInput = {
@@ -42190,6 +43809,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TransactionUpsertWithWhereUniqueWithoutCategoryInput = {
@@ -42270,6 +43890,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAccountsInput = {
@@ -42302,6 +43923,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAccountsInput = {
@@ -42482,6 +44104,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAccountsInput = {
@@ -42514,6 +44137,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TransactionUpsertWithWhereUniqueWithoutAccountInput = {
@@ -42719,6 +44343,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutTransactionsInput = {
@@ -42751,6 +44376,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutTransactionsInput = {
@@ -42942,6 +44568,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutTransactionsInput = {
@@ -42974,6 +44601,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type CategoryCreateWithoutBudgetEnvelopesInput = {
@@ -43080,6 +44708,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutBudgetEnvelopesInput = {
@@ -43112,6 +44741,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutBudgetEnvelopesInput = {
@@ -43246,6 +44876,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutBudgetEnvelopesInput = {
@@ -43278,6 +44909,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type AccountCreateWithoutRecurringRulesInput = {
@@ -43384,6 +45016,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutRecurringRulesInput = {
@@ -43416,6 +45049,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutRecurringRulesInput = {
@@ -43592,6 +45226,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutRecurringRulesInput = {
@@ -43624,6 +45259,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TransactionUpsertWithWhereUniqueWithoutRecurringRuleInput = {
@@ -43751,6 +45387,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutTasksInput = {
@@ -43783,6 +45420,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutTasksInput = {
@@ -43890,6 +45528,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutTasksInput = {
@@ -43922,6 +45561,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutHabitsInput = {
@@ -43954,6 +45594,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutHabitsInput = {
@@ -43986,6 +45627,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutHabitsInput = {
@@ -44064,6 +45706,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutHabitsInput = {
@@ -44096,6 +45739,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type HabitCompletionUpsertWithWhereUniqueWithoutHabitInput = {
@@ -44181,6 +45825,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutHabitCompletionsInput = {
@@ -44213,6 +45858,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutHabitCompletionsInput = {
@@ -44304,6 +45950,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutHabitCompletionsInput = {
@@ -44336,6 +45983,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutUserStatsInput = {
@@ -44368,6 +46016,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutUserStatsInput = {
@@ -44400,6 +46049,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutUserStatsInput = {
@@ -44480,6 +46130,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutUserStatsInput = {
@@ -44512,6 +46163,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type AchievementUpsertWithWhereUniqueWithoutUserStatsInput = {
@@ -44587,6 +46239,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutAchievementsInput = {
@@ -44619,6 +46272,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutAchievementsInput = {
@@ -44700,6 +46354,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutAchievementsInput = {
@@ -44732,6 +46387,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutHealthLogsInput = {
@@ -44764,6 +46420,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutHealthLogsInput = {
@@ -44796,6 +46453,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutHealthLogsInput = {
@@ -44844,6 +46502,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutHealthLogsInput = {
@@ -44876,6 +46535,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutHobbiesInput = {
@@ -44908,6 +46568,7 @@ export namespace Prisma {
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutHobbiesInput = {
@@ -44940,6 +46601,7 @@ export namespace Prisma {
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutHobbiesInput = {
@@ -45020,6 +46682,7 @@ export namespace Prisma {
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutHobbiesInput = {
@@ -45052,6 +46715,7 @@ export namespace Prisma {
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type HobbyLogUpsertWithWhereUniqueWithoutHobbyInput = {
@@ -45131,6 +46795,7 @@ export namespace Prisma {
     notes?: NoteCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutHobbyLogsInput = {
@@ -45163,6 +46828,7 @@ export namespace Prisma {
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutHobbyLogsInput = {
@@ -45248,6 +46914,7 @@ export namespace Prisma {
     notes?: NoteUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutHobbyLogsInput = {
@@ -45280,6 +46947,7 @@ export namespace Prisma {
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantCreateWithoutFoldersInput = {
@@ -45312,6 +46980,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutFoldersInput = {
@@ -45344,6 +47013,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutFoldersInput = {
@@ -45392,6 +47062,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutFoldersInput = {
@@ -45424,6 +47095,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type NoteUpdateWithWhereUniqueWithoutFolderInput = {
@@ -45466,6 +47138,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutTagsInput = {
@@ -45498,6 +47171,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutTagsInput = {
@@ -45564,6 +47238,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutTagsInput = {
@@ -45596,6 +47271,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type NoteTagUpsertWithWhereUniqueWithoutTagInput = {
@@ -45652,6 +47328,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutNotesInput = {
@@ -45684,6 +47361,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutNotesInput = {
@@ -45732,6 +47410,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutNotesInput = {
@@ -45764,6 +47443,7 @@ export namespace Prisma {
     journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
   }
 
   export type FolderCreateWithoutNotesInput = {
@@ -45949,6 +47629,7 @@ export namespace Prisma {
     notes?: NoteCreateNestedManyWithoutTenantInput
     hobbies?: HobbyCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventCreateNestedManyWithoutTenantInput
   }
 
   export type TenantUncheckedCreateWithoutJournalEntriesInput = {
@@ -45981,6 +47662,7 @@ export namespace Prisma {
     notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
     hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
     hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+    webhookEvents?: WebhookEventUncheckedCreateNestedManyWithoutTenantInput
   }
 
   export type TenantCreateOrConnectWithoutJournalEntriesInput = {
@@ -46029,6 +47711,7 @@ export namespace Prisma {
     notes?: NoteUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUpdateManyWithoutTenantNestedInput
   }
 
   export type TenantUncheckedUpdateWithoutJournalEntriesInput = {
@@ -46059,6 +47742,155 @@ export namespace Prisma {
     folders?: FolderUncheckedUpdateManyWithoutTenantNestedInput
     tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
     notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
+    webhookEvents?: WebhookEventUncheckedUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantCreateWithoutWebhookEventsInput = {
+    id?: string
+    name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogCreateNestedManyWithoutTenantInput
+    categories?: CategoryCreateNestedManyWithoutTenantInput
+    accounts?: AccountCreateNestedManyWithoutTenantInput
+    transactions?: TransactionCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleCreateNestedManyWithoutTenantInput
+    tasks?: TaskCreateNestedManyWithoutTenantInput
+    habits?: HabitCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsCreateNestedOneWithoutTenantInput
+    achievements?: AchievementCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogCreateNestedManyWithoutTenantInput
+    folders?: FolderCreateNestedManyWithoutTenantInput
+    tags?: TagCreateNestedManyWithoutTenantInput
+    notes?: NoteCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantUncheckedCreateWithoutWebhookEventsInput = {
+    id?: string
+    name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutTenantInput
+    aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
+    aiPromptCache?: AiPromptCacheUncheckedCreateNestedManyWithoutTenantInput
+    aiUsageLogs?: AiUsageLogUncheckedCreateNestedManyWithoutTenantInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutTenantInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutTenantInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutTenantInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedCreateNestedManyWithoutTenantInput
+    recurringRules?: RecurringRuleUncheckedCreateNestedManyWithoutTenantInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutTenantInput
+    habits?: HabitUncheckedCreateNestedManyWithoutTenantInput
+    habitCompletions?: HabitCompletionUncheckedCreateNestedManyWithoutTenantInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutTenantInput
+    achievements?: AchievementUncheckedCreateNestedManyWithoutTenantInput
+    healthLogs?: HealthLogUncheckedCreateNestedManyWithoutTenantInput
+    folders?: FolderUncheckedCreateNestedManyWithoutTenantInput
+    tags?: TagUncheckedCreateNestedManyWithoutTenantInput
+    notes?: NoteUncheckedCreateNestedManyWithoutTenantInput
+    journalEntries?: JournalEntryUncheckedCreateNestedManyWithoutTenantInput
+    hobbies?: HobbyUncheckedCreateNestedManyWithoutTenantInput
+    hobbyLogs?: HobbyLogUncheckedCreateNestedManyWithoutTenantInput
+  }
+
+  export type TenantCreateOrConnectWithoutWebhookEventsInput = {
+    where: TenantWhereUniqueInput
+    create: XOR<TenantCreateWithoutWebhookEventsInput, TenantUncheckedCreateWithoutWebhookEventsInput>
+  }
+
+  export type TenantUpsertWithoutWebhookEventsInput = {
+    update: XOR<TenantUpdateWithoutWebhookEventsInput, TenantUncheckedUpdateWithoutWebhookEventsInput>
+    create: XOR<TenantCreateWithoutWebhookEventsInput, TenantUncheckedCreateWithoutWebhookEventsInput>
+    where?: TenantWhereInput
+  }
+
+  export type TenantUpdateToOneWithWhereWithoutWebhookEventsInput = {
+    where?: TenantWhereInput
+    data: XOR<TenantUpdateWithoutWebhookEventsInput, TenantUncheckedUpdateWithoutWebhookEventsInput>
+  }
+
+  export type TenantUpdateWithoutWebhookEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUpdateManyWithoutTenantNestedInput
+    habits?: HabitUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUpdateManyWithoutTenantNestedInput
+    folders?: FolderUpdateManyWithoutTenantNestedInput
+    tags?: TagUpdateManyWithoutTenantNestedInput
+    notes?: NoteUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUpdateManyWithoutTenantNestedInput
+    hobbies?: HobbyUpdateManyWithoutTenantNestedInput
+    hobbyLogs?: HobbyLogUpdateManyWithoutTenantNestedInput
+  }
+
+  export type TenantUncheckedUpdateWithoutWebhookEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutTenantNestedInput
+    aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
+    aiPromptCache?: AiPromptCacheUncheckedUpdateManyWithoutTenantNestedInput
+    aiUsageLogs?: AiUsageLogUncheckedUpdateManyWithoutTenantNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutTenantNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutTenantNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutTenantNestedInput
+    budgetEnvelopes?: BudgetEnvelopeUncheckedUpdateManyWithoutTenantNestedInput
+    recurringRules?: RecurringRuleUncheckedUpdateManyWithoutTenantNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutTenantNestedInput
+    habits?: HabitUncheckedUpdateManyWithoutTenantNestedInput
+    habitCompletions?: HabitCompletionUncheckedUpdateManyWithoutTenantNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutTenantNestedInput
+    achievements?: AchievementUncheckedUpdateManyWithoutTenantNestedInput
+    healthLogs?: HealthLogUncheckedUpdateManyWithoutTenantNestedInput
+    folders?: FolderUncheckedUpdateManyWithoutTenantNestedInput
+    tags?: TagUncheckedUpdateManyWithoutTenantNestedInput
+    notes?: NoteUncheckedUpdateManyWithoutTenantNestedInput
+    journalEntries?: JournalEntryUncheckedUpdateManyWithoutTenantNestedInput
     hobbies?: HobbyUncheckedUpdateManyWithoutTenantNestedInput
     hobbyLogs?: HobbyLogUncheckedUpdateManyWithoutTenantNestedInput
   }
@@ -46292,6 +48124,17 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type WebhookEventCreateManyTenantInput = {
+    id?: string
+    eventId: string
+    eventType: string
+    idempotencyKey: string
+    payload: JsonNullValueInput | InputJsonValue
+    processed?: boolean
+    createdAt?: Date | string
+    expiresAt: Date | string
   }
 
   export type UserUpdateWithoutTenantInput = {
@@ -47043,6 +48886,39 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WebhookEventUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    idempotencyKey?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    processed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WebhookEventUncheckedUpdateWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    idempotencyKey?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    processed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WebhookEventUncheckedUpdateManyWithoutTenantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    eventType?: StringFieldUpdateOperationsInput | string
+    idempotencyKey?: StringFieldUpdateOperationsInput | string
+    payload?: JsonNullValueInput | InputJsonValue
+    processed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CategoryCreateManyParentInput = {

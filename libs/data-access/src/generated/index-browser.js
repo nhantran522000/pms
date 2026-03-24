@@ -409,6 +409,18 @@ exports.Prisma.JournalEntryScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.WebhookEventScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  eventId: 'eventId',
+  eventType: 'eventType',
+  idempotencyKey: 'idempotencyKey',
+  payload: 'payload',
+  processed: 'processed',
+  createdAt: 'createdAt',
+  expiresAt: 'expiresAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -620,6 +632,14 @@ exports.Prisma.JournalEntryOrderByRelevanceFieldEnum = {
   id: 'id',
   tenantId: 'tenantId'
 };
+
+exports.Prisma.WebhookEventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  eventId: 'eventId',
+  eventType: 'eventType',
+  idempotencyKey: 'idempotencyKey'
+};
 exports.HealthLogType = exports.$Enums.HealthLogType = {
   WEIGHT: 'WEIGHT',
   BLOOD_PRESSURE: 'BLOOD_PRESSURE',
@@ -661,7 +681,8 @@ exports.Prisma.ModelName = {
   Tag: 'Tag',
   Note: 'Note',
   NoteTag: 'NoteTag',
-  JournalEntry: 'JournalEntry'
+  JournalEntry: 'JournalEntry',
+  WebhookEvent: 'WebhookEvent'
 };
 
 /**

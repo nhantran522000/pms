@@ -61,6 +61,7 @@ model Tenant {
   journalEntries             JournalEntry[]
   hobbies                    Hobby[]
   hobbyLogs                  HobbyLog[]
+  webhookEvents              WebhookEvent[]
 
   @@index([name])
   @@index([subscriptionTier])
@@ -521,4 +522,23 @@ model JournalEntry {
   @@index([tenantId])
   @@index([entryDate])
   @@map("journal_entries")
+}
+
+/// WebhookEvent - LemonSqueezy webhook events for idempotency
+model WebhookEvent {
+  id             String   @id @default(cuid())
+  tenantId       String   @map("tenantId")
+  eventId        String   @map("eventId") // LemonSqueezy event ID
+  eventType      String   @map("eventType")
+  idempotencyKey String   @unique @map("idempotencyKey") // Deduplication key
+  payload        Json
+  processed      Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  expiresAt      DateTime @map("expiresAt") // 24h TTL
+  tenant         Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@index([idempotencyKey])
+  @@index([expiresAt])
+  @@map("webhook_events")
 }
