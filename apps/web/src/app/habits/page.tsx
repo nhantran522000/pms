@@ -81,7 +81,7 @@ export default function HabitsPage() {
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-                        {habit.name}
+                        {habit.title}
                       </h3>
                       {habit.description && (
                         <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">

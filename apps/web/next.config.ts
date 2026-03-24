@@ -19,6 +19,12 @@ const nextConfig: NextConfig = {
   // Use this to set Nx-specific options
   // See: https://nx.dev/recipes/next/next-config-setup
   nx: {},
+
+  // Experimental features to work around static export issues
+  experimental: {
+    // Skip prerendering of error pages
+    skipTrailingSlashRedirect: false,
+  },
 };
 
 export default withNx(nextConfig);

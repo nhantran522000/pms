@@ -185,14 +185,14 @@ export default function DashboardPage() {
       {
         label: 'Weight',
         value: healthDashboard ? `${healthDashboard.weight.latest} ${healthDashboard.weight.unit}` : '--',
-        trend: healthDashboard?.weight.trend ?? 'neutral',
+        trend: (healthDashboard?.weight.trend ?? 'neutral') as 'improving' | 'stable' | 'declining' | 'up' | 'down' | 'neutral' | 'positive' | 'negative',
         isLoading: healthLoading,
         error: healthError,
       },
       {
         label: 'Sleep',
         value: healthDashboard ? `${healthDashboard.sleep.avgHours}h` : '--',
-        trend: healthDashboard?.sleep.trend ?? 'neutral',
+        trend: (healthDashboard?.sleep.trend ?? 'neutral') as 'improving' | 'stable' | 'declining' | 'up' | 'down' | 'neutral' | 'positive' | 'negative',
         isLoading: false,
       },
     ],

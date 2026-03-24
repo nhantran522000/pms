@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { getModuleNavItems } from '@/lib/navigation';
 import { cn } from '@/lib/utils';
 
@@ -11,7 +10,6 @@ import { cn } from '@/lib/utils';
  * Per CONTEXT.md: "Mobile breakpoint: Bottom tab navigation below 768px width"
  */
 export function BottomTabBar() {
-  const pathname = usePathname();
   const navItems = getModuleNavItems();
 
   return (
@@ -20,7 +18,6 @@ export function BottomTabBar() {
       <div className="flex overflow-x-auto scrollbar-hide">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = pathname === item.href;
 
           return (
             <Link
@@ -28,18 +25,10 @@ export function BottomTabBar() {
               href={item.href}
               className={cn(
                 'flex flex-col items-center justify-center min-w-[4rem] max-w-[5rem] py-2 px-1 transition-colors',
-                isActive
-                  ? 'text-indigo-600 dark:text-indigo-400'
-                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'
+                'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'
               )}
             >
-              <Icon
-                className={cn(
-                  'h-5 w-5 mb-1 flex-shrink-0',
-                  isActive && 'stroke-2'
-                )}
-                strokeWidth={isActive ? 2.5 : 2}
-              />
+              <Icon className="h-5 w-5 mb-1 flex-shrink-0" strokeWidth={2} />
               <span className="text-[10px] font-medium truncate w-full text-center">
                 {item.name}
               </span>
