@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 08-saas-subscription-01 subscription domain with trial management
-last_updated: "2026-03-24T11:13:27.270Z"
+stopped_at: Completed 08-saas-subscription-02 webhook handlers with idempotent processing
+last_updated: "2026-03-24T11:16:29.869Z"
 progress:
   total_phases: 12
   completed_phases: 6
   total_plans: 41
-  completed_plans: 43
+  completed_plans: 44
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-21)
 ## Current Position
 
 Phase: 08 (saas-subscription) — EXECUTING
-Plan: 2 of 5
+Plan: 3 of 5
 
 ## Performance Metrics
 
@@ -91,6 +91,7 @@ Plan: 2 of 5
 | Phase 07-hobbies P05 | 180 | 2 tasks | 5 files |
 | Phase 07-hobbies P06 | 54s | 3 tasks | 1 files |
 | Phase 08-saas-subscription P01 | 7m | 6 tasks | 12 files |
+| Phase 08-saas-subscription P02 | 2min | 5 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -194,6 +195,11 @@ Recent decisions affecting current work:
 - [Phase 08-saas-subscription]: 30-day trial period for new tenants - standard SaaS trial duration
 - [Phase 08-saas-subscription]: UTC timestamp handling for trial expiry ensures consistent timezone management
 - [Phase 08-saas-subscription]: Service injection pattern: AuthModule depends on SubscriptionModule for trial initialization
+- [Phase 08-saas-subscription]: HMAC-SHA256 signature verification using Node.js crypto.timingSafeEqual prevents timing attacks
+- [Phase 08-saas-subscription]: Prisma $transaction for atomic check-and-create eliminates race conditions in webhook processing
+- [Phase 08-saas-subscription]: Unique constraint on idempotencyKey provides database-level deduplication guarantee
+- [Phase 08-saas-subscription]: 24h TTL on webhook events balances audit trail with storage efficiency
+- [Phase 08-saas-subscription]: Public webhook endpoint with @Public() decorator allows LemonSqueezy callbacks without authentication
 
 ### Pending Todos
 
@@ -205,6 +211,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-24T11:13:27.267Z
-Stopped at: Completed 08-saas-subscription-01 subscription domain with trial management
+Last session: 2026-03-24T11:16:29.866Z
+Stopped at: Completed 08-saas-subscription-02 webhook handlers with idempotent processing
 Resume file: None

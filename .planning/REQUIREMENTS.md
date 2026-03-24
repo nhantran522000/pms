@@ -112,8 +112,8 @@
 - [x] **SAAS-02**: System tracks trial end date per tenant
 - [ ] **SAAS-03**: Day 27: System sends trial expiry warning email
 - [ ] **SAAS-04**: Day 30: System restricts access to free tier
-- [ ] **SAAS-05**: LemonSqueezy webhook handles subscription events
-- [ ] **SAAS-06**: Webhook handlers are idempotent (handle duplicates)
+- [x] **SAAS-05**: LemonSqueezy webhook handles subscription events
+- [x] **SAAS-06**: Webhook handlers are idempotent (handle duplicates)
 - [ ] **SAAS-07**: PlanFeatureGuard restricts gated endpoints
 - [ ] **SAAS-08**: Tenant branding stored as JSONB (primaryColor, appName, logoUrl)
 
@@ -265,8 +265,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SAAS-02 | Phase 8 | Complete |
 | SAAS-03 | Phase 8 | Pending |
 | SAAS-04 | Phase 8 | Pending |
-| SAAS-05 | Phase 8 | Pending |
-| SAAS-06 | Phase 8 | Pending |
+| SAAS-05 | Phase 8 | Complete |
+| SAAS-06 | Phase 8 | Complete |
 | SAAS-07 | Phase 8 | Pending |
 | SAAS-08 | Phase 8 | Pending |
 | WEB-01 | Phase 9 | Pending |
