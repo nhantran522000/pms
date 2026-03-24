@@ -10,10 +10,12 @@ import { TrialController } from './presentation/controllers/trial.controller';
 import { WebhookController } from './presentation/controllers/webhook.controller';
 import { BrandingController } from './presentation/controllers/branding.controller';
 import { PlanFeatureGuard } from './presentation/guards/plan-feature.guard';
+import { TrialExpiryMiddleware } from './infrastructure/middlewares/trial-expiry.middleware';
 import { PrismaModule } from '@pms/data-access';
+import { AuthModule } from '@pms/feature-auth';
 
 @Module({
-  imports: [PrismaModule, ConfigModule],
+  imports: [PrismaModule, ConfigModule, AuthModule],
   providers: [
     TrialService,
     TrialWarningService,
@@ -22,6 +24,7 @@ import { PrismaModule } from '@pms/data-access';
     LemonSqueezyService,
     BrandingService,
     PlanFeatureGuard,
+    TrialExpiryMiddleware,
   ],
   exports: [
     TrialService,
@@ -30,6 +33,7 @@ import { PrismaModule } from '@pms/data-access';
     LemonSqueezyService,
     BrandingService,
     PlanFeatureGuard,
+    TrialExpiryMiddleware,
   ],
   controllers: [TrialController, WebhookController, BrandingController],
 })

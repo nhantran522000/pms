@@ -82,4 +82,53 @@ export class EmailService {
       throw new Error('Failed to send password reset email');
     }
   }
+
+  async sendTrialWarningEmail(
+    email: string,
+    name: string | null,
+    trialEndDate: Date,
+    daysRemaining: number,
+  ): Promise<void> {
+    const upgradeUrl = `${this.frontendUrl}/settings/subscription?upgrade=trial`;
+    const trialEndDateFormatted = trialEndDate.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+
+    if (!this.resend) {
+      this.logger.log(`[EMAIL MOCK] Trial warning email to ${email}`);
+      this.logger.log(`[EMAIL MOCK] Subject: Your PMS trial expires in ${daysRemaining} day${daysRemaining === 1 ? '' : 's'}`);
+      this.logger.log(`[EMAIL MOCK] Trial end date: ${trialEndDateFormatted}`);
+      this.logger.log(`[EMAIL MOCK] Upgrade URL: ${upgradeUrl}`);
+      return;
+    }
+
+    try {
+      await this.resend.emails.send({
+        from: this.fromEmail,
+        to: email,
+        subject: `Your PMS trial expires in ${daysRemaining} day${daysRemaining === 1 ? '' : 's'}`,
+        html: `
+          <h1>Your Trial is Ending Soon</h1>
+          <p>Hi ${name || 'there'},</p>
+          <p>Your PMS trial will expire on <strong>${trialEndDateFormatted}</strong> (${daysRemaining} day${daysRemaining === 1 ? '' : 's'} remaining).</p>
+          <p>To continue enjoying all features, please upgrade to a PRO subscription before your trial ends.</p>
+          <p><a href="${upgradeUrl}" style="display: inline-block; padding: 12px 24px; background-color: #3b82f6; color: white; text-decoration: none; border-radius: 6px;">Upgrade Now</a></p>
+          <h3>What happens when your trial ends?</h3>
+          <ul>
+            <li>You'll be downgraded to the FREE tier</li>
+            <li>Advanced AI insights will be restricted</li>
+            <li>You'll still have read-only access to your data</li>
+          </ul>
+          <p>If you have any questions, please don't hesitate to reach out.</p>
+        `,
+      });
+
+      this.logger.log(`Trial warning email sent to ${email}`);
+    } catch (error) {
+      this.logger.error(`Failed to send trial warning email to ${email}: ${error.message}`);
+      throw new Error('Failed to send trial warning email');
+    }
+  }
 }

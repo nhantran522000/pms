@@ -4,6 +4,7 @@ export * from './application/services/trial-warning.service';
 export * from './application/services/webhook.service';
 export * from './application/services/branding.service';
 export * from './infrastructure/services/lemonsqueezy.service';
+export * from './infrastructure/middlewares/trial-expiry.middleware';
 export * from './presentation/controllers/trial.controller';
 export * from './presentation/controllers/webhook.controller';
 export * from './presentation/controllers/branding.controller';

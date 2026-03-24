@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PgBoss } from 'pg-boss';
 import { PrismaClient } from '@pms/data-access';
+import { EmailService } from '@pms/feature-auth';
 
 export const TRIAL_WARNING_JOB = 'trial-warning-email';
 
@@ -19,6 +20,7 @@ export class TrialWarningService {
   constructor(
     private readonly prisma: PrismaClient,
     private readonly configService: ConfigService,
+    private readonly emailService: EmailService,
   ) {
     this.frontendUrl = this.configService.get<string>('FRONTEND_URL', 'http://localhost:3000');
   }
@@ -114,39 +116,15 @@ export class TrialWarningService {
         Math.ceil((trialEndDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)),
       );
 
-      // Format trial end date
-      const trialEndDateFormatted = trialEndDate.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      });
-
-      // Generate upgrade URL
-      const upgradeUrl = `${this.frontendUrl}/settings/subscription?upgrade=trial`;
-
-      // In a real implementation, this would send an email via Resend
-      // For now, we log the email content
-      this.logger.log(
-        `[EMAIL MOCK] Trial warning email to ${user.email}`,
+      // Send trial warning email via EmailService
+      await this.emailService.sendTrialWarningEmail(
+        user.email,
+        user.name,
+        trialEndDate,
+        daysRemaining,
       );
-      this.logger.log(`[EMAIL MOCK] Subject: Your PMS trial expires in ${daysRemaining} day${daysRemaining === 1 ? '' : 's'}`);
-      this.logger.log(`[EMAIL MOCK] Body:
-        <h1>Your Trial is Ending Soon</h1>
-        <p>Hi ${user.name || 'there'},</p>
-        <p>Your PMS trial will expire on <strong>${trialEndDateFormatted}</strong> (${daysRemaining} day${daysRemaining === 1 ? '' : 's'} remaining).</p>
-        <p>To continue enjoying all features, please upgrade to a PRO subscription before your trial ends.</p>
-        <p><a href="${upgradeUrl}">Upgrade Now</a></p>
-        <h3>What happens when your trial ends?</h3>
-        <ul>
-          <li>You'll be downgraded to the FREE tier</li>
-          <li>Advanced AI insights will be restricted</li>
-          <li>You'll still have read-only access to your data</li>
-        </ul>
-        <p>If you have any questions, please don't hesitate to reach out.</p>
-      `);
 
-      // TODO: Implement actual email sending via EmailService
-      // For now, this is a mock implementation that logs the email content
+      this.logger.log(`Trial warning email sent to ${user.email} for tenant ${tenantId}`);
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       this.logger.error(`Failed to send trial warning email to tenant ${tenantId}: ${errorMessage}`);

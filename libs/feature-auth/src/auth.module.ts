@@ -40,6 +40,6 @@ import { SubscriptionModule } from '@pms/feature-subscription';
       useClass: JwtAuthGuard,
     },
   ],
-  exports: [AuthService],
+  exports: [AuthService, EmailService],
 })
 export class AuthModule {}
