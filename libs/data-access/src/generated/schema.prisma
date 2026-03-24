@@ -31,33 +31,39 @@ enum HobbyTrackingType {
 
 /// Tenant - Root entity for multi-tenancy
 model Tenant {
-  id                String             @id @default(cuid())
-  name              String
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
-  users             User[]
-  aiProviderConfigs AiProviderConfig[]
-  aiPromptCache     AiPromptCache[]
-  aiUsageLogs       AiUsageLog[]
-  categories        Category[]
-  accounts          Account[]
-  transactions      Transaction[]
-  budgetEnvelopes   BudgetEnvelope[]
-  recurringRules    RecurringRule[]
-  tasks             Task[]
-  habits            Habit[]
-  habitCompletions  HabitCompletion[]
-  userStats         UserStats?
-  achievements      Achievement[]
-  healthLogs        HealthLog[]
-  folders           Folder[]
-  tags              Tag[]
-  notes             Note[]
-  journalEntries    JournalEntry[]
-  hobbies           Hobby[]
-  hobbyLogs         HobbyLog[]
+  id                         String             @id @default(cuid())
+  name                       String
+  subscriptionTier           String             @default("FREE") @map("subscriptionTier")
+  trialEndDate               DateTime?          @map("trialEndDate")
+  branding                   Json? // TenantBranding: { primaryColor, appName, logoUrl }
+  lemonsqueezyCustomerId     String?            @map("lemonsqueezyCustomerId")
+  lemonsqueezySubscriptionId String?            @map("lemonsqueezySubscriptionId")
+  createdAt                  DateTime           @default(now())
+  updatedAt                  DateTime           @updatedAt
+  users                      User[]
+  aiProviderConfigs          AiProviderConfig[]
+  aiPromptCache              AiPromptCache[]
+  aiUsageLogs                AiUsageLog[]
+  categories                 Category[]
+  accounts                   Account[]
+  transactions               Transaction[]
+  budgetEnvelopes            BudgetEnvelope[]
+  recurringRules             RecurringRule[]
+  tasks                      Task[]
+  habits                     Habit[]
+  habitCompletions           HabitCompletion[]
+  userStats                  UserStats?
+  achievements               Achievement[]
+  healthLogs                 HealthLog[]
+  folders                    Folder[]
+  tags                       Tag[]
+  notes                      Note[]
+  journalEntries             JournalEntry[]
+  hobbies                    Hobby[]
+  hobbyLogs                  HobbyLog[]
 
   @@index([name])
+  @@index([subscriptionTier])
   @@map("tenants")
 }
 

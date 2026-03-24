@@ -123,6 +123,11 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.TenantScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  subscriptionTier: 'subscriptionTier',
+  trialEndDate: 'trialEndDate',
+  branding: 'branding',
+  lemonsqueezyCustomerId: 'lemonsqueezyCustomerId',
+  lemonsqueezySubscriptionId: 'lemonsqueezySubscriptionId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -423,14 +428,23 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
-exports.Prisma.TenantOrderByRelevanceFieldEnum = {
-  id: 'id',
-  name: 'name'
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.TenantOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  subscriptionTier: 'subscriptionTier',
+  lemonsqueezyCustomerId: 'lemonsqueezyCustomerId',
+  lemonsqueezySubscriptionId: 'lemonsqueezySubscriptionId'
 };
 
 exports.Prisma.UserOrderByRelevanceFieldEnum = {
@@ -441,12 +455,6 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   verificationToken: 'verificationToken',
   passwordResetToken: 'passwordResetToken',
   tenantId: 'tenantId'
-};
-
-exports.Prisma.JsonNullValueFilter = {
-  DbNull: Prisma.DbNull,
-  JsonNull: Prisma.JsonNull,
-  AnyNull: Prisma.AnyNull
 };
 
 exports.Prisma.AiProviderConfigOrderByRelevanceFieldEnum = {

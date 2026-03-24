@@ -9,6 +9,7 @@ import { TrialWarningJob } from './infrastructure/jobs/trial-warning.job';
 import { TrialController } from './presentation/controllers/trial.controller';
 import { WebhookController } from './presentation/controllers/webhook.controller';
 import { BrandingController } from './presentation/controllers/branding.controller';
+import { PlanFeatureGuard } from './presentation/guards/plan-feature.guard';
 import { PrismaModule } from '@pms/data-access';
 
 @Module({
@@ -20,6 +21,7 @@ import { PrismaModule } from '@pms/data-access';
     WebhookService,
     LemonSqueezyService,
     BrandingService,
+    PlanFeatureGuard,
   ],
   exports: [
     TrialService,
@@ -27,6 +29,7 @@ import { PrismaModule } from '@pms/data-access';
     WebhookService,
     LemonSqueezyService,
     BrandingService,
+    PlanFeatureGuard,
   ],
   controllers: [TrialController, WebhookController, BrandingController],
 })

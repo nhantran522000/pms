@@ -7,6 +7,8 @@ export * from './infrastructure/services/lemonsqueezy.service';
 export * from './presentation/controllers/trial.controller';
 export * from './presentation/controllers/webhook.controller';
 export * from './presentation/controllers/branding.controller';
+export * from './presentation/guards/plan-feature.guard';
+export * from './presentation/decorators/require-plan.decorator';
 export * from './domain/enums/subscription-tier.enum';
 export * from './domain/entities/subscription.entity';
 export * from './domain/entities/webhook-event.entity';

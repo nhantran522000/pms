@@ -3458,6 +3458,10 @@ export namespace Prisma {
   export type TenantMinAggregateOutputType = {
     id: string | null
     name: string | null
+    subscriptionTier: string | null
+    trialEndDate: Date | null
+    lemonsqueezyCustomerId: string | null
+    lemonsqueezySubscriptionId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3465,6 +3469,10 @@ export namespace Prisma {
   export type TenantMaxAggregateOutputType = {
     id: string | null
     name: string | null
+    subscriptionTier: string | null
+    trialEndDate: Date | null
+    lemonsqueezyCustomerId: string | null
+    lemonsqueezySubscriptionId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3472,6 +3480,11 @@ export namespace Prisma {
   export type TenantCountAggregateOutputType = {
     id: number
     name: number
+    subscriptionTier: number
+    trialEndDate: number
+    branding: number
+    lemonsqueezyCustomerId: number
+    lemonsqueezySubscriptionId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -3481,6 +3494,10 @@ export namespace Prisma {
   export type TenantMinAggregateInputType = {
     id?: true
     name?: true
+    subscriptionTier?: true
+    trialEndDate?: true
+    lemonsqueezyCustomerId?: true
+    lemonsqueezySubscriptionId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3488,6 +3505,10 @@ export namespace Prisma {
   export type TenantMaxAggregateInputType = {
     id?: true
     name?: true
+    subscriptionTier?: true
+    trialEndDate?: true
+    lemonsqueezyCustomerId?: true
+    lemonsqueezySubscriptionId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3495,6 +3516,11 @@ export namespace Prisma {
   export type TenantCountAggregateInputType = {
     id?: true
     name?: true
+    subscriptionTier?: true
+    trialEndDate?: true
+    branding?: true
+    lemonsqueezyCustomerId?: true
+    lemonsqueezySubscriptionId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3575,6 +3601,11 @@ export namespace Prisma {
   export type TenantGroupByOutputType = {
     id: string
     name: string
+    subscriptionTier: string
+    trialEndDate: Date | null
+    branding: JsonValue | null
+    lemonsqueezyCustomerId: string | null
+    lemonsqueezySubscriptionId: string | null
     createdAt: Date
     updatedAt: Date
     _count: TenantCountAggregateOutputType | null
@@ -3599,6 +3630,11 @@ export namespace Prisma {
   export type TenantSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    subscriptionTier?: boolean
+    trialEndDate?: boolean
+    branding?: boolean
+    lemonsqueezyCustomerId?: boolean
+    lemonsqueezySubscriptionId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     users?: boolean | Tenant$usersArgs<ExtArgs>
@@ -3628,6 +3664,11 @@ export namespace Prisma {
   export type TenantSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    subscriptionTier?: boolean
+    trialEndDate?: boolean
+    branding?: boolean
+    lemonsqueezyCustomerId?: boolean
+    lemonsqueezySubscriptionId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["tenant"]>
@@ -3635,6 +3676,11 @@ export namespace Prisma {
   export type TenantSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    subscriptionTier?: boolean
+    trialEndDate?: boolean
+    branding?: boolean
+    lemonsqueezyCustomerId?: boolean
+    lemonsqueezySubscriptionId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["tenant"]>
@@ -3642,11 +3688,16 @@ export namespace Prisma {
   export type TenantSelectScalar = {
     id?: boolean
     name?: boolean
+    subscriptionTier?: boolean
+    trialEndDate?: boolean
+    branding?: boolean
+    lemonsqueezyCustomerId?: boolean
+    lemonsqueezySubscriptionId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TenantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["tenant"]>
+  export type TenantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "subscriptionTier" | "trialEndDate" | "branding" | "lemonsqueezyCustomerId" | "lemonsqueezySubscriptionId" | "createdAt" | "updatedAt", ExtArgs["result"]["tenant"]>
   export type TenantInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | Tenant$usersArgs<ExtArgs>
     aiProviderConfigs?: boolean | Tenant$aiProviderConfigsArgs<ExtArgs>
@@ -3702,6 +3753,11 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
+      subscriptionTier: string
+      trialEndDate: Date | null
+      branding: Prisma.JsonValue | null
+      lemonsqueezyCustomerId: string | null
+      lemonsqueezySubscriptionId: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["tenant"]>
@@ -4150,6 +4206,11 @@ export namespace Prisma {
   interface TenantFieldRefs {
     readonly id: FieldRef<"Tenant", 'String'>
     readonly name: FieldRef<"Tenant", 'String'>
+    readonly subscriptionTier: FieldRef<"Tenant", 'String'>
+    readonly trialEndDate: FieldRef<"Tenant", 'DateTime'>
+    readonly branding: FieldRef<"Tenant", 'Json'>
+    readonly lemonsqueezyCustomerId: FieldRef<"Tenant", 'String'>
+    readonly lemonsqueezySubscriptionId: FieldRef<"Tenant", 'String'>
     readonly createdAt: FieldRef<"Tenant", 'DateTime'>
     readonly updatedAt: FieldRef<"Tenant", 'DateTime'>
   }
@@ -30703,6 +30764,11 @@ export namespace Prisma {
   export const TenantScalarFieldEnum: {
     id: 'id',
     name: 'name',
+    subscriptionTier: 'subscriptionTier',
+    trialEndDate: 'trialEndDate',
+    branding: 'branding',
+    lemonsqueezyCustomerId: 'lemonsqueezyCustomerId',
+    lemonsqueezySubscriptionId: 'lemonsqueezySubscriptionId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -31084,12 +31150,13 @@ export namespace Prisma {
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
-  export const TenantOrderByRelevanceFieldEnum: {
-    id: 'id',
-    name: 'name'
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
   };
 
-  export type TenantOrderByRelevanceFieldEnum = (typeof TenantOrderByRelevanceFieldEnum)[keyof typeof TenantOrderByRelevanceFieldEnum]
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   export const NullsOrder: {
@@ -31098,6 +31165,17 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const TenantOrderByRelevanceFieldEnum: {
+    id: 'id',
+    name: 'name',
+    subscriptionTier: 'subscriptionTier',
+    lemonsqueezyCustomerId: 'lemonsqueezyCustomerId',
+    lemonsqueezySubscriptionId: 'lemonsqueezySubscriptionId'
+  };
+
+  export type TenantOrderByRelevanceFieldEnum = (typeof TenantOrderByRelevanceFieldEnum)[keyof typeof TenantOrderByRelevanceFieldEnum]
 
 
   export const UserOrderByRelevanceFieldEnum: {
@@ -31111,15 +31189,6 @@ export namespace Prisma {
   };
 
   export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
-
-
-  export const JsonNullValueFilter: {
-    DbNull: typeof DbNull,
-    JsonNull: typeof JsonNull,
-    AnyNull: typeof AnyNull
-  };
-
-  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   export const AiProviderConfigOrderByRelevanceFieldEnum: {
@@ -31383,6 +31452,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
@@ -31400,20 +31483,6 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Json'
-   */
-  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-  /**
-   * Reference to a field of type 'QueryMode'
-   */
-  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -31482,6 +31551,11 @@ export namespace Prisma {
     NOT?: TenantWhereInput | TenantWhereInput[]
     id?: StringFilter<"Tenant"> | string
     name?: StringFilter<"Tenant"> | string
+    subscriptionTier?: StringFilter<"Tenant"> | string
+    trialEndDate?: DateTimeNullableFilter<"Tenant"> | Date | string | null
+    branding?: JsonNullableFilter<"Tenant">
+    lemonsqueezyCustomerId?: StringNullableFilter<"Tenant"> | string | null
+    lemonsqueezySubscriptionId?: StringNullableFilter<"Tenant"> | string | null
     createdAt?: DateTimeFilter<"Tenant"> | Date | string
     updatedAt?: DateTimeFilter<"Tenant"> | Date | string
     users?: UserListRelationFilter
@@ -31510,6 +31584,11 @@ export namespace Prisma {
   export type TenantOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    subscriptionTier?: SortOrder
+    trialEndDate?: SortOrderInput | SortOrder
+    branding?: SortOrderInput | SortOrder
+    lemonsqueezyCustomerId?: SortOrderInput | SortOrder
+    lemonsqueezySubscriptionId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     users?: UserOrderByRelationAggregateInput
@@ -31542,6 +31621,11 @@ export namespace Prisma {
     OR?: TenantWhereInput[]
     NOT?: TenantWhereInput | TenantWhereInput[]
     name?: StringFilter<"Tenant"> | string
+    subscriptionTier?: StringFilter<"Tenant"> | string
+    trialEndDate?: DateTimeNullableFilter<"Tenant"> | Date | string | null
+    branding?: JsonNullableFilter<"Tenant">
+    lemonsqueezyCustomerId?: StringNullableFilter<"Tenant"> | string | null
+    lemonsqueezySubscriptionId?: StringNullableFilter<"Tenant"> | string | null
     createdAt?: DateTimeFilter<"Tenant"> | Date | string
     updatedAt?: DateTimeFilter<"Tenant"> | Date | string
     users?: UserListRelationFilter
@@ -31570,6 +31654,11 @@ export namespace Prisma {
   export type TenantOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    subscriptionTier?: SortOrder
+    trialEndDate?: SortOrderInput | SortOrder
+    branding?: SortOrderInput | SortOrder
+    lemonsqueezyCustomerId?: SortOrderInput | SortOrder
+    lemonsqueezySubscriptionId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: TenantCountOrderByAggregateInput
@@ -31583,6 +31672,11 @@ export namespace Prisma {
     NOT?: TenantScalarWhereWithAggregatesInput | TenantScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Tenant"> | string
     name?: StringWithAggregatesFilter<"Tenant"> | string
+    subscriptionTier?: StringWithAggregatesFilter<"Tenant"> | string
+    trialEndDate?: DateTimeNullableWithAggregatesFilter<"Tenant"> | Date | string | null
+    branding?: JsonNullableWithAggregatesFilter<"Tenant">
+    lemonsqueezyCustomerId?: StringNullableWithAggregatesFilter<"Tenant"> | string | null
+    lemonsqueezySubscriptionId?: StringNullableWithAggregatesFilter<"Tenant"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Tenant"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Tenant"> | Date | string
   }
@@ -33448,6 +33542,11 @@ export namespace Prisma {
   export type TenantCreateInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -33476,6 +33575,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -33504,6 +33608,11 @@ export namespace Prisma {
   export type TenantUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -33532,6 +33641,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -33560,6 +33674,11 @@ export namespace Prisma {
   export type TenantCreateManyInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -33567,6 +33686,11 @@ export namespace Prisma {
   export type TenantUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -33574,6 +33698,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -35523,6 +35652,56 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -35659,6 +35838,11 @@ export namespace Prisma {
     none?: HobbyLogWhereInput
   }
 
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type UserOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -35748,6 +35932,11 @@ export namespace Prisma {
   export type TenantCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    subscriptionTier?: SortOrder
+    trialEndDate?: SortOrder
+    branding?: SortOrder
+    lemonsqueezyCustomerId?: SortOrder
+    lemonsqueezySubscriptionId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -35755,6 +35944,10 @@ export namespace Prisma {
   export type TenantMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    subscriptionTier?: SortOrder
+    trialEndDate?: SortOrder
+    lemonsqueezyCustomerId?: SortOrder
+    lemonsqueezySubscriptionId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -35762,6 +35955,10 @@ export namespace Prisma {
   export type TenantMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    subscriptionTier?: SortOrder
+    trialEndDate?: SortOrder
+    lemonsqueezyCustomerId?: SortOrder
+    lemonsqueezySubscriptionId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -35785,6 +35982,65 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -35799,46 +36055,14 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type TenantScalarRelationFilter = {
     is?: TenantWhereInput
     isNot?: TenantWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type UserOrderByRelevanceInput = {
@@ -35892,45 +36116,12 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -35942,29 +36133,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
-  }
-  export type JsonNullableFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonNullableFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type AiProviderConfigOrderByRelevanceInput = {
@@ -36029,32 +36197,6 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
-  }
-  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedJsonNullableFilter<$PrismaModel>
-    _max?: NestedJsonNullableFilter<$PrismaModel>
   }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -37610,6 +37752,14 @@ export namespace Prisma {
     set?: string
   }
 
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
@@ -38192,16 +38342,8 @@ export namespace Prisma {
     connect?: TenantWhereUniqueInput
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
   }
 
   export type TenantUpdateOneRequiredWithoutUsersNestedInput = {
@@ -39363,6 +39505,32 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -39403,41 +39571,7 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -39445,7 +39579,44 @@ export namespace Prisma {
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -39466,15 +39637,23 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -39483,20 +39662,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -39524,29 +39689,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
-  }
-  export type NestedJsonNullableFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonNullableFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
-
-  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -41063,6 +41205,11 @@ export namespace Prisma {
   export type TenantCreateWithoutUsersInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     aiProviderConfigs?: AiProviderConfigCreateNestedManyWithoutTenantInput
@@ -41090,6 +41237,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutUsersInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     aiProviderConfigs?: AiProviderConfigUncheckedCreateNestedManyWithoutTenantInput
@@ -41133,6 +41285,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     aiProviderConfigs?: AiProviderConfigUpdateManyWithoutTenantNestedInput
@@ -41160,6 +41317,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     aiProviderConfigs?: AiProviderConfigUncheckedUpdateManyWithoutTenantNestedInput
@@ -41187,6 +41349,11 @@ export namespace Prisma {
   export type TenantCreateWithoutAiProviderConfigsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -41214,6 +41381,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutAiProviderConfigsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -41257,6 +41429,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutAiProviderConfigsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -41284,6 +41461,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutAiProviderConfigsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -41311,6 +41493,11 @@ export namespace Prisma {
   export type TenantCreateWithoutAiPromptCacheInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -41338,6 +41525,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutAiPromptCacheInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -41381,6 +41573,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutAiPromptCacheInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -41408,6 +41605,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutAiPromptCacheInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -41435,6 +41637,11 @@ export namespace Prisma {
   export type TenantCreateWithoutAiUsageLogsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -41462,6 +41669,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutAiUsageLogsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -41505,6 +41717,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutAiUsageLogsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -41532,6 +41749,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutAiUsageLogsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -41638,6 +41860,11 @@ export namespace Prisma {
   export type TenantCreateWithoutCategoriesInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -41665,6 +41892,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutCategoriesInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -41899,6 +42131,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutCategoriesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -41926,6 +42163,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutCategoriesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -42001,6 +42243,11 @@ export namespace Prisma {
   export type TenantCreateWithoutAccountsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -42028,6 +42275,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutAccountsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -42203,6 +42455,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutAccountsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -42230,6 +42487,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutAccountsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -42430,6 +42692,11 @@ export namespace Prisma {
   export type TenantCreateWithoutTransactionsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -42457,6 +42724,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutTransactionsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -42643,6 +42915,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutTransactionsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -42670,6 +42947,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutTransactionsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -42771,6 +43053,11 @@ export namespace Prisma {
   export type TenantCreateWithoutBudgetEnvelopesInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -42798,6 +43085,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutBudgetEnvelopesInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -42927,6 +43219,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutBudgetEnvelopesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -42954,6 +43251,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutBudgetEnvelopesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -43055,6 +43357,11 @@ export namespace Prisma {
   export type TenantCreateWithoutRecurringRulesInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -43082,6 +43389,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutRecurringRulesInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -43253,6 +43565,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutRecurringRulesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -43280,6 +43597,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutRecurringRulesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -43402,6 +43724,11 @@ export namespace Prisma {
   export type TenantCreateWithoutTasksInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -43429,6 +43756,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutTasksInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -43531,6 +43863,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutTasksInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -43558,6 +43895,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutTasksInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -43585,6 +43927,11 @@ export namespace Prisma {
   export type TenantCreateWithoutHabitsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -43612,6 +43959,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutHabitsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -43685,6 +44037,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutHabitsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -43712,6 +44069,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutHabitsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -43792,6 +44154,11 @@ export namespace Prisma {
   export type TenantCreateWithoutHabitCompletionsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -43819,6 +44186,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutHabitCompletionsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -43905,6 +44277,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutHabitCompletionsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -43932,6 +44309,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutHabitCompletionsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -43959,6 +44341,11 @@ export namespace Prisma {
   export type TenantCreateWithoutUserStatsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -43986,6 +44373,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutUserStatsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -44061,6 +44453,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutUserStatsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -44088,6 +44485,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutUserStatsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -44158,6 +44560,11 @@ export namespace Prisma {
   export type TenantCreateWithoutAchievementsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -44185,6 +44592,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutAchievementsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -44261,6 +44673,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutAchievementsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -44288,6 +44705,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutAchievementsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -44315,6 +44737,11 @@ export namespace Prisma {
   export type TenantCreateWithoutHealthLogsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -44342,6 +44769,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutHealthLogsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -44385,6 +44817,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutHealthLogsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -44412,6 +44849,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutHealthLogsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -44439,6 +44881,11 @@ export namespace Prisma {
   export type TenantCreateWithoutHobbiesInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -44466,6 +44913,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutHobbiesInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -44541,6 +44993,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutHobbiesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -44568,6 +45025,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutHobbiesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -44642,6 +45104,11 @@ export namespace Prisma {
   export type TenantCreateWithoutHobbyLogsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -44669,6 +45136,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutHobbyLogsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -44749,6 +45221,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutHobbyLogsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -44776,6 +45253,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutHobbyLogsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -44803,6 +45285,11 @@ export namespace Prisma {
   export type TenantCreateWithoutFoldersInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -44830,6 +45317,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutFoldersInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -44873,6 +45365,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutFoldersInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -44900,6 +45397,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutFoldersInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -44937,6 +45439,11 @@ export namespace Prisma {
   export type TenantCreateWithoutTagsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -44964,6 +45471,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutTagsInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -45025,6 +45537,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutTagsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -45052,6 +45569,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutTagsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -45103,6 +45625,11 @@ export namespace Prisma {
   export type TenantCreateWithoutNotesInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -45130,6 +45657,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutNotesInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -45173,6 +45705,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutNotesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -45200,6 +45737,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutNotesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput
@@ -45380,6 +45922,11 @@ export namespace Prisma {
   export type TenantCreateWithoutJournalEntriesInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutTenantInput
@@ -45407,6 +45954,11 @@ export namespace Prisma {
   export type TenantUncheckedCreateWithoutJournalEntriesInput = {
     id?: string
     name: string
+    subscriptionTier?: string
+    trialEndDate?: Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: string | null
+    lemonsqueezySubscriptionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutTenantInput
@@ -45450,6 +46002,11 @@ export namespace Prisma {
   export type TenantUpdateWithoutJournalEntriesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutTenantNestedInput
@@ -45477,6 +46034,11 @@ export namespace Prisma {
   export type TenantUncheckedUpdateWithoutJournalEntriesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    subscriptionTier?: StringFieldUpdateOperationsInput | string
+    trialEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    branding?: NullableJsonNullValueInput | InputJsonValue
+    lemonsqueezyCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    lemonsqueezySubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutTenantNestedInput

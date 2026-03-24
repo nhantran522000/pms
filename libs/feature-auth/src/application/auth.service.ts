@@ -9,6 +9,7 @@ import { Password } from '../domain/value-objects/password.vo';
 import { UserEntity } from '../domain/entities/user.entity';
 import { SignupDto, LoginDto, VerifyEmailDto, ForgotPasswordDto, ResetPasswordDto } from '@pms/shared-types';
 import { AuthResponse, JwtPayload } from './dto/auth.dto';
+import { TrialService } from '@pms/feature-subscription';
 
 @Injectable()
 export class AuthService {
@@ -21,6 +22,7 @@ export class AuthService {
     private readonly emailService: EmailService,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
+    private readonly trialService: TrialService,
   ) {
     // JWT expires in 7 days (per CONTEXT.md decision)
     this.jwtExpiration = 7 * 24 * 60 * 60; // 7 days in seconds
@@ -41,6 +43,9 @@ export class AuthService {
       randomUUID(),
       `${dto.email}'s Workspace`,
     );
+
+    // Initialize 30-day trial for new tenant
+    await this.trialService.initializeTrial(tenant.id);
 
     // Create user with verification token
     const verificationToken = randomUUID();

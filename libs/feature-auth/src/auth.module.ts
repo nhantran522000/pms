@@ -11,10 +11,12 @@ import { APP_GUARD } from '@nestjs/core';
 import { PrismaModule } from '@pms/data-access';
 import { UserRepository } from './infrastructure/repositories/user.repository';
 import { TenantRepository } from './infrastructure/repositories/tenant.repository';
+import { SubscriptionModule } from '@pms/feature-subscription';
 
 @Module({
   imports: [
     PrismaModule,
+    SubscriptionModule,
     PassportModule,
     JwtModule.registerAsync({
       inject: [ConfigService],
