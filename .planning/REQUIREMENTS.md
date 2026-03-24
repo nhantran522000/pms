@@ -119,7 +119,7 @@
 
 ### Web Client (Next.js)
 
-- [ ] **WEB-01**: Static export build (no SSR server process)
+- [x] **WEB-01**: Static export build (no SSR server process)
 - [x] **WEB-02**: Responsive dashboard with module navigation
 - [ ] **WEB-03**: TanStack Query for server state management
 - [ ] **WEB-04**: shadcn/ui components with Tailwind styling
@@ -269,7 +269,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SAAS-06 | Phase 8 | Complete |
 | SAAS-07 | Phase 8 | Complete |
 | SAAS-08 | Phase 8 | Complete |
-| WEB-01 | Phase 9 | Pending |
+| WEB-01 | Phase 9 | Complete |
 | WEB-02 | Phase 9 | Complete |
 | WEB-03 | Phase 9 | Pending |
 | WEB-04 | Phase 9 | Pending |
