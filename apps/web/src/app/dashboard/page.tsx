@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect } from 'react';
 import { DashboardLayout } from '@/components/DashboardLayout';
 import { ModuleCard } from '@/components/ModuleCard';
 import { getModuleNavItems } from '@/lib/navigation';
@@ -17,6 +20,7 @@ import { useNotes } from '@/hooks/useNotesData';
 import { useHobbyDashboard } from '@/hooks/useHobbiesData';
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useToast } from '@/components/ui/use-toast';
 
 /**
  * Dashboard page with cross-module summary
@@ -56,6 +60,8 @@ function SkeletonCard() {
 }
 
 export default function DashboardPage() {
+  const { toast } = useToast();
+
   // Fetch real data from all modules using TanStack Query hooks
   const { data: balanceData, isLoading: balanceLoading, error: balanceError } = useTotalBalance();
   const { data: habits, isLoading: habitsLoading, error: habitsError } = useHabitsForToday();
@@ -64,6 +70,67 @@ export default function DashboardPage() {
   const { data: healthDashboard, isLoading: healthLoading, error: healthError } = useHealthDashboard();
   const { data: notes, isLoading: notesLoading, error: notesError } = useNotes();
   const { data: hobbiesDashboard, isLoading: hobbiesLoading, error: hobbiesError } = useHobbyDashboard();
+
+  // Show toast notifications for errors
+  useEffect(() => {
+    if (balanceError) {
+      toast({
+        title: 'Error loading financial data',
+        description: balanceError instanceof Error ? balanceError.message : 'Unknown error',
+        variant: 'destructive',
+      });
+    }
+  }, [balanceError, toast]);
+
+  useEffect(() => {
+    if (habitsError) {
+      toast({
+        title: 'Error loading habits data',
+        description: habitsError instanceof Error ? habitsError.message : 'Unknown error',
+        variant: 'destructive',
+      });
+    }
+  }, [habitsError, toast]);
+
+  useEffect(() => {
+    if (tasksError) {
+      toast({
+        title: 'Error loading tasks data',
+        description: tasksError instanceof Error ? tasksError.message : 'Unknown error',
+        variant: 'destructive',
+      });
+    }
+  }, [tasksError, toast]);
+
+  useEffect(() => {
+    if (healthError) {
+      toast({
+        title: 'Error loading health data',
+        description: healthError instanceof Error ? healthError.message : 'Unknown error',
+        variant: 'destructive',
+      });
+    }
+  }, [healthError, toast]);
+
+  useEffect(() => {
+    if (notesError) {
+      toast({
+        title: 'Error loading notes data',
+        description: notesError instanceof Error ? notesError.message : 'Unknown error',
+        variant: 'destructive',
+      });
+    }
+  }, [notesError, toast]);
+
+  useEffect(() => {
+    if (hobbiesError) {
+      toast({
+        title: 'Error loading hobbies data',
+        description: hobbiesError instanceof Error ? hobbiesError.message : 'Unknown error',
+        variant: 'destructive',
+      });
+    }
+  }, [hobbiesError, toast]);
 
   // Calculate metrics from real data
   const moduleMetrics = {
