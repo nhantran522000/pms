@@ -99,11 +99,11 @@
 
 ### Hobbies Module
 
-- [ ] **HOBB-01**: User can create hobbies with name, tracking type (counter, percentage, list)
+- [x] **HOBB-01**: User can create hobbies with name, tracking type (counter, percentage, list)
 - [ ] **HOBB-02**: User can log hobby progress (increment counter, set percentage, add list item)
 - [ ] **HOBB-03**: User can view hobby progress over time
 - [ ] **HOBB-04**: System generates hobby progress insights
-- [ ] **HOBB-05**: User can set hobby goals (target counter, target percentage)
+- [x] **HOBB-05**: User can set hobby goals (target counter, target percentage)
 - [ ] **HOBB-06**: Dashboard shows hobby completion percentage
 
 ### SaaS & Subscription
@@ -255,11 +255,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | NOTE-06 | Phase 6 | Complete |
 | NOTE-07 | Phase 6 | Pending |
 | NOTE-08 | Phase 6 | Pending |
-| HOBB-01 | Phase 7 | Pending |
+| HOBB-01 | Phase 7 | Complete |
 | HOBB-02 | Phase 7 | Pending |
 | HOBB-03 | Phase 7 | Pending |
 | HOBB-04 | Phase 7 | Pending |
-| HOBB-05 | Phase 7 | Pending |
+| HOBB-05 | Phase 7 | Complete |
 | HOBB-06 | Phase 7 | Pending |
 | SAAS-01 | Phase 8 | Pending |
 | SAAS-02 | Phase 8 | Pending |
