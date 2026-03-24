@@ -206,7 +206,7 @@ Plans:
 - [x] 09-03: TanStack Query integration with shared data-access hooks
 - [x] 09-04: shadcn/ui components and Tailwind styling
 - [ ] 09-05: Recharts integration for data visualization
-- [ ] 09-06: Dark/light theme toggle with persistence
+- [x] 09-06: Dark/light theme toggle with persistence
 - [ ] 09-07: PWA manifest for installable web app
 
 ### Phase 10: Mobile Client
@@ -283,7 +283,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 6. Notes & Journal | 5/5 | Complete | 2026-03-24 |
 | 7. Hobbies | 6/6 | Complete | 2026-03-24 |
 | 8. SaaS Subscription | 5/5 | Complete | 2026-03-24 |
-| 9. Web Client | 0/7 | Not started | - |
+| 9. Web Client | 5/7 | In Progress|  |
 | 10. Mobile Client | 0/6 | Not started | - |
 | 11. Desktop Client | 0/5 | Not started | - |
 | 12. Backup & Operations | 0/6 | Not started | - |

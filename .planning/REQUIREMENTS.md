@@ -124,7 +124,7 @@
 - [x] **WEB-03**: TanStack Query for server state management
 - [x] **WEB-04**: shadcn/ui components with Tailwind styling
 - [ ] **WEB-05**: Recharts for data visualization
-- [ ] **WEB-06**: Dark/light theme toggle
+- [x] **WEB-06**: Dark/light theme toggle
 - [ ] **WEB-07**: PWA manifest for installable web app
 
 ### Mobile Client (Expo)
@@ -274,7 +274,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | WEB-03 | Phase 9 | Complete |
 | WEB-04 | Phase 9 | Complete |
 | WEB-05 | Phase 9 | Pending |
-| WEB-06 | Phase 9 | Pending |
+| WEB-06 | Phase 9 | Complete |
 | WEB-07 | Phase 9 | Pending |
 | MOB-01 | Phase 10 | Pending |
 | MOB-02 | Phase 10 | Pending |
