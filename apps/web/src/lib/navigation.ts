@@ -23,7 +23,7 @@ export const navigationItems: NavigationItem[] = [
   {
     name: 'Habits',
     href: '/habits',
-    icon: require('lucide-react').CheckSquare2,
+    icon: require('lucide-react').CheckSquare,
     description: 'Track habits and build streaks',
     domain: 'Habits & Tasks',
   },

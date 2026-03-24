@@ -6,7 +6,7 @@ import { ModuleCard } from '@/components/ModuleCard';
 import { getModuleNavItems } from '@/lib/navigation';
 import {
   DollarSign,
-  CheckSquare2,
+  CheckSquare,
   ListTodo,
   Heart,
   FileText,
@@ -236,7 +236,7 @@ export default function DashboardPage() {
 
   const iconMap = {
     DollarSign,
-    CheckSquare2,
+    CheckSquare,
     ListTodo,
     Heart,
     FileText,
