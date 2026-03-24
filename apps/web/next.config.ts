@@ -1,5 +1,5 @@
 import type { NextConfig } from 'next';
-import { composePlugins, withNx } from '@nx/next/plugins/with-nx';
+import { withNx } from '@nx/next/plugins/with-nx';
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
@@ -21,9 +21,4 @@ const nextConfig: NextConfig = {
   nx: {},
 };
 
-const plugins = [
-  // Add more Next.js plugins to this list if needed.
-  withNx,
-];
-
-export default composePlugins(...plugins)(nextConfig);
+export default withNx(nextConfig);
