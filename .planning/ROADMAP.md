@@ -12,14 +12,14 @@ The PMS Ecosystem roadmap builds a unified personal data platform with AI-powere
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Multi-tenancy, auth, Nx monorepo, NestJS skeleton, shared libraries
-- [ ] **Phase 2: AI Gateway** - Circuit breaker, caching, Groq/Gemini integration, token budgeting
-- [ ] **Phase 3: Financial Module** - Transactions, categories, accounts, budgets, recurring rules, AI categorization
-- [ ] **Phase 4: Habits & Tasks** - Habit tracking, streaks, RPG gamification, NL task parsing, subtasks
-- [ ] **Phase 5: Health Module** - Weight, vitals, sleep, workouts, charts, AI weekly digest
-- [ ] **Phase 6: Notes & Journal** - Tiptap editor, search, tags, journal, mood tracking, auto-save
+- [x] **Phase 1: Foundation** - Multi-tenancy, auth, Nx monorepo, NestJS skeleton, shared libraries (completed 2026-03-22)
+- [x] **Phase 2: AI Gateway** - Circuit breaker, caching, Groq/Gemini integration, token budgeting (completed 2026-03-22)
+- [x] **Phase 3: Financial Module** - Transactions, categories, accounts, budgets, recurring rules, AI categorization (completed 2026-03-23)
+- [x] **Phase 4: Habits & Tasks** - Habit tracking, streaks, RPG gamification, NL task parsing, subtasks (completed 2026-03-23)
+- [x] **Phase 5: Health Module** - Weight, vitals, sleep, workouts, charts, AI weekly digest (completed 2026-03-23)
+- [x] **Phase 6: Notes & Journal** - Tiptap editor, search, tags, journal, mood tracking, auto-save (completed 2026-03-24)
 - [x] **Phase 7: Hobbies** - Flexible tracking, goals, insights, progress visualization (completed 2026-03-24)
-- [ ] **Phase 8: SaaS Subscription** - LemonSqueezy, trial management, plan guards, branding
+- [x] **Phase 8: SaaS Subscription** - LemonSqueezy, trial management, plan guards, branding (completed 2026-03-24)
 - [ ] **Phase 9: Web Client** - Next.js static, dashboard, TanStack Query, shadcn/ui, PWA
 - [ ] **Phase 10: Mobile Client** - Expo, NativeWind, offline queue, shared hooks
 - [ ] **Phase 11: Desktop Client** - Tauri wrapping Next.js, native menus, auto-update
@@ -37,15 +37,16 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Nx workspace enforces module boundaries via ESLint tags (no violations across type/domain/layer)
   4. Docker Compose stack runs on 8 GB VPS with memory tuning (PostgreSQL config, Node heap limits, swap)
   5. Shared libraries structure exists (shared-kernel, shared-types, data-access, ui-web, ui-mobile)
-**Plans**: 6 plans
+**Plans**: 7 plans
 
 Plans:
-- [x] 01-01: Nx workspace initialization with module boundaries and shared libraries
-- [ ] 01-02: Docker Compose with PostgreSQL 17, Caddy, and memory tuning
-- [ ] 01-03: NestJS API skeleton with Fastify and Prisma 7.3
-- [ ] 01-04: PostgreSQL RLS policies on all tables with tenant context middleware
-- [ ] 01-05: JWT authentication with email verification and password reset
-- [ ] 01-06: Pino logging with correlation ID middleware
+- [x] 01-PLAN-01: Nx workspace initialization with module boundaries and shared libraries
+- [x] 01-PLAN-02: Docker Compose with PostgreSQL 17, Caddy, and memory tuning
+- [x] 01-PLAN-03: NestJS API skeleton with Fastify and Prisma 7.3
+- [x] 01-PLAN-04: PostgreSQL RLS policies on all tables with tenant context middleware
+- [x] 01-PLAN-05: Auth domain entities, value objects, and repositories
+- [x] 01-PLAN-06: JWT authentication strategy, guards, and decorators
+- [x] 01-PLAN-07: Auth HTTP endpoints gap closure (Fastify adapter compatibility)
 
 ### Phase 2: AI Gateway
 **Goal**: Unified AI service with circuit breaker, caching, multi-provider support, and token budgeting
@@ -158,7 +159,7 @@ Plans:
   3. User can view hobby progress over time with charts
   4. System generates hobby progress insights
   5. User can set hobby goals (target counter, target percentage) and view completion percentage on dashboard
-**Plans:** 5/6 plans complete (1 gap closure plan)
+**Plans:** 6 plans (including gap closure)
 
 Plans:
 - [x] 07-01-PLAN.md — Prisma schema, Zod DTOs for Hobby/HobbyLog with tracking types and goals
@@ -181,10 +182,10 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 08-01: Subscription domain module with trial management (30-day automatic trial, trial end date tracking)
+- [x] 08-01: Subscription domain module with trial management (30-day automatic trial, trial end date tracking)
 - [x] 08-02: LemonSqueezy webhook handlers with idempotency (duplicate handling, event ordering)
 - [x] 08-03: Trial expiry warning email (Day 27) and free tier restriction (Day 30)
-- [ ] 08-04: PlanFeatureGuard decorator for restricting gated endpoints
+- [x] 08-04: PlanFeatureGuard decorator for restricting gated endpoints
 - [x] 08-05: Tenant branding as JSONB (primaryColor, appName, logoUrl)
 
 ### Phase 9: Web Client
@@ -270,18 +271,18 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 2 -> 2.1 -> 2.2 -> 3 -> 3.1 -> 4
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 6/6 | Complete | 2026-03-22 |
+| 1. Foundation | 7/7 | Complete | 2026-03-22 |
 | 2. AI Gateway | 5/5 | Complete | 2026-03-22 |
 | 3. Financial Module | 7/7 | Complete | 2026-03-23 |
 | 4. Habits & Tasks | 7/7 | Complete | 2026-03-23 |
 | 5. Health Module | 6/6 | Complete | 2026-03-23 |
 | 6. Notes & Journal | 5/5 | Complete | 2026-03-24 |
-| 7. Hobbies | 5/6 | Gap Closure | 2026-03-24 |
-| 8. SaaS Subscription | 0/5 | Not started | - |
+| 7. Hobbies | 6/6 | Complete | 2026-03-24 |
+| 8. SaaS Subscription | 5/5 | Complete | 2026-03-24 |
 | 9. Web Client | 0/7 | Not started | - |
 | 10. Mobile Client | 0/6 | Not started | - |
 | 11. Desktop Client | 0/5 | Not started | - |
