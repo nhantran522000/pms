@@ -158,7 +158,7 @@ Plans:
   3. User can view hobby progress over time with charts
   4. System generates hobby progress insights
   5. User can set hobby goals (target counter, target percentage) and view completion percentage on dashboard
-**Plans:** 5/5 plans complete
+**Plans:** 5/6 plans complete (1 gap closure plan)
 
 Plans:
 - [x] 07-01-PLAN.md — Prisma schema, Zod DTOs for Hobby/HobbyLog with tracking types and goals
@@ -166,6 +166,7 @@ Plans:
 - [x] 07-03-PLAN.md — Progress visualization (counter bars+line, percentage line, list activity count)
 - [x] 07-04-PLAN.md — AI-generated insights using ANALYZE task type with data-only fallback
 - [x] 07-05-PLAN.md — Dashboard aggregation with completion percentage calculation
+- [ ] 07-06-PLAN.md — Wire HobbiesModule into API app (gap closure)
 
 ### Phase 8: SaaS Subscription
 **Goal**: LemonSqueezy integration with 30-day trial, webhook handlers, plan guards, and tenant branding
@@ -279,7 +280,7 @@ Phases execute in numeric order: 2 -> 2.1 -> 2.2 -> 3 -> 3.1 -> 4
 | 4. Habits & Tasks | 7/7 | Complete | 2026-03-23 |
 | 5. Health Module | 6/6 | Complete | 2026-03-23 |
 | 6. Notes & Journal | 5/5 | Complete | 2026-03-24 |
-| 7. Hobbies | 5/5 | Complete   | 2026-03-24 |
+| 7. Hobbies | 5/6 | Gap Closure | 2026-03-24 |
 | 8. SaaS Subscription | 0/5 | Not started | - |
 | 9. Web Client | 0/7 | Not started | - |
 | 10. Mobile Client | 0/6 | Not started | - |
