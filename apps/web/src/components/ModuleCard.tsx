@@ -1,6 +1,15 @@
 import Link from 'next/link';
-import { type LucideIcon } from 'lucide-react';
+import { type LucideIcon, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 export interface Metric {
   label: string;
@@ -22,24 +31,16 @@ export interface ModuleCardProps {
  * ModuleCard component for dashboard summaries
  * Displays key metrics for each module with link to full view
  *
+ * Uses shadcn/ui Card and Button components
  * Per CONTEXT.md: Module cards show key metrics per domain
+ * Per CONTEXT.md: Zinc base (neutral grays), Indigo accent (primary)
  */
 export function ModuleCard({ name, description, href, icon: Icon, metrics }: ModuleCardProps) {
   return (
-    <Link
-      href={href}
-      className={cn(
-        'group block bg-white dark:bg-zinc-900',
-        'border border-zinc-200 dark:border-zinc-800',
-        'hover:border-indigo-300 dark:hover:border-indigo-700',
-        'rounded-lg shadow-sm hover:shadow-md',
-        'transition-all duration-200'
-      )}
-    >
-      <div className="p-5">
-        {/* Header: Icon + Name + Description */}
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex items-center space-x-3">
+    <Card className="group hover:border-indigo-300 dark:hover:border-indigo-700 transition-all duration-200 hover:shadow-md">
+      <Link href={href} className="block h-full">
+        <CardHeader>
+          <div className="flex items-start space-x-3">
             <div className={cn(
               'p-2 rounded-lg',
               'bg-indigo-50 dark:bg-indigo-950',
@@ -48,65 +49,58 @@ export function ModuleCard({ name, description, href, icon: Icon, metrics }: Mod
             )}>
               <Icon className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
             </div>
-            <div>
-              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
-                {name}
-              </h3>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-0.5">
-                {description}
-              </p>
+            <div className="flex-1">
+              <CardTitle className="text-lg">{name}</CardTitle>
+              <CardDescription className="mt-0.5">{description}</CardDescription>
             </div>
           </div>
-        </div>
+        </CardHeader>
 
-        {/* Metrics Grid */}
-        <div className="grid grid-cols-2 gap-3 mb-4">
-          {metrics.slice(0, 4).map((metric, index) => (
-            <div key={index} className="space-y-1">
-              <p className="text-xs text-zinc-500 dark:text-zinc-500 uppercase tracking-wide">
-                {metric.label}
-              </p>
-              <div className="flex items-center space-x-1">
-                {metric.isLoading ? (
-                  <div className="h-5 w-16 bg-zinc-200 dark:bg-zinc-800 animate-pulse rounded" />
-                ) : metric.error ? (
-                  <p className="text-sm text-red-600 dark:text-red-400">Error</p>
-                ) : (
-                  <>
-                    <p className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-                      {metric.value}
-                    </p>
-                    {metric.trend && (
-                      <span className={cn(
-                        'text-xs',
-                        (metric.trend === 'up' || metric.trend === 'positive' || metric.trend === 'improving') && 'text-green-600 dark:text-green-400',
-                        (metric.trend === 'down' || metric.trend === 'negative' || metric.trend === 'declining') && 'text-red-600 dark:text-red-400',
-                        (metric.trend === 'neutral' || metric.trend === 'stable') && 'text-zinc-500 dark:text-zinc-500'
-                      )}>
-                        {metric.trend === 'up' || metric.trend === 'positive' || metric.trend === 'improving' ? '↑' :
-                         metric.trend === 'down' || metric.trend === 'negative' || metric.trend === 'declining' ? '↓' : '→'}
-                      </span>
-                    )}
-                  </>
-                )}
+        <CardContent>
+          <div className="grid grid-cols-2 gap-3">
+            {metrics.slice(0, 4).map((metric, index) => (
+              <div key={index} className="space-y-1">
+                <p className="text-xs text-muted-foreground uppercase tracking-wide">
+                  {metric.label}
+                </p>
+                <div className="flex items-center space-x-1">
+                  {metric.isLoading ? (
+                    <div className="h-5 w-16 bg-muted animate-pulse rounded" />
+                  ) : metric.error ? (
+                    <p className="text-sm text-destructive">Error</p>
+                  ) : (
+                    <>
+                      <p className="text-lg font-semibold">
+                        {metric.value}
+                      </p>
+                      {metric.trend && (
+                        <span className={cn(
+                          'text-xs',
+                          (metric.trend === 'up' || metric.trend === 'positive' || metric.trend === 'improving') && 'text-green-600 dark:text-green-400',
+                          (metric.trend === 'down' || metric.trend === 'negative' || metric.trend === 'declining') && 'text-destructive',
+                          (metric.trend === 'neutral' || metric.trend === 'stable') && 'text-muted-foreground'
+                        )}>
+                          {metric.trend === 'up' || metric.trend === 'positive' || metric.trend === 'improving' ? '↑' :
+                           metric.trend === 'down' || metric.trend === 'negative' || metric.trend === 'declining' ? '↓' : '→'}
+                        </span>
+                      )}
+                    </>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </CardContent>
 
-        {/* Link Button */}
-        <div className={cn(
-          'flex items-center text-sm font-medium',
-          'text-indigo-600 dark:text-indigo-400',
-          'group-hover:text-indigo-700 dark:group-hover:text-indigo-300',
-          'transition-colors'
-        )}>
-          <span>View</span>
-          <svg className="ml-1 h-4 w-4 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </div>
-      </div>
-    </Link>
+        <CardFooter>
+          <Button variant="ghost" size="sm" className="group/btn w-full justify-start px-0">
+            <span className="text-indigo-600 dark:text-indigo-400 group-hover/btn:text-indigo-700 dark:group-hover/btn:text-indigo-300">
+              View
+            </span>
+            <ChevronRight className="ml-1 h-4 w-4 text-indigo-600 dark:text-indigo-400 group-hover/btn:translate-x-0.5 transition-transform" />
+          </Button>
+        </CardFooter>
+      </Link>
+    </Card>
   );
 }
