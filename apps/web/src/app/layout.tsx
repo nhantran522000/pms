@@ -1,7 +1,19 @@
 import { Inter } from 'next/font/google';
 import './global.css';
 import type { Viewport } from 'next';
-import { Providers } from '@/components/Providers';
+import dynamic from 'next/dynamic';
+
+const Providers = dynamic(
+  () => import('@/components/Providers').then((mod) => mod.Providers),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+      </div>
+    ),
+  }
+);
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
