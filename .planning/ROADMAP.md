@@ -18,7 +18,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 4: Habits & Tasks** - Habit tracking, streaks, RPG gamification, NL task parsing, subtasks
 - [ ] **Phase 5: Health Module** - Weight, vitals, sleep, workouts, charts, AI weekly digest
 - [ ] **Phase 6: Notes & Journal** - Tiptap editor, search, tags, journal, mood tracking, auto-save
-- [ ] **Phase 7: Hobbies** - Flexible tracking, goals, insights, progress visualization
+- [x] **Phase 7: Hobbies** - Flexible tracking, goals, insights, progress visualization (completed 2026-03-24)
 - [ ] **Phase 8: SaaS Subscription** - LemonSqueezy, trial management, plan guards, branding
 - [ ] **Phase 9: Web Client** - Next.js static, dashboard, TanStack Query, shadcn/ui, PWA
 - [ ] **Phase 10: Mobile Client** - Expo, NativeWind, offline queue, shared hooks
@@ -158,14 +158,14 @@ Plans:
   3. User can view hobby progress over time with charts
   4. System generates hobby progress insights
   5. User can set hobby goals (target counter, target percentage) and view completion percentage on dashboard
-**Plans:** 5 plans
+**Plans:** 5/5 plans complete
 
 Plans:
 - [x] 07-01-PLAN.md — Prisma schema, Zod DTOs for Hobby/HobbyLog with tracking types and goals
 - [x] 07-02-PLAN.md — Feature module with DDD layers, CRUD, progress logging with type validation
 - [x] 07-03-PLAN.md — Progress visualization (counter bars+line, percentage line, list activity count)
 - [x] 07-04-PLAN.md — AI-generated insights using ANALYZE task type with data-only fallback
-- [ ] 07-05-PLAN.md — Dashboard aggregation with completion percentage calculation
+- [x] 07-05-PLAN.md — Dashboard aggregation with completion percentage calculation
 
 ### Phase 8: SaaS Subscription
 **Goal**: LemonSqueezy integration with 30-day trial, webhook handlers, plan guards, and tenant branding
@@ -279,7 +279,7 @@ Phases execute in numeric order: 2 -> 2.1 -> 2.2 -> 3 -> 3.1 -> 4
 | 4. Habits & Tasks | 7/7 | Complete | 2026-03-23 |
 | 5. Health Module | 6/6 | Complete | 2026-03-23 |
 | 6. Notes & Journal | 5/5 | Complete | 2026-03-24 |
-| 7. Hobbies | 0/5 | Not started | - |
+| 7. Hobbies | 5/5 | Complete   | 2026-03-24 |
 | 8. SaaS Subscription | 0/5 | Not started | - |
 | 9. Web Client | 0/7 | Not started | - |
 | 10. Mobile Client | 0/6 | Not started | - |
