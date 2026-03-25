@@ -5,7 +5,14 @@
       "@pms/shared-kernel": ["dist/libs/shared-kernel/src/index.js"],
       "@pms/shared-types": ["dist/libs/shared-types/src/index.js"],
       "@pms/data-access": ["dist/libs/data-access/src/index.js"],
-      "@pms/feature-auth": ["dist/libs/feature-auth/src/index.js"]
+      "@pms/feature-auth": ["dist/libs/feature-auth/src/index.js"],
+      "@pms/feature-financial": ["dist/libs/feature-financial/src/index.js"],
+      "@pms/feature-habits": ["dist/libs/feature-habits/src/index.js"],
+      "@pms/feature-health": ["dist/libs/feature-health/src/index.js"],
+      "@pms/feature-hobbies": ["dist/libs/feature-hobbies/src/index.js"],
+      "@pms/feature-notes": ["dist/libs/feature-notes/src/index.js"],
+      "@pms/feature-subscription": ["dist/libs/feature-subscription/src/index.js"],
+      "@pms/feature-tasks": ["dist/libs/feature-tasks/src/index.js"]
     }
   }
 }

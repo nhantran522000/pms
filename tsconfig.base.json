@@ -26,7 +26,12 @@
       "@pms/data-access": ["libs/data-access/src/index.ts"],
       "@pms/feature-auth": ["libs/feature-auth/src/index.ts"],
       "@pms/feature-financial": ["libs/feature-financial/src/index.ts"],
-      "@pms/feature-habits": ["libs/feature-habits/src/index.ts"]
+      "@pms/feature-habits": ["libs/feature-habits/src/index.ts"],
+      "@pms/feature-health": ["libs/feature-health/src/index.ts"],
+      "@pms/feature-hobbies": ["libs/feature-hobbies/src/index.ts"],
+      "@pms/feature-notes": ["libs/feature-notes/src/index.ts"],
+      "@pms/feature-subscription": ["libs/feature-subscription/src/index.ts"],
+      "@pms/feature-tasks": ["libs/feature-tasks/src/index.ts"]
     }
   }
 }
