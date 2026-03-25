@@ -16,7 +16,9 @@ WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
 COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+COPY nx.json tsconfig.base.json tsconfig.prod.json ./
+COPY prisma ./prisma
 
 RUN pnpm exec prisma generate || true
 # Only build API and its dependencies, exclude web app
