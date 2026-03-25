@@ -16,9 +16,7 @@ WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
 COPY --from=deps /app/node_modules ./node_modules
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
-COPY nx.json tsconfig.base.json tsconfig.prod.json prisma.config.ts ./
-COPY libs/data-access/prisma ./libs/data-access/prisma
+COPY . .
 
 RUN pnpm exec prisma generate --schema=./libs/data-access/prisma/schema.prisma || true
 # Only build API and its dependencies, exclude web app
@@ -33,17 +31,16 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nestjs
 
-# Copy package files first
-COPY --from=builder /app/package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+# Copy everything needed from builder
 COPY --from=builder /app/node_modules ./node_modules
-
-# Copy prisma schema and generate client in runner
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/prisma.config.ts ./
+COPY --from=builder /app/tsconfig.prod.json ./tsconfig.json
 COPY --from=builder /app/libs/data-access/prisma ./libs/data-access/prisma
-RUN pnpm exec prisma generate --schema=./libs/data-access/prisma/schema.prisma
 
-# Copy built files
-COPY --from=builder --chown=nestjs:nodejs /app/dist ./dist
-COPY --from=builder --chown=nestjs:nodejs /app/tsconfig.prod.json ./tsconfig.json
+# Generate Prisma client in runner
+RUN pnpm exec prisma generate --schema=./libs/data-access/prisma/schema.prisma
 
 ENV NODE_ENV=production
 ENV PORT=3000
