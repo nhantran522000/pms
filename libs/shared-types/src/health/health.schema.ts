@@ -46,7 +46,7 @@ export type WorkoutData = z.infer<typeof WorkoutDataSchema>;
 export const CreateHealthLogSchema = z.object({
   type: HealthLogTypeSchema,
   loggedAt: z.string().datetime().or(z.date()),
-  data: z.record(z.unknown()),
+  data: z.record(z.string(), z.unknown()),
   notes: z.string().max(1000).optional(),
   source: z.string().max(50).default('manual'),
 });
@@ -55,7 +55,7 @@ export type CreateHealthLogDto = z.infer<typeof CreateHealthLogSchema>;
 // Update health log schema
 export const UpdateHealthLogSchema = z.object({
   loggedAt: z.string().datetime().or(z.date()).optional(),
-  data: z.record(z.unknown()).optional(),
+  data: z.record(z.string(), z.unknown()).optional(),
   notes: z.string().max(1000).optional(),
 });
 export type UpdateHealthLogDto = z.infer<typeof UpdateHealthLogSchema>;
@@ -66,7 +66,7 @@ export const HealthLogResponseSchema = z.object({
   tenantId: z.string(),
   type: HealthLogTypeSchema,
   loggedAt: z.date(),
-  data: z.record(z.unknown()),
+  data: z.record(z.string(), z.unknown()),
   notes: z.string().nullable(),
   source: z.string(),
   deletedAt: z.date().nullable(),

@@ -58,7 +58,7 @@ export type HobbyResponse = z.infer<typeof HobbyResponseSchema>;
 // Create hobby log schema
 export const CreateHobbyLogSchema = z.object({
   hobbyId: z.string(),
-  logValue: z.record(z.unknown()),
+  logValue: z.record(z.string(), z.unknown()),
   loggedAt: z.string().datetime().or(z.date()).optional(),
   notes: z.string().max(500).optional(),
 });
@@ -70,7 +70,7 @@ export const HobbyLogResponseSchema = z.object({
   tenantId: z.string(),
   hobbyId: z.string(),
   trackingType: HobbyTrackingTypeSchema,
-  logValue: z.record(z.unknown()),
+  logValue: z.record(z.string(), z.unknown()),
   loggedAt: z.date(),
   notes: z.string().nullable(),
   createdAt: z.date(),

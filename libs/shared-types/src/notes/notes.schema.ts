@@ -7,7 +7,7 @@ export type Mood = z.infer<typeof MoodSchema>;
 // Create Note
 export const CreateNoteSchema = z.object({
   title: z.string().min(1).max(200),
-  content: z.record(z.unknown()).optional().default({ type: 'doc', content: [] }), // Tiptap JSON
+  content: z.record(z.string(), z.unknown()).optional().default({ type: 'doc', content: [] }), // Tiptap JSON
   folderId: z.string().cuid().optional().nullable(),
   tagIds: z.array(z.string().cuid()).max(20).optional().default([]), // Max 20 tags per NOTE-05
 });
@@ -16,7 +16,7 @@ export type CreateNoteDto = z.infer<typeof CreateNoteSchema>;
 // Update Note
 export const UpdateNoteSchema = z.object({
   title: z.string().min(1).max(200).optional(),
-  content: z.record(z.unknown()).optional(),
+  content: z.record(z.string(), z.unknown()).optional(),
   folderId: z.string().cuid().nullable().optional(),
   tagIds: z.array(z.string().cuid()).max(20).optional(),
 });
@@ -27,7 +27,7 @@ export const NoteResponseSchema = z.object({
   id: z.string(),
   tenantId: z.string(),
   title: z.string(),
-  content: z.record(z.unknown()),
+  content: z.record(z.string(), z.unknown()),
   folderId: z.string().nullable(),
   deletedAt: z.date().nullable(),
   createdAt: z.date(),
@@ -79,14 +79,14 @@ export type TagResponse = z.infer<typeof TagResponseSchema>;
 // Create Journal Entry
 export const CreateJournalEntrySchema = z.object({
   entryDate: z.string().date(), // YYYY-MM-DD format
-  content: z.record(z.unknown()).optional().default({ type: 'doc', content: [] }),
+  content: z.record(z.string(), z.unknown()).optional().default({ type: 'doc', content: [] }),
   mood: MoodSchema,
 });
 export type CreateJournalEntryDto = z.infer<typeof CreateJournalEntrySchema>;
 
 // Update Journal Entry
 export const UpdateJournalEntrySchema = z.object({
-  content: z.record(z.unknown()).optional(),
+  content: z.record(z.string(), z.unknown()).optional(),
   mood: MoodSchema.optional(),
 });
 export type UpdateJournalEntryDto = z.infer<typeof UpdateJournalEntrySchema>;
@@ -96,7 +96,7 @@ export const JournalEntryResponseSchema = z.object({
   id: z.string(),
   tenantId: z.string(),
   entryDate: z.date(),
-  content: z.record(z.unknown()),
+  content: z.record(z.string(), z.unknown()),
   mood: MoodSchema,
   createdAt: z.date(),
   updatedAt: z.date(),

@@ -48,7 +48,8 @@ export class EmailService {
 
       this.logger.log(`Verification email sent to ${email}`);
     } catch (error) {
-      this.logger.error(`Failed to send verification email to ${email}: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      this.logger.error(`Failed to send verification email to ${email}: ${errorMessage}`);
       throw new Error('Failed to send verification email');
     }
   }
@@ -78,7 +79,8 @@ export class EmailService {
 
       this.logger.log(`Password reset email sent to ${email}`);
     } catch (error) {
-      this.logger.error(`Failed to send password reset email to ${email}: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      this.logger.error(`Failed to send password reset email to ${email}: ${errorMessage}`);
       throw new Error('Failed to send password reset email');
     }
   }
@@ -127,7 +129,8 @@ export class EmailService {
 
       this.logger.log(`Trial warning email sent to ${email}`);
     } catch (error) {
-      this.logger.error(`Failed to send trial warning email to ${email}: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      this.logger.error(`Failed to send trial warning email to ${email}: ${errorMessage}`);
       throw new Error('Failed to send trial warning email');
     }
   }

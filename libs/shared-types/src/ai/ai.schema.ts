@@ -12,7 +12,7 @@ export type AiProvider = typeof AI_PROVIDERS[number];
 export const AiRequestSchema = z.object({
   taskType: z.enum(AI_TASK_TYPES),
   prompt: z.string().min(1).max(10000),
-  context: z.record(z.unknown()).optional(),
+  context: z.record(z.string(), z.unknown()).optional(),
   maxTokens: z.number().int().min(1).max(32000).optional(),
   temperature: z.number().min(0).max(2).optional(),
 });
@@ -121,7 +121,7 @@ export const ClassifyResultSchema = z.object({
 
 export const LabelResultSchema = z.object({
   labels: z.array(z.string()),
-  confidence: z.record(z.number()),
+  confidence: z.record(z.string(), z.number()),
 });
 
 export const SummarizeResultSchema = z.object({
@@ -143,7 +143,7 @@ export const ExtractResultSchema = z.object({
     value: z.string(),
     confidence: z.number(),
   })),
-  metadata: z.record(z.unknown()).optional(),
+  metadata: z.record(z.string(), z.unknown()).optional(),
 });
 
 export const ChatResultSchema = z.object({
