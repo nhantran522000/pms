@@ -1,0 +1,5 @@
+{
+  "name": "@org/web-e2e",
+  "tags": ["type:e2e", "layer:testing"],
+  "implicitDependencies": ["@org/web"]
+}

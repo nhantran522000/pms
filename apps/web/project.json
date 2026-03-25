@@ -1,0 +1,5 @@
+{
+  "name": "@org/web",
+  "tags": ["type:app", "layer:frontend"],
+  "sourceRoot": "apps/web/src"
+}

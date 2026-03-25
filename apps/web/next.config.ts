@@ -3,9 +3,10 @@ import { withNx } from '@nx/next/plugins/with-nx';
 
 const nextConfig: NextConfig = {
   nx: {},
-  // Disable build-time optimization to avoid prerendering issues with client components
+  reactStrictMode: true,
   experimental: {
-    optimizePackageImports: ['@tanstack/react-query', 'next-themes'],
+    // Ensure proper package resolution in monorepo
+    optimizePackageImports: [],
   },
 };
 
