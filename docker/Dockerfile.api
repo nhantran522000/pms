@@ -26,13 +26,21 @@ RUN pnpm exec nx run-many -t build --projects=api,shared-kernel,shared-types,dat
 FROM node:20-alpine AS runner
 WORKDIR /app
 
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nestjs
 
-# Copy entire dist (all libs + api)
+# Copy package files first
+COPY --from=builder /app/package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+COPY --from=builder /app/node_modules ./node_modules
+
+# Copy prisma schema and generate client in runner
+COPY --from=builder /app/prisma ./prisma
+RUN pnpm exec prisma generate
+
+# Copy built files
 COPY --from=builder --chown=nestjs:nodejs /app/dist ./dist
-COPY --from=builder --chown=nestjs:nodejs /app/node_modules ./node_modules
-COPY --from=builder --chown=nestjs:nodejs /app/package.json ./
 COPY --from=builder --chown=nestjs:nodejs /app/tsconfig.prod.json ./tsconfig.json
 
 ENV NODE_ENV=production
