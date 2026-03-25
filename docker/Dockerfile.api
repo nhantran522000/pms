@@ -17,10 +17,10 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
-COPY nx.json tsconfig.base.json tsconfig.prod.json ./
+COPY nx.json tsconfig.base.json tsconfig.prod.json prisma.config.ts ./
 COPY libs/data-access/prisma ./libs/data-access/prisma
 
-RUN pnpm exec prisma generate || true
+RUN pnpm exec prisma generate --schema=./libs/data-access/prisma/schema.prisma || true
 # Only build API and its dependencies, exclude web app
 RUN pnpm exec nx run-many -t build --projects=api,shared-kernel,shared-types,data-access,feature-auth,feature-financial,feature-habits,feature-health,feature-hobbies,feature-notes,feature-subscription,feature-tasks
 
@@ -39,7 +39,7 @@ COPY --from=builder /app/node_modules ./node_modules
 
 # Copy prisma schema and generate client in runner
 COPY --from=builder /app/libs/data-access/prisma ./libs/data-access/prisma
-RUN pnpm exec prisma generate
+RUN pnpm exec prisma generate --schema=./libs/data-access/prisma/schema.prisma
 
 # Copy built files
 COPY --from=builder --chown=nestjs:nodejs /app/dist ./dist
