@@ -1,0 +1,127 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-03-25T08:25:18.507Z",
+  "phase": null,
+  "phase_name": "infrastructure",
+  "phase_dir": null,
+  "plan": null,
+  "task": null,
+  "total_tasks": null,
+  "status": "paused",
+  "completed_tasks": [
+    {
+      "id": 1,
+      "name": "Convert feature libraries from SWC to TSC executor",
+      "status": "partial",
+      "progress": "Updated project.json files for all 8 feature libraries (auth, financial, habits, health, hobbies, notes, subscription, tasks) and 3 core libraries (shared-kernel, data-access, shared-types) to use @nx/js:tsc executor instead of @nx/js:swc"
+    },
+    {
+      "id": 2,
+      "name": "Fix Zod v4 breaking changes",
+      "status": "done",
+      "progress": "Updated z.record(z.unknown()) to z.record(z.string(), z.unknown()) in health.schema.ts, hobbies.schema.ts, notes.schema.ts, and ai.schema.ts"
+    },
+    {
+      "id": 3,
+      "name": "Fix error handling for unknown error types",
+      "status": "done",
+      "progress": "Updated email.service.ts to use proper type guards: error instanceof Error ? error.message : String(error)"
+    },
+    {
+      "id": 4,
+      "name": "Add FastifyReply type declarations",
+      "status": "done",
+      "progress": "Created libs/feature-auth/src/types/fastify.d.ts with setCookie and clearCookie method declarations"
+    },
+    {
+      "id": 5,
+      "name": "Update tsconfig.base.json",
+      "status": "done",
+      "progress": "Added declaration: true to enable declaration file generation"
+    }
+  ],
+  "remaining_tasks": [
+    {
+      "id": 6,
+      "name": "Resolve @nx/js/typescript plugin interference",
+      "status": "in_progress",
+      "details": "The Nx TypeScript plugin (@nx/js/typescript) is configured in nx.json and automatically creates build targets using SWC executor, overriding the project.json configurations. Need to either disable the plugin for specific projects or work within its constraints."
+    },
+    {
+      "id": 7,
+      "name": "Verify decorator metadata preservation",
+      "status": "not_started",
+      "details": "Original goal was to ensure NestJS decorator metadata is preserved. The .swcrc files already have decoratorMetadata: true, so SWC may be sufficient. Need to test runtime behavior."
+    },
+    {
+      "id": 8,
+      "name": "Run typecheck validation",
+      "status": "not_started",
+      "details": "When running typecheck, there are still module resolution issues with @pms/data-access, @pms/shared-kernel, and @prisma/client exports. These need to be resolved."
+    }
+  ],
+  "blockers": [
+    {
+      "description": "@nx/js/typescript plugin overrides project.json executor settings",
+      "type": "technical",
+      "workaround": "The plugin creates automatic build targets using SWC. Options: 1) Remove plugin configuration for specific projects, 2) Accept SWC with .swcrc decorator metadata config, 3) Use typecheck target for validation"
+    },
+    {
+      "description": "Module resolution issues in typecheck",
+      "type": "technical",
+      "workaround": "Paths in tsconfig.base.json may not be working with composite builds. Need to investigate project references setup."
+    },
+    {
+      "description": "@prisma/client User export missing",
+      "type": "technical",
+      "workaround": "Need to regenerate Prisma client or check Prisma schema configuration"
+    }
+  ],
+  "human_actions_pending": [],
+  "decisions": [
+    {
+      "decision": "Convert from SWC to TSC executor for decorator metadata support",
+      "rationale": "User reported that SWC with skipTypeCheck: true doesn't preserve decorator metadata properly for NestJS dependency injection",
+      "phase": "infrastructure"
+    },
+    {
+      "decision": "Keep .swcrc files with decorator metadata enabled",
+      "rationale": "If we continue using SWC via the plugin, the existing .swcrc configuration already has decoratorMetadata: true",
+      "phase": "infrastructure"
+    },
+    {
+      "decision": "Enable auto-sync in nx.json",
+      "rationale": "To automatically fix TypeScript project reference issues",
+      "phase": "infrastructure"
+    }
+  ],
+  "uncommitted_files": [
+    ".planning/ROADMAP.md",
+    "apps/api/package.json",
+    "apps/api/tsconfig.app.json",
+    "libs/data-access/package.json",
+    "libs/data-access/project.json",
+    "libs/data-access/tsconfig.lib.json",
+    "libs/feature-auth/project.json",
+    "libs/feature-auth/src/infrastructure/services/email.service.ts",
+    "libs/feature-auth/src/types/fastify.d.ts",
+    "libs/feature-auth/tsconfig.lib.json",
+    "libs/feature-financial/project.json",
+    "libs/feature-habits/project.json",
+    "libs/feature-health/project.json",
+    "libs/feature-hobbies/project.json",
+    "libs/feature-notes/project.json",
+    "libs/feature-subscription/project.json",
+    "libs/shared-kernel/project.json",
+    "libs/shared-types/project.json",
+    "libs/shared-types/src/ai/ai.schema.ts",
+    "libs/shared-types/src/health/health.schema.ts",
+    "libs/shared-types/src/hobbies/hobbies.schema.ts",
+    "libs/shared-types/src/notes/notes.schema.ts",
+    "nx.json",
+    "tsconfig.base.json",
+    "pnpm-lock.yaml"
+  ],
+  "next_action": "Decide on approach: either disable @nx/js/typescript plugin for projects needing TSC, or accept SWC with .swcrc decorator metadata configuration and use typecheck target for validation. Then run full typecheck to identify remaining issues.",
+  "context_notes": "Work was triggered by user request to: 1) Use @nx/js:tsc executor instead of SWC for feature-auth (preserves decorators better), 2) Investigate SWC configuration for decorator metadata, 3) Run /gsd:pause-work. Discovered that the Nx TypeScript plugin architecture makes executor switching complex. The .swcrc files already have proper decorator metadata configuration. The real issue may have been skipTypeCheck: true masking type errors, which we've now fixed (Zod v4, error handling, Fastify types)."
+}
