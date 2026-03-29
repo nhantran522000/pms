@@ -1,0 +1,12 @@
+{
+  "name": "@pms/feature-auth",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/core": "^11.0.0",
+    "@nestjs/passport": "^11.0.0",
+    "@pms/feature-subscription": "workspace:*",
+    "@pms/shared-types": "workspace:*"
+  }
+}
